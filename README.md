@@ -6,10 +6,10 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo {N}
 
-* **Cristian Roldan** - [https://github.com/CrissRMFI](https://github.com/integrante1)
-* **Carla Mendoza Coronado** - [https://github.com/CarlaMendoza90](https://github.com/integrante2)
-* **Agustin Gabriel Garcia** - [https://github.com/agusgar409](https://github.com/integrante3)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Cristian Roldan** - [https://github.com/CrissRMFI](https://github.com/CrissRMFI)
+* **Carla Mendoza Coronado** - [https://github.com/CarlaMendoza90](https://github.com/CarlaMendoza90)
+* **Agustin Gabriel Garcia** - [https://github.com/agusgar409](https://github.com/agusgar409)
+* **Martín Alejandro Estrada Saavedra** - [https://github.com/martinSaav](https://github.com/martinSaav)
 
 Corrector: **{Corrector}**
 
