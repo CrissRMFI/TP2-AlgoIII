@@ -6,16 +6,16 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo {N}
 
-* **Integrante 1** - [integrante1](https://github.com/integrante1)
-* **Integrante 2** - [integrante2](https://github.com/integrante2)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
+* **Cristian Roldan** - [https://github.com/CrissRMFI](https://github.com/integrante1)
+* **Carla Mendoza Coronado** - [https://github.com/CarlaMendoza90](https://github.com/integrante2)
+* **Agustin Gabriel Garcia** - [https://github.com/agusgar409](https://github.com/integrante3)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
 
 Corrector: **{Corrector}**
 
 ## Aplicación
 
-La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/fiuba/algo3_proyecto_base_tp2/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
+La versión más reciente de la aplicación puede encontrarse en la pestaña [https://github.com/CrissRMFI/TP2-AlgoIII.git](https://github.com/fiuba/algo3_proyecto_base_tp2/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
 
 ```bash
 $ java -jar <archivo.jar>
