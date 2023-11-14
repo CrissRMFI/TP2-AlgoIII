@@ -21,7 +21,10 @@ public class Gladiador {
         this.turno = new Turno();
 
     }
-    private void ascenderSeniority () {};
+
+    private void ascenderSeniority () {
+        this.seniority =  this.seniority.ascenderSeniority();
+    };
 
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);

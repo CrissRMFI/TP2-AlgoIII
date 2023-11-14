@@ -2,6 +2,6 @@ package Entidades.Jugadores;
 import Entidades.Energia.Energia;
 
 public interface Seniority {
-    public void ascenderSeniority ();
+    public Seniority ascenderSeniority ();
     public void aumentarEnergia (Energia energia);
 }
