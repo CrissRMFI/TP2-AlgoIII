@@ -1,0 +1,22 @@
+@startuml
+
+
+class Casillero{
+
+}
+
+class Mapa{
+}
+
+class Tablero{
+}
+
+class Posicion{
+
+}
+
+Posicion --> Casillero
+Tablero -> Mapa
+Mapa -> Casillero
+
+@enduml

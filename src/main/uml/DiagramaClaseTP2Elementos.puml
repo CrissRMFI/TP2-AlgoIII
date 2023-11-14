@@ -1,0 +1,77 @@
+@startuml
+
+class Gladiador{
+    obtenerElemento(e: Elemento) 
+}
+
+interface Comidas{
+    aumentarEnergia()
+}
+
+class Manzana{
+    aumentarEnergia()
+}
+
+interface Equipamientos{
+    restarEnergia(energia: Energia)
+}
+
+interface Premios{
+
+}
+
+class EscudoYEspada{
+    restarEnergia(energia: Energia)
+}
+class Armadura{
+    restarEnergia(energia: Energia)
+}
+
+class Casco{
+    restarEnergia(energia: Energia)
+}
+
+class Base{
+    
+}
+
+class Llave{
+
+}
+
+interface Elementos{
+
+}
+
+interface Obstaculos{
+
+}
+
+class Decorador{
+    -equipo: Equipamientos
+    decoradorEquipamientos(equipo: Equipamientos)
+    restarEnergia(energia: Energia)
+}
+
+Decorador *-- Equipamientos
+
+' Gladiador .> Premios
+
+Gladiador --> Casillero
+Elementos <-- Casillero
+Elementos <|.. Premios
+Gladiador ..> Elementos
+Elementos <|.. Obstaculos
+
+Premios <|.. Equipamientos
+Decorador <|-- EscudoYEspada
+Equipamientos <|.. Base
+Decorador <|-- Casco
+Decorador <|-- Armadura
+Decorador <|-- Llave
+Comidas <|.. Manzana
+Comidas ..|> Premios
+
+' Gladiador --> Equipamientos
+
+@enduml
