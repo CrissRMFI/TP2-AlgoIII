@@ -1,24 +1,31 @@
 package Entidades.Tablero;
 
 import Entidades.Elementos.Comida;
+import Entidades.Elementos.Objetos;
+import Entidades.ElementosMapa;
+import Entidades.Jugadores.Gladiador;
 import Entidades.Obstaculos.Obstaculo;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
 
 public class Casillero {
-    private List<Comida> comida;
-    private Obstaculo obstaculo;
+   private LinkedList<ElementosMapa> elementos;
+   private Posicion posicion;
 
-    public Casillero() {
-        this.comida = new ArrayList<>();
-    }
-    public Comida otorgarComida () {
-        return comida.get(0);
-    }
+   public Casillero (Posicion posicion) {
+       this.posicion = posicion;
+   }
+   public void recibirElemento (ElementosMapa elemento) {
+       elementos.add(elemento);
+   }
 
-    public Obstaculo otorgarObstaculo () {
-        return obstaculo;
-    }
+   public void entregarElementos (Gladiador gladiador) {
+       while (!elementos.isEmpty()) {
+           ElementosMapa elemento = elementos.poll();
+           elemento.accionar(gladiador);
+       }
+   }
 }
 

@@ -3,7 +3,7 @@ package Entidades.Elementos;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Gladiador;
 
-public class Comida implements Elemento {
+public class Comida implements Objetos {
     private Energia energia;
 
 

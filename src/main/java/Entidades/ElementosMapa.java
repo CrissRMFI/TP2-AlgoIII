@@ -1,7 +1,7 @@
-package Entidades.Elementos;
+package Entidades;
 
 import Entidades.Jugadores.Gladiador;
 
-public interface Elemento {
+public interface ElementosMapa {
     public void accionar(Gladiador gladiador);
 }
