@@ -1,8 +1,8 @@
 package Entidades.Equipo;
 
-import Entidades.Energia.Energia;
+import Entidades.Elementos.Elemento;
+import Entidades.Jugadores.Gladiador;
 
-public interface Equipo {
-
-    public Energia recibirDanio();
+public interface Equipo extends Elemento {
+    public void recibirDanio (Gladiador gladiador);
 }

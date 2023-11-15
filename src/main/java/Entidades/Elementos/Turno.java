@@ -24,4 +24,8 @@ public class Turno {
     public void deshabilitar () {
         this.disponible = false;
     }
+
+    public int turnosJugados () {
+        return this.cantidad;
+    }
 }

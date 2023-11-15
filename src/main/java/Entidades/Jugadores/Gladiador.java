@@ -19,19 +19,14 @@ public class Gladiador {
         this.seniority = new Novato();
         this.equipo = new EquipoBase();
         this.turno = new Turno();
-
     }
 
     private void ascenderSeniority () {
-        this.seniority =  this.seniority.ascenderSeniority();
+        this.seniority =  this.seniority.ascenderSeniority(this.turno);
     };
 
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);
-    };
-    public void obtenerComida(Casillero casillero) {
-        Comida comida = casillero.otorgarComida();
-        this.afectarEnergia(comida.alimentar());
     };
 
     public void enfrentarObstaculo (Casillero casillero) {
@@ -39,9 +34,10 @@ public class Gladiador {
         obstaculo.enfrentar(this);
     }
 
-    public void recibirDanio () {
-        this.energia.afectarEnergia(this.equipo.recibirDanio());
+    public void equipar(Equipo equipo) {
+        this.equipo = equipo;
     }
+
     public int jugarTurno (DispositivoDeAzar dispositivo) {
         return dispositivo.lanzar();
     };
@@ -60,6 +56,7 @@ public class Gladiador {
 
     public void finalizarTurno () {
         this.turno.sumarTurno();
+        this.seniority.ascenderSeniority(this.turno);
     };
 }
 
