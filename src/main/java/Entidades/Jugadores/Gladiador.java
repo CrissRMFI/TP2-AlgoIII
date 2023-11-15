@@ -8,19 +8,30 @@ import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
 
-public class Gladiador {
+public class Gladiador implements Jugador {
     private Seniority seniority;
     private Equipo equipo;
     private Turno turno;
     private Energia energia;
+
+    private Posicion posicion;
 
     public void Gladiador () {
         this.energia = new Energia();
         this.seniority = new Novato();
         this.equipo = new EquipoBase();
         this.turno = new Turno();
+        this.posicion = new Posicion(0,0);
     }
 
+    @Override
+    public void accionar(Gladiador gladiador) {
+        //TODO: Esto es raro raro raro, ver que hacer luego, metiendo pata para hacer test
+    }
+
+    public void posicionar (Posicion posicion) {
+        this.posicion.agregarPosicion(posicion);
+    }
     private void ascenderSeniority () {
         this.seniority =  this.seniority.ascenderSeniority(this.turno);
     };
@@ -29,24 +40,18 @@ public class Gladiador {
         this.energia.afectarEnergia(energia);
     };
 
-    public void enfrentarObstaculo (Casillero casillero) {
-        Obstaculo obstaculo = casillero.otorgarObstaculo();
-        obstaculo.enfrentar(this);
+    public void obtenerElementos (Casillero casillero) {
+        casillero.entregarElementos(this);
     }
-
     public void equipar(Equipo equipo) {
         this.equipo = equipo;
     }
 
-    public int jugarTurno (DispositivoDeAzar dispositivo) {
-        return dispositivo.lanzar();
-    };
-
-    public Casillero moverse(Tablero tablero, Posicion posicion) {
-        if (this.turno.estaHabilitado()) {
-            return tablero.moverJugador(posicion);
-        }
-        return null; //TODO ver que hacer con este retorno de tipo de dato, que no retorne NULL
+    public Casillero moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar) {
+        ValorAzar valor = dispositivoDeAzar.lanzar();
+        Posicion posicion = tablero.calcularPosicion(valor);
+        tablero.moverJugador(this,posicion);
+        return tablero.obtenerCasillero(posicion);
     };
 
     public void deshabilitar() {
