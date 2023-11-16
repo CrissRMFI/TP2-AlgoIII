@@ -17,4 +17,9 @@ public class Bacanal implements Obstaculo{
 
         gladiador.afectarEnergia(energia);
     }
+
+    @Override
+    public void accionar(Gladiador gladiador) {
+        this.enfrentar(gladiador);
+    }
 }

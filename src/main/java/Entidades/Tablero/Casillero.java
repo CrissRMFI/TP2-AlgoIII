@@ -16,9 +16,10 @@ public class Casillero {
 
    public Casillero (Posicion posicion) {
        this.posicion = posicion;
+       this.elementos = new LinkedList<>();
    }
    public void recibirElemento (ElementosMapa elemento) {
-       elementos.add(elemento);
+       this.elementos.add(elemento);
    }
 
    public void entregarElementos (Gladiador gladiador) {

@@ -22,4 +22,11 @@ public class Posicion {
         this.x += obtenerPosicionLineal();
         this.y += obtenerPosicionAltura();
     }
+
+    public boolean comparar (Posicion posicion) {
+        return this.x == posicion.x && this.y == posicion.y;
+    }
+
+
+
 }

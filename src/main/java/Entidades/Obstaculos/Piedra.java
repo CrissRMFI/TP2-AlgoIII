@@ -8,4 +8,9 @@ public class Piedra implements Obstaculo {
     public void enfrentar(Gladiador gladiador) {
         gladiador.deshabilitar();
     }
+
+    @Override
+    public void accionar(Gladiador gladiador) {
+        this.enfrentar(gladiador);
+    }
 }
