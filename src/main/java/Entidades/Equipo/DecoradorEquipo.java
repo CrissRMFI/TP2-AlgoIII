@@ -17,3 +17,4 @@ public abstract class DecoradorEquipo implements Equipo {
         gladiador.equipar(this);
     }
 }
+
