@@ -1,34 +1,30 @@
 package Entidades.Tablero;
 import java.util.LinkedList;
-
 import Entidades.Elementos.ValorAzar;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
+import Entidades.ListaCircular;
 
 public class Tablero {
 
     private Mapa mapa;
-    private LinkedList<Jugador> jugadores;
+    private ListaCircular<Jugador> jugadores;
 
 
 
     public Tablero(Mapa mapa) {
         this.mapa = mapa;
-        this.jugadores = new LinkedList<>();
+        this.jugadores = new ListaCircular<Jugador>();
     }
 
     public void agregarJugador(Jugador jugador) {
-        this.jugadores.add(jugador);
+        this.jugadores.agregarElemento(jugador);
         Posicion posicion = new Posicion(0,0);
         mapa.ubicar(jugador,posicion);
-        this.enlazarCircularmente(this.jugadores);
+
      }
 
-    private void enlazarCircularmente (LinkedList<Jugador> jugadores) {
-       // TODO: IMplementar logica para lograr lista enlazada circular
-
-    }
-    public Casillero obtenerCasillero(Posicion posicion) {
+     public Casillero obtenerCasillero(Posicion posicion) {
         return this.mapa.obtenerCasillero(posicion);
     };
 
@@ -41,18 +37,18 @@ public class Tablero {
         this.mapa.ubicar(gladiador,posicion);
     }
 
-    public void terminarTurno (Jugador jugador) {
+    public void terminarTurno () {
+        Jugador jugador = this.jugadores.obtener();
         jugador.finalizarTurno();
     }
 
     public Jugador siguienteJugador () {
-        // TODO: Implementar logica para acceder al siguinete jugador
-        return null;
+        this.jugadores.siguiente();
+        return this.jugadores.obtener();
     }
 
     public Jugador iniciarPartida () {
-        // TODO: Implementar logica para que tome un jugador al azar y lo retorne
-        return null
+        return this.jugadores.seleccionAleatoria();
     }
 }
 

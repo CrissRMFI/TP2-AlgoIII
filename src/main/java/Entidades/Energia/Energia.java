@@ -17,4 +17,8 @@ public class Energia {
     public int otorgarEnergia () {
         return this.disponible;
     }
+
+    public int getEnergia () {
+        return this.disponible;
+    }
 }

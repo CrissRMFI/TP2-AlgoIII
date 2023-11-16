@@ -39,5 +39,9 @@ public class Entrega1 {
        tablero.agregarJugador(gladiador);
 
        gladiador.moverse(tablero,dado);
+       gladiador.obtenerElementos(tablero);
+       //assertEquals(0,gladiador.getSalud());
+
+
     }
 }

@@ -24,9 +24,12 @@ public class Gladiador implements Jugador {
         this.posicion = new Posicion(0,0);
     }
 
+    public int getSalud ()  {
+        return this.energia.getEnergia();
+    }
     @Override
     public void accionar(Gladiador gladiador) {
-        //TODO: Esto es raro raro raro, ver que hacer luego, metiendo pata para hacer test
+        this.turno.deshabilitar();
     }
 
     public void posicionar (Posicion posicion) {
@@ -41,7 +44,8 @@ public class Gladiador implements Jugador {
         this.energia.afectarEnergia(energia);
     };
 
-    public void obtenerElementos (Casillero casillero) {
+    public void obtenerElementos (Tablero tablero) {
+        Casillero casillero = tablero.obtenerCasillero(this.posicion);
         casillero.entregarElementos(this);
     }
 
@@ -51,8 +55,6 @@ public class Gladiador implements Jugador {
             ValorAzar valor = dispositivoDeAzar.lanzar();
             Posicion posicion = tablero.calcularPosicion(valor);
             tablero.moverJugador(this, posicion);
-            this.obtenerElementos(tablero.obtenerCasillero(posicion));
-            tablero.terminarTurno(this);
         }
     };
 
