@@ -54,6 +54,10 @@ public class Gladiador implements Jugador {
         return tablero.obtenerCasillero(posicion);
     };
 
+    public void defenderse () {
+        this.equipo.recibirDanio(this);
+    }
+
     public void deshabilitar() {
         this.turno.deshabilitar();
 

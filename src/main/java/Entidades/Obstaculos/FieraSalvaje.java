@@ -6,6 +6,11 @@ public class FieraSalvaje implements Obstaculo{
 
     @Override
     public void enfrentar(Gladiador gladiador) {
+        gladiador.defenderse();
+    }
 
+    @Override
+    public void accionar(Gladiador gladiador) {
+        this.enfrentar(gladiador);
     }
 }
