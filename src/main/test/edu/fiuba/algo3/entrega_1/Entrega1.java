@@ -1,8 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
+import Entidades.Elementos.Dado;
+import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.ElementosMapa;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Obstaculos.FieraSalvaje;
+import Entidades.Tablero.Casillero;
 import Entidades.Tablero.MapaLineal;
 import Entidades.Tablero.Tablero;
 import org.junit.Before;
@@ -11,7 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Entrega1 {
 
-    private Tablero tablero;  // Declarar tablero como un campo de clase
+    private Tablero tablero;
+    private Dado dado;
 
     @Before
     public void inicializarMapa() {
@@ -23,7 +27,9 @@ public class Entrega1 {
         }
 
         MapaLineal mapa = new MapaLineal<>(elementosMapa);
-        tablero = new Tablero(mapa);  // Asignar el tablero al campo de clase
+        tablero = new Tablero(mapa);
+        dado = new Dado();
+
     }
 
     @Test
@@ -32,6 +38,6 @@ public class Entrega1 {
 
        tablero.agregarJugador(gladiador);
 
-
+       gladiador.moverse(tablero,dado);
     }
 }

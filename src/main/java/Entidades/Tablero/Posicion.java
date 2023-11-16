@@ -18,9 +18,10 @@ public class Posicion {
         return y;
     }
 
-    public void agregarPosicion (Posicion posicion) {
-        this.x += obtenerPosicionLineal();
-        this.y += obtenerPosicionAltura();
+    public Posicion cambiarPosicion (Posicion posicion) {
+        int x = this.x + obtenerPosicionLineal();
+        int y = this.y + obtenerPosicionAltura();
+        return new Posicion(x,y);
     }
 
     public boolean comparar (Posicion posicion) {

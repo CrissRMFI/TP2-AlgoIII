@@ -41,7 +41,7 @@ public class MapaLineal<T> implements Mapa {
 
     @Override
     public Posicion calcularPosicion(ValorAzar valor) {
-        return new Posicion(1,y);
+        return new Posicion(valor.obtenerValor(), y);
     }
 
     @Override

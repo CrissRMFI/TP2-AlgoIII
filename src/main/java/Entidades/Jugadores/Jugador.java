@@ -13,6 +13,7 @@ public interface Jugador extends ElementosMapa {
 
     public void afectarEnergia (Energia energia);
     public void equipar(Equipo equipo);
-    public Casillero moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
+    public void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
     public void finalizarTurno ();
+    public void obtenerElementos (Casillero casillero);
 }
