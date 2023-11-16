@@ -16,7 +16,7 @@ public class Gladiador implements Jugador {
 
     private Posicion posicion;
 
-    public void Gladiador () {
+    public  Gladiador () {
         this.energia = new Energia();
         this.seniority = new Novato();
         this.equipo = new EquipoBase();
@@ -30,8 +30,9 @@ public class Gladiador implements Jugador {
     }
 
     public void posicionar (Posicion posicion) {
-        this.posicion.agregarPosicion(posicion);
+        this.posicion = this.posicion.cambiarPosicion(posicion);
     }
+
     private void ascenderSeniority () {
         this.seniority =  this.seniority.ascenderSeniority(this.turno);
     };
@@ -43,29 +44,30 @@ public class Gladiador implements Jugador {
     public void obtenerElementos (Casillero casillero) {
         casillero.entregarElementos(this);
     }
-    public void equipar(Equipo equipo) {
-        this.equipo = equipo;
-    }
 
-    public Casillero moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar) {
-        ValorAzar valor = dispositivoDeAzar.lanzar();
-        Posicion posicion = tablero.calcularPosicion(valor);
-        tablero.moverJugador(this,posicion);
-        return tablero.obtenerCasillero(posicion);
+    // TODO: Hay que crear un error que se mande cuando quiera mover y no es mi turno
+    public void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar) {
+        if (this.turno.estaHabilitado()) {
+            ValorAzar valor = dispositivoDeAzar.lanzar();
+            Posicion posicion = tablero.calcularPosicion(valor);
+            tablero.moverJugador(this, posicion);
+            this.obtenerElementos(tablero.obtenerCasillero(posicion));
+            tablero.terminarTurno(this);
+        }
     };
 
     public void defenderse () {
         this.equipo.recibirDanio(this);
     }
 
-    public void deshabilitar() {
-        this.turno.deshabilitar();
-
+    public void equipar(Equipo equipo) {
+        this.equipo = equipo;
     }
 
     public void finalizarTurno () {
         this.turno.sumarTurno();
         this.seniority.ascenderSeniority(this.turno);
+        this.turno.deshabilitar();
     };
 }
 

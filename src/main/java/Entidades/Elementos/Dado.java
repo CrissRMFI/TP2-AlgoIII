@@ -21,6 +21,6 @@ public class Dado implements DispositivoDeAzar{
     }
     @Override
     public CaraDado lanzar() {
-        return this.cara1;
+        return this.cara6;
     }
 }
