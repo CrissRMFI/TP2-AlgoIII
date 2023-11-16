@@ -13,12 +13,15 @@ public class MapaLineal<T> implements Mapa {
     private Map<Posicion, Casillero> casilleros;
     private int y = 0;
 
+
     public MapaLineal(ElementosMapa[][] elementosMapa) {
+
         this.casilleros = new HashMap<>();
 
         Posicion posicionInicial = new Posicion(0,0);
         Casillero casilleroInicial = new Casillero(posicionInicial);
         casilleros.put(posicionInicial,casilleroInicial);
+
 
         for (int i = 0; i < elementosMapa.length; i++) {
             Posicion posicion = new Posicion(i, 0);
