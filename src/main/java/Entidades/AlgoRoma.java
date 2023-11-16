@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Tablero.Tablero;
 import Entidades.Elementos.Dado;
+import Entidades.Errores.CantidadMaximaDeJugadoresAlcanzadaException;
 
 
 public class AlgoRoma {
@@ -18,7 +19,10 @@ public class AlgoRoma {
         this.limiteDeTurnos = limiteDeTurnos;
     }
 
-    public void agregarJugador(Gladiador gladiador){
+    public void agregarJugador(Gladiador gladiador) throws CantidadMaximaDeJugadoresAlcanzadaException{
+        if (jugadores.size() == limiteDeJugadores){
+            throw new CantidadMaximaDeJugadoresAlcanzadaException();
+        }
         jugadores.add(gladiador);
     }
 
