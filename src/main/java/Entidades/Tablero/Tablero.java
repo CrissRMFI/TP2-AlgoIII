@@ -22,7 +22,7 @@ public class Tablero {
         Posicion posicion = new Posicion(0,0);
         mapa.ubicar(jugador,posicion);
         this.enlazarCircularmente(this.jugadores);
-     }
+    }
 
     private void enlazarCircularmente (LinkedList<Jugador> jugadores) {
        // TODO: IMplementar logica para lograr lista enlazada circular
@@ -52,7 +52,7 @@ public class Tablero {
 
     public Jugador iniciarPartida () {
         // TODO: Implementar logica para que tome un jugador al azar y lo retorne
-        return null
+        return null;
     }
 }
 

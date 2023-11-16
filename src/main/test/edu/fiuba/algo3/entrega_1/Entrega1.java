@@ -37,7 +37,8 @@ public class Entrega1 {
     public void jugadorEmpiezaConLaEnergíaYEquipamientoCorrespondiente() {
         Gladiador gladiador = new Gladiador();
 
-       tablero.agregarJugador(gladiador);
+        tablero.agregarJugador(gladiador);
 
-       gladiador.moverse(tablero,dado);
+        gladiador.moverse(tablero, dado);
     }
+}
