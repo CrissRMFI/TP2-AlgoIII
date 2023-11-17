@@ -11,7 +11,7 @@ public class Energia {
         this.disponible = disponible;
     }
     public void afectarEnergia (Energia energia) {
-        this.disponible = this.disponible + energia.otorgarEnergia();
+        this.disponible += energia.otorgarEnergia();
     }
 
     public int otorgarEnergia () {

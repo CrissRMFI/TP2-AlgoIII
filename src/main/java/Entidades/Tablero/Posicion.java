@@ -18,10 +18,10 @@ public class Posicion {
         return y;
     }
 
-    public Posicion cambiarPosicion (Posicion posicion) {
-        int x = this.x + obtenerPosicionLineal();
-        int y = this.y + obtenerPosicionAltura();
-        return new Posicion(x,y);
+    public void cambiarPosicion (Posicion posicion) {
+        this.x = this.x + posicion.obtenerPosicionLineal();
+        this.y = this.y + posicion.obtenerPosicionAltura();
+
     }
 
     public boolean comparar (Posicion posicion) {

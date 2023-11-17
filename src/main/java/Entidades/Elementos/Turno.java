@@ -5,7 +5,7 @@ public class Turno {
     int cantidad;
 
     public void Turno () {
-        this.disponible = false;
+        this.disponible = true;
         this.cantidad = 0;
     }
 

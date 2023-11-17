@@ -19,4 +19,8 @@ public class EquipoBase implements Equipo {
     public void recibirDanio(Gladiador gladiador) {
         gladiador.afectarEnergia(this.energia);
     }
+
+    public int obtener () {
+        return this.energia.otorgarEnergia();
+    }
 }
