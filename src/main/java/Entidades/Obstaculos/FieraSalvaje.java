@@ -3,14 +3,8 @@ package Entidades.Obstaculos;
 import Entidades.Jugadores.Gladiador;
 
 public class FieraSalvaje implements Obstaculo{
-
-    @Override
-    public void enfrentar(Gladiador gladiador) {
-        gladiador.defenderse();
-    }
-
-    @Override
+@Override
     public void accionar(Gladiador gladiador) {
-        this.enfrentar(gladiador);
+        gladiador.defenderse();
     }
 }

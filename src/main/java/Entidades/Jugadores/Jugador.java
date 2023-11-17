@@ -1,12 +1,9 @@
 package Entidades.Jugadores;
 
 import Entidades.Elementos.DispositivoDeAzar;
-import Entidades.Elementos.ValorAzar;
 import Entidades.ElementosMapa;
 import Entidades.Energia.Energia;
 import Entidades.Equipo.Equipo;
-import Entidades.Tablero.Casillero;
-import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
 
 public interface Jugador extends ElementosMapa {
@@ -15,5 +12,7 @@ public interface Jugador extends ElementosMapa {
     public void equipar(Equipo equipo);
     public void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
     public void finalizarTurno ();
-    public void obtenerElementos (Casillero casillero);
+    public void obtenerElementos (Tablero tablero);
+    public void iniciarTurno ();
+    public int getSalud(); // TODO: lUEGO BORRAR ESTO, ES UN HACK PARA PRUEBAS
 }

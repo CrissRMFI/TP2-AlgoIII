@@ -3,8 +3,12 @@ package edu.fiuba.algo3.entrega_1;
 
 import Entidades.Elementos.Dado;
 import Entidades.Elementos.DispositivoDeAzar;
+import Entidades.Elementos.MockDado;
 import Entidades.ElementosMapa;
+import Entidades.Equipo.Equipo;
+import Entidades.Equipo.EquipoBase;
 import Entidades.Jugadores.Gladiador;
+import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.FieraSalvaje;
 import Entidades.Tablero.Casillero;
 import Entidades.Tablero.MapaLineal;
@@ -16,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Entrega1 {
 
     private Tablero tablero;
-    private Dado dado;
+    private DispositivoDeAzar mockDado;
 
     @Before
     public void inicializarMapa() {
@@ -29,16 +33,26 @@ public class Entrega1 {
 
         MapaLineal mapa = new MapaLineal<>(elementosMapa);
         tablero = new Tablero(mapa);
-        dado = new Dado();
+        mockDado = new MockDado();
 
     }
 
     @Test
     public void jugadorEmpiezaConLaEnergíaYEquipamientoCorrespondiente() {
-        Gladiador gladiador = new Gladiador();
+        Gladiador Carpoforo  = new Gladiador();
 
-        tablero.agregarJugador(gladiador);
+        tablero.agregarJugador(Carpoforo);
+        Jugador jugador = tablero.iniciarPartida();
+        jugador.moverse(tablero,mockDado);
+        jugador.obtenerElementos(tablero);
+        assertEquals(0,jugador.getSalud());
+        tablero.terminarTurno();
 
-        gladiador.moverse(tablero, dado);
+        jugador = tablero.siguienteJugador();
+        jugador.moverse(tablero,mockDado);
+        jugador.obtenerElementos(tablero);
+
+
+
     }
 }

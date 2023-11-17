@@ -1,21 +1,16 @@
 package Entidades.Tablero;
 
-import Entidades.Elementos.Comida;
-import Entidades.Elementos.Objetos;
 import Entidades.ElementosMapa;
 import Entidades.Jugadores.Gladiador;
-import Entidades.Obstaculos.Obstaculo;
 
 import java.util.LinkedList;
-import java.util.List;
-import java.util.ArrayList;
 
 public class Casillero {
    private LinkedList<ElementosMapa> elementos;
-   private Posicion posicion;
+   private PosicionLineal posicionLineal;
 
-   public Casillero (Posicion posicion) {
-       this.posicion = posicion;
+   public Casillero (PosicionLineal posicionLineal) {
+       this.posicionLineal = posicionLineal;
        this.elementos = new LinkedList<>();
    }
    public void recibirElemento (ElementosMapa elemento) {
