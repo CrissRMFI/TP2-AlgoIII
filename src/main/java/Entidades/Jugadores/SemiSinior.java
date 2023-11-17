@@ -3,11 +3,7 @@ package Entidades.Jugadores;
 import Entidades.Energia.Energia;
 import Entidades.Elementos.Turno;
 public class SemiSinior implements Seniority{
-    @Override
-    public void aumentarEnergia(Energia energia) {
-        Energia e = new Energia(5);
-        energia.afectarEnergia(e);
-    }
+    private static Energia energia = new Energia(5);
 
     @Override
     public Seniority ascenderSeniority(Turno turno) {
@@ -16,5 +12,10 @@ public class SemiSinior implements Seniority{
             return this;
         }
         return new Senior();
+    }
+
+    @Override
+    public void aumentarEnergia(Energia energia) {
+        energia.afectarEnergia(this.energia);
     }
 }

@@ -3,9 +3,9 @@ import Entidades.Elementos.*;
 import Entidades.Energia.Energia;
 import Entidades.Equipo.Equipo;
 import Entidades.Equipo.EquipoBase;
-import Entidades.Obstaculos.Obstaculo;
 import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Posicion;
+import Entidades.Tablero.PosicionLineal;
 import Entidades.Tablero.Tablero;
 
 public class Gladiador implements Jugador {
@@ -13,7 +13,6 @@ public class Gladiador implements Jugador {
     private Equipo equipo;
     private Turno turno;
     private Energia energia;
-
     private Posicion posicion;
 
     public  Gladiador () {
@@ -21,7 +20,6 @@ public class Gladiador implements Jugador {
         this.seniority = new Novato();
         this.equipo = new EquipoBase();
         this.turno = new Turno();
-        this.posicion = new Posicion(0,0);
     }
 
     public int getSalud ()  {
@@ -29,11 +27,11 @@ public class Gladiador implements Jugador {
     } // TODO: Esto se tiene que borrar es un hack para ver pruebas
     @Override
     public void accionar(Gladiador gladiador) {
-        this.turno.deshabilitar();
+        this.turno.habilitar();
     }
 
-    public void posicionar (Posicion posicion) {
-        this.posicion.cambiarPosicion(posicion);
+    private void posicionar (Posicion posicion) {
+        this.posicion = posicion;
     }
 
     private void ascenderSeniority () {
@@ -45,19 +43,30 @@ public class Gladiador implements Jugador {
     };
 
     public void obtenerElementos (Tablero tablero) {
-        Casillero casillero = tablero.obtenerCasillero(this.posicion);
-        casillero.entregarElementos(this);
+        if (this.turno.estaHabilitado()) {
+            Casillero casillero = tablero.obtenerCasillero(this.posicion);
+            casillero.entregarElementos(this);
+        }
+
     }
 
-    // TODO: Hay que crear un error que se mande cuando quiera mover y no es mi turno
+    // TODO: Hay que crear un error que se mande cuando quiera mover y no es mi turno o no puea mover
     public void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar) {
-        ValorAzar valor = dispositivoDeAzar.lanzar();
-        Posicion posicion = tablero.calcularPosicion(valor);
-        this.posicionar(posicion);
+        if (this.turno.estaHabilitado()) {
+            ValorAzar valor = dispositivoDeAzar.lanzar();
+            Posicion posicion = tablero.calcularPosicion(valor);
+            this.posicionar(posicion);
+        } else {
+            this.finalizarTurno();
+        }
     };
 
     public void defenderse () {
         this.equipo.recibirDanio(this);
+    }
+
+    public void comer (Energia energia) {
+        this.energia.afectarEnergia(energia);
     }
 
     public void equipar(Equipo equipo) {
@@ -66,8 +75,18 @@ public class Gladiador implements Jugador {
 
     public void finalizarTurno () {
         this.turno.sumarTurno();
-        this.seniority.ascenderSeniority(this.turno);
+        this.seniority.aumentarEnergia(this.energia);
+        this.ascenderSeniority();
         this.turno.deshabilitar();
+
     };
+
+    @Override
+    public void iniciarTurno() {
+        if (this.energia.tengoEnergia()) {
+            this.turno.habilitar();
+        }
+    }
 }
+
 

@@ -4,6 +4,8 @@ import Entidades.Energia.Energia;
 import Entidades.Elementos.Turno;
 
 public class Senior implements Seniority{
+
+    private static Energia energia = new Energia(10);
     @Override
     public Seniority ascenderSeniority(Turno turnos) {
         return this;
@@ -11,7 +13,6 @@ public class Senior implements Seniority{
 
     @Override
     public void aumentarEnergia(Energia energia) {
-        Energia e = new Energia(10);
-        energia.afectarEnergia(e);
+        energia.afectarEnergia(this.energia);
     }
 }
