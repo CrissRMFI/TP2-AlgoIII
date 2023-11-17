@@ -18,7 +18,10 @@ public class Energia {
         return this.disponible;
     }
 
+    public boolean tengoEnergia () {
+        return this.disponible > 0;
+    }
     public int getEnergia () {
         return this.disponible;
-    }
+    } // TODO: Este metodo luego hayyque elimiarlo, es un hack para ver pruebascoo facilidad mientras desarrollo las clases
 }

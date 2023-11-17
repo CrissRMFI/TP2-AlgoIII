@@ -1,7 +1,5 @@
 package Entidades.Tablero;
-import java.util.LinkedList;
 import Entidades.Elementos.ValorAzar;
-import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.ListaCircular;
 
@@ -19,8 +17,8 @@ public class Tablero {
 
     public void agregarJugador(Jugador jugador) {
         this.jugadores.agregarElemento(jugador);
-        Posicion posicion = new Posicion(0,0);
-        mapa.ubicar(jugador,posicion);
+        Posicion posicion = this.mapa.obtenerPosicionInicial();
+        mapa.ubicar(jugador, posicion);
 
      }
 
@@ -37,12 +35,15 @@ public class Tablero {
     }
 
     public Jugador siguienteJugador () {
-        this.jugadores.siguiente();
+        Jugador jugador = this.jugadores.siguiente();
+        jugador.iniciarTurno();
         return this.jugadores.obtener();
     }
 
     public Jugador iniciarPartida () {
-        return this.jugadores.seleccionAleatoria();
+        Jugador jugador = this.jugadores.seleccionAleatoria();
+        jugador.iniciarTurno();
+        return jugador;
     }
 }
 

@@ -4,8 +4,8 @@ public class Turno {
     boolean disponible;
     int cantidad;
 
-    public void Turno () {
-        this.disponible = true;
+    public  Turno () {
+        this.disponible = false;
         this.cantidad = 0;
     }
 

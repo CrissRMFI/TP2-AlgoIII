@@ -73,8 +73,10 @@ public class ListaCircular<T> {
         return nodoActual.obtenerElemento();
     }
 
-    public void siguiente() {
+    public T siguiente() {
+
         this.actual = this.actual.elSiguiente();
+        return this.actual.obtenerElemento();
     }
 
 }
