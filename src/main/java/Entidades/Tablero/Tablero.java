@@ -31,12 +31,6 @@ public class Tablero {
     public Posicion calcularPosicion (ValorAzar valor) {
         return this.mapa.calcularPosicion(valor);
     }
-
-    public void moverJugador(Gladiador gladiador,Posicion posicion){
-        gladiador.posicionar(posicion);
-        this.mapa.ubicar(gladiador,posicion);
-    }
-
     public void terminarTurno () {
         Jugador jugador = this.jugadores.obtener();
         jugador.finalizarTurno();

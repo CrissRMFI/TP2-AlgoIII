@@ -4,6 +4,8 @@ package edu.fiuba.algo3.entrega_1;
 import Entidades.Elementos.Dado;
 import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.ElementosMapa;
+import Entidades.Equipo.Equipo;
+import Entidades.Equipo.EquipoBase;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Obstaculos.FieraSalvaje;
 import Entidades.Tablero.Casillero;
@@ -38,10 +40,9 @@ public class Entrega1 {
         Gladiador gladiador = new Gladiador();
 
        tablero.agregarJugador(gladiador);
-
        gladiador.moverse(tablero,dado);
        gladiador.obtenerElementos(tablero);
-       //assertEquals(0,gladiador.getSalud());
+       assertEquals(0,gladiador.getSalud());
 
 
     }

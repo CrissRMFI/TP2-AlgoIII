@@ -26,14 +26,14 @@ public class Gladiador implements Jugador {
 
     public int getSalud ()  {
         return this.energia.getEnergia();
-    }
+    } // TODO: Esto se tiene que borrar es un hack para ver pruebas
     @Override
     public void accionar(Gladiador gladiador) {
         this.turno.deshabilitar();
     }
 
     public void posicionar (Posicion posicion) {
-        this.posicion = this.posicion.cambiarPosicion(posicion);
+        this.posicion.cambiarPosicion(posicion);
     }
 
     private void ascenderSeniority () {
@@ -51,11 +51,9 @@ public class Gladiador implements Jugador {
 
     // TODO: Hay que crear un error que se mande cuando quiera mover y no es mi turno
     public void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar) {
-        if (this.turno.estaHabilitado()) {
-            ValorAzar valor = dispositivoDeAzar.lanzar();
-            Posicion posicion = tablero.calcularPosicion(valor);
-            tablero.moverJugador(this, posicion);
-        }
+        ValorAzar valor = dispositivoDeAzar.lanzar();
+        Posicion posicion = tablero.calcularPosicion(valor);
+        this.posicionar(posicion);
     };
 
     public void defenderse () {
