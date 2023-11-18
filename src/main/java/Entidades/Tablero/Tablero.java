@@ -5,14 +5,14 @@ import Entidades.ListaCircular;
 
 public class Tablero {
 
-    private Mapa mapa;
-    private ListaCircular<Jugador> jugadores;
+    private final Mapa mapa;
+    private final ListaCircular<Jugador> jugadores;
 
 
 
     public Tablero(Mapa mapa) {
         this.mapa = mapa;
-        this.jugadores = new ListaCircular<Jugador>();
+        this.jugadores = new ListaCircular<>();
     }
 
     public void agregarJugador(Jugador jugador) {
@@ -24,7 +24,7 @@ public class Tablero {
 
      public Casillero obtenerCasillero(Posicion posicion) {
         return this.mapa.obtenerCasillero(posicion);
-    };
+    }
 
     public Posicion calcularPosicion (ValorAzar valor) {
         return this.mapa.calcularPosicion(valor);

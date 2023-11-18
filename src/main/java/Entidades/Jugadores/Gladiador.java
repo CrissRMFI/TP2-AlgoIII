@@ -1,18 +1,18 @@
 package Entidades.Jugadores;
 import Entidades.Elementos.*;
 import Entidades.Energia.Energia;
+import Entidades.Equipo.Equipamiento;
 import Entidades.Equipo.Equipo;
 import Entidades.Equipo.EquipoBase;
 import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Posicion;
-import Entidades.Tablero.PosicionLineal;
 import Entidades.Tablero.Tablero;
 
 public class Gladiador implements Jugador {
     private Seniority seniority;
     private Equipo equipo;
-    private Turno turno;
-    private Energia energia;
+    private final Turno turno;
+    private final Energia energia;
     private Posicion posicion;
 
     public  Gladiador () {
@@ -26,7 +26,7 @@ public class Gladiador implements Jugador {
         return this.energia.getEnergia();
     } // TODO: Esto se tiene que borrar es un hack para ver pruebas
     @Override
-    public void accionar(Gladiador gladiador) {
+    public void accionar(Jugador jugador) {
         this.turno.habilitar();
     }
 
@@ -36,11 +36,11 @@ public class Gladiador implements Jugador {
 
     private void ascenderSeniority () {
         this.seniority =  this.seniority.ascenderSeniority(this.turno);
-    };
+    }
 
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);
-    };
+    }
 
     public void obtenerElementos (Tablero tablero) {
         if (this.turno.estaHabilitado()) {
@@ -59,18 +59,16 @@ public class Gladiador implements Jugador {
         } else {
             this.finalizarTurno();
         }
-    };
+    }
 
     public void defenderse () {
         this.equipo.recibirDanio(this);
     }
 
-    public void comer (Energia energia) {
-        this.energia.afectarEnergia(energia);
-    }
-
     public void equipar(Equipo equipo) {
-        this.equipo = equipo;
+        if (this.equipo.esEquipoSuperador(equipo)) {
+            this.equipo = equipo;
+        }
     }
 
     public void finalizarTurno () {
@@ -79,7 +77,7 @@ public class Gladiador implements Jugador {
         this.ascenderSeniority();
         this.turno.deshabilitar();
 
-    };
+    }
 
     @Override
     public void iniciarTurno() {
