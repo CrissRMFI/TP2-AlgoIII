@@ -7,10 +7,6 @@ public class PosicionLineal implements Posicion {
         this.x = new Coordenada(x);
     }
 
-    public Coordenada coordenada() {
-        return this.x;
-    }
-
     public Posicion cambiarPosicion (Posicion posicion) {
         this.x.moverCoordenada(posicion.obtenerCoordenada());
         return new PosicionLineal(this.x.valor());

@@ -9,6 +9,7 @@ import Entidades.Tablero.Tablero;
 public interface Jugador extends ElementosMapa {
 
     public void afectarEnergia (Energia energia);
+    public void defenderse();
     public void equipar(Equipo equipo);
     public void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
     public void finalizarTurno ();

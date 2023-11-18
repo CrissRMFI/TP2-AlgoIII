@@ -6,9 +6,9 @@ import Entidades.ElementosMapa;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MapaLineal<T> implements Mapa {
+public class MapaLineal implements Mapa {
 
-    private Map<PosicionLineal, Casillero> casilleros;
+    private final Map<PosicionLineal, Casillero> casilleros;
 
     public MapaLineal(ElementosMapa[][] elementosMapa) {
         this.casilleros = new HashMap<>();

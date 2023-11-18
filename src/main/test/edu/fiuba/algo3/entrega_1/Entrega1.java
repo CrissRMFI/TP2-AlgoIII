@@ -1,15 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
-import Entidades.Elementos.Dado;
 import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.MockDado;
 import Entidades.ElementosMapa;
-import Entidades.Equipo.Equipo;
-import Entidades.Equipo.EquipoBase;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.FieraSalvaje;
-import Entidades.Tablero.Casillero;
 import Entidades.Tablero.MapaLineal;
 import Entidades.Tablero.Tablero;
 import org.junit.Before;
@@ -30,7 +26,7 @@ public class Entrega1 {
             elementosMapa[i][0] = new FieraSalvaje();
         }
 
-        MapaLineal mapa = new MapaLineal<>(elementosMapa);
+        MapaLineal mapa = new MapaLineal(elementosMapa);
         tablero = new Tablero(mapa);
         mockDado = new MockDado();
 
