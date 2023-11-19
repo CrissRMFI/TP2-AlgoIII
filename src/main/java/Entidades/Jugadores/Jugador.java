@@ -30,5 +30,10 @@ public abstract class Jugador {
     public abstract void obtenerElementos (Tablero tablero);
     public abstract  void iniciarTurno ();
     public abstract void perderTurnos ();
-    public abstract int getSalud(); // TODO: lUEGO BORRAR ESTO, ES UN HACK PARA PRUEBAS
+    public Energia miSalud() {
+        return this.energia;
+    }
+    public Equipo miEquipo () {
+        return this.sistemaDefensa.miEquipo();
+    }
 }

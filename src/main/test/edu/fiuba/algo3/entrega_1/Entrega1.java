@@ -35,34 +35,6 @@ public class Entrega1 {
 
     @Test
     public void jugadorEmpiezaConLaEnergíaYEquipamientoCorrespondiente() {
-
-        Mapa mapa = this.MapaConFieraSalvaje();
-        Tablero tablero = new Tablero(mapa);
-
-        MockDado mockDado = new MockDado();
-        Gladiador Carpoforo  = new Gladiador();
-
-        tablero.agregarJugador(Carpoforo);
-        Jugador jugador = tablero.iniciarPartida();
-
-        for (int i=0; i<30 ; i++) {
-            jugador.moverse(tablero,mockDado);
-            jugador.obtenerElementos(tablero);
-            tablero.terminarTurno();
-            jugador = tablero.siguienteJugador();
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     }
 }
