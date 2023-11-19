@@ -8,8 +8,4 @@ public class Piedra implements Obstaculo {
         jugador.perderTurnos();
     }
 
-    @Override
-    public boolean esPremio() {
-        return true;
-    }
 }

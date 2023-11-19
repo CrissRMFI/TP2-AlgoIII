@@ -19,9 +19,4 @@ public class Bacanal implements Obstaculo{
 
         jugador.defenderse();
     }
-
-    @Override
-    public boolean esPremio() {
-        return true;
-    }
 }

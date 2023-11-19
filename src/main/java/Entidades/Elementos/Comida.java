@@ -14,8 +14,4 @@ public class Comida implements Interactuable {
         return new Energia (15);
     }
 
-    @Override
-    public boolean esPremio() {
-        return false;
-    }
 }

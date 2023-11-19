@@ -7,8 +7,6 @@ import java.util.LinkedList;
 
 public class Casillero {
    private LinkedList<Interactuable> elementos;
-   private Posicion posicion;
-
    public Casillero () {
        this.elementos = new LinkedList<>();
    }
@@ -20,14 +18,7 @@ public class Casillero {
         for (int i=0;i< this.elementos.size();i++) {
             Interactuable interactuable = this.elementos.get(i);
             interactuable.interactuar(jugador);
-            if (interactuable.esPremio()) {
-                this.elementos.remove(i);
-            }
        }
-   }
-
-   public void ubicarCasillero (Posicion posicion) {
-       this.posicion = posicion;
    }
 }
 

@@ -15,9 +15,4 @@ public abstract class Equipo implements Interactuable {
     public boolean esEquipoSuperador (Equipo equipo) {
         return this.tipoEquipo.ordinal() < equipo.tipoEquipo.ordinal();
     }
-
-    @Override
-    public boolean esPremio() {
-        return false;
-    }
 }
