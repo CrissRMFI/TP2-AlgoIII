@@ -9,8 +9,7 @@ public class Casillero {
    private LinkedList<Interactuable> elementos;
    private Posicion posicion;
 
-   public Casillero (Posicion posicion) {
-       this.posicion = posicion;
+   public Casillero () {
        this.elementos = new LinkedList<>();
    }
    public void recibirElemento (Interactuable elemento) {
@@ -25,6 +24,10 @@ public class Casillero {
                 this.elementos.remove(i);
             }
        }
+   }
+
+   public void ubicarCasillero (Posicion posicion) {
+       this.posicion = posicion;
    }
 }
 
