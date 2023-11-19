@@ -22,11 +22,6 @@ public class Gladiador extends Jugador {
         this.sistemaDefensa = new DefensaGladiador(new EquipoBase());
     }
 
-    public int getSalud ()  {
-        return this.energia.getEnergia();
-    } // TODO: Esto se tiene que borrar es un hack para ver pruebas
-
-
     private void ascenderSeniority () {
         this.seniority =  this.seniority.ascenderSeniority(this.turno);
     }
