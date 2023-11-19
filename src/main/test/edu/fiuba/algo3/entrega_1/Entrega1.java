@@ -7,6 +7,7 @@ import Entidades.Elementos.MockDado;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.FieraSalvaje;
+import Entidades.Tablero.InformacionMapaEnMatriz;
 import Entidades.Tablero.Mapa;
 import Entidades.Tablero.MapaLineal;
 import Entidades.Tablero.Tablero;
@@ -24,11 +25,13 @@ public class Entrega1 {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        for (int i = 1; i < cantidadCasilleros; i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new FieraSalvaje();
         }
 
-      return new MapaLineal(elementosMapa);
+        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+
+      return new MapaLineal(informacionMapaEnMatriz);
     }
 
     @Test
@@ -43,15 +46,22 @@ public class Entrega1 {
         tablero.agregarJugador(Carpoforo);
         Jugador jugador = tablero.iniciarPartida();
 
-        jugador.moverse(tablero,mockDado);
-        jugador.obtenerElementos(tablero);
+        for (int i=0; i<30 ; i++) {
+            jugador.moverse(tablero,mockDado);
+            jugador.obtenerElementos(tablero);
+            tablero.terminarTurno();
+            jugador = tablero.siguienteJugador();
+        }
 
-        assertEquals(0,jugador.getSalud());
-        tablero.terminarTurno();
 
-        jugador = tablero.siguienteJugador();
-        jugador.moverse(tablero,mockDado);
-        jugador.obtenerElementos(tablero);
+
+
+
+
+
+
+
+
 
 
 

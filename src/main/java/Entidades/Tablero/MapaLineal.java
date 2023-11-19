@@ -4,32 +4,23 @@ import Entidades.Elementos.Interactuable;
 import Entidades.Elementos.ValorAzar;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class MapaLineal implements Mapa {
 
     private final Map<Posicion, Casillero> casilleros;
+    private final ConstructorMapa constructorMapa = new ConstructorLineal();
 
 
-    public MapaLineal(Interactuable[][] elementosMapa) {
+    public MapaLineal(InformacionMapa informacionMapa) {
 
         this.casilleros = new HashMap<>();
+        LinkedList<Casillero> c = informacionMapa.construirCasilleros();
+        this.constructorMapa.construirMapa(this.casilleros,c);
 
-        PosicionLineal posicionLinealInicial = new PosicionLineal(0);
-        this.agregarCasillero(posicionLinealInicial);
 
 
-        for (int i = 1; i < elementosMapa.length; i++) {
-
-            PosicionLineal posicionLineal = new PosicionLineal(i);
-            this.agregarCasillero(posicionLineal);
-
-            for (int j = 0; j < elementosMapa[i].length; j++) {
-                Interactuable elemento = elementosMapa[i][j];
-                Casillero casillero = this.obtenerCasillero(posicionLineal);
-                casillero.recibirElemento(elemento);
-            }
-        }
     }
 
     @Override
@@ -37,11 +28,6 @@ public class MapaLineal implements Mapa {
         Casillero casillero = this.obtenerCasillero(posicion);
         casillero.recibirElemento(interactuable);
 
-    }
-
-    public void agregarCasillero (Posicion posicion) {
-        Casillero casillero = new Casillero(posicion);
-        this.casilleros.put(posicion,casillero);
     }
 
     @Override

@@ -8,8 +8,6 @@ public class Tablero {
     private final Mapa mapa;
     private final ListaCircular<Jugador> jugadores;
 
-
-
     public Tablero(Mapa mapa) {
         this.mapa = mapa;
         this.jugadores = new ListaCircular<>();

@@ -8,7 +8,7 @@ public class SemiSinior implements Seniority{
     @Override
     public Seniority ascenderSeniority(Turno turno) {
 
-        if (turno.turnosJugados() < 10) {
+        if (turno.turnosJugados() < 12) {
             return this;
         }
         return new Senior();
