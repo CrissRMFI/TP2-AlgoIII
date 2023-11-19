@@ -42,15 +42,23 @@ public class Entrega1 {
         tablero.agregarJugador(Carpoforo);
         Jugador jugador = tablero.iniciarPartida();
 
-        jugador.moverse(tablero,mockDado);
-        jugador.obtenerElementos(tablero);
+        for (int i=0; i<30 ; i++) {
+            jugador.moverse(tablero,mockDado);
+            jugador.obtenerElementos(tablero);
+            tablero.terminarTurno();
+            jugador = tablero.siguienteJugador();
+            assertEquals(0,jugador.getSalud());
+        }
 
-        assertEquals(0,jugador.getSalud());
-        tablero.terminarTurno();
 
-        jugador = tablero.siguienteJugador();
-        jugador.moverse(tablero,mockDado);
-        jugador.obtenerElementos(tablero);
+
+
+
+
+
+
+
+
 
 
 
