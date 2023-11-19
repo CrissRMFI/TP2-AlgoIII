@@ -1,7 +1,6 @@
 package Entidades.Obstaculos;
 
-import Entidades.ElementosMapa;
-import Entidades.Jugadores.Gladiador;
+import Entidades.Elementos.Interactuable;
 
-public interface Obstaculo extends ElementosMapa {
+public interface Obstaculo extends Interactuable {
 }

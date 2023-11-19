@@ -1,19 +1,21 @@
 package Entidades.Elementos;
 
 import Entidades.Energia.Energia;
-import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 
-public class Comida implements Objetos {
-    private Energia energia;
+public class Comida implements Interactuable {
 
+    @Override
+    public void interactuar(Jugador jugador) {
+        jugador.afectarEnergia(this.entregarEnergia());
+    }
 
-    public void Comida () {
-        this.energia = new Energia(15);
+    private Energia entregarEnergia () {
+        return new Energia (15);
     }
 
     @Override
-    public void accionar(Jugador jugador) {
-        jugador.afectarEnergia(this.energia);
+    public boolean esPremio() {
+        return false;
     }
 }

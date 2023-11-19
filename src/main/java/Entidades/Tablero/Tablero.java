@@ -18,9 +18,8 @@ public class Tablero {
     public void agregarJugador(Jugador jugador) {
         this.jugadores.agregarElemento(jugador);
         Posicion posicion = this.mapa.obtenerPosicionInicial();
-        mapa.ubicar(jugador, posicion);
-
-     }
+        jugador.posicionar(posicion);
+    }
 
      public Casillero obtenerCasillero(Posicion posicion) {
         return this.mapa.obtenerCasillero(posicion);

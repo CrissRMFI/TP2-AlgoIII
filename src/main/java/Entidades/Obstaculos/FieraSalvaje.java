@@ -5,7 +5,12 @@ import Entidades.Jugadores.Jugador;
 
 public class FieraSalvaje implements Obstaculo{
 @Override
-    public void accionar(Jugador jugador) {
+    public void interactuar(Jugador jugador) {
         jugador.defenderse();
+    }
+
+    @Override
+    public boolean esPremio() {
+        return true;
     }
 }

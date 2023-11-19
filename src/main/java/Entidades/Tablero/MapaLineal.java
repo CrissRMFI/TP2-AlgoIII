@@ -1,39 +1,43 @@
 package Entidades.Tablero;
 
+import Entidades.Elementos.Interactuable;
 import Entidades.Elementos.ValorAzar;
-import Entidades.ElementosMapa;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MapaLineal implements Mapa {
 
-    private final Map<PosicionLineal, Casillero> casilleros;
+    private final Map<Posicion, Casillero> casilleros;
 
-    public MapaLineal(ElementosMapa[][] elementosMapa) {
+    public MapaLineal(Interactuable[][] elementosMapa) {
         this.casilleros = new HashMap<>();
 
         PosicionLineal posicionLinealInicial = new PosicionLineal(0);
-        Casillero casilleroInicial = new Casillero(posicionLinealInicial);
-        casilleros.put(posicionLinealInicial,casilleroInicial);
+        this.agregarCasillero(posicionLinealInicial);
 
-        for (int i = 0; i < elementosMapa.length; i++) {
+        for (int i = 1; i < elementosMapa.length; i++) {
             PosicionLineal posicionLineal = new PosicionLineal(i);
-            Casillero casillero = new Casillero(posicionLineal);
+            this.agregarCasillero(posicionLineal);
 
             for (int j = 0; j < elementosMapa[i].length; j++) {
-                ElementosMapa elemento = elementosMapa[i][j];
+                Interactuable elemento = elementosMapa[i][j];
+                Casillero casillero = this.obtenerCasillero(posicionLineal);
                 casillero.recibirElemento(elemento);
             }
-
-            casilleros.put(posicionLineal, casillero);
         }
     }
 
     @Override
-    public void ubicar(ElementosMapa e, Posicion posicion) {
-       Casillero casillero = this.obtenerCasillero(posicion);
-       casillero.recibirElemento(e);
+    public void ubicar(Interactuable interactuable, Posicion posicion) {
+        Casillero casillero = this.obtenerCasillero(posicion);
+        casillero.recibirElemento(interactuable);
+
+    }
+
+    public void agregarCasillero (Posicion posicion) {
+        Casillero casillero = new Casillero(posicion);
+        this.casilleros.put(posicion,casillero);
     }
 
     @Override

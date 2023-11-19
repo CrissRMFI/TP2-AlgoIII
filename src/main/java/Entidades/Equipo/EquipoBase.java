@@ -8,7 +8,7 @@ public class EquipoBase extends Equipo {
     public EquipoBase() {
         this.tipoEquipo = Equipamiento.EQUIPOBASE;
     }
-    protected Energia energiaAReducir() {
+    public Energia energiaAReducir() {
         return new Energia(-20);
     }
 }
