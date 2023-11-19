@@ -18,7 +18,7 @@ public class Turno {
         return this.habilitado >= 1;
     }
 
-     public int turnosJugados () {
+    public int turnosJugados () {
         return this.cantidad;
     }
 

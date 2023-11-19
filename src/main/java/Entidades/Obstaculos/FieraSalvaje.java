@@ -4,7 +4,7 @@ import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 
 public class FieraSalvaje implements Obstaculo{
-@Override
+    @Override
     public void interactuar(Jugador jugador) {
         jugador.defenderse();
     }

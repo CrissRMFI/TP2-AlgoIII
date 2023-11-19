@@ -31,10 +31,11 @@ public class Entrega1 {
 
         InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
 
-      return new MapaLineal(informacionMapaEnMatriz);
+        return new MapaLineal(informacionMapaEnMatriz);
     }
 
     @Test
     public void jugadorEmpiezaConLaEnergíaYEquipamientoCorrespondiente() {
-        
+
     }
+}

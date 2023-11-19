@@ -68,7 +68,6 @@ public class ListaCircular<T> {
         for (int i = 0; i < numeroAleatorio; i++) {
             nodoActual = nodoActual.elSiguiente();
         }
-
         this.actual = nodoActual;
         return nodoActual.obtenerElemento();
     }
@@ -80,4 +79,3 @@ public class ListaCircular<T> {
     }
 
 }
-

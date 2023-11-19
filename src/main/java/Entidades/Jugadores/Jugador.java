@@ -30,10 +30,13 @@ public abstract class Jugador {
     public abstract void obtenerElementos (Tablero tablero);
     public abstract  void iniciarTurno ();
     public abstract void perderTurnos ();
-    public Energia miSalud() {
+    public Energia getSalud() {
         return this.energia;
     }
+
+    /*
     public Equipo miEquipo () {
         return this.sistemaDefensa.miEquipo();
     }
+     */
 }

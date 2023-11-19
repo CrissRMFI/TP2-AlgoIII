@@ -4,7 +4,7 @@ import Entidades.Jugadores.Gladiador;
 import Entidades.Energia.Energia;
 
 public class EscudoYEspada extends Equipo{
-   public EscudoYEspada () {
+    public EscudoYEspada () {
         this.tipoEquipo = Equipamiento.ESCUDOYESPADA;
     }
 

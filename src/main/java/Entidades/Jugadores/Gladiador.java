@@ -44,7 +44,7 @@ public class Gladiador extends Jugador {
     }
 
     public void perderTurnos () {
-      this.turno.perderUnTurno();
+        this.turno.perderUnTurno();
     }
 
     public void finalizarTurno () {
@@ -60,5 +60,4 @@ public class Gladiador extends Jugador {
         }
     }
 }
-
 

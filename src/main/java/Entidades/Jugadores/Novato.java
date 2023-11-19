@@ -12,7 +12,7 @@ public class Novato implements Seniority{
         if (turno.turnosJugados() < 8 ) {
             return this;
         }
-        return new SemiSinior();
+        return new SemiSenior();
     }
 
     @Override

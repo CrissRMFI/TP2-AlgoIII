@@ -2,7 +2,7 @@ package Entidades.Jugadores;
 
 import Entidades.Energia.Energia;
 import Entidades.Elementos.Turno;
-public class SemiSinior implements Seniority{
+public class SemiSenior implements Seniority{
     private static Energia energia = new Energia(5);
 
     @Override
