@@ -8,9 +8,4 @@ public class FieraSalvaje implements Obstaculo{
     public void interactuar(Jugador jugador) {
         jugador.defenderse();
     }
-
-    @Override
-    public boolean esPremio() {
-        return true;
-    }
 }
