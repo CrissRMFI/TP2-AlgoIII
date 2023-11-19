@@ -1,19 +1,34 @@
 package Entidades.Jugadores;
 
 import Entidades.Elementos.DispositivoDeAzar;
-import Entidades.ElementosMapa;
+import Entidades.Elementos.Turno;
 import Entidades.Energia.Energia;
 import Entidades.Equipo.Equipo;
+import Entidades.Obstaculos.Obstaculo;
+import Entidades.Sistemas.SistemaDefensa;
+import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
 
-public interface Jugador extends ElementosMapa {
-
-    public void afectarEnergia (Energia energia);
-    public void defenderse();
-    public void equipar(Equipo equipo);
-    public void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
-    public void finalizarTurno ();
-    public void obtenerElementos (Tablero tablero);
-    public void iniciarTurno ();
-    public int getSalud(); // TODO: lUEGO BORRAR ESTO, ES UN HACK PARA PRUEBAS
+public abstract class Jugador {
+    protected SistemaDefensa sistemaDefensa;
+    protected Energia energia;
+    protected Posicion posicion;
+    public void afectarEnergia (Energia energia) {
+        this.energia.afectarEnergia(energia);
+    }
+    public void defenderse() {
+        this.sistemaDefensa.recibirDanio(this.energia);
+    }
+    public void equipar(Equipo equipo) {
+        this.sistemaDefensa.modificarEquipo(equipo);
+    }
+    public  void posicionar (Posicion posicion) {
+        this.posicion = posicion;
+    }
+    public abstract void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
+    public abstract void finalizarTurno ();
+    public abstract void obtenerElementos (Tablero tablero);
+    public abstract  void iniciarTurno ();
+    public abstract void perderTurnos ();
+    public abstract int getSalud(); // TODO: lUEGO BORRAR ESTO, ES UN HACK PARA PRUEBAS
 }

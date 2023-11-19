@@ -11,12 +11,17 @@ public class Bacanal implements Obstaculo{
     private int proporcion = 4;
 
     @Override
-    public void accionar(Jugador jugador) {
+    public void interactuar(Jugador jugador) {
         Dado dado = new Dado();
         ValorAzar valor = dado.lanzar();
 
         Energia energia = new Energia(-proporcion* valor.obtenerValor());
 
-        jugador.afectarEnergia(energia);
+        jugador.defenderse();
+    }
+
+    @Override
+    public boolean esPremio() {
+        return true;
     }
 }

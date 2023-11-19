@@ -13,5 +13,4 @@ public class Casco extends Equipo {
     public Energia energiaAReducir() {
         return new Energia(-15);
     }
-
 }

@@ -1,20 +1,23 @@
 package Entidades.Equipo;
 
-import Entidades.Elementos.Objetos;
+import Entidades.Elementos.Interactuable;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Jugador;
 
-public abstract class Equipo implements Objetos {
+public abstract class Equipo implements Interactuable {
     protected Equipamiento tipoEquipo;
 
-    public void accionar(Jugador jugador) {
+    @Override
+    public void interactuar(Jugador jugador) {
         jugador.equipar(this);
     }
-    public void recibirDanio(Jugador jugador) {
-        jugador.afectarEnergia(this.energiaAReducir());
-    }
-    protected abstract Energia energiaAReducir();
+    public abstract Energia energiaAReducir();
     public boolean esEquipoSuperador (Equipo equipo) {
         return this.tipoEquipo.ordinal() < equipo.tipoEquipo.ordinal();
+    }
+
+    @Override
+    public boolean esPremio() {
+        return false;
     }
 }
