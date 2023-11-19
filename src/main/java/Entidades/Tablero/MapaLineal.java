@@ -10,13 +10,17 @@ public class MapaLineal implements Mapa {
 
     private final Map<Posicion, Casillero> casilleros;
 
+
     public MapaLineal(Interactuable[][] elementosMapa) {
+
         this.casilleros = new HashMap<>();
 
         PosicionLineal posicionLinealInicial = new PosicionLineal(0);
         this.agregarCasillero(posicionLinealInicial);
 
+
         for (int i = 1; i < elementosMapa.length; i++) {
+
             PosicionLineal posicionLineal = new PosicionLineal(i);
             this.agregarCasillero(posicionLineal);
 
