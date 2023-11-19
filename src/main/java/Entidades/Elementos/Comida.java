@@ -13,6 +13,6 @@ public class Comida implements Objetos {
 
     @Override
     public void accionar(Gladiador gladiador) {
-        gladiador.comer(this.energia);
+        //gladiador.comer(this.energia);
     }
 }

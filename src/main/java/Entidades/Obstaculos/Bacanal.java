@@ -11,11 +11,11 @@ public class Bacanal implements Obstaculo{
 
     @Override
     public void accionar(Gladiador gladiador) {
-        Dado dado = new Dado();
-        ValorAzar valor = dado.lanzar();
+        //Dado dado = new Dado();
+        //ValorAzar valor = dado.lanzar();
 
-        Energia energia = new Energia(-proporcion* valor.obtenerValor());
+        //Energia energia = new Energia(-proporcion* valor.obtenerValor());
 
-        gladiador.afectarEnergia(energia);
+        //gladiador.afectarEnergia(energia);
     }
 }

@@ -3,6 +3,7 @@ package Entidades.Equipo;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Gladiador;
 
+/*
 public class EquipoBase implements Equipo {
 
     Energia energia;
@@ -24,3 +25,5 @@ public class EquipoBase implements Equipo {
         return this.energia.otorgarEnergia();
     }
 }
+
+ */

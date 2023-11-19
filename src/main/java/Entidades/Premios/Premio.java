@@ -1,4 +1,4 @@
-package Entidades.Elementos;
+package Entidades.Premios;
 
 public interface Premio {
 }

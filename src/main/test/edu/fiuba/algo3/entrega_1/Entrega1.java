@@ -1,6 +1,7 @@
 
 package edu.fiuba.algo3.entrega_1;
 
+/*
 import Entidades.Elementos.Dado;
 import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.MockDado;
@@ -56,3 +57,5 @@ public class Entrega1 {
 
     }
 }
+
+ */

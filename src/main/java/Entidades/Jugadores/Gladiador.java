@@ -1,4 +1,49 @@
 package Entidades.Jugadores;
+
+import Entidades.Energia.Energia;
+import Entidades.Tablero.Casillero;
+
+public class Gladiador{
+    Energia energia = new Energia(20);
+    Casillero casillero = new Casillero(0, 0);
+    Seniority seniority = new Novato();
+    public int getPuntosDeEnergia(){
+        return energia.getEnergia();
+    }
+
+    public int getPosicionX(){
+        return casillero.getX();
+    }
+
+    public void jugarTurno(Casillero casillero, int cantidadDeTurnosJugados){
+        this.ascenderSeniority(cantidadDeTurnosJugados);
+        this.energia.ganarEnergia(this.seniority.plusDeEnergia());
+        this.moverse(casillero);
+    }
+
+    private void moverse(Casillero casillero){
+        this.casillero = casillero;
+    }
+
+    private void ascenderSeniority(int cantidadDeTurnosJugados){
+        this.seniority = this.seniority.ascenderSeniority(cantidadDeTurnosJugados);
+    }
+
+    public void perderEnergia(int cantidadAPerder){
+        this.energia.perderEnergia(cantidadAPerder);
+    }
+
+    public void ganarEnergia(int cantidadAGanar){
+        this.energia.ganarEnergia(cantidadAGanar);
+    }
+}
+
+
+
+
+
+
+/*
 import Entidades.Elementos.*;
 import Entidades.Energia.Energia;
 import Entidades.Equipo.Equipo;
@@ -88,5 +133,5 @@ public class Gladiador implements Jugador {
         }
     }
 }
-
+*/
 

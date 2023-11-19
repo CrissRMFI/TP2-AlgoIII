@@ -9,12 +9,12 @@ public abstract class DecoradorEquipo implements Equipo {
 
     @Override
     public void recibirDanio(Gladiador gladiador) {
-        gladiador.afectarEnergia(this.energia);
+        //gladiador.afectarEnergia(this.energia);
     }
 
     @Override
     public void accionar(Gladiador gladiador) {
-        gladiador.equipar(this);
+        //gladiador.equipar(this);
     }
 }
 

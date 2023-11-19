@@ -1,4 +1,42 @@
 package Entidades.Tablero;
+
+public class Tablero{
+    int filas; int columnas;
+    Casillero[][] tablero;
+    public Tablero(int filas, int columnas){
+        this.filas = filas;
+        this.columnas = columnas;
+        this.tablero = new Casillero[this.filas][this.columnas];
+        this.llenarTablero();
+    }
+
+    private void llenarTablero(){
+        for(int i=0; i<this.filas; i++){
+            for(int j=0; j<this.columnas; j++){
+                this.tablero[i][j] = new Casillero(i, j);
+            }
+        }
+    }
+
+    public int getFilas(){
+        return this.filas;
+    }
+
+    public int getColumnas(){
+        return this.columnas;
+    }
+
+    public Casillero obtenerCasillero(int x, int y){
+        return this.tablero[x][y];
+    }
+}
+
+
+
+
+
+
+/*
 import Entidades.Elementos.ValorAzar;
 import Entidades.Jugadores.Jugador;
 import Entidades.ListaCircular;
@@ -46,4 +84,6 @@ public class Tablero {
         return jugador;
     }
 }
+
+ */
 

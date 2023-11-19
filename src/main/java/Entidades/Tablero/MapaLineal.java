@@ -1,5 +1,6 @@
 package Entidades.Tablero;
 
+/*
 import Entidades.Elementos.ValorAzar;
 import Entidades.ElementosMapa;
 
@@ -60,3 +61,6 @@ public class MapaLineal<T> implements Mapa {
         return new PosicionLineal(0);
     }
 }
+
+
+ */

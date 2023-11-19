@@ -1,5 +1,24 @@
 package Entidades.Tablero;
 
+public class Casillero{
+    int x; int y;
+    public Casillero(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
+}
+
+
+
+/*
 import Entidades.ElementosMapa;
 import Entidades.Jugadores.Gladiador;
 
@@ -25,3 +44,5 @@ public class Casillero {
    }
 }
 
+
+ */

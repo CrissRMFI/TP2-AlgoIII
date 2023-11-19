@@ -1,7 +1,30 @@
 package Entidades.Jugadores;
 
+public class Senior implements Seniority{
+    public Seniority ascenderSeniority(int cantidadDeTurnosJugados){
+        return this;
+    }
+
+    public int plusDeEnergia(){
+        return 10;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/*
 import Entidades.Energia.Energia;
 import Entidades.Elementos.Turno;
+
+
+
 
 public class Senior implements Seniority{
 
@@ -16,3 +39,6 @@ public class Senior implements Seniority{
         energia.afectarEnergia(this.energia);
     }
 }
+
+
+ */
