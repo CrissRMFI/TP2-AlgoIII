@@ -1,3 +1,4 @@
+
 package edu.fiuba.algo3.entrega_1;
 
 import Entidades.Elementos.DispositivoDeAzar;
@@ -65,4 +66,3 @@ public class Entrega1 {
 
 
     }
-}

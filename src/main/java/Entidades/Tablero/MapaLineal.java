@@ -12,11 +12,13 @@ public class MapaLineal implements Mapa {
     private final Map<Posicion, Casillero> casilleros;
     private final ConstructorMapa constructorMapa = new ConstructorLineal();
 
+
     public MapaLineal(InformacionMapa informacionMapa) {
 
         this.casilleros = new HashMap<>();
         LinkedList<Casillero> c = informacionMapa.construirCasilleros();
         this.constructorMapa.construirMapa(this.casilleros,c);
+
 
 
     }
