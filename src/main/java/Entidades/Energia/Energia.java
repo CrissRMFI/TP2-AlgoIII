@@ -1,29 +1,6 @@
 package Entidades.Energia;
 
-public class Energia{
-    private int disponible;
-    public Energia(int disponible){
-        this.disponible = disponible;
-    }
-
-    public int getEnergia(){
-        return this.disponible;
-    }
-
-    public void perderEnergia(int cantidadAPerder){
-        this.disponible = this.disponible - cantidadAPerder;
-    }
-
-    public void ganarEnergia(int cantidadAGanar){
-        this.disponible = this.disponible + cantidadAGanar;
-    }
-}
-
-
-
-
-
-/*public class Energia {
+public class Energia {
     private int disponible;
 
     public  Energia () {
@@ -48,4 +25,3 @@ public class Energia{
         return this.disponible;
     } // TODO: Este metodo luego hayyque elimiarlo, es un hack para ver pruebascoo facilidad mientras desarrollo las clases
 }
-*/

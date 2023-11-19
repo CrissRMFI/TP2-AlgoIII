@@ -1,48 +1,39 @@
 package Entidades.Tablero;
 
-public class Casillero{
-    int x; int y;
-    public Casillero(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-
-    public int getX(){
-        return this.x;
-    }
-
-    public int getY(){
-        return this.y;
-    }
-}
-
-
-
-/*
-import Entidades.ElementosMapa;
-import Entidades.Jugadores.Gladiador;
+import Entidades.Elementos.Interactuable;
+import Entidades.Jugadores.Jugador;
 
 import java.util.LinkedList;
 
 public class Casillero {
-   private LinkedList<ElementosMapa> elementos;
-   private PosicionLineal posicionLineal;
+    private LinkedList<Interactuable> elementos;
+    private Posicion posicion;
 
-   public Casillero (PosicionLineal posicionLineal) {
-       this.posicionLineal = posicionLineal;
-       this.elementos = new LinkedList<>();
-   }
-   public void recibirElemento (ElementosMapa elemento) {
-       this.elementos.add(elemento);
-   }
+    public Casillero () {
+        this.elementos = new LinkedList<>();
+    }
+    public void recibirElemento (Interactuable elemento) {
+        this.elementos.add(elemento);
+    }
 
-   public void entregarElementos (Gladiador gladiador) {
-       while (!elementos.isEmpty()) {
-           ElementosMapa elemento = elementos.poll();
-           elemento.accionar(gladiador);
-       }
-   }
+    public void entregarElementos (Jugador jugador) {
+        for (int i=0;i< this.elementos.size();i++) {
+            Interactuable interactuable = this.elementos.get(i);
+            interactuable.interactuar(jugador);
+            /*
+            if (interactuable.esPremio()) {
+                this.elementos.remove(i);
+            }
+
+             */
+        }
+    }
+
+    public void ubicarCasillero (Posicion posicion) {
+        this.posicion = posicion;
+    }
+
+    public Posicion getPosicion(){
+        return this.posicion;
+    }
 }
-
-
- */

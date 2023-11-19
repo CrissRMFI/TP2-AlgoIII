@@ -1,5 +1,6 @@
 package Entidades.Equipo;
 
+/*
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Gladiador;
 
@@ -17,4 +18,6 @@ public abstract class DecoradorEquipo implements Equipo {
         //gladiador.equipar(this);
     }
 }
+
+ */
 

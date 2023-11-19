@@ -1,43 +1,33 @@
 package Entidades.Tablero;
 
-/*
+import Entidades.Elementos.Interactuable;
 import Entidades.Elementos.ValorAzar;
-import Entidades.ElementosMapa;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
-public class MapaLineal<T> implements Mapa {
+public class MapaLineal implements Mapa {
 
-    private Map<PosicionLineal, Casillero> casilleros;
+    private final Map<Posicion, Casillero> casilleros;
+    private final ConstructorMapa constructorMapa = new ConstructorLineal();
 
 
-    public MapaLineal(ElementosMapa[][] elementosMapa) {
+    public MapaLineal(InformacionMapa informacionMapa) {
 
         this.casilleros = new HashMap<>();
-
-        PosicionLineal posicionLinealInicial = new PosicionLineal(0);
-        Casillero casilleroInicial = new Casillero(posicionLinealInicial);
-        casilleros.put(posicionLinealInicial,casilleroInicial);
+        LinkedList<Casillero> c = informacionMapa.construirCasilleros();
+        this.constructorMapa.construirMapa(this.casilleros,c);
 
 
-        for (int i = 0; i < elementosMapa.length; i++) {
-            PosicionLineal posicionLineal = new PosicionLineal(i);
-            Casillero casillero = new Casillero(posicionLineal);
 
-            for (int j = 0; j < elementosMapa[i].length; j++) {
-                ElementosMapa elemento = elementosMapa[i][j];
-                casillero.recibirElemento(elemento);
-            }
-
-            casilleros.put(posicionLineal, casillero);
-        }
     }
 
     @Override
-    public void ubicar(ElementosMapa e, Posicion posicion) {
-       Casillero casillero = this.obtenerCasillero(posicion);
-       casillero.recibirElemento(e);
+    public void ubicar(Interactuable interactuable, Posicion posicion) {
+        Casillero casillero = this.obtenerCasillero(posicion);
+        casillero.recibirElemento(interactuable);
+
     }
 
     @Override
@@ -61,6 +51,3 @@ public class MapaLineal<T> implements Mapa {
         return new PosicionLineal(0);
     }
 }
-
-
- */

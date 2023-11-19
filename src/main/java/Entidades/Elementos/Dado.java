@@ -1,24 +1,5 @@
 package Entidades.Elementos;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-public class Dado{
-    private int caras;
-    private Random random = new Random();
-    private ArrayList<Integer> valoresDelDado = new ArrayList<>();
-    public Dado (int caras) {
-        this.caras = caras;
-        for(int i=1; i<this.caras+1; i++){
-            this.valoresDelDado.add(i);
-        }
-    }
-    public int lanzar() {
-        return (this.valoresDelDado.get(random.nextInt(this.caras)));
-    }
-}
-
-/*
 import Entidades.ListaCircular;
 
 public class Dado implements DispositivoDeAzar{
@@ -40,4 +21,3 @@ public class Dado implements DispositivoDeAzar{
         return this.caras.seleccionAleatoria();
     }
 }
-*/

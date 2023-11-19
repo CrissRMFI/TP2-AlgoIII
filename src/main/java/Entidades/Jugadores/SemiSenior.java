@@ -1,21 +1,5 @@
 package Entidades.Jugadores;
 
-public class SemiSenior implements Seniority{
-    public Seniority ascenderSeniority(int cantidadDeTurnosJugados){
-        if (cantidadDeTurnosJugados < 13){
-            return this;
-        }
-        return new Senior();
-    }
-
-    public int plusDeEnergia(){
-        return 5;
-    }
-}
-
-
-
-/*
 import Entidades.Energia.Energia;
 import Entidades.Elementos.Turno;
 public class SemiSenior implements Seniority{
@@ -24,7 +8,7 @@ public class SemiSenior implements Seniority{
     @Override
     public Seniority ascenderSeniority(Turno turno) {
 
-        if (turno.turnosJugados() < 10) {
+        if (turno.turnosJugados() < 12) {
             return this;
         }
         return new Senior();
@@ -35,5 +19,3 @@ public class SemiSenior implements Seniority{
         energia.afectarEnergia(this.energia);
     }
 }
-
- */

@@ -1,61 +1,51 @@
 package Entidades;
 
-import java.util.ArrayList;
-import java.util.Random;
 import Entidades.Jugadores.Jugador;
 import Entidades.Tablero.Tablero;
 import Entidades.Elementos.Dado;
-import Entidades.Errores.CantidadMaximaDeJugadoresAlcanzadaException;
-
 
 public class AlgoRoma {
-    private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+    private ListaCircular<Jugador> jugadores = new ListaCircular<>();
     private int turnosJugados = 0;
-    private Tablero tablero = new Tablero(1, 40);
-    private Dado dado = new Dado(6);
-    private int limiteDeJugadores;
-    private int limiteDeTurnos;
-    private Jugador jugadorActual;
+    private Tablero tablero;
+    //private Dado dado = new Dado(6);
+    private int limiteDeJugadores = 6;
+    private int limiteDeTurnos = 30;
+    //private Jugador jugadorActual;
 
-    public AlgoRoma(int limiteDeJugadores, int limiteDeTurnos){
-        this.limiteDeJugadores = limiteDeJugadores;
-        this.limiteDeTurnos = limiteDeTurnos;
+    public AlgoRoma(Tablero tablero){
+        this.tablero = tablero;
     }
 
     public void comenzarPartida(){
-        this.elegirPrimerJugador();
+        //this.elegirPrimerJugador();
+        jugadores.seleccionAleatoria();
+        /*
         for (int i=0; i < (limiteDeTurnos*this.verCantidadDeJugadores()); i++){
             this.turnosJugados++;
             this.jugadorActual.jugarTurno(dado, tablero);
             this.pasarAlSiguienteJugador();
         }
+         */
     }
 
-    public void agregarJugador(Jugador jugador) throws CantidadMaximaDeJugadoresAlcanzadaException{
-        if (jugadores.size() == this.limiteDeJugadores){
-            throw new CantidadMaximaDeJugadoresAlcanzadaException();
-        }
-        jugadores.add(jugador);
+    public void agregarJugador(Jugador jugador) {
+        this.jugadores.agregarElemento(jugador);
+        //Posicion posicion = this.mapa.obtenerPosicionInicial();
+        //jugador.posicionar(posicion);
     }
 
+    /*
     public int verCantidadDeJugadores(){
         return jugadores.size();
     }
-
-    private void elegirPrimerJugador(){
-        Random random = new Random();
-        this.jugadorActual = jugadores.get(random.nextInt(jugadores.size()));
-    }
+     */
 
     public Jugador obtenerJugadorActual(){
-        return this.jugadorActual;
+        return jugadores.obtener();
     }
 
     private void pasarAlSiguienteJugador(){
-        int indiceDelJugador = this.jugadores.indexOf(this.jugadorActual);
-        if (indiceDelJugador+1 == jugadores.size()){
-            indiceDelJugador = -1;
-        }
-        this.jugadorActual = jugadores.get(indiceDelJugador+1);
+        this.jugadores.siguiente();
     }
 }

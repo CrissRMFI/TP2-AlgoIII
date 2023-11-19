@@ -1,10 +1,11 @@
 package Entidades.Tablero;
 
+
+import Entidades.Elementos.Interactuable;
 import Entidades.Elementos.ValorAzar;
-import Entidades.ElementosMapa;
 
 public interface Mapa {
-    public  void ubicar(ElementosMapa e, Posicion posicion);
+    public  void ubicar(Interactuable interactuable, Posicion posicion);
 
     public Casillero obtenerCasillero (Posicion posicion);
 

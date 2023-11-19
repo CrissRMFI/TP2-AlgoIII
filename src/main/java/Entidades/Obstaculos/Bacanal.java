@@ -4,18 +4,19 @@ import Entidades.Elementos.Dado;
 import Entidades.Elementos.ValorAzar;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Gladiador;
+import Entidades.Jugadores.Jugador;
 
 public class Bacanal implements Obstaculo{
 
     private int proporcion = 4;
 
     @Override
-    public void accionar(Gladiador gladiador) {
-        //Dado dado = new Dado();
-        //ValorAzar valor = dado.lanzar();
+    public void interactuar(Jugador jugador) {
+        Dado dado = new Dado();
+        ValorAzar valor = dado.lanzar();
 
-        //Energia energia = new Energia(-proporcion* valor.obtenerValor());
+        Energia energia = new Energia(-proporcion* valor.obtenerValor());
 
-        //gladiador.afectarEnergia(energia);
+        jugador.defenderse();
     }
 }

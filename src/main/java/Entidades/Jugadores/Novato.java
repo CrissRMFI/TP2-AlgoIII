@@ -1,19 +1,5 @@
 package Entidades.Jugadores;
 
-public class Novato implements Seniority{
-    public Seniority ascenderSeniority(int cantidadDeTurnosJugados){
-        if (cantidadDeTurnosJugados > 8){
-            return this;
-        }
-        return new SemiSenior();
-    }
-
-    public int plusDeEnergia(){
-        return 0;
-    }
-}
-
-/*
 import Entidades.Elementos.Turno;
 import Entidades.Energia.Energia;
 
@@ -26,7 +12,7 @@ public class Novato implements Seniority{
         if (turno.turnosJugados() < 8 ) {
             return this;
         }
-        return new SemiSinior();
+        return new SemiSenior();
     }
 
     @Override
@@ -34,6 +20,3 @@ public class Novato implements Seniority{
         energia.afectarEnergia(this.energia);
     }
 }
-
-
- */

@@ -1,5 +1,6 @@
 package Entidades.Tablero;
 
+/*
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,3 +12,4 @@ public class TableroTest {
         Assertions.assertEquals(6, tablero.getColumnas());
     }
 }
+*/

@@ -7,8 +7,7 @@ public class GladiadorTest {
     @Test
     public void elGladiadorTiene20PuntosDeEnergia(){
         Gladiador gladiador = new Gladiador();
-        int puntosDeEnergiaDisponible = gladiador.getPuntosDeEnergia();
-        Assertions.assertEquals(20, puntosDeEnergiaDisponible);
+        Assertions.assertEquals(20, gladiador.getSalud().getEnergia());
 
     }
 }

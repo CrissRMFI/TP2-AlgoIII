@@ -5,9 +5,10 @@ import org.junit.jupiter.api.Test;
 
 public class CasilleroTest {
     @Test
-    public void elCasilleroTieneTienePosicionX20Y30(){
-        Casillero casillero = new Casillero(20, 30);
-        Assertions.assertEquals(20, casillero.getX());
-        Assertions.assertEquals(30, casillero.getY());
+    public void elCasilleroTieneTienePosicion20(){
+        Casillero casillero = new Casillero();
+        Posicion posicion = new PosicionLineal(20);
+        casillero.ubicarCasillero(posicion);
+        Assertions.assertEquals(20, casillero.getPosicion().obtenerCoordenada().valor());
     }
 }
