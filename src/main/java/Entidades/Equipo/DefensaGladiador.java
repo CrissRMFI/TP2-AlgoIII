@@ -22,7 +22,7 @@ public class DefensaGladiador implements SistemaDefensa {
     }
 
     @Override
-    public Equipo miEquipo() {
-        return this.equipo;
+    public boolean comparar(Equipamiento equipamiento) {
+        return this.equipo.tipoEquipo == equipamiento;
     }
 }

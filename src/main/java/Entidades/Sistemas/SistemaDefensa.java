@@ -1,6 +1,7 @@
 package Entidades.Sistemas;
 
 import Entidades.Energia.Energia;
+import Entidades.Equipo.Equipamiento;
 import Entidades.Equipo.Equipo;
 import Entidades.Obstaculos.Obstaculo;
 
@@ -9,6 +10,5 @@ public interface SistemaDefensa {
 
     void modificarEquipo (Equipo equipo);
 
-    Equipo miEquipo ();
-
+    boolean comparar (Equipamiento equipamiento);
 }

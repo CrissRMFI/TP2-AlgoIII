@@ -19,4 +19,13 @@ public class Tablero {
     public Posicion posicionInicial () {
         return this.mapa.obtenerPosicionInicial();
     }
+
+    public Posicion posicionFinal () {
+        return this.mapa.obtenerPosicionFinal();
+    }
+
+    public Posicion posicionMedio() {
+        return mapa.posicionMedio();
+    }
+
 }

@@ -16,9 +16,13 @@ public class PosicionLineal implements Posicion {
         return this.x;
     }
 
-    public boolean comparar (Posicion posicion) {
+    public boolean igual(Posicion posicion) {
         Coordenada coordenada = posicion.obtenerCoordenada();
         return this.x.valor() == coordenada.valor();
     }
 
+    public boolean mayorIgual (Posicion posicion) {
+        Coordenada coordenada = posicion.obtenerCoordenada();
+        return this.x.valor() >= coordenada.valor();
+    }
 }
