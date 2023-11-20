@@ -1,21 +1,25 @@
 package Entidades;
 
-import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.ValorAzar;
+import Entidades.Equipo.Equipamiento;
+import Entidades.Errores.CantidadMinimaDeJugadores;
+import Entidades.Errores.Mensajes;
+import Entidades.Errores.PartidaFinalizada;
+import Entidades.Errores.PartidaNoFinalizada;
 import Entidades.Jugadores.Jugador;
-import Entidades.Tablero.Casillero;
-import Entidades.Tablero.Posicion;
-import Entidades.Tablero.Tablero;
-import Entidades.Elementos.Dado;
+import Entidades.Sistemas.SistemaControlGanador;
+import Entidades.Tablero.*;
 
 public class AlgoRoma {
     private ListaCircular<Jugador> jugadores = new ListaCircular<>();
-    private int turnosJugados = 0;
+    private int turnos= 30;
     private Tablero tablero;
-    private int limiteDeTurnos = 30;
+    private SistemaControlGanador controlGanador;
+    private Jugador ganador;
 
     public AlgoRoma(Tablero tablero){
         this.tablero = tablero;
+        this.controlGanador = new SistemaControlGanador(tablero);
     }
 
     public void agregarJugador(Jugador jugador) {
@@ -24,23 +28,58 @@ public class AlgoRoma {
         this.jugadores.agregarElemento(jugador);
     }
 
-    public Jugador comenzarPartida(){
-        return jugadores.seleccionAleatoria();
+    public Jugador comenzarPartida() throws CantidadMinimaDeJugadores {
+        if (this.jugadores.tamanio() < 2) {
+            Mensajes m = new Mensajes();
+            throw new CantidadMinimaDeJugadores(m.CantidadMinimaJugadores());
+        }
+        Jugador jugador = jugadores.seleccionAleatoria();
+        jugador.habilitar();
+        return jugador;
     }
 
-    private Jugador siguienteJugador(){
-        return this.jugadores.obtener();
+    public Jugador siguienteJugador() throws PartidaFinalizada {
+        if (this.turnos == 0) {
+            throw new PartidaFinalizada(new Mensajes().PartidaFinalizada());
+        }
+        Jugador jugador = this.jugadores.obtener();
+        jugador.habilitar();
+        return jugador;
     }
 
     public void finalizarTurno () {
         Jugador jugador = this.jugadores.obtener();
+        this.controlGanador.gano(jugador,this);
         jugador.finalizarTurno();
         this.jugadores.siguiente();
+        this.sumarUnTurno();
+        if (this.turnos == 0) {
+            this.finalizarJuego(null);
+        }
+
+
     }
 
     public void entregarElementos (Jugador jugador) {
         Posicion posicion = jugador.miPosicion();
         Casillero casillero = this.tablero.obtenerCasillero(posicion);
         casillero.entregarElementos(jugador);
+    }
+
+    private void sumarUnTurno () {
+        if (this.jugadores.vueltaCompleta()) {
+            this.turnos--;
+        }
+    }
+
+    public Jugador elGanador () throws PartidaNoFinalizada {
+        if (this.turnos != 0) {
+            throw new PartidaNoFinalizada(new Mensajes().PartidaNoFinalizada());
+        }
+        return this.ganador;
+    }
+    public void finalizarJuego (Jugador jugador) {
+        this.turnos = 0;
+        this.ganador = jugador;
     }
 }

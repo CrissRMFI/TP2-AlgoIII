@@ -1,9 +1,7 @@
 package Entidades.Tablero;
 
 import Entidades.Elementos.Interactuable;
-import Entidades.Obstaculos.FieraSalvaje;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 public class InformacionMapaEnMatriz implements InformacionMapa {
@@ -16,11 +14,11 @@ public class InformacionMapaEnMatriz implements InformacionMapa {
         LinkedList<Casillero> casilleros = new LinkedList<Casillero>();
 
         for (int i = 0; i < this.informacionMapa.length; i++) {
-            Casillero casillero = new Casillero();
+            CasilleroMapa casilleroMapa = new CasilleroMapa();
             for (int j = 0; j < this.informacionMapa[i].length ; j++) {
-                casillero.recibirElemento(this.informacionMapa[i][j]);
+                casilleroMapa.recibirElemento(this.informacionMapa[i][j]);
             }
-            casilleros.add(casillero);
+            casilleros.add(casilleroMapa);
         }
 
         return casilleros;
