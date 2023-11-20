@@ -20,4 +20,9 @@ public class DefensaGladiador implements SistemaDefensa {
             this.equipo = equipo;
         }
     }
+
+    @Override
+    public Equipo miEquipo() {
+        return this.equipo;
+    }
 }

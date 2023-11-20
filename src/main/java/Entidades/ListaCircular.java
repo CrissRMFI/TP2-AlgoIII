@@ -27,19 +27,6 @@ public class ListaCircular<T> {
         }
         longitud++;
     }
-
-    /*
-    public T obtener(int indice) {
-        if (indice < 0 || indice >= longitud) {
-            throw new IndexOutOfBoundsException();
-        }
-        Nodo<T> actual = inicio;
-        for (int i = 0; i < indice; i++) {
-            actual = actual.elSiguiente();
-        }
-        return actual.obtenerElemento();
-    }
-*/
     public T obtener() {
         return this.actual.obtenerElemento();
     }

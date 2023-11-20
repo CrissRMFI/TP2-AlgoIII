@@ -1,4 +1,5 @@
 package Entidades.Jugadores;
+import Entidades.AlgoRoma;
 import Entidades.Elementos.*;
 import Entidades.Energia.Energia;
 import Entidades.Equipo.DefensaGladiador;
@@ -26,18 +27,11 @@ public class Gladiador extends Jugador {
         this.seniority =  this.seniority.ascenderSeniority(this.turno);
     }
 
-    public void obtenerElementos (Tablero tablero) {
+    public void moverse(DispositivoDeAzar dispositivoDeAzar, Tablero tablero) {
         if (this.turno.estaHabilitado()) {
-            Casillero casillero = tablero.obtenerCasillero(this.posicion);
-            casillero.entregarElementos(this);
-        }
-    }
-
-    public void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar) {
-        if (this.turno.estaHabilitado()) {
-            ValorAzar valor = dispositivoDeAzar.lanzar();
-            Posicion posicion = tablero.calcularPosicion(valor);
-            this.posicionar(posicion);
+            ValorAzar valorAzar = dispositivoDeAzar.lanzar();
+            Posicion posicion = tablero.calcularPosicion(valorAzar);
+            this.posicion.cambiarPosicion(posicion);
         } else {
             this.finalizarTurno();
         }
@@ -59,5 +53,7 @@ public class Gladiador extends Jugador {
             this.turno.habilitar();
         }
     }
+
+
 }
 

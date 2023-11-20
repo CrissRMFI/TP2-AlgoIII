@@ -4,12 +4,10 @@ import Entidades.Elementos.Interactuable;
 import Entidades.Elementos.ValorAzar;
 
 public interface Mapa {
-    public  void ubicar(Interactuable interactuable, Posicion posicion);
+    Casillero obtenerCasillero (Posicion posicion);
 
-    public Casillero obtenerCasillero (Posicion posicion);
+    Posicion calcularPosicion (ValorAzar valor);
 
-    public PosicionLineal calcularPosicion (ValorAzar valor);
-
-    public Posicion obtenerPosicionInicial ();
+    Posicion obtenerPosicionInicial ();
 
 }
