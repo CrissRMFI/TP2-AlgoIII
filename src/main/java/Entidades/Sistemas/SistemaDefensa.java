@@ -9,6 +9,6 @@ public interface SistemaDefensa {
 
     void modificarEquipo (Equipo equipo);
 
-    Equipo miEquipo ();
+    //Equipo miEquipo ();
 
 }

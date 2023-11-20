@@ -1,10 +1,8 @@
 package Entidades.Jugadores;
 
 import Entidades.Elementos.DispositivoDeAzar;
-import Entidades.Elementos.Turno;
 import Entidades.Energia.Energia;
 import Entidades.Equipo.Equipo;
-import Entidades.Obstaculos.Obstaculo;
 import Entidades.Sistemas.SistemaDefensa;
 import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
@@ -13,6 +11,11 @@ public abstract class Jugador {
     protected SistemaDefensa sistemaDefensa;
     protected Energia energia;
     protected Posicion posicion;
+
+    public void Jugador(Posicion posicion){
+        this.posicion = posicion;
+    }
+
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);
     }
@@ -25,14 +28,15 @@ public abstract class Jugador {
     public  void posicionar (Posicion posicion) {
         this.posicion = posicion;
     }
-    public abstract void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
-    public abstract void finalizarTurno ();
-    public abstract void obtenerElementos (Tablero tablero);
-    public abstract  void iniciarTurno ();
-    public abstract void perderTurnos ();
     public Energia getSalud() {
         return this.energia;
     }
+    public abstract void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
+    //public abstract void finalizarTurno ();
+    public abstract void obtenerElementos (Tablero tablero);
+    public abstract  void jugarTurno(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
+    //public abstract void perderTurnos ();
+
 
     /*
     public Equipo miEquipo () {

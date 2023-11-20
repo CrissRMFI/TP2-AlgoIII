@@ -11,16 +11,22 @@ public class Energia {
         this.disponible = disponible;
     }
     public void afectarEnergia (Energia energia) {
-        this.disponible += energia.otorgarEnergia();
+        this.disponible += energia.cantidadDeEnergia();
     }
 
-    public int otorgarEnergia () {
+    public void afectarEnergia(int cantidadEnergia){
+        this.disponible += cantidadEnergia;
+    }
+
+    public int cantidadDeEnergia() {
         return this.disponible;
     }
 
+    /*
     public boolean tengoEnergia () {
         return this.disponible > 0;
     }
+     */
     public int getEnergia () {
         return this.disponible;
     } // TODO: Este metodo luego hayyque elimiarlo, es un hack para ver pruebascoo facilidad mientras desarrollo las clases

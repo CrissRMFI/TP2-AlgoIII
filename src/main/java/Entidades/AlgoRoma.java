@@ -2,31 +2,29 @@ package Entidades;
 
 import Entidades.Jugadores.Jugador;
 import Entidades.Tablero.Tablero;
-import Entidades.Elementos.Dado;
+import Entidades.Elementos.DispositivoDeAzar;
 
 public class AlgoRoma {
     private ListaCircular<Jugador> jugadores = new ListaCircular<>();
-    private int turnosJugados = 0;
     private Tablero tablero;
-    //private Dado dado = new Dado(6);
+    private DispositivoDeAzar dispositivoDeAzar;
     private int limiteDeJugadores = 6;
     private int limiteDeTurnos = 30;
-    //private Jugador jugadorActual;
 
-    public AlgoRoma(Tablero tablero){
+    public AlgoRoma(Tablero tablero, DispositivoDeAzar dispositivoDeAzar){
         this.tablero = tablero;
+        this.dispositivoDeAzar = dispositivoDeAzar;
+
     }
 
     public void comenzarPartida(){
-        //this.elegirPrimerJugador();
         jugadores.seleccionAleatoria();
-        /*
-        for (int i=0; i < (limiteDeTurnos*this.verCantidadDeJugadores()); i++){
-            this.turnosJugados++;
-            this.jugadorActual.jugarTurno(dado, tablero);
+        for (int i=0; i < (limiteDeTurnos * this.jugadores.verLongitud()); i++){
+            jugadores.obtener().jugarTurno(this.tablero, this.dispositivoDeAzar);
+            // AQUI VOY A PONER EL METODO PARA VER AL GANADOR
             this.pasarAlSiguienteJugador();
         }
-         */
+        // AQUI CREO QUE IRIA COMO UN PRINT PARA DECIR QUE TODOS PERDIERON
     }
 
     public void agregarJugador(Jugador jugador) {
@@ -34,12 +32,6 @@ public class AlgoRoma {
         //Posicion posicion = this.mapa.obtenerPosicionInicial();
         //jugador.posicionar(posicion);
     }
-
-    /*
-    public int verCantidadDeJugadores(){
-        return jugadores.size();
-    }
-     */
 
     public Jugador obtenerJugadorActual(){
         return jugadores.obtener();
