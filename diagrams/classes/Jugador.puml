@@ -1,0 +1,107 @@
+@startuml Jugador
+
+abstract class Jugador{
+    +Jugador(posicion: Posicion)
+    +afectarEnergia(energia: Energia)
+    +defenderse()
+    +equipar(equipo: Equipo)
+    +posicionar(posicion: Posicion)
+    +getSalud(): Energia
+    +{abstract}moverse(tablero: Tablero, dispositivoDeAzar: DispositivoDeAzar)
+    +{abstract}obtenerElementos(tablero: Tablero)
+    +{abstract}jugarTurno(tablero: Tablero, dispositivoDeAzar: DispositivoDeAzar)
+
+}
+
+interface SistemaDefensa{
+    +recibirDanio(Energia energia)
+    +modificarEquipo(equipo: Equipo)
+}
+
+class DefensaGladiador{
+    +DefensaGladiador(equipo Equipo)
+    +recibirDanio(Energia energia)
+    +modificarEquipo(equipo: Equipo)
+}
+
+abstract class Equipo{
+    -tipoEquipo: Equipamiento
+    +interactuar(jugador: Jugador)
+    +{abstract}energiaAReducir(): Energia
+    +esEquipoSuperador(equipo: Equipo): bool
+}
+
+class Energia{
+    -disponible: int
+    +Energia(disponible: int)
+    +afectarEnergia(energia: Energia)
+    +afectarEnergia(cantidadEnergia: int)
+    +getEnergia(): int
+}
+
+interface Posicion{
+    +comparar(posicion: Posicion): bool
+    +cambiarPosicion(posicion: Posicion): Posicion
+    +obtenerCoordenada(): Coordenada
+}
+
+class Gladiador{
+    -energia: Energia
+    -sistemaDefensa: SistemaDefensa
+    +moverse(tablero: Tablero, dispositivoDeAzar: DispositivoDeAzar)
+    +obtenerElementos(tablero: Tablero)
+    +jugarTurno(tablero: Tablero, dispositivoDeAzar: DispositivoDeAzar)
+}
+
+
+interface Seniority{
+    +ascenderSeniority(turno: Turno): Seniority
+    +aumentarEnergia(energia: Energia)
+}
+
+class Novato{
+    -energia: Energia
+    +ascenderSeniority(turno: Turno): Seniority
+    +aumentarEnergia(energia: Energia)
+}
+
+class SemiSenior{
+    -energia: Energia
+    +ascenderSeniority(turno: Turno): Seniority
+    +aumentarEnergia(energia: Energia)
+}
+
+class Senior{
+    -energia: Energia
+    +ascenderSeniority(turno: Turno): Seniority
+    +aumentarEnergia(energia: Energia)
+}
+
+class Turno{
+    cantidad: int
+    cantidadParaSerHabilitado: int
+    +agregarTurnoJugado()
+    +estaHabilitado(): bool
+    +turnosJugados(): int
+    +perderTurnos(cantidadAPerder: int)
+}
+
+
+Jugador --> SistemaDefensa
+Jugador --> Energia
+Jugador --> Posicion
+
+SistemaDefensa <|-- DefensaGladiador
+
+Jugador <|-- Gladiador
+
+Gladiador --> Seniority
+Gladiador --> Turno
+
+DefensaGladiador --> Equipo
+
+Seniority <|-- Novato
+Seniority <|-- SemiSenior
+Seniority <|-- Senior
+
+@enduml

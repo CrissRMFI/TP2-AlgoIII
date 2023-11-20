@@ -6,7 +6,7 @@ import Entidades.Jugadores.Jugador;
 
 public class Armadura extends Equipo{
 
-    public Armadura (Jugador jugador) {
+    public Armadura () {
         this.tipoEquipo = Equipamiento.ARMADURA;
     }
     @Override

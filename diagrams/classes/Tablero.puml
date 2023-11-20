@@ -1,0 +1,85 @@
+@startuml Tablero
+
+class Tablero{
+    +Tablero(mapa: Mapa)
+    +obtenerCasillero(posicion: Posicion): Casillero
+    +calcularPosicion(valor: valorAzar): Posicion
+}
+
+interface Mapa{
+    +ubicar(interactuable: Interactuable, posicion: Posicion)
+    +obtenerCasillero(posicion: Posicion): Casillero
+    +calcularPosicion(valor: valorAzar): Posicion
+    +obtenerPosicionInicial(): Posicion
+}
+
+class MapaLineal{
+    +MapaLineal(informacionMapa: InformacionMapa)
+    +ubicar(interactuable: Interactuable, posicion: Posicion)
+    +calcularPosicion(valor: ValorAzar): PosicionLineal
+    +obtenerCasillero(posicion Posicion): Casillero
+    +obtenerPosicionInicial(): Posicion
+}
+
+interface Posicion{
+    +comparar(posicion: Posicion): bool
+    +cambiarPosicion(posicion: Posicion): Posicion
+    +obtenerCoordenada(): Coordenada
+}
+
+class Casillero{
+    +recibirElemento(elemento: Interactuable)
+    +entregarElementos(jugador: Jugador)
+}
+
+interface Interactuable{
+    +interactuar(jugador: Jugador)
+}
+
+interface ConstructorMapa{
+    +construirMapa(datos: Map<Posicion, Casillero>, casilleros: LinkedList<Casillero>)
+}
+
+class ConstructorLineal{
+    +construirMapa(datos: Map<Posicion, Casillero>, casilleros: LinkedList<Casillero>)
+}
+
+interface InformacionMapa{
+    construirCasilleros(): LinkedList<Casillero>
+}
+
+class InformacionMapaEnMatriz{
+    -informacionMapa: Interactuable[][]
+    +InformacionMapaEnMatriz(informacion: Interactuable[][])
+    +construirCasillero(): LinkedList<Casillero>
+}
+
+class Coordenada{
+    -coordenada: int
+    +Coordenada(c: int)
+    +valor(): int
+    +moverCoordenadas(c: Coordenada)
+}
+
+Tablero --> Mapa
+
+Mapa <|-- MapaLineal
+
+MapaLineal "1 " *-- "1 .. * " Posicion
+MapaLineal "1 " *-- "1 .. * " Casillero
+MapaLineal --> ConstructorMapa
+
+MapaLineal ..> InformacionMapa
+
+InformacionMapa <|-- InformacionMapaEnMatriz
+
+Posicion -- Casillero
+Posicion -[hidden]> Casillero
+
+Posicion ..> Coordenada
+
+Casillero "1" --> "0 .. * " Interactuable
+
+ConstructorMapa <|-- ConstructorLineal
+
+@enduml

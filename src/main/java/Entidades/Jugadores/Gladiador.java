@@ -12,7 +12,6 @@ import java.util.Collection;
 
 public class Gladiador extends Jugador {
     private Seniority seniority;
-    private Collection<Equipo> equipamientos;
     private final Turno turno;
 
     public  Gladiador () {

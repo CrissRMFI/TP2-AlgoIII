@@ -1,0 +1,46 @@
+@startuml Equipo
+
+abstract class Equipo{
+    +interactuar(jugador: Jugador)
+    +{abstract}energiaAReducir(): Energia
+    +esEquipoSuperador(equipo: Equipo): bool
+}
+
+enum Equipamiento{
+    EQUIPOBASE
+    CASCO
+    ARMADURA
+    ESCUDOYESPADA
+    LLAVE
+}
+
+class EquipoBase{
+    +energiaAReducir(): Energia
+}
+
+class Casco{
+    +energiaAReducir(): Energia
+}
+
+class Armadura{
+    +energiaAReducir(): Energia
+}
+
+class EscudoYEspada{
+    +energiaAReducir(): Energia
+}
+
+class Llave{
+    +energiaAReducir(): Energia
+}
+
+Equipo --> Equipamiento
+Equipo <|-- EquipoBase
+Equipo <|--- Casco
+Equipo <|-- Armadura
+Equipo <|--- EscudoYEspada
+Equipo <|-- Llave
+
+Equipo -[hidden]> Equipamiento
+
+@enduml

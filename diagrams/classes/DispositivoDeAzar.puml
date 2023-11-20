@@ -1,0 +1,42 @@
+@startuml DispositivoDeAzar
+
+interface DispositivoDeAzar{
+    +lanzar(): ValorAzar
+}
+
+abstract class ValorAzar{
+    +{abstract}obtenerValor(): int
+}
+
+class Dado{
+    +lanzar(): CaraDado
+}
+
+class CaraDado{
+    -valor: int
+    +CaraDado(valor: int)
+    +obtenerValor(): int
+}
+
+class ListaCircular<T>{
+    -inicio: Nodo<T>
+    -actual: Nodo<T>
+    -longitud: int
+    +agregarElemento(elemento: T)
+    +obtener(): T
+    +eliminar(indice: int): T
+    +seleccionAleatoria(): T
+    +siguiente(): T
+    +verLongitud(): int
+}
+
+DispositivoDeAzar ..> ValorAzar
+DispositivoDeAzar <|-- Dado
+
+Dado "1 " *-- "6 " CaraDado
+
+Dado ..> ListaCircular
+
+ValorAzar <|-- CaraDado
+
+@enduml

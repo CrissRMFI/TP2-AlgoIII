@@ -1,0 +1,79 @@
+@startuml AlgoRoma
+
+class AlgoRoma{
+    -limiteDeJugadores: int
+    -limiteDeTurnos: int
+    +AlgoRoma(tablero: Tablero, dispositivoDeAzar: DispositivoDeAzar)
+    +comenzarPartida()
+    +agregarJugador(jugador: Jugador)
+    -pasarAlSiguienteJugador()
+}
+
+abstract class Jugador{
+    #sistemaDeDefensa: SistemaDeDefensa
+    #energia: Energia
+    #posicion: Posicion
+    +Jugador(posicion: Posicion)
+    +afectarEnergia(energia: Energia)
+    +defenderse()
+    +equipar(equipo: Equipo)
+    +posicionar(posicion: Posicion)
+    +getSalud(): Energia
+    +{abstract}moverse(tablero: Tablero, dispositivoDeAzar: DispositivoDeAzar)
+    +{abstract}obtenerElementos(tablero: Tablero)
+    +{abstract}jugarTurno(tablero: Tablero, dispositivoDeAzar: DispositivoDeAzar)
+
+}
+
+class Gladiador{
+    -sistemaDeDefensa: DefensaGladiador
+    -energia: Energia
+    -seniority: Seniority
+    -turno: Turno}
+    +moverse(tablero: Tablero, dispositivoDeAzar: DispositivoDeAzar)
+    +obtenerElementos(tablero: Tablero)
+    +jugarTurno(tablero: Tablero, dispositivoDeAzar: DispositivoDeAzar)
+}
+
+class Tablero{
+    -mapa: Mapa
+    +obtenerCasillero(posicion: Posicion): Casillero
+    +calcularPosicion(valor: ValorAzar): Posicion
+}
+
+interface DispositivoDeAzar{
+    +lanzar(): ValorAzar
+}
+
+class Dado{
+    -caras: ListaCircular<CaraDado>
+    +lanzar(): CaraDado
+}
+
+class ListaCircular<T>{
+    -inicio: Nodo<T>
+    -actual: Nodo<T>
+    -longitud: int
+    +agregarElemento(elemento: T)
+    +obtener(): T
+    +eliminar(indice: int): T
+    +seleccionAleatoria(): T
+    +siguiente(): T
+    +verLongitud(): int
+}
+
+ListaCircular -[hidden]> Tablero
+
+
+
+AlgoRoma --> ListaCircular
+ListaCircular "1    " *-- "2 .. 6 " Jugador
+AlgoRoma --> DispositivoDeAzar
+AlgoRoma --> Tablero
+
+DispositivoDeAzar <|-- Dado
+
+Jugador <|-- Gladiador
+
+
+@enduml

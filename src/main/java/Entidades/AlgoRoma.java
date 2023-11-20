@@ -33,10 +33,6 @@ public class AlgoRoma {
         //jugador.posicionar(posicion);
     }
 
-    public Jugador obtenerJugadorActual(){
-        return jugadores.obtener();
-    }
-
     private void pasarAlSiguienteJugador(){
         this.jugadores.siguiente();
     }
