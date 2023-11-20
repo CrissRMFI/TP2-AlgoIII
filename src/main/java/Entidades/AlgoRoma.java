@@ -1,6 +1,10 @@
 package Entidades;
 
+import Entidades.Elementos.DispositivoDeAzar;
+import Entidades.Elementos.ValorAzar;
 import Entidades.Jugadores.Jugador;
+import Entidades.Tablero.Casillero;
+import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
 import Entidades.Elementos.Dado;
 
@@ -8,44 +12,35 @@ public class AlgoRoma {
     private ListaCircular<Jugador> jugadores = new ListaCircular<>();
     private int turnosJugados = 0;
     private Tablero tablero;
-    //private Dado dado = new Dado(6);
-    private int limiteDeJugadores = 6;
     private int limiteDeTurnos = 30;
-    //private Jugador jugadorActual;
 
     public AlgoRoma(Tablero tablero){
         this.tablero = tablero;
     }
 
-    public void comenzarPartida(){
-        //this.elegirPrimerJugador();
-        jugadores.seleccionAleatoria();
-        /*
-        for (int i=0; i < (limiteDeTurnos*this.verCantidadDeJugadores()); i++){
-            this.turnosJugados++;
-            this.jugadorActual.jugarTurno(dado, tablero);
-            this.pasarAlSiguienteJugador();
-        }
-         */
-    }
-
     public void agregarJugador(Jugador jugador) {
+        Posicion posicion = this.tablero.posicionInicial();
+        jugador.posicionar(posicion);
         this.jugadores.agregarElemento(jugador);
-        //Posicion posicion = this.mapa.obtenerPosicionInicial();
-        //jugador.posicionar(posicion);
     }
 
-    /*
-    public int verCantidadDeJugadores(){
-        return jugadores.size();
-    }
-     */
-
-    public Jugador obtenerJugadorActual(){
-        return jugadores.obtener();
+    public Jugador comenzarPartida(){
+        return jugadores.seleccionAleatoria();
     }
 
-    private void pasarAlSiguienteJugador(){
+    private Jugador siguienteJugador(){
+        return this.jugadores.obtener();
+    }
+
+    public void finalizarTurno () {
+        Jugador jugador = this.jugadores.obtener();
+        jugador.finalizarTurno();
         this.jugadores.siguiente();
+    }
+
+    public void entregarElementos (Jugador jugador) {
+        Posicion posicion = jugador.miPosicion();
+        Casillero casillero = this.tablero.obtenerCasillero(posicion);
+        casillero.entregarElementos(jugador);
     }
 }

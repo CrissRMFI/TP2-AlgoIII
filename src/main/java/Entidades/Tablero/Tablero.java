@@ -15,4 +15,8 @@ public class Tablero {
     public Posicion calcularPosicion (ValorAzar valor) {
         return this.mapa.calcularPosicion(valor);
     }
+
+    public Posicion posicionInicial () {
+        return this.mapa.obtenerPosicionInicial();
+    }
 }

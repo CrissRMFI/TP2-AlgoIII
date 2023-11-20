@@ -19,15 +19,6 @@ public class MapaLineal implements Mapa {
         LinkedList<Casillero> c = informacionMapa.construirCasilleros();
         this.constructorMapa.construirMapa(this.casilleros,c);
 
-
-
-    }
-
-    @Override
-    public void ubicar(Interactuable interactuable, Posicion posicion) {
-        Casillero casillero = this.obtenerCasillero(posicion);
-        casillero.recibirElemento(interactuable);
-
     }
 
     @Override
