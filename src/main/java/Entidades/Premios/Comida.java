@@ -1,9 +1,10 @@
-package Entidades.Elementos;
+package Entidades.Premios;
 
+import Entidades.Elementos.Interactuable;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Jugador;
 
-public class Comida implements Interactuable {
+public class Comida implements Premio {
 
     @Override
     public void interactuar(Jugador jugador) {

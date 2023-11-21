@@ -41,7 +41,10 @@ public class AlgoRoma {
 
 
     // PARA PRUEBAS
-    public int cantidadDeEnergiaDelJugadorActual(){
-        return this.jugadores.obtener().getSalud().getEnergia();
+    public int obtenerCantidadDeEnergiaDelJugadorActual(){
+        return this.jugadores.obtener().obtenerEnergia().getEnergia();
+    }
+    public Posicion obtenerPosicionDelJugadorActual() {
+        return this.jugadores.obtener().obtenerPosicion();
     }
 }

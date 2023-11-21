@@ -12,10 +12,6 @@ public abstract class Jugador {
     protected Energia energia;
     protected Posicion posicion;
 
-    public void Jugador(Posicion posicion){
-        this.posicion = posicion;
-    }
-
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);
     }
@@ -28,19 +24,19 @@ public abstract class Jugador {
     public  void posicionar (Posicion posicion) {
         this.posicion = posicion;
     }
-    public Energia getSalud() {
-        return this.energia;
-    }
     public abstract void moverse(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
     //public abstract void finalizarTurno ();
     public abstract void obtenerElementos (Tablero tablero);
     public abstract  void jugarTurno(Tablero tablero, DispositivoDeAzar dispositivoDeAzar);
     //public abstract void perderTurnos ();
 
-
-    /*
-    public Equipo miEquipo () {
-        return this.sistemaDefensa.miEquipo();
+    // PARA PRUEBAS
+    public Energia obtenerEnergia() {
+        return this.energia;
     }
-     */
+
+    public Posicion obtenerPosicion(){
+        return this.posicion;
+    }
+
 }

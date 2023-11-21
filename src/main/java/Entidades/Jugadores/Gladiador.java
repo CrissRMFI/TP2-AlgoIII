@@ -9,7 +9,7 @@ import Entidades.Tablero.Tablero;
 
 public class Gladiador extends Jugador {
     private Seniority seniority;
-    private final Turno turno;
+    private Turno turno;
 
     public Gladiador() {
         this.energia = new Energia(20);
@@ -34,7 +34,7 @@ public class Gladiador extends Jugador {
     @Override
     public void jugarTurno(Tablero tablero, DispositivoDeAzar dispositivoDeAzar) {
         this.seniority.aumentarEnergia(this.energia);
-        if ((this.energia.cantidadDeEnergia() > 0 )|| this.turno.estaHabilitado()) {
+        if ((this.energia.cantidadDeEnergia() > 0 ) && this.turno.estaHabilitado()) {
             this.moverse(tablero, dispositivoDeAzar);
             tablero.obtenerCasillero(this.posicion).entregarElementos(this);
         } else if (this.energia.cantidadDeEnergia() <= 0) {
