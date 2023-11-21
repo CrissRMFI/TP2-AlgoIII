@@ -2,6 +2,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import Entidades.AlgoRoma;
+import Entidades.Elementos.Comida;
 import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.Interactuable;
 import Entidades.Elementos.MockDado;
@@ -17,16 +18,9 @@ import Entidades.Tablero.*;
 import Entidades.Energia.Energia;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Entrega1 {
-
-    private Tablero tablero;
-    private DispositivoDeAzar mockDado;
-
 
     public Mapa MapaConFieraSalvaje() {
         int cantidadCasilleros = 30;
@@ -130,6 +124,53 @@ public class Entrega1 {
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         elementosMapa[6][0] = new Bacanal();
+
+        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+
+        return new MapaLineal(informacionMapaEnMatriz);
+    }
+
+    public Mapa MapaVacio() {
+        int cantidadCasilleros = 30;
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
+
+        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+
+        return new MapaLineal(informacionMapaEnMatriz);
+    }
+
+    public Mapa MapaLlenoDeComida() {
+        int cantidadCasilleros = 30;
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
+
+        for (int i=0;i<elementosMapa.length;i++) {
+            elementosMapa[i][0] = new Comida();
+        }
+        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+
+        return new MapaLineal(informacionMapaEnMatriz);
+    }
+
+    public Mapa MapaQuePermiteGanar() {
+        int cantidadCasilleros = 30;
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][2];
+
+        for (int i=0;i<elementosMapa.length;i++) {
+            elementosMapa[i][0] = new Comida();
+        }
+
+        elementosMapa[4][1] = new Casco();
+        elementosMapa[7][1] = new Casco();
+
+        elementosMapa[9][1] = new Armadura();
+        elementosMapa[13][1] = new Armadura();
+
+        elementosMapa[19][1] = new EscudoYEspada();
+        elementosMapa[22][1] = new EscudoYEspada();
+
+        elementosMapa[28][1] = new Llave();
+        elementosMapa[29][1] = new Llave();
+
 
         InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
 
@@ -539,6 +580,225 @@ public class Entrega1 {
 
         assertTrue(Carpoforo.compararSalud(eneriaEsperada));
         assertTrue(Espartaco.compararSalud(eneriaEsperada));
+
+    }
+
+    @Test
+    public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5 () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+        Mapa mapa = this.MapaVacio();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Gladiador Carpoforo = new Gladiador();
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Gladiador Espartaco = new Gladiador();
+        Espartaco.agregarDispositivoAzar(mockDado);
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        for (int i = 0; i<= 8 ; i++ ) {
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+        }
+
+        Energia eneriaEsperada = new Energia(25);
+
+        assertTrue(Carpoforo.compararSalud(eneriaEsperada));
+        assertTrue(Espartaco.compararSalud(eneriaEsperada));
+
+    }
+
+    @Test
+    public void SeJuegan12TurnosYJugadoresAsciendenASemiSiniorYSiniorAumentandoEnergiaCorrespondiente () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+        Mapa mapa = this.MapaVacio();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Gladiador Carpoforo = new Gladiador();
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Gladiador Espartaco = new Gladiador();
+        Espartaco.agregarDispositivoAzar(mockDado);
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        for (int i = 0; i<= 12 ; i++ ) {
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+        }
+
+        Energia eneriaEsperada = new Energia(50);
+
+        assertTrue(Carpoforo.compararSalud(eneriaEsperada));
+        assertTrue(Espartaco.compararSalud(eneriaEsperada));
+
+    }
+
+    @Test
+    public void Juegan7TurnosConMapaConComidaSeEsperaAumentoDeEnergia () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+        Mapa mapa = this.MapaLlenoDeComida();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Gladiador Carpoforo = new Gladiador();
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Gladiador Espartaco = new Gladiador();
+        Espartaco.agregarDispositivoAzar(mockDado);
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        for (int i = 0; i< 7 ; i++ ) {
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+        }
+
+        Energia eneriaEsperadaCarpoforo = new Energia(125);
+        Energia eneriaEsperadaEspartaco = new Energia(20);
+
+        assertTrue(Carpoforo.compararSalud(eneriaEsperadaCarpoforo));
+        assertTrue(Espartaco.compararSalud(eneriaEsperadaEspartaco));
+
+    }
+
+    @Test
+    public void Juegan8TurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComitaYSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+        Mapa mapa = this.MapaLlenoDeComida();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Gladiador Carpoforo = new Gladiador();
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Gladiador Espartaco = new Gladiador();
+        Espartaco.agregarDispositivoAzar(mockDado);
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        for (int i = 0; i< 9 ; i++ ) {
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+        }
+
+        Energia eneriaEsperadaCarpoforo = new Energia(160);
+        Energia eneriaEsperadaEspartaco = new Energia(25);
+
+        assertTrue(Carpoforo.compararSalud(eneriaEsperadaCarpoforo));
+        assertTrue(Espartaco.compararSalud(eneriaEsperadaEspartaco));
+    }
+
+    @Test
+    public void JueganTodosLosTurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComitaYSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar,PartidaNoFinalizada{
+        Mapa mapa = this.MapaLlenoDeComida();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Gladiador Carpoforo = new Gladiador();
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Gladiador Espartaco = new Gladiador();
+        Espartaco.agregarDispositivoAzar(mockDado);
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        for (int i = 0; i< 30 ; i++ ) {
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            if (i<29) {
+                jugador = algoRoma.siguienteJugador();
+            }
+
+        }
+
+        Energia eneriaEsperadaCarpoforo = new Energia(670);
+        Energia eneriaEsperadaEspartaco = new Energia(220);
+
+        assertTrue(Carpoforo.compararSalud(eneriaEsperadaCarpoforo));
+        assertTrue(Espartaco.compararSalud(eneriaEsperadaEspartaco));
+        assertNull(algoRoma.elGanador());
+    }
+
+    @Test
+    public void JueganTodosLosTurnosHayUnGanador () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar,PartidaNoFinalizada{
+        Mapa mapa = this.MapaQuePermiteGanar();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Gladiador Carpoforo = new Gladiador();
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Gladiador Espartaco = new Gladiador();
+        Espartaco.agregarDispositivoAzar(mockDado);
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        for (int i = 0; i< 29 ; i++ ) {
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+            jugador.moverse(tablero);
+            algoRoma.entregarElementos(jugador);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+        }
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(2));
+        Espartaco.agregarDispositivoAzar(new MockDado(2));
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+       
+
+        assertNotNull(algoRoma.elGanador());
 
     }
 }
