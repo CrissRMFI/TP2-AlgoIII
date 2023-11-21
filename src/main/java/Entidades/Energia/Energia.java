@@ -21,7 +21,12 @@ public class Energia {
     public boolean tengoEnergia () {
         return this.disponible > 0;
     }
-    public int getEnergia () {
+
+    public boolean comparar (Energia energia) {
+        return this.disponible == energia.cantidadeEnergia();
+    }
+
+    protected int cantidadeEnergia () {
         return this.disponible;
-    } // TODO: Este metodo luego hayyque elimiarlo, es un hack para ver pruebascoo facilidad mientras desarrollo las clases
+    }
 }

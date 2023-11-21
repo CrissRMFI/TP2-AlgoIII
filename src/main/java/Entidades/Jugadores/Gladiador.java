@@ -4,6 +4,7 @@ import Entidades.Energia.Energia;
 import Entidades.Equipo.DefensaGladiador;
 import Entidades.Equipo.Equipamiento;
 import Entidades.Equipo.EquipoBase;
+import Entidades.Errores.SinDispositivoDeAzar;
 import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
 
@@ -20,9 +21,9 @@ public class Gladiador extends Jugador {
         this.seniority =  this.seniority.ascenderSeniority(this.turno);
     }
 
-        public void moverse(DispositivoDeAzar dispositivoDeAzar, Tablero tablero) {
+    public void moverse(Tablero tablero) throws SinDispositivoDeAzar {
         if (this.turno.estaHabilitado()) {
-            ValorAzar valorAzar = dispositivoDeAzar.lanzar();
+            ValorAzar valorAzar = this.lanzar();
             Posicion posicion = tablero.calcularPosicion(valorAzar);
             this.posicion.cambiarPosicion(posicion);
         } else {
@@ -31,7 +32,10 @@ public class Gladiador extends Jugador {
     }
 
     public void perderTurnos () {
-        this.turno.perderUnTurno();
+        if (this.turno.estaHabilitado()) {
+            this.turno.perderUnTurno();
+        }
+
     }
 
     public void finalizarTurno () {

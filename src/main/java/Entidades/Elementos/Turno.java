@@ -24,7 +24,10 @@ public class Turno {
 
     public void finalizar() {
         this.cantidad++;
-        this.habilitado--;
+        if (this.estaHabilitado()) {
+            this.habilitado--;
+        }
+
     }
     public void perderUnTurno () {
         this.habilitado = -1;

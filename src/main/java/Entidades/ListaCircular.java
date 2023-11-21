@@ -60,6 +60,15 @@ public class ListaCircular<T> {
         return nodoActual.obtenerElemento();
     }
 
+    public T seleccionElPrimero() {
+        Nodo<T> nodoActual = this.inicio;
+
+        this.actual = nodoActual;
+        this.inicio = nodoActual;
+
+        return nodoActual.obtenerElemento();
+    }
+
     public T siguiente() {
 
         this.actual = this.actual.elSiguiente();
@@ -72,7 +81,7 @@ public class ListaCircular<T> {
 
     public boolean vueltaCompleta () {
         if (this.longitud > 0) {
-            return this.actual == this.inicio;
+            return this.actual == this.inicio.elSiguiente();
         }
         return false;
 

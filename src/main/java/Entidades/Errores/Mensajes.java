@@ -10,4 +10,5 @@ public class Mensajes {
     public String PartidaNoFinalizada () {
         return "La partida aun no finalizo";
     }
+    public String SinDispositivoDeAzar () {return  "No se agrego un dispositivo de azar";}
 }

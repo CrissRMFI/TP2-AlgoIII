@@ -16,8 +16,9 @@ public class DefensaGladiador implements SistemaDefensa {
     }
 
     public void modificarEquipo (Equipo equipo) {
-        if (this.equipo.esEquipoSuperador(equipo)) {
+        if (this.equipo.puedoEquipar(equipo)) {
             this.equipo = equipo;
+            equipo.equipoEsEquipado();
         }
     }
 

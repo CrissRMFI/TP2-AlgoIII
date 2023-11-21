@@ -3,9 +3,12 @@ package Entidades.Jugadores;
 import Entidades.AlgoRoma;
 import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.Turno;
+import Entidades.Elementos.ValorAzar;
 import Entidades.Energia.Energia;
 import Entidades.Equipo.Equipamiento;
 import Entidades.Equipo.Equipo;
+import Entidades.Errores.Mensajes;
+import Entidades.Errores.SinDispositivoDeAzar;
 import Entidades.Sistemas.SistemaDefensa;
 import Entidades.Tablero.CasilleroMapa;
 import Entidades.Tablero.Posicion;
@@ -15,6 +18,7 @@ public abstract class Jugador {
     protected SistemaDefensa sistemaDefensa;
     protected Energia energia;
     protected Posicion posicion;
+    protected DispositivoDeAzar dispositivoDeAzar;
     protected Turno turno;
     protected AlgoRoma algoRoma;
     protected CasilleroMapa casilleroMapa;
@@ -22,7 +26,10 @@ public abstract class Jugador {
         this.energia.afectarEnergia(energia);
     }
     public void defenderse() {
-        this.sistemaDefensa.recibirDanio(this.energia);
+        if (this.turno.estaHabilitado()) {
+            this.sistemaDefensa.recibirDanio(this.energia);
+        }
+
     }
     public void equipar(Equipo equipo) {
         this.sistemaDefensa.modificarEquipo(equipo);
@@ -30,11 +37,11 @@ public abstract class Jugador {
     public  void posicionar (Posicion posicion) {
         this.posicion = posicion;
     }
-    public abstract void moverse(DispositivoDeAzar dispositivoDeAzar, Tablero tablero);
+    public abstract void moverse(Tablero tablero) throws SinDispositivoDeAzar;
     public abstract void finalizarTurno ();
     public abstract void perderTurnos ();
-    public Energia getSalud() {
-        return this.energia;
+    public boolean compararSalud(Energia energia) {
+        return this.energia.comparar(energia);
     }
 
     public Posicion miPosicion () {
@@ -47,5 +54,18 @@ public abstract class Jugador {
     public void habilitar () {
         this.turno.habilitar();
     }
+
+    public void agregarDispositivoAzar (DispositivoDeAzar dispositivoDeAzar) {
+        this.dispositivoDeAzar = dispositivoDeAzar;
+    }
+
+    public ValorAzar lanzar () throws SinDispositivoDeAzar {
+        if (this.dispositivoDeAzar == null) {
+            throw new SinDispositivoDeAzar(new Mensajes().SinDispositivoDeAzar());
+        }
+        return this.dispositivoDeAzar.lanzar();
+    }
+
+
 
 }
