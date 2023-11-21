@@ -5,7 +5,7 @@ import Entidades.Jugadores.Jugador;
 public class Piedra implements Obstaculo {
     @Override
     public void interactuar(Jugador jugador) {
-        jugador.perderTurnos();
+        //jugador.perderTurnos();
     }
 
 }

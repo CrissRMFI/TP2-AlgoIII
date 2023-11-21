@@ -18,6 +18,7 @@ public class Casillero {
         for (int i=0;i< this.elementos.size();i++) {
             Interactuable interactuable = this.elementos.get(i);
             interactuable.interactuar(jugador);
+
         }
     }
 }

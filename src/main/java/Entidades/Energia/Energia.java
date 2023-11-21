@@ -3,10 +3,6 @@ package Entidades.Energia;
 public class Energia {
     private int disponible;
 
-    public  Energia () {
-        this.disponible = 20;
-    }
-
     public  Energia (int disponible) {
         this.disponible = disponible;
     }

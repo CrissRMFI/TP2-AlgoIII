@@ -8,7 +8,7 @@ public interface Mapa {
 
     public Casillero obtenerCasillero (Posicion posicion);
 
-    public PosicionLineal calcularPosicion (ValorAzar valor);
+    public PosicionLineal obtenerPosicion(ValorAzar valor);
 
     public Posicion obtenerPosicionInicial ();
 

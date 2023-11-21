@@ -31,7 +31,7 @@ public class MapaLineal implements Mapa {
     }
 
     @Override
-    public PosicionLineal calcularPosicion(ValorAzar valor) {
+    public PosicionLineal obtenerPosicion(ValorAzar valor) {
         return new PosicionLineal(valor.obtenerValor());
     }
 
