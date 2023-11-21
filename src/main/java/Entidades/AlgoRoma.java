@@ -58,7 +58,10 @@ public class AlgoRoma {
         Jugador jugador = this.jugadores.obtener();
         this.controlGanador.gano(jugador,this);
         jugador.finalizarTurno();
-        this.sumarUnTurno();
+        if (this.turnos!=0) {
+            this.sumarUnTurno();
+        }
+
         this.jugadores.siguiente();
 
         if (this.turnos == 0 && this.ganador == null) {
@@ -71,7 +74,10 @@ public class AlgoRoma {
     public void entregarElementos (Jugador jugador) throws SinDispositivoDeAzar {
         Posicion posicion = jugador.miPosicion();
         Casillero casillero = this.tablero.obtenerCasillero(posicion);
-        casillero.entregarElementos(jugador);
+        if (casillero != null) {
+            casillero.entregarElementos(jugador);
+        }
+
     }
 
     private void sumarUnTurno () {

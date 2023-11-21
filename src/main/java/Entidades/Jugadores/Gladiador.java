@@ -15,15 +15,16 @@ public class Gladiador extends Jugador {
         this.seniority = new Novato();
         this.turno = new Turno();
         this.sistemaDefensa = new DefensaGladiador(new EquipoBase());
+        this.dispositivoDeAzar = new Dado();
     }
 
     private void ascenderSeniority () {
         this.seniority =  this.seniority.ascenderSeniority(this.turno);
     }
 
-    public void moverse(Tablero tablero) throws SinDispositivoDeAzar {
+    public void moverse(Tablero tablero) {
         if (this.turno.estaHabilitado()) {
-            ValorAzar valorAzar = this.lanzar();
+            ValorAzar valorAzar = this.dispositivoDeAzar.lanzar();
             Posicion posicion = tablero.calcularPosicion(valorAzar);
             this.posicion.cambiarPosicion(posicion);
         } else {
