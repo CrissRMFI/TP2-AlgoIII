@@ -23,10 +23,13 @@ public class Gladiador extends Jugador {
     }
 
     public void moverse(Tablero tablero) {
-        if (this.turno.estaHabilitado()) {
+        if (this.energia.otorgarEnergia() > 0 && this.turno.estaHabilitado()) {
             ValorAzar valorAzar = this.dispositivoDeAzar.lanzar();
             Posicion posicion = tablero.calcularPosicion(valorAzar);
             this.posicion.cambiarPosicion(posicion);
+        } else if (this.energia.otorgarEnergia() <= 0){
+            this.energia.afectarEnergia(new Energia(5));
+            this.finalizarTurno();
         } else {
             this.finalizarTurno();
         }
