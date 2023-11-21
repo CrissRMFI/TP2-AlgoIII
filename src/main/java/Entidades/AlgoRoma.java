@@ -2,10 +2,7 @@ package Entidades;
 
 import Entidades.Elementos.ValorAzar;
 import Entidades.Equipo.Equipamiento;
-import Entidades.Errores.CantidadMinimaDeJugadores;
-import Entidades.Errores.Mensajes;
-import Entidades.Errores.PartidaFinalizada;
-import Entidades.Errores.PartidaNoFinalizada;
+import Entidades.Errores.*;
 import Entidades.Jugadores.Jugador;
 import Entidades.Sistemas.SistemaControlGanador;
 import Entidades.Tablero.*;
@@ -38,6 +35,16 @@ public class AlgoRoma {
         return jugador;
     }
 
+    public Jugador comenzarPartidaConElPrimerJugador() throws CantidadMinimaDeJugadores {
+        if (this.jugadores.tamanio() < 2) {
+            Mensajes m = new Mensajes();
+            throw new CantidadMinimaDeJugadores(m.CantidadMinimaJugadores());
+        }
+        Jugador jugador = jugadores.seleccionElPrimero();
+        jugador.habilitar();
+        return jugador;
+    }
+
     public Jugador siguienteJugador() throws PartidaFinalizada {
         if (this.turnos == 0) {
             throw new PartidaFinalizada(new Mensajes().PartidaFinalizada());
@@ -51,16 +58,17 @@ public class AlgoRoma {
         Jugador jugador = this.jugadores.obtener();
         this.controlGanador.gano(jugador,this);
         jugador.finalizarTurno();
-        this.jugadores.siguiente();
         this.sumarUnTurno();
-        if (this.turnos == 0) {
-            this.finalizarJuego(null);
+        this.jugadores.siguiente();
+
+        if (this.turnos == 0 && this.ganador == null) {
+            this.finalizarJuego(this.ganador);
         }
 
 
     }
 
-    public void entregarElementos (Jugador jugador) {
+    public void entregarElementos (Jugador jugador) throws SinDispositivoDeAzar {
         Posicion posicion = jugador.miPosicion();
         Casillero casillero = this.tablero.obtenerCasillero(posicion);
         casillero.entregarElementos(jugador);

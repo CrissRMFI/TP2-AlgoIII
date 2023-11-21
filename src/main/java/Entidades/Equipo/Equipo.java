@@ -6,13 +6,27 @@ import Entidades.Jugadores.Jugador;
 
 public abstract class Equipo implements Interactuable {
     protected Equipamiento tipoEquipo;
-
+    protected boolean interacturo = false;
     @Override
     public void interactuar(Jugador jugador) {
         jugador.equipar(this);
     }
     public abstract Energia energiaAReducir();
-    public boolean esEquipoSuperador (Equipo equipo) {
-        return this.tipoEquipo.ordinal() < equipo.tipoEquipo.ordinal();
+    public boolean puedoEquipar(Equipo equipo) {
+        return equipo.tipoEquipo.ordinal() == this.tipoEquipo.ordinal() + 1;
+    }
+
+    @Override
+    public boolean esPremio() {
+        return true;
+    }
+
+    @Override
+    public boolean interactuo() {
+        return this.interacturo;
+    }
+
+    public void equipoEsEquipado () {
+        this.interacturo = true;
     }
 }
