@@ -49,7 +49,7 @@ public class MapaLineal implements Mapa {
     }
 
     @Override
-    public Posicion posicionMedio() {
+    public Posicion obtenerPosicionDelMedio() {
         int tamanio = this.casilleros.size() -1 ;
         return new PosicionLineal(tamanio/2);
     }

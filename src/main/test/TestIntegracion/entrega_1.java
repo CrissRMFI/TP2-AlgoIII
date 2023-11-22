@@ -116,7 +116,7 @@ public class entrega_1 {
 
         Energia energiaEsperada = new Energia(0);
 
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
+        assertTrue(jugador.compararSalud(energiaEsperada));
     }
 
     @Test
