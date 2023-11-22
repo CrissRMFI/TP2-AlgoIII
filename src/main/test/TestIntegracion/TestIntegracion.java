@@ -17,12 +17,19 @@ import Entidades.Obstaculos.Bacanal;
 import Entidades.Obstaculos.FieraSalvaje;
 import Entidades.Obstaculos.Piedra;
 import Entidades.Tablero.*;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestIntegracion {
+    private Jugador Carpoforo = new Gladiador("Carpoforo");
+    private Jugador Espartaco = new Gladiador("Espartaco");
+    private Jugador Crixo = new Gladiador("Crixo");
+    private Jugador MarcoAtilio = new Gladiador("Marco Atilio");
+    private Jugador Comodo = new Gladiador("Cómodo");
+
     public Mapa MapaConFieraSalvaje() {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
@@ -177,14 +184,40 @@ public class TestIntegracion {
 
         return new MapaLineal(informacionMapaEnMatriz);
     }
+
+    public Mapa MapaConTresTiposDeObstaculos() {
+        int cantidadCasilleros = 30;
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
+
+        elementosMapa[4][0] = new Bacanal();
+        elementosMapa[7][0] = new FieraSalvaje();
+
+        elementosMapa[9][0] = new Piedra();
+        elementosMapa[13][0] = new Bacanal();
+
+        elementosMapa[19][0] = new Piedra();
+        elementosMapa[22][0] = new Piedra();
+
+        elementosMapa[28][1] = new FieraSalvaje();
+        elementosMapa[29][1] = new FieraSalvaje();
+
+
+        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+
+        return new MapaLineal(informacionMapaEnMatriz);
+    }
+
+    @Before
+    public void crearGladiadores () {
+
+    }
     @Test
     public void NoSePuedeInicializarPartidaConUnSoloJugador(){
 
         Mapa mapa = this.MapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
-        Gladiador Carpoforo = new Gladiador();
-        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(this.Carpoforo);
         assertThrows(CantidadMinimaDeJugadores.class, () -> algoRoma.comenzarPartida());
     }
 
@@ -195,9 +228,7 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
@@ -220,9 +251,7 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
@@ -248,18 +277,16 @@ public class TestIntegracion {
     }
 
 
-    @Test
-    public void SeJuegaUnaPartidaSeConsultaPorElGanadorCuandoLaPartidaNoTerminoEntraEnError () throws PartidaFinalizada, PartidaNoFinalizada,CantidadMinimaDeJugadores,SinDispositivoDeAzar {
+    @Test public void SeJuegaUnaPartidaSeConsultaPorElGanadorCuandoLaPartidaNoTerminoEntraEnError () throws PartidaFinalizada, PartidaNoFinalizada,CantidadMinimaDeJugadores,SinDispositivoDeAzar {
 
         Mapa mapa = this.MapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -284,10 +311,10 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
+
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -327,10 +354,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -361,10 +387,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -395,10 +420,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -436,10 +460,10 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
+
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -485,10 +509,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -521,10 +544,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -557,10 +579,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -591,10 +612,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -625,10 +645,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -659,10 +678,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -694,10 +712,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -728,10 +745,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -766,10 +782,9 @@ public class TestIntegracion {
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
 
-        Gladiador Carpoforo = new Gladiador();
         Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador();
         Espartaco.agregarDispositivoAzar(mockDado);
+
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
@@ -803,7 +818,47 @@ public class TestIntegracion {
 
     }
 
+    @Test
+    public void JueganTodosLosTurnosEnMapaConTresTiposDeObstaculosSeEsoeraUnaEnergiaEspecificaParaCadaUno () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar,PartidaNoFinalizada{
+        Mapa mapa = this.MapaQuePermiteGanar();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
 
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+        Crixo.agregarDispositivoAzar(mockDado);
+        MarcoAtilio.agregarDispositivoAzar(mockDado);
+        Comodo.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+        algoRoma.agregarJugador(Crixo);
+        algoRoma.agregarJugador(MarcoAtilio);
+        algoRoma.agregarJugador(Comodo);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        for (int i = 0; i< 29 ; i++ ) {
+            for (int j = 0; j<5; j ++) {
+                jugador.moverse(tablero);
+                algoRoma.entregarElementos(jugador);
+                algoRoma.finalizarTurno();
+                jugador = algoRoma.siguienteJugador();
+            }
+        }
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(2));
+        Espartaco.agregarDispositivoAzar(new MockDado(2));
+
+
+
+
+
+        //assertNotNull(algoRoma.elGanador());
+
+    }
 }
 
 

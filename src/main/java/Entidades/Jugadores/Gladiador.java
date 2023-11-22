@@ -10,7 +10,8 @@ import Entidades.Tablero.Tablero;
 
 public class Gladiador extends Jugador {
     private Seniority seniority;
-    public  Gladiador () {
+    public  Gladiador (String nombre) {
+        this.nombre = nombre;
         this.energia = new Energia();
         this.seniority = new Novato();
         this.turno = new Turno();

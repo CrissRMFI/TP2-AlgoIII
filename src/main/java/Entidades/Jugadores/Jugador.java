@@ -20,6 +20,7 @@ public abstract class Jugador {
     protected Posicion posicion;
     protected DispositivoDeAzar dispositivoDeAzar;
     protected Turno turno;
+    protected String nombre;
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);
     }
