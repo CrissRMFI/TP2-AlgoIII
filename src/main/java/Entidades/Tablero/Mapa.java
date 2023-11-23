@@ -3,13 +3,13 @@ package Entidades.Tablero;
 import Entidades.Elementos.ValorAzar;
 
 public interface Mapa {
-    Casillero obtenerCasillero (Posicion posicion);
+    public abstract Casillero obtenerCasillero (Posicion posicion);
 
-    Posicion calcularPosicion (ValorAzar valor);
+    public abstract Posicion calcularPosicion (ValorAzar valor);
 
-    Posicion obtenerPosicionInicial ();
+    public abstract Posicion obtenerPosicionInicial ();
 
-    Posicion obtenerPosicionFinal();
+    public abstract Posicion obtenerPosicionFinal();
 
-    Posicion obtenerPosicionDelMedio();
+    public abstract Posicion obtenerPosicionDelMedio();
 }

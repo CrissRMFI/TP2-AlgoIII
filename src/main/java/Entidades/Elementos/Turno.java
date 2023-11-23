@@ -1,11 +1,10 @@
 package Entidades.Elementos;
 
 public class Turno {
+    private int cantidad;
+    private int habilitado;
 
-    int cantidad;
-    int habilitado;
-
-    public  Turno () {
+    public Turno (){
         this.cantidad = 0;
         this.habilitado = 0;
     }

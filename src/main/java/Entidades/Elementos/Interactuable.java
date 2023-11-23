@@ -4,9 +4,9 @@ import Entidades.Errores.SinDispositivoDeAzar;
 import Entidades.Jugadores.Jugador;
 
 public interface Interactuable {
-    void interactuar (Jugador jugador) throws SinDispositivoDeAzar;
+    public abstract void interactuar (Jugador jugador) throws SinDispositivoDeAzar;
 
-    boolean esPremio ();
+    public abstract boolean esPremio ();
 
-    boolean interactuo ();
+    public abstract boolean interactuo ();
 }

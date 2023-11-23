@@ -1,16 +1,12 @@
 package Entidades.Jugadores;
 
-import Entidades.AlgoRoma;
 import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.Turno;
 import Entidades.Elementos.ValorAzar;
 import Entidades.Energia.Energia;
 import Entidades.Equipo.Equipamiento;
 import Entidades.Equipo.Equipo;
-import Entidades.Errores.Mensajes;
-import Entidades.Errores.SinDispositivoDeAzar;
 import Entidades.Sistemas.SistemaDefensa;
-import Entidades.Tablero.CasilleroMapa;
 import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
 
@@ -20,9 +16,11 @@ public abstract class Jugador {
     protected Posicion posicion;
     protected DispositivoDeAzar dispositivoDeAzar;
     protected Turno turno;
+
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);
     }
+
     public void defenderse() {
         if (this.turno.estaHabilitado()) {
             this.sistemaDefensa.recibirDanio(this.energia);
@@ -33,7 +31,7 @@ public abstract class Jugador {
         return this.energia.comparar(energia);
     }
 
-    public boolean comprarEquipo (Equipamiento equipamiento) {
+    public boolean compararEquipo(Equipamiento equipamiento) {
         return this.sistemaDefensa.comparar(equipamiento);
     }
 
@@ -47,7 +45,7 @@ public abstract class Jugador {
 
     public abstract void moverse(Tablero tablero);
 
-    public abstract void finalizarTurno ();
+    public abstract void finalizarTurno();
 
     public abstract void perderTurnos ();
 

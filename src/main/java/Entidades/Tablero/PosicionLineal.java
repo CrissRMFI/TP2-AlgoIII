@@ -7,7 +7,7 @@ public class PosicionLineal implements Posicion {
         this.x = new Coordenada(x);
     }
 
-    public Posicion cambiarPosicion (Posicion posicion) {
+    public Posicion cambiarPosicion(Posicion posicion) {
         this.x.moverCoordenada(posicion.obtenerCoordenada());
         return new PosicionLineal(this.x.valor());
     }
@@ -16,12 +16,12 @@ public class PosicionLineal implements Posicion {
         return this.x;
     }
 
-    public boolean igual(Posicion posicion) {
+    public boolean esIgual(Posicion posicion) {
         Coordenada coordenada = posicion.obtenerCoordenada();
         return this.x.valor() == coordenada.valor();
     }
 
-    public boolean mayorIgual (Posicion posicion) {
+    public boolean esMayorIgual(Posicion posicion) {
         Coordenada coordenada = posicion.obtenerCoordenada();
         return this.x.valor() >= coordenada.valor();
     }

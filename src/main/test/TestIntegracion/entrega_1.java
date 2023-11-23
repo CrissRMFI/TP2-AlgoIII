@@ -321,8 +321,8 @@ public class entrega_1 {
 
         Posicion posicionEsperada = new PosicionLineal(15);
 
-        assertTrue(posicionCarpoforo.igual(posicionEsperada));
-        assertTrue(posicionEspartaco.igual(posicionEsperada));
+        assertTrue(posicionCarpoforo.esIgual(posicionEsperada));
+        assertTrue(posicionEspartaco.esIgual(posicionEsperada));
     }
 
     @Test

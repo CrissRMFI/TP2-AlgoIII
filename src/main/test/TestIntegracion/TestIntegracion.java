@@ -316,8 +316,8 @@ public class TestIntegracion {
 
         Posicion posicionEsperada = new PosicionLineal(15);
 
-        assertTrue(posicionCarpoforo.igual(posicionEsperada));
-        assertTrue(posicionEspartaco.igual(posicionEsperada));
+        assertTrue(posicionCarpoforo.esIgual(posicionEsperada));
+        assertTrue(posicionEspartaco.esIgual(posicionEsperada));
     }
 
     @Test
@@ -347,10 +347,10 @@ public class TestIntegracion {
             jugador = algoRoma.siguienteJugador();
         }
 
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.ARMADURA));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.ARMADURA));
-        assertTrue(Carpoforo.comprarEquipo(Equipamiento.EQUIPOBASE));
-        assertTrue(Espartaco.comprarEquipo(Equipamiento.EQUIPOBASE));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.ARMADURA));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.ARMADURA));
+        assertTrue(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertTrue(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
 
     }
 
@@ -381,10 +381,10 @@ public class TestIntegracion {
             jugador = algoRoma.siguienteJugador();
         }
 
-        assertTrue(Espartaco.comprarEquipo(Equipamiento.EQUIPOBASE));
-        assertTrue(Carpoforo.comprarEquipo(Equipamiento.CASCO));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.CASCO));
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.EQUIPOBASE));
+        assertTrue(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertTrue(Carpoforo.compararEquipo(Equipamiento.CASCO));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.CASCO));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
 
     }
 
@@ -415,17 +415,17 @@ public class TestIntegracion {
             jugador = algoRoma.siguienteJugador();
         }
 
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.ARMADURA));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.LLAVE));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.ARMADURA));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.ESCUDOYESPADA));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.LLAVE));
 
 
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.ARMADURA));
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.LLAVE));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.ARMADURA));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.ESCUDOYESPADA));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.LLAVE));
 
-        assertTrue(Espartaco.comprarEquipo(Equipamiento.EQUIPOBASE));
-        assertTrue(Carpoforo.comprarEquipo(Equipamiento.EQUIPOBASE));
+        assertTrue(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertTrue(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
 
     }
 
@@ -465,16 +465,16 @@ public class TestIntegracion {
 
 
 
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.EQUIPOBASE));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.LLAVE));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.ESCUDOYESPADA));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.LLAVE));
 
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.EQUIPOBASE));
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.LLAVE));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.ESCUDOYESPADA));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.LLAVE));
 
-        assertTrue(Espartaco.comprarEquipo(Equipamiento.CASCO));
-        assertTrue(Carpoforo.comprarEquipo(Equipamiento.CASCO));
+        assertTrue(Espartaco.compararEquipo(Equipamiento.CASCO));
+        assertTrue(Carpoforo.compararEquipo(Equipamiento.CASCO));
 
     }
 
@@ -510,7 +510,7 @@ public class TestIntegracion {
 
         Posicion posicionEsperada = new PosicionLineal(29);
 
-        assertTrue(Carpoforo.miPosicion().igual(posicionEsperada));
+        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
 
     }
 
@@ -546,7 +546,7 @@ public class TestIntegracion {
 
         Posicion posicionEsperada = new PosicionLineal(15);
 
-        assertTrue(Carpoforo.miPosicion().igual(posicionEsperada));
+        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
 
     }
 
