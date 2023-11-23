@@ -10,7 +10,8 @@ import Entidades.Tablero.Tablero;
 
 public class Gladiador extends Jugador {
     private Seniority seniority;
-    public  Gladiador () {
+    public  Gladiador (String nombre) {
+        this.nombre = nombre;
         this.energia = new Energia();
         this.seniority = new Novato();
         this.turno = new Turno();
@@ -27,14 +28,12 @@ public class Gladiador extends Jugador {
             ValorAzar valorAzar = this.dispositivoDeAzar.lanzar();
             Posicion posicion = tablero.calcularPosicion(valorAzar);
             this.posicion.cambiarPosicion(posicion);
-        } else {
-            this.finalizarTurno();
         }
     }
 
-    public void perderTurnos () {
+    public void perderTurnos (Turno turnos) {
         if (this.turno.estaHabilitado()) {
-            this.turno.perderUnTurno();
+            this.turno.perderTurnos(turnos);
         }
 
     }

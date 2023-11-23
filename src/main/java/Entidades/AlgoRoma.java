@@ -1,7 +1,5 @@
 package Entidades;
 
-import Entidades.Elementos.ValorAzar;
-import Entidades.Equipo.Equipamiento;
 import Entidades.Errores.*;
 import Entidades.Jugadores.Jugador;
 import Entidades.Sistemas.SistemaControlGanador;
@@ -40,7 +38,7 @@ public class AlgoRoma {
             Mensajes m = new Mensajes();
             throw new CantidadMinimaDeJugadores(m.CantidadMinimaJugadores());
         }
-        Jugador jugador = jugadores.seleccionElPrimero();
+        Jugador jugador = jugadores.iniciarConElPrimero();
         jugador.habilitar();
         return jugador;
     }
@@ -61,7 +59,6 @@ public class AlgoRoma {
         if (this.turnos!=0) {
             this.sumarUnTurno();
         }
-
         this.jugadores.siguiente();
 
         if (this.turnos == 0 && this.ganador == null) {

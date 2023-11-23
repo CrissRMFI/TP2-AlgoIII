@@ -8,25 +8,26 @@ public class ListaCircular<T> {
 
     public ListaCircular() {
         this.inicio = null;
+        this.actual = null;
         this.longitud = 0;
     }
 
     public void agregarElemento(T elemento) {
         Nodo<T> nuevoNodo = new Nodo<>(elemento);
-        this.actual = nuevoNodo;
+
         if (this.inicio == null) {
             this.inicio = nuevoNodo;
             nuevoNodo.cambiarSiguiente(this.inicio);
+            this.actual = this.inicio;
         } else {
-            Nodo<T> actual = this.inicio;
-            while (actual.elSiguiente() != this.inicio) {
-                actual = actual.elSiguiente();
-            }
-            actual.cambiarSiguiente(nuevoNodo);
             nuevoNodo.cambiarSiguiente(this.inicio);
+            this.actual.cambiarSiguiente(nuevoNodo);
+            this.actual = nuevoNodo;
         }
+
         this.longitud++;
     }
+
     public T obtener() {
         return this.actual.obtenerElemento();
     }
@@ -55,22 +56,26 @@ public class ListaCircular<T> {
         for (int i = 0; i < numeroAleatorio; i++) {
             nodoActual = nodoActual.elSiguiente();
         }
+
         this.actual = nodoActual;
-        this.inicio = nodoActual;
-        return nodoActual.obtenerElemento();
+        Nodo<T> auxiliar = this.actual;
+        while (auxiliar.elSiguiente() != this.actual) {
+                auxiliar = auxiliar.elSiguiente();
+        }
+        this.inicio = auxiliar;
+
+        return this.actual.obtenerElemento();
     }
 
-    public T seleccionElPrimero() {
-        Nodo<T> nodoActual = this.inicio;
+    public T iniciarConElPrimero() {
+        Nodo<T> auxiliar = this.actual;
+        this.actual = this.inicio;
+        this.inicio = auxiliar;
 
-        this.actual = nodoActual;
-        this.inicio = nodoActual;
-
-        return nodoActual.obtenerElemento();
+        return this.actual.obtenerElemento();
     }
 
     public T siguiente() {
-
         this.actual = this.actual.elSiguiente();
         return this.actual.obtenerElemento();
     }
@@ -79,12 +84,10 @@ public class ListaCircular<T> {
         return this.longitud;
     }
 
-    public boolean vueltaCompleta () {
+    public boolean vueltaCompleta() {
         if (this.longitud > 0) {
-            return this.actual == this.inicio.elSiguiente();
+            return this.actual == this.inicio;
         }
         return false;
-
     }
-
 }
