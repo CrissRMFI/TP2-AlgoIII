@@ -29,7 +29,6 @@ public abstract class Jugador {
             this.sistemaDefensa.recibirDanio(this.energia);
         }
     }
-
     public boolean compararSalud(Energia energia) {
         return this.energia.comparar(energia);
     }
@@ -50,7 +49,7 @@ public abstract class Jugador {
 
     public abstract void finalizarTurno ();
 
-    public abstract void perderTurnos ();
+    public abstract void perderTurnos (Turno turnos);
 
     public Posicion miPosicion () {
         return this.posicion;

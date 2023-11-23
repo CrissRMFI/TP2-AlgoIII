@@ -170,7 +170,17 @@ public class TestListaCircular {
     }
 
     @Test
-    public void IngresoDiezDatosRecorroLaListaDiezVecesSeVerificaUnaVueltaCompleta () {
+    public void IngresoDosDatosRecorroLaListaUnaVezSeVerificaUnaVueltaCompleta () {
+        listaString.agregarElemento("ALgoritmos I");
+        listaString.agregarElemento("ALgoritmos II");
+
+        listaString.siguiente();
+        assertTrue(listaString.vueltaCompleta());
+
+    }
+
+    @Test
+    public void IngresoDiezDatosInicioConELPrimeroRecorro9VecesYSeCuentaComoVUeltaCompleta () {
         listaString.agregarElemento("ALgoritmos I");
         listaString.agregarElemento("ALgoritmos II");
         listaString.agregarElemento("ALgoritmos III");
@@ -183,19 +193,68 @@ public class TestListaCircular {
         listaString.agregarElemento("Bases de Datos");
 
 
-        listaString.siguiente();
-        listaString.siguiente();
-        listaString.siguiente();
-        listaString.siguiente();
-        listaString.siguiente();
-        listaString.siguiente();
-        listaString.siguiente();
-        listaString.siguiente();
-        listaString.siguiente();
-        listaString.siguiente();
-        listaString.siguiente();
+        listaString.iniciarConElPrimero();
 
-        assertTrue(listaString.vueltaCompleta());
+        for (int i = 0; i<8 ; i++) {
+            listaString.siguiente();
+            assertFalse(listaString.vueltaCompleta());
+        }
+        listaString.siguiente();
+       assertTrue(listaString.vueltaCompleta());
+
+    }
+
+    @Test
+    public void IngresoDiezDatosInicioConELPrimeroRecorro19VecesYSeCuentaComoDosVUeltaCompletas () {
+        listaString.agregarElemento("ALgoritmos I");
+        listaString.agregarElemento("ALgoritmos II");
+        listaString.agregarElemento("ALgoritmos III");
+        listaString.agregarElemento("Probabilidad y Estadistica");
+        listaString.agregarElemento("Estructura del Computador");
+        listaString.agregarElemento("Organizacion de Datos I");
+        listaString.agregarElemento("TDA");
+        listaString.agregarElemento("Matematica Discreta");
+        listaString.agregarElemento("Taller Programacion");
+        listaString.agregarElemento("Bases de Datos");
+
+
+        listaString.iniciarConElPrimero();
+        int vueltas = 0;
+        for (int i = 0; i<19 ; i++) {
+            listaString.siguiente();
+            if (listaString.vueltaCompleta()) {
+                vueltas++;
+            }
+        }
+
+        assertEquals(2,vueltas);
+
+    }
+
+    @Test
+    public void IngresoDiezDatosInicioConELPrimeroRecorro18VecesYSeCuentaComoUnaVUeltaCompleta () {
+        listaString.agregarElemento("ALgoritmos I");
+        listaString.agregarElemento("ALgoritmos II");
+        listaString.agregarElemento("ALgoritmos III");
+        listaString.agregarElemento("Probabilidad y Estadistica");
+        listaString.agregarElemento("Estructura del Computador");
+        listaString.agregarElemento("Organizacion de Datos I");
+        listaString.agregarElemento("TDA");
+        listaString.agregarElemento("Matematica Discreta");
+        listaString.agregarElemento("Taller Programacion");
+        listaString.agregarElemento("Bases de Datos");
+
+
+        listaString.iniciarConElPrimero();
+        int vueltas = 0;
+        for (int i = 0; i<18 ; i++) {
+            listaString.siguiente();
+            if (listaString.vueltaCompleta()) {
+                vueltas++;
+            }
+        }
+
+        assertEquals(1,vueltas);
 
     }
 }

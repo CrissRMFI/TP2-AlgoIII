@@ -5,14 +5,15 @@ import Entidades.Energia.Energia;
 
 public class Novato implements Seniority{
 
-    private static Energia energia = new Energia(0);
+    private Energia energia = new Energia(0);
+    private Turno turnosParaEvolucionar = new Turno(7);
 
     @Override
     public Seniority ascenderSeniority(Turno turno) {
-        if (turno.turnosJugados() < 8 ) {
-            return this;
+        if (turno.esMayor(this.turnosParaEvolucionar) ) {
+            return new SemiSenior();
         }
-        return new SemiSenior();
+        return this;
     }
 
     @Override

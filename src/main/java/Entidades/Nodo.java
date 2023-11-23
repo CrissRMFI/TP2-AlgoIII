@@ -6,6 +6,7 @@ public class Nodo<T> {
 
     public Nodo(T elemento) {
         this.elemento = elemento;
+        this.siguiente = null;
     }
 
     public void cambiarSiguiente (Nodo<T> nodo) {

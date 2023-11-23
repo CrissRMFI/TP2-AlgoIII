@@ -3,15 +3,16 @@ package Entidades.Jugadores;
 import Entidades.Energia.Energia;
 import Entidades.Elementos.Turno;
 public class SemiSenior implements Seniority{
-    private static Energia energia = new Energia(5);
+    private  Energia energia = new Energia(5);
 
+    private Turno turnosParaEvolucionar = new Turno(11);
     @Override
     public Seniority ascenderSeniority(Turno turno) {
 
-        if (turno.turnosJugados() < 12) {
-            return this;
+        if (turno.esMayor(this.turnosParaEvolucionar)) {
+            return new Senior();
         }
-        return new Senior();
+        return this;
     }
 
     @Override

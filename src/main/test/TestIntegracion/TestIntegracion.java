@@ -198,8 +198,8 @@ public class TestIntegracion {
         elementosMapa[19][0] = new Piedra();
         elementosMapa[22][0] = new Piedra();
 
-        elementosMapa[28][1] = new FieraSalvaje();
-        elementosMapa[29][1] = new FieraSalvaje();
+        elementosMapa[28][0] = new FieraSalvaje();
+        elementosMapa[29][0] = new FieraSalvaje();
 
 
         InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
@@ -258,21 +258,18 @@ public class TestIntegracion {
 
         Jugador jugador = algoRoma.comenzarPartida();
 
-        for (int i = 0; i< 29 ; i++ ) {
+        for (int i = 0; i< 30 ; i++ ) {
             jugador.moverse(tablero);
             algoRoma.finalizarTurno();
             jugador = algoRoma.siguienteJugador();
             jugador.moverse(tablero);
             algoRoma.finalizarTurno();
-            jugador = algoRoma.siguienteJugador();
+            if (i<29) {
+                jugador = algoRoma.siguienteJugador();
+            }
+
         }
-
-        jugador.moverse(tablero);
-        algoRoma.finalizarTurno();
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.finalizarTurno();
-
+        int a= 2;
         assertThrows(PartidaFinalizada.class, () -> algoRoma.siguienteJugador());
     }
 
@@ -305,7 +302,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaCon30CasillerosNoSeGanaYElJugadorQuedaPosicoinadoEnLa15AlFinalizarElJuego () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SeJuegaUnaPartidaCon30CasillerosElJugadorQuedaLlegaALaMetaNoGanaYQuedaPosicoinadoEnLa15AlFinalizarElJuego () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
         Mapa mapa = this.MapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -483,12 +480,6 @@ public class TestIntegracion {
 
         }
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-
-
         assertFalse(Espartaco.comprarEquipo(Equipamiento.EQUIPOBASE));
         assertFalse(Espartaco.comprarEquipo(Equipamiento.ESCUDOYESPADA));
         assertFalse(Espartaco.comprarEquipo(Equipamiento.LLAVE));
@@ -532,7 +523,7 @@ public class TestIntegracion {
         }
 
         Posicion posicionEsperada = new PosicionLineal(29);
-
+        Posicion p = Carpoforo.miPosicion();
         assertTrue(Carpoforo.miPosicion().igual(posicionEsperada));
 
     }
@@ -819,18 +810,22 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JueganTodosLosTurnosEnMapaConTresTiposDeObstaculosSeEsoeraUnaEnergiaEspecificaParaCadaUno () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar,PartidaNoFinalizada{
-        Mapa mapa = this.MapaQuePermiteGanar();
+    public void JueganTodosLosTurnosEnMapaConTresTiposDeObstaculosSeEsperaUnaEnergiaYPosicionEspecificaParaCadaUno () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar,PartidaNoFinalizada{
+        Mapa mapa = this.MapaConTresTiposDeObstaculos();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
+        MockDado mockDadoCarpoforo = new MockDado(5);
+        MockDado mockDadoEspartaco = new MockDado(6);
+        MockDado mockDadoCrixo = new MockDado(4);
+        MockDado mockDadoMarcoAtilo = new MockDado(1);
+        MockDado mockDadoComodo = new MockDado(3);
 
 
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Espartaco.agregarDispositivoAzar(mockDado);
-        Crixo.agregarDispositivoAzar(mockDado);
-        MarcoAtilio.agregarDispositivoAzar(mockDado);
-        Comodo.agregarDispositivoAzar(mockDado);
+        Carpoforo.agregarDispositivoAzar(mockDadoCarpoforo);
+        Espartaco.agregarDispositivoAzar(mockDadoEspartaco);
+        Crixo.agregarDispositivoAzar(mockDadoCrixo);
+        MarcoAtilio.agregarDispositivoAzar(mockDadoMarcoAtilo);
+        Comodo.agregarDispositivoAzar(mockDadoComodo);
 
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
@@ -840,33 +835,44 @@ public class TestIntegracion {
 
         Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
 
-        for (int i = 0; i< 29 ; i++ ) {
-            for (int j = 0; j<5; j ++) {
+        for (int i = 0; i< 30 ; i++ ) {
+            for (int j = 0; j<5;j++) {
                 jugador.moverse(tablero);
                 algoRoma.entregarElementos(jugador);
                 algoRoma.finalizarTurno();
-                jugador = algoRoma.siguienteJugador();
+                if (i<29) {
+                    jugador = algoRoma.siguienteJugador();
+                }
             }
         }
 
-        Carpoforo.agregarDispositivoAzar(new MockDado(2));
-        Espartaco.agregarDispositivoAzar(new MockDado(2));
+        Energia energiaEsperadaCarpoforo = new Energia(100);
+        Energia energiaEsperadaEspartaco = new Energia(200);
+        Energia energiaEsperadaCrixo = new Energia(200);
+        Energia energiaEsperadaMarcoAtilo = new Energia(192);
+        Energia energiaEsperadaComodo = new Energia(140);
 
+        Posicion posicionEsperadaCarpoforo = new PosicionLineal(20);
+        Posicion posicionEsperadaEspartaco = new PosicionLineal(27);
+        Posicion posicionEsperadaCrixo = new PosicionLineal(15);
+        Posicion posicionEsperadaMarcoAtilo = new PosicionLineal(26);
+        Posicion posicionEsperadaComodo = new PosicionLineal(15);
 
+        assertTrue(Carpoforo.miPosicion().igual(posicionEsperadaCarpoforo));
+        assertTrue(Carpoforo.compararSalud(energiaEsperadaCarpoforo));
 
+        assertTrue(Espartaco.miPosicion().igual(posicionEsperadaEspartaco));
+        assertTrue(Espartaco.compararSalud(energiaEsperadaEspartaco));
 
+        assertTrue(Crixo.miPosicion().igual(posicionEsperadaCrixo));
+        assertTrue(Crixo.compararSalud(energiaEsperadaCrixo));
 
-        //assertNotNull(algoRoma.elGanador());
+        assertTrue(MarcoAtilio.miPosicion().igual(posicionEsperadaMarcoAtilo));
+        assertTrue(MarcoAtilio.compararSalud(energiaEsperadaMarcoAtilo));
+
+        assertTrue(Comodo.miPosicion().igual(posicionEsperadaComodo));
+        assertTrue(Comodo.compararSalud(energiaEsperadaComodo));
+
 
     }
 }
-
-
-
-
-
-
-
-
-
-

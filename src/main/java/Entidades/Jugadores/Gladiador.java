@@ -28,14 +28,12 @@ public class Gladiador extends Jugador {
             ValorAzar valorAzar = this.dispositivoDeAzar.lanzar();
             Posicion posicion = tablero.calcularPosicion(valorAzar);
             this.posicion.cambiarPosicion(posicion);
-        } else {
-            this.finalizarTurno();
         }
     }
 
-    public void perderTurnos () {
+    public void perderTurnos (Turno turnos) {
         if (this.turno.estaHabilitado()) {
-            this.turno.perderUnTurno();
+            this.turno.perderTurnos(turnos);
         }
 
     }
