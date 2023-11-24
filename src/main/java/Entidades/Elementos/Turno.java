@@ -1,11 +1,18 @@
 package Entidades.Elementos;
 
 public class Turno {
-    private int cantidad;
+ 
+    protected int cantidad;
     private int habilitado;
 
-    public Turno (){
+    public  Turno () {
+
         this.cantidad = 0;
+        this.habilitado = 0;
+    }
+
+    public Turno (int cantidad) {
+        pthis.cantidad = cantidad;
         this.habilitado = 0;
     }
 
@@ -13,12 +20,12 @@ public class Turno {
         this.habilitado++;
     }
 
-    public boolean estaHabilitado () {
-        return this.habilitado >= 1;
+    public void deshabilitar () {
+        this.habilitado--;
     }
 
-    public int turnosJugados () {
-        return this.cantidad;
+    public boolean estaHabilitado () {
+        return this.habilitado >= 1;
     }
 
     public void finalizar() {
@@ -26,9 +33,14 @@ public class Turno {
         if (this.estaHabilitado()) {
             this.habilitado--;
         }
-
     }
-    public void perderUnTurno () {
-        this.habilitado = -1;
+
+    public boolean esMayor (Turno turno) {
+        return this.cantidad > turno.cantidad;
+    }
+
+    public void perderTurnos (Turno turnos) {
+        int cantidad = -turnos.cantidad;
+        this.habilitado = cantidad;
     }
 }
