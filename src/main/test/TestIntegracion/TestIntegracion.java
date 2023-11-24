@@ -864,19 +864,19 @@ public class TestIntegracion {
         Posicion posicionEsperadaMarcoAtilo = new PosicionLineal(25);
         Posicion posicionEsperadaComodo = new PosicionLineal(15);
 
-        assertTrue(Carpoforo.miPosicion().igual(posicionEsperadaCarpoforo));
+        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperadaCarpoforo));
         assertTrue(Carpoforo.compararSalud(energiaEsperadaCarpoforo));
 
-        assertTrue(Espartaco.miPosicion().igual(posicionEsperadaEspartaco));
+        assertTrue(Espartaco.miPosicion().esIgual(posicionEsperadaEspartaco));
         assertTrue(Espartaco.compararSalud(energiaEsperadaEspartaco));
 
-        assertTrue(Crixo.miPosicion().igual(posicionEsperadaCrixo));
+        assertTrue(Crixo.miPosicion().esIgual(posicionEsperadaCrixo));
         assertTrue(Crixo.compararSalud(energiaEsperadaCrixo));
 
-        assertTrue(MarcoAtilio.miPosicion().igual(posicionEsperadaMarcoAtilo));
+        assertTrue(MarcoAtilio.miPosicion().esIgual(posicionEsperadaMarcoAtilo));
         assertTrue(MarcoAtilio.compararSalud(energiaEsperadaMarcoAtilo));
 
-        assertTrue(Comodo.miPosicion().igual(posicionEsperadaComodo));
+        assertTrue(Comodo.miPosicion().esIgual(posicionEsperadaComodo));
         assertTrue(Comodo.compararSalud(energiaEsperadaComodo));
 
 
@@ -916,10 +916,10 @@ public class TestIntegracion {
         Posicion posicionEsperadaEspartaco = new PosicionLineal(1);
 
 
-        assertTrue(Carpoforo.miPosicion().igual(posicionEsperadaCarpoforo));
+        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperadaCarpoforo));
         assertTrue(Carpoforo.compararSalud(energiaEsperadaCarpoforo));
 
-        assertTrue(Espartaco.miPosicion().igual(posicionEsperadaEspartaco));
+        assertTrue(Espartaco.miPosicion().esIgual(posicionEsperadaEspartaco));
         assertTrue(Espartaco.compararSalud(energiaEsperadaEspartaco));
 
         jugador.moverse(tablero);
@@ -938,10 +938,10 @@ public class TestIntegracion {
         posicionEsperadaEspartaco = new PosicionLineal(1);
 
 
-        assertTrue(Carpoforo.miPosicion().igual(posicionEsperadaCarpoforo));
+        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperadaCarpoforo));
         assertTrue(Carpoforo.compararSalud(energiaEsperadaCarpoforo));
 
-        assertTrue(Espartaco.miPosicion().igual(posicionEsperadaEspartaco));
+        assertTrue(Espartaco.miPosicion().esIgual(posicionEsperadaEspartaco));
         assertTrue(Espartaco.compararSalud(energiaEsperadaEspartaco));
     }
 }
