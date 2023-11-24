@@ -13,6 +13,5 @@ public class ConstructorLineal implements ConstructorMapa{
             Posicion posicion  = new PosicionLineal(i+1);
             datos.put(posicion, casillero.get(i));
         }
-
     }
 }

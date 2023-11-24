@@ -1,0 +1,92 @@
+@startuml AlgoRoma
+
+class AlgoRoma{
+    -turnos: int
+    -ganador: Jugador
+    +AlgoRoma(tablero: Tablero)
+    +agregarJugador(jugador: Jugador)
+    +comenzarPartida(): Jugador
+    +comenzarPartidaConElPrimerJugador(): Jugador
+    +siguienteJugador(): Jugador
+    +finalizarTurno()
+    +entregarElementos(jugador: Jugador)
+    +sumarUnTurno()
+    +elGanador(): Jugador
+    +finalizarJuego(jugador: Jugador)
+}
+
+
+abstract class Jugador{
+    #sistemaDeDefensa: SistemaDeDefensa
+    #energia: Energia
+    #posicion: Posicion
+    #dispositoDeAzar: dispositivoDeAzar
+    +afectarEnergia(energia: Energia)
+    +defenderse()
+    +compararSalud(energia: Energia)
+    +compararEquipo(equipamiento: Equipamiento)
+    +equipar(equipo: Equipo)
+    +posicionar(posicion: Posicion)
+    +{abstract}moverse(tablero: Tablero)
+    +{abstract}finalizarTurno()
+    +{abstract}perderTurnos()
+    +miPosicion(): Posicion()
+    +habilitar()
+    +agregarDispositivoAzar(dispositivoDeAzar: DispositivoDeAzar)
+    +lanzar(): ValorAzar
+}
+
+class Gladiador{
+    -energia: Energia
+    -seniority: Seniority
+    -turno: Turno
+    -sistemaDeDefensa: DefensaGladiador
+    -dispositivoDeAzar: Dado
+    +ascenderSeniority()
+    +moverse(tablero: Tablero)
+    +perderTurnos()
+    +finalizarTurno()
+}
+
+
+class Tablero{
+    -mapa: Mapa
+    +Tablero(mapa: Mapa)
+    +obtenerCasillero(posicion: Posicion): Casillero
+    +calcularPosicion(valor: valorAzar): Posicion
+    +posicionInicial(): Posicion
+    +posicionFinal(): Posicion
+    +posicionMedio(): Posicion
+}
+
+
+class ListaCircular<T>{
+    -inicio: Nodo<T>
+    -actual: Nodo<T>
+    -longitud: int
+    +agregarElemento(elemento: T)
+    +obtener(): T
+    +seleccionAleatoria(): T
+    +seleccionElPrimero(): T
+    +siguiente(): T
+    +tamanio(): int
+    +vueltaCompleta(): boolean
+}
+
+
+class SistemaControlGanador{
+    +SistemaControlGanador(tablero: Tablero)
+    +gano(jugador: Jugador, algoRoma: AlgoRoma)
+}
+
+
+AlgoRoma --> Tablero
+AlgoRoma --> ListaCircular
+AlgoRoma --> SistemaControlGanador
+
+ListaCircular "1 " --> "2..6 " Jugador
+
+Jugador <|-- Gladiador
+
+
+@enduml

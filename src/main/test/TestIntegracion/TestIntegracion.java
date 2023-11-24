@@ -340,8 +340,8 @@ public class TestIntegracion {
 
         Posicion posicionEsperada = new PosicionLineal(15);
 
-        assertTrue(posicionCarpoforo.igual(posicionEsperada));
-        assertTrue(posicionEspartaco.igual(posicionEsperada));
+        assertTrue(posicionCarpoforo.esIgual(posicionEsperada));
+        assertTrue(posicionEspartaco.esIgual(posicionEsperada));
     }
 
     @Test
@@ -483,6 +483,7 @@ public class TestIntegracion {
 
         }
 
+
         assertFalse(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
         assertFalse(Espartaco.compararEquipo(Equipamiento.ESCUDOYESPADA));
         assertFalse(Espartaco.compararEquipo(Equipamiento.LLAVE));
@@ -526,8 +527,10 @@ public class TestIntegracion {
         }
 
         Posicion posicionEsperada = new PosicionLineal(29);
-        Posicion p = Carpoforo.miPosicion();
-        assertTrue(Carpoforo.miPosicion().igual(posicionEsperada));
+
+        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+
+        
 
     }
 
@@ -562,7 +565,7 @@ public class TestIntegracion {
 
         Posicion posicionEsperada = new PosicionLineal(15);
 
-        assertTrue(Carpoforo.miPosicion().igual(posicionEsperada));
+        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
 
     }
 

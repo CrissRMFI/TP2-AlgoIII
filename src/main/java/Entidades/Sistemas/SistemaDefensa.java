@@ -6,12 +6,14 @@ import Entidades.Equipo.Equipo;
 import Entidades.Obstaculos.Obstaculo;
 
 public interface SistemaDefensa {
-    void recibirDanio (Energia energia);
+    public abstract void recibirDanio (Energia energia);
 
-    void modificarEquipo (Equipo equipo);
+    public abstract void modificarEquipo (Equipo equipo);
+
 
     boolean compararEquipo (Equipamiento equipamiento);
 
     void defenderse ();
+
 
 }

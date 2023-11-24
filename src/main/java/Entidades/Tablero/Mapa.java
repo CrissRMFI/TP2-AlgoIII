@@ -1,16 +1,15 @@
 package Entidades.Tablero;
 
 import Entidades.Elementos.ValorAzar;
-import Entidades.Jugadores.Jugador;
 
 public interface Mapa {
-    Casillero obtenerCasillero (Posicion posicion);
+    public abstract Casillero obtenerCasillero (Posicion posicion);
 
-    Posicion calcularPosicion (ValorAzar valor);
+    public abstract Posicion calcularPosicion (ValorAzar valor);
 
-    Posicion obtenerPosicionInicial ();
+    public abstract Posicion obtenerPosicionInicial ();
 
-    Posicion obtenerPosicionFinal();
+    public abstract Posicion obtenerPosicionFinal();
 
-    Posicion posicionMedio ();
+    public abstract Posicion obtenerPosicionDelMedio();
 }

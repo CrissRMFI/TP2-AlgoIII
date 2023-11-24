@@ -9,9 +9,11 @@ import java.util.LinkedList;
 
 public class CasilleroMapa implements Casillero{
     private LinkedList<Interactuable> elementos;
+
     public CasilleroMapa() {
         this.elementos = new LinkedList<>();
     }
+
     public void recibirElemento (Interactuable elemento) {
         this.elementos.add(elemento);
     }
@@ -25,8 +27,6 @@ public class CasilleroMapa implements Casillero{
                     this.elementos.remove(i);
                 }
             }
-
-
         }
     }
 }

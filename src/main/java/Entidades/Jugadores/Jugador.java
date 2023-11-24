@@ -1,14 +1,11 @@
 package Entidades.Jugadores;
 
-import Entidades.AlgoRoma;
 import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.Turno;
 import Entidades.Elementos.ValorAzar;
 import Entidades.Energia.Energia;
 import Entidades.Equipo.Equipamiento;
 import Entidades.Equipo.Equipo;
-import Entidades.Errores.Mensajes;
-import Entidades.Errores.SinDispositivoDeAzar;
 import Entidades.Sistemas.SistemaDefensa;
 import Entidades.Sistemas.SistemaPosicionamiento;
 import Entidades.Sistemas.SistemaTurnos;
@@ -25,6 +22,7 @@ public abstract class Jugador implements SistemaDefensa, SistemaPosicionamiento,
     protected Turno turno;
     protected String nombre;
 
+
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);
     }
@@ -32,9 +30,11 @@ public abstract class Jugador implements SistemaDefensa, SistemaPosicionamiento,
         return this.energia.comparar(energia);
     }
 
+
     @Override
     public boolean compararEquipo(Equipamiento equipamiento) {
         return this.equipo.comparar(equipamiento);
+
     }
 
     @Override
@@ -50,6 +50,7 @@ public abstract class Jugador implements SistemaDefensa, SistemaPosicionamiento,
         this.posicion = posicion;
     }
     public abstract void perderTurnos (Turno turnos);
+
 
     @Override
     public Posicion miPosicion () {

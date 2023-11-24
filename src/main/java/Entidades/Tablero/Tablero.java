@@ -25,7 +25,7 @@ public class Tablero {
     }
 
     public Posicion posicionMedio() {
-        return mapa.posicionMedio();
+        return mapa.obtenerPosicionDelMedio();
     }
 
 }

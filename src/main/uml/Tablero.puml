@@ -1,0 +1,110 @@
+@startuml Tablero
+
+class Tablero{
+    +Tablero(mapa: Mapa)
+    +obtenerCasillero(posicion: Posicion): Casillero
+    +calcularPosicion(valor: valorAzar): Posicion
+    +posicionInicial(): Posicion
+    +posicionFinal(): Posicion
+    +posicionMedio(): Posicion
+}
+
+interface Mapa{
+    +{abstract}obtenerCasillero(posicion: Posicion): Casillero
+    +{abstract}calcularPosicion(valor: valorAzar): Posicion
+    +{abstract}obtenerPosicionInicial(): Posicion
+    +{abstract}obtenerPosicionFinal(): Posicion
+    +{abstract}obtenerPosicionDelMedio(): Posicion
+}
+
+class MapaLineal{
+    +MapaLineal(informacionMapa: InformacionMapa)
+    +obtenerCasillero(posicion Posicion): Casillero
+    +calcularPosicion(valor: ValorAzar): PosicionLineal
+    +obtenerPosicionInicial(): Posicion
+    +obtenerPosicionFinal(): Posicion
+    +obtenerPosicionDelMedio(): Posicion
+}
+
+interface Posicion{
+    +{abstract}cambiarPosicion(posicion: Posicion): Posicion
+    +{abstract}obtenerCoordenada(): Coordenada
+    +{abstract}esIgual(posicion: Posicion): boolean
+    +{abstract}esMayorIgual(posicion: Posicion): boolean
+}
+
+class PosicionLineal{
+    +PosicionLineal(int x)
+    +cambiarPosicion(posicion: Posicion): Posicion
+    +obtenerCoordenada(): Coordenada
+    +esIgual(posicion: Posicion): boolean
+    +esMayorIgual(posicion: Posicion): boolean
+}
+
+class Coordenada{
+    -valor: int
+    +Coordenada(c: int)
+    +valor(): int
+    +moverCoordenada(c: Coordenada)
+}
+
+
+interface Casillero{
+    +{abstract}entregarElementos(Jugador jugador)
+}
+
+class CasilleroMapa{
+    +recibirElemento(elemento: Interactuable)
+    +entregarElementos(Jugador jugador)
+}
+
+interface Interactuable{
+    +{abstract}interactuar(jugador: Jugador)
+    +{abstract}esPremio(): boolean
+    +{abstract}interactuo(): boolean
+}
+
+
+interface ConstructorMapa{
+    +{abstract}construirMapa(datos: Map<Posicion, Casillero>, casilleros: LinkedList<Casillero>)
+}
+
+class ConstructorLineal{
+    +construirMapa(datos: Map<Posicion, Casillero>, casilleros: LinkedList<Casillero>)
+}
+
+
+interface InformacionMapa{
+    +{abstract}construirCasilleros(): LinkedList<Casillero>
+}
+
+class InformacionMapaEnMatriz{
+    -informacionMapa: Interactuable[][]
+    +InformacionMapaEnMatriz(informacion: Interactuable[][])
+    +construirCasillero(): LinkedList<Casillero>
+}
+
+
+Tablero --> Mapa
+
+Mapa <|-- MapaLineal
+
+MapaLineal --> Posicion
+MapaLineal --> Casillero
+MapaLineal --> ConstructorMapa
+MapaLineal ..> InformacionMapa
+
+Casillero <|-- CasilleroMapa
+
+CasilleroMapa "1" --> "*" Interactuable
+
+ConstructorMapa <|-- ConstructorLineal
+
+InformacionMapa <|--- InformacionMapaEnMatriz
+
+Posicion <|-- PosicionLineal
+
+PosicionLineal --> Coordenada
+
+
+@enduml

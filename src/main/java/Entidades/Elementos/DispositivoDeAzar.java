@@ -1,5 +1,5 @@
 package Entidades.Elementos;
 
 public interface DispositivoDeAzar {
-    public ValorAzar lanzar();
+    public abstract ValorAzar lanzar();
 }

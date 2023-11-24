@@ -1,8 +1,8 @@
 package Entidades.Tablero;
 
 public interface Posicion {
-    public boolean igual(Posicion posicion);
-    public boolean mayorIgual (Posicion posicion);
-    public Posicion cambiarPosicion (Posicion posicion);
-    public Coordenada obtenerCoordenada ();
+    public abstract Posicion cambiarPosicion (Posicion posicion);
+    public abstract Coordenada obtenerCoordenada();
+    public abstract boolean esIgual(Posicion posicion);
+    public abstract boolean esMayorIgual(Posicion posicion);
 }

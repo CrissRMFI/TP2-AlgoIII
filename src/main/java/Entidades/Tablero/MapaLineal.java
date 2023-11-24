@@ -7,14 +7,12 @@ import java.util.LinkedList;
 import java.util.Map;
 
 public class MapaLineal implements Mapa {
-
     private final Map<Posicion, Casillero> casilleros;
     private Posicion posicionFinal;
     private final ConstructorMapa constructorMapa = new ConstructorLineal();
 
 
     public MapaLineal(InformacionMapa informacionMapa) {
-
         this.casilleros = new HashMap<>();
         LinkedList<Casillero> c = informacionMapa.construirCasilleros();
         this.constructorMapa.construirMapa(this.casilleros,c);
@@ -23,19 +21,18 @@ public class MapaLineal implements Mapa {
     }
 
     @Override
-    public PosicionLineal calcularPosicion(ValorAzar valor) {
-        return new PosicionLineal(valor.obtenerValor());
-    }
-
-    @Override
     public Casillero obtenerCasillero(Posicion posicion) {
-
         for (Posicion p : this.casilleros.keySet()) {
-            if (p.igual(posicion)) {
+            if (p.esIgual(posicion)) {
                 return casilleros.get(p);
             }
         }
         return null;
+    }
+
+    @Override
+    public PosicionLineal calcularPosicion(ValorAzar valor) {
+        return new PosicionLineal(valor.obtenerValor());
     }
 
     @Override
@@ -49,7 +46,7 @@ public class MapaLineal implements Mapa {
     }
 
     @Override
-    public Posicion posicionMedio() {
+    public Posicion obtenerPosicionDelMedio() {
         int tamanio = this.casilleros.size() -1 ;
         return new PosicionLineal(tamanio/2);
     }

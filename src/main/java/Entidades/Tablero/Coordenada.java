@@ -1,17 +1,17 @@
 package Entidades.Tablero;
 
 public class Coordenada {
-    private int coordenada;
+    private int valor;
 
-    public Coordenada (int c) {
-        this.coordenada = c;
+    public Coordenada(int c) {
+        this.valor = c;
     }
 
-    public int valor () {
-        return this.coordenada;
+    public int valor() {
+        return this.valor;
     }
 
     public void moverCoordenada(Coordenada c) {
-        this.coordenada += c.valor();
+        this.valor += c.valor();
     }
 }

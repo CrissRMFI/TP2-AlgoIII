@@ -23,10 +23,12 @@ public class Gladiador extends Jugador {
 
     @Override
     public void moverse(Tablero tablero) {
+
         if (this.estaHabilitado() && this.energia.tengoEnergia()) {
             ValorAzar valorAzar = this.dispositivoDeAzar.lanzar();
             Posicion posicion = tablero.calcularPosicion(valorAzar);
             this.posicion.cambiarPosicion(posicion);
+
         }
 
         if (!this.energia.tengoEnergia()) {
