@@ -1,0 +1,18 @@
+@startuml jugadorNoTieneEnergiaParaJugarTurno
+
+actor Usuario
+Usuario -> Gladiador: moverse(tablero)
+Gladiador -> Gladiador: estaHabilitado()
+Gladiador -> Turno: estaHabilitado()
+Turno --> Gladiador: boolean
+Gladiador -> Energia: tengoEnergia()
+Energia --> Gladiador: boolean
+alt !tieneEnergia
+Gladiador -> nuevaEnergia: new(5)
+Gladiador -> Energia: afectarEnergia(nuevaEnergia)
+Gladiador -> Gladiador: deshabilitar()
+Gladiador -> Turno: deshabilitar()
+end
+
+
+@enduml

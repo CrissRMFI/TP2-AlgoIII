@@ -1,0 +1,21 @@
+@startuml
+
+actor Usuario
+Usuario -> Gladiador: moverse(tablero)
+Gladiador -> Gladiador: estaHabilitado()
+Gladiador -> Turno: estaHabilitado()
+Turno --> Gladiador: boolean
+Gladiador -> Energia: tengoEnergia()
+Energia --> Gladiador: boolean
+alt estaHabilitado && tieneEnergia
+    Gladiador -> DispositivoDeAzar: lanzar()
+    DispositivoDeAzar --> Gladiador: valorAzar
+    Gladiador -> Tablero: calcularPosicion(valorAzar)
+    Tablero -> Mapa: calcularPosicion(valorAzar)
+    Mapa --> Tablero: PosicionLineal(valorAzar.obtenerValor())
+    Tablero --> Gladiador: PosicionLineal(valorAzar.obtenerValor())
+    Tablero -> Posicion: cambiarPosicion(PosicionLineal(valorAzar.obtenerValor()))
+end
+
+
+@enduml
