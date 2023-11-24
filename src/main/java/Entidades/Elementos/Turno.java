@@ -12,7 +12,7 @@ public class Turno {
     }
 
     public Turno (int cantidad) {
-        pthis.cantidad = cantidad;
+        this.cantidad = cantidad;
         this.habilitado = 0;
     }
 
