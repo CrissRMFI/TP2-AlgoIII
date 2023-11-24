@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import Entidades.AlgoRoma;
-import Entidades.Elementos.Comida;
+import Entidades.Premios.Comida;
 import Entidades.Elementos.Interactuable;
 import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;

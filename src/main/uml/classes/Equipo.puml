@@ -1,0 +1,59 @@
+@startuml Equipo
+
+abstract class Equipo{
+    interactuo: boolean
+    +interactuar(jugador: Jugador)
+    +{abstract}energiaAReducir(): Energia
+    +puedoEquipar(equipo: Equipo): boolean
+    +esPremio(): boolean
+    +interactuo(): boolean
+    +equipoEsEquipado()
+    +comparar(equipamiento: Equipamiento): boolean
+}
+
+
+enum Equipamiento{
+    EQUIPOBASE
+    CASCO
+    ARMADURA
+    ESCUDOYESPADA
+    LLAVE
+}
+
+
+class EquipoBase{
+    +EquipoBase()
+    +energiaAReducir(): Energia
+}
+
+class Casco{
+    +Casco()
+    +energiaAReducir(): Energia
+}
+
+class Armadura{
+    +Armadura()
+    +energiaAReducir(): Energia
+}
+
+class EscudoYEspada{
+    +EscudoYEspada()
+    +energiaAReducir(): Energia
+}
+
+class Llave{
+    +Llave()
+    +energiaAReducir(): Energia
+}
+
+
+Equipo -> Equipamiento
+
+Equipo <|-- EquipoBase
+Equipo <|-- Casco
+Equipo <|-- Armadura
+Equipo <|-- EscudoYEspada
+Equipo <|-- Llave
+
+
+@enduml

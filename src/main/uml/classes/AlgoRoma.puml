@@ -15,37 +15,38 @@ class AlgoRoma{
     +finalizarJuego(jugador: Jugador)
 }
 
+class ListaCircular<T>{
+    -inicio: Nodo<T>
+    -actual: Nodo<T>
+    -longitud: int
+    +agregarElemento(elemento: T)
+    +obtener(): T
+    +seleccionAleatoria(): T
+    +iniciarConElPrimero(): T
+    +siguiente(): T
+    +tamanio(): int
+    +vueltaCompleta(): boolean
+}
 
 abstract class Jugador{
-    #sistemaDeDefensa: SistemaDeDefensa
     #energia: Energia
     #posicion: Posicion
+    #equipo: Equipo
     #dispositoDeAzar: dispositivoDeAzar
+    #turno: Turno
+    #nombre: String
     +afectarEnergia(energia: Energia)
-    +defenderse()
     +compararSalud(energia: Energia)
     +compararEquipo(equipamiento: Equipamiento)
-    +equipar(equipo: Equipo)
+    +modificarEquipo(equipo: Equipo)
     +posicionar(posicion: Posicion)
-    +{abstract}moverse(tablero: Tablero)
-    +{abstract}finalizarTurno()
     +{abstract}perderTurnos()
     +miPosicion(): Posicion()
     +habilitar()
+    +estaHabilitado: boolean
+    +deshabilitar()
     +agregarDispositivoAzar(dispositivoDeAzar: DispositivoDeAzar)
     +lanzar(): ValorAzar
-}
-
-class Gladiador{
-    -energia: Energia
-    -seniority: Seniority
-    -turno: Turno
-    -sistemaDeDefensa: DefensaGladiador
-    -dispositivoDeAzar: Dado
-    +ascenderSeniority()
-    +moverse(tablero: Tablero)
-    +perderTurnos()
-    +finalizarTurno()
 }
 
 
@@ -60,20 +61,6 @@ class Tablero{
 }
 
 
-class ListaCircular<T>{
-    -inicio: Nodo<T>
-    -actual: Nodo<T>
-    -longitud: int
-    +agregarElemento(elemento: T)
-    +obtener(): T
-    +seleccionAleatoria(): T
-    +seleccionElPrimero(): T
-    +siguiente(): T
-    +tamanio(): int
-    +vueltaCompleta(): boolean
-}
-
-
 class SistemaControlGanador{
     +SistemaControlGanador(tablero: Tablero)
     +gano(jugador: Jugador, algoRoma: AlgoRoma)
@@ -84,9 +71,10 @@ AlgoRoma --> Tablero
 AlgoRoma --> ListaCircular
 AlgoRoma --> SistemaControlGanador
 
-ListaCircular "1 " --> "2..6 " Jugador
+AlgoRoma --> Jugador
+SistemaControlGanador --> Tablero
 
-Jugador <|-- Gladiador
+ListaCircular "1 " --> "2..6 " Jugador
 
 
 @enduml

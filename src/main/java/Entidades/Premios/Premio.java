@@ -1,4 +1,6 @@
 package Entidades.Premios;
 
-public interface Premio {
+import Entidades.Elementos.Interactuable;
+
+public interface Premio extends Interactuable {
 }

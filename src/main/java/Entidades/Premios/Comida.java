@@ -1,5 +1,6 @@
-package Entidades.Elementos;
+package Entidades.Premios;
 
+import Entidades.Elementos.Interactuable;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Jugador;
 
