@@ -19,6 +19,10 @@ public class Turno {
         this.habilitado++;
     }
 
+    public void deshabilitar () {
+        this.habilitado--;
+    }
+
     public boolean estaHabilitado () {
         return this.habilitado >= 1;
     }

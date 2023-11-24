@@ -18,6 +18,6 @@ public class Bacanal extends Obstaculo{
 
         Energia energia = new Energia(-proporcion* valor.obtenerValor());
 
-        jugador.afectarEnergia(energia);
+        jugador.recibirDanio(energia);
     }
 }

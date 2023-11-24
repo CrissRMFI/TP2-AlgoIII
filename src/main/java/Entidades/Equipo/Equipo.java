@@ -9,7 +9,7 @@ public abstract class Equipo implements Interactuable {
     protected boolean interacturo = false;
     @Override
     public void interactuar(Jugador jugador) {
-        jugador.equipar(this);
+        jugador.modificarEquipo(this);
     }
     public abstract Energia energiaAReducir();
     public boolean puedoEquipar(Equipo equipo) {
@@ -28,5 +28,9 @@ public abstract class Equipo implements Interactuable {
 
     public void equipoEsEquipado () {
         this.interacturo = true;
+    }
+
+    public boolean comparar (Equipamiento equipamiento) {
+        return this.tipoEquipo == equipamiento;
     }
 }

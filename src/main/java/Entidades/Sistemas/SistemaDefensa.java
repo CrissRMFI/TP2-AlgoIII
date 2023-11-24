@@ -10,5 +10,8 @@ public interface SistemaDefensa {
 
     void modificarEquipo (Equipo equipo);
 
-    boolean comparar (Equipamiento equipamiento);
+    boolean compararEquipo (Equipamiento equipamiento);
+
+    void defenderse ();
+
 }

@@ -16,7 +16,7 @@ public class SistemaControlGanador {
 
         Posicion posicion = this.tablero.posicionFinal();
         boolean cumplePosicion = jugador.miPosicion().mayorIgual(posicion);
-        boolean cumpleEquipo = jugador.comprarEquipo(Equipamiento.LLAVE);
+        boolean cumpleEquipo = jugador.compararEquipo(Equipamiento.LLAVE);
         if (cumplePosicion && cumpleEquipo) {
             algoRoma.finalizarJuego(jugador);
         }
