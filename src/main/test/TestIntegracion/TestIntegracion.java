@@ -370,10 +370,10 @@ public class TestIntegracion {
             jugador = algoRoma.siguienteJugador();
         }
 
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.ARMADURA));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.ARMADURA));
-        assertTrue(Carpoforo.comprarEquipo(Equipamiento.EQUIPOBASE));
-        assertTrue(Espartaco.comprarEquipo(Equipamiento.EQUIPOBASE));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.ARMADURA));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.ARMADURA));
+        assertTrue(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertTrue(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
 
     }
 
@@ -392,7 +392,7 @@ public class TestIntegracion {
 
         Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
 
-        for (int i = 0; i< 29 ; i++ ) {
+        for (int i = 0; i< 30 ; i++ ) {
             jugador.moverse(tablero);
             algoRoma.entregarElementos(jugador);
             algoRoma.finalizarTurno();
@@ -400,13 +400,16 @@ public class TestIntegracion {
             jugador.moverse(tablero);
             algoRoma.entregarElementos(jugador);
             algoRoma.finalizarTurno();
-            jugador = algoRoma.siguienteJugador();
+            if (i<29) {
+                jugador = algoRoma.siguienteJugador();
+            }
+
         }
 
-        assertTrue(Espartaco.comprarEquipo(Equipamiento.EQUIPOBASE));
-        assertTrue(Carpoforo.comprarEquipo(Equipamiento.CASCO));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.CASCO));
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.EQUIPOBASE));
+        assertTrue(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertTrue(Carpoforo.compararEquipo(Equipamiento.CASCO));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.CASCO));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
 
     }
 
@@ -436,17 +439,17 @@ public class TestIntegracion {
             jugador = algoRoma.siguienteJugador();
         }
 
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.ARMADURA));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.LLAVE));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.ARMADURA));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.ESCUDOYESPADA));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.LLAVE));
 
 
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.ARMADURA));
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.LLAVE));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.ARMADURA));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.ESCUDOYESPADA));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.LLAVE));
 
-        assertTrue(Espartaco.comprarEquipo(Equipamiento.EQUIPOBASE));
-        assertTrue(Carpoforo.comprarEquipo(Equipamiento.EQUIPOBASE));
+        assertTrue(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertTrue(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
 
     }
 
@@ -480,16 +483,16 @@ public class TestIntegracion {
 
         }
 
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.EQUIPOBASE));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Espartaco.comprarEquipo(Equipamiento.LLAVE));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.ESCUDOYESPADA));
+        assertFalse(Espartaco.compararEquipo(Equipamiento.LLAVE));
 
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.EQUIPOBASE));
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Carpoforo.comprarEquipo(Equipamiento.LLAVE));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.ESCUDOYESPADA));
+        assertFalse(Carpoforo.compararEquipo(Equipamiento.LLAVE));
 
-        assertTrue(Espartaco.comprarEquipo(Equipamiento.CASCO));
-        assertTrue(Carpoforo.comprarEquipo(Equipamiento.CASCO));
+        assertTrue(Espartaco.compararEquipo(Equipamiento.CASCO));
+        assertTrue(Carpoforo.compararEquipo(Equipamiento.CASCO));
 
     }
 
@@ -846,16 +849,16 @@ public class TestIntegracion {
             }
         }
 
-        Energia energiaEsperadaCarpoforo = new Energia(100);
-        Energia energiaEsperadaEspartaco = new Energia(200);
-        Energia energiaEsperadaCrixo = new Energia(200);
-        Energia energiaEsperadaMarcoAtilo = new Energia(192);
+        Energia energiaEsperadaCarpoforo = new Energia(-295);
+        Energia energiaEsperadaEspartaco = new Energia(205);
+        Energia energiaEsperadaCrixo = new Energia(205);
+        Energia energiaEsperadaMarcoAtilo = new Energia(197);
         Energia energiaEsperadaComodo = new Energia(140);
 
-        Posicion posicionEsperadaCarpoforo = new PosicionLineal(20);
-        Posicion posicionEsperadaEspartaco = new PosicionLineal(27);
-        Posicion posicionEsperadaCrixo = new PosicionLineal(15);
-        Posicion posicionEsperadaMarcoAtilo = new PosicionLineal(26);
+        Posicion posicionEsperadaCarpoforo = new PosicionLineal(5);
+        Posicion posicionEsperadaEspartaco = new PosicionLineal(21);
+        Posicion posicionEsperadaCrixo = new PosicionLineal(27);
+        Posicion posicionEsperadaMarcoAtilo = new PosicionLineal(25);
         Posicion posicionEsperadaComodo = new PosicionLineal(15);
 
         assertTrue(Carpoforo.miPosicion().igual(posicionEsperadaCarpoforo));
@@ -874,5 +877,68 @@ public class TestIntegracion {
         assertTrue(Comodo.compararSalud(energiaEsperadaComodo));
 
 
+    }
+
+    @Test
+    public void JueganSeCruzanConFierasSalvajesEnElPrimerCasilleroPierdenTodaLaEnergiaNoSePuedenMoverPeroAumentanLaEnergiaEn5PuntosPorSuSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar,PartidaNoFinalizada{
+        Mapa mapa = this.MapaConFieraSalvaje();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDadoCarpoforo = new MockDado(1);
+        MockDado mockDadoEspartaco = new MockDado(1);
+
+        Carpoforo.agregarDispositivoAzar(mockDadoCarpoforo);
+        Espartaco.agregarDispositivoAzar(mockDadoEspartaco);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        for (int i = 0; i< 1 ; i++ ) {
+            for (int j = 0; j<2;j++) {
+                jugador.moverse(tablero);
+                algoRoma.entregarElementos(jugador);
+                algoRoma.finalizarTurno();
+                jugador = algoRoma.siguienteJugador();
+            }
+        }
+
+        Energia energiaEsperadaCarpoforo = new Energia(0);
+        Energia energiaEsperadaEspartaco = new Energia(0);
+
+
+        Posicion posicionEsperadaCarpoforo = new PosicionLineal(1);
+        Posicion posicionEsperadaEspartaco = new PosicionLineal(1);
+
+
+        assertTrue(Carpoforo.miPosicion().igual(posicionEsperadaCarpoforo));
+        assertTrue(Carpoforo.compararSalud(energiaEsperadaCarpoforo));
+
+        assertTrue(Espartaco.miPosicion().igual(posicionEsperadaEspartaco));
+        assertTrue(Espartaco.compararSalud(energiaEsperadaEspartaco));
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        energiaEsperadaCarpoforo = new Energia(5);
+        energiaEsperadaEspartaco = new Energia(5);
+
+
+        posicionEsperadaCarpoforo = new PosicionLineal(1);
+        posicionEsperadaEspartaco = new PosicionLineal(1);
+
+
+        assertTrue(Carpoforo.miPosicion().igual(posicionEsperadaCarpoforo));
+        assertTrue(Carpoforo.compararSalud(energiaEsperadaCarpoforo));
+
+        assertTrue(Espartaco.miPosicion().igual(posicionEsperadaEspartaco));
+        assertTrue(Espartaco.compararSalud(energiaEsperadaEspartaco));
     }
 }

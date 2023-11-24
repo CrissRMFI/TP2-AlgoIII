@@ -10,53 +10,65 @@ import Entidades.Equipo.Equipo;
 import Entidades.Errores.Mensajes;
 import Entidades.Errores.SinDispositivoDeAzar;
 import Entidades.Sistemas.SistemaDefensa;
+import Entidades.Sistemas.SistemaPosicionamiento;
+import Entidades.Sistemas.SistemaTurnos;
 import Entidades.Tablero.CasilleroMapa;
 import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
 
-public abstract class Jugador {
-    protected SistemaDefensa sistemaDefensa;
+public abstract class Jugador implements SistemaDefensa, SistemaPosicionamiento, SistemaTurnos {
+
     protected Energia energia;
     protected Posicion posicion;
+    protected Equipo equipo;
     protected DispositivoDeAzar dispositivoDeAzar;
     protected Turno turno;
     protected String nombre;
+
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);
-    }
-    public void defenderse() {
-        if (this.turno.estaHabilitado()) {
-            this.sistemaDefensa.recibirDanio(this.energia);
-        }
     }
     public boolean compararSalud(Energia energia) {
         return this.energia.comparar(energia);
     }
 
-    public boolean comprarEquipo (Equipamiento equipamiento) {
-        return this.sistemaDefensa.comparar(equipamiento);
+    @Override
+    public boolean compararEquipo(Equipamiento equipamiento) {
+        return this.equipo.comparar(equipamiento);
     }
 
-    public void equipar(Equipo equipo) {
-        this.sistemaDefensa.modificarEquipo(equipo);
+    @Override
+    public void modificarEquipo(Equipo equipo) {
+        if (this.equipo.puedoEquipar(equipo)) {
+            equipo.equipoEsEquipado();
+            this.equipo = equipo;
+        }
     }
 
-    public  void posicionar (Posicion posicion) {
+    @Override
+    public void posicionar(Posicion posicion) {
         this.posicion = posicion;
     }
-
-    public abstract void moverse(Tablero tablero);
-
-    public abstract void finalizarTurno ();
-
     public abstract void perderTurnos (Turno turnos);
 
+    @Override
     public Posicion miPosicion () {
         return this.posicion;
     }
 
+    @Override
     public void habilitar () {
         this.turno.habilitar();
+    }
+
+    @Override
+    public boolean estaHabilitado () {
+        return this.turno.estaHabilitado();
+    }
+
+    @Override
+    public void deshabilitar () {
+        this.turno.deshabilitar();
     }
 
     public void agregarDispositivoAzar (DispositivoDeAzar dispositivoDeAzar) {
