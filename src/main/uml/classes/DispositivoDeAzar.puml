@@ -1,7 +1,7 @@
 @startuml DispositivoDeAzar
 
 interface DispositivoDeAzar{
-    {abstract}+lanzar(): ValorAzar
+    +{abstract}lanzar(): ValorAzar
 }
 
 abstract class ValorAzar{

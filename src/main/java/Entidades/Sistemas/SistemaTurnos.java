@@ -3,9 +3,9 @@ package Entidades.Sistemas;
 import Entidades.Elementos.Turno;
 
 public interface SistemaTurnos {
-    void finalizarTurno ();
-    void perderTurnos (Turno turnos);
-    void habilitar();
-    void deshabilitar ();
-    boolean estaHabilitado ();
+    public abstract void finalizarTurno ();
+    public abstract void perderTurnos (Turno turnos);
+    public abstract void habilitar();
+    public abstract void deshabilitar ();
+    public abstract boolean estaHabilitado ();
 }

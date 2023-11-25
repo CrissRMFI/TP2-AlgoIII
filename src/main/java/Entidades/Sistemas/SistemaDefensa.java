@@ -3,17 +3,15 @@ package Entidades.Sistemas;
 import Entidades.Energia.Energia;
 import Entidades.Equipo.Equipamiento;
 import Entidades.Equipo.Equipo;
-import Entidades.Obstaculos.Obstaculo;
 
 public interface SistemaDefensa {
     public abstract void recibirDanio (Energia energia);
 
     public abstract void modificarEquipo (Equipo equipo);
 
+    public abstract boolean compararEquipo (Equipamiento equipamiento);
 
-    boolean compararEquipo (Equipamiento equipamiento);
-
-    void defenderse ();
+    public abstract void defenderse ();
 
 
 }

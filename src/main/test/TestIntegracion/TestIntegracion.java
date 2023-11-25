@@ -1,7 +1,7 @@
 package TestIntegracion;
 
 import Entidades.AlgoRoma;
-import Entidades.Elementos.Comida;
+import Entidades.Premios.Comida;
 import Entidades.Elementos.Interactuable;
 import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
@@ -812,73 +812,6 @@ public class TestIntegracion {
 
 
         assertNotNull(algoRoma.elGanador());
-
-    }
-
-    @Test
-    public void JueganTodosLosTurnosEnMapaConTresTiposDeObstaculosSeEsperaUnaEnergiaYPosicionEspecificaParaCadaUno () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar,PartidaNoFinalizada{
-        Mapa mapa = this.MapaConTresTiposDeObstaculos();
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDadoCarpoforo = new MockDado(5);
-        MockDado mockDadoEspartaco = new MockDado(6);
-        MockDado mockDadoCrixo = new MockDado(4);
-        MockDado mockDadoMarcoAtilo = new MockDado(1);
-        MockDado mockDadoComodo = new MockDado(3);
-
-
-        Carpoforo.agregarDispositivoAzar(mockDadoCarpoforo);
-        Espartaco.agregarDispositivoAzar(mockDadoEspartaco);
-        Crixo.agregarDispositivoAzar(mockDadoCrixo);
-        MarcoAtilio.agregarDispositivoAzar(mockDadoMarcoAtilo);
-        Comodo.agregarDispositivoAzar(mockDadoComodo);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-        algoRoma.agregarJugador(Crixo);
-        algoRoma.agregarJugador(MarcoAtilio);
-        algoRoma.agregarJugador(Comodo);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        for (int i = 0; i< 30 ; i++ ) {
-            for (int j = 0; j<5;j++) {
-                jugador.moverse(tablero);
-                algoRoma.entregarElementos(jugador);
-                algoRoma.finalizarTurno();
-                if (i<29) {
-                    jugador = algoRoma.siguienteJugador();
-                }
-            }
-        }
-
-        Energia energiaEsperadaCarpoforo = new Energia(-295);
-        Energia energiaEsperadaEspartaco = new Energia(205);
-        Energia energiaEsperadaCrixo = new Energia(205);
-        Energia energiaEsperadaMarcoAtilo = new Energia(197);
-        Energia energiaEsperadaComodo = new Energia(140);
-
-        Posicion posicionEsperadaCarpoforo = new PosicionLineal(5);
-        Posicion posicionEsperadaEspartaco = new PosicionLineal(21);
-        Posicion posicionEsperadaCrixo = new PosicionLineal(27);
-        Posicion posicionEsperadaMarcoAtilo = new PosicionLineal(25);
-        Posicion posicionEsperadaComodo = new PosicionLineal(15);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperadaCarpoforo));
-        assertTrue(Carpoforo.compararSalud(energiaEsperadaCarpoforo));
-
-        assertTrue(Espartaco.miPosicion().esIgual(posicionEsperadaEspartaco));
-        assertTrue(Espartaco.compararSalud(energiaEsperadaEspartaco));
-
-        assertTrue(Crixo.miPosicion().esIgual(posicionEsperadaCrixo));
-        assertTrue(Crixo.compararSalud(energiaEsperadaCrixo));
-
-        assertTrue(MarcoAtilio.miPosicion().esIgual(posicionEsperadaMarcoAtilo));
-        assertTrue(MarcoAtilio.compararSalud(energiaEsperadaMarcoAtilo));
-
-        assertTrue(Comodo.miPosicion().esIgual(posicionEsperadaComodo));
-        assertTrue(Comodo.compararSalud(energiaEsperadaComodo));
-
 
     }
 

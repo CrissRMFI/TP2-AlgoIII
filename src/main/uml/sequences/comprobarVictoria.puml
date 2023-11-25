@@ -1,0 +1,28 @@
+@startuml
+
+AlgoRoma -> ControlGanador: gano(Gladiador, this)
+ControlGanador -> Tablero: posicionFinal()
+Tablero -> Mapa: obtenerPosicionFinal()
+Mapa --> Tablero: PosicionFinal
+Tablero --> ControlGanador: PosicionFinal
+ControlGanador -> Jugador: miPosicion()
+Jugador --> ControlGanador: PosicionJugador
+ControlGanador -> PosicionJugador: esMayorIgual(PosicionFinal)
+PosicionJugador --> ControlGanador: boolean
+ControlGanador -> Jugador: compararEquipo(Equipamiento.LLAVE)
+Jugador -> Equipo: comparar(Equipamiento.LLAVE)
+Equipo --> Jugador: boolean
+Jugador --> ControlGanador: boolean
+alt cumplePosicion && cumpleEquipo
+    ControlGanador -> AlgoRoma: finalizarJuego(Jugador)
+end
+alt cumplePosicion && !cumpleEquipo
+    ControlGanador -> Tablero: posicionMedio()
+    Tablero -> Mapa: obtenerPosicionDelMedio()
+    Mapa --> Tablero: PosicionDelMedio
+    Tablero --> ControlGanador: PosicionDelMedio
+    ControlGanador -> Jugador: posicionar(PosicionDelMedio)
+end
+
+
+@enduml

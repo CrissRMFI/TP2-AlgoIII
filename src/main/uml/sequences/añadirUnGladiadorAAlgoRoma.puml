@@ -1,0 +1,30 @@
+@startuml
+
+actor Usuario
+
+create Tablero
+Usuario -> Tablero: Tablero(MapaLineal)
+create AlgoRoma
+Usuario -> AlgoRoma: AlgoRoma(Tablero)
+create ListaCircular
+AlgoRoma -> ListaCircular: new()
+create MockDado
+Usuario -> MockDado: new()
+
+create Gladiador
+Usuario -> Gladiador: new Gladiador("Espartaco")
+Usuario -> Gladiador: agregarDispositivoAzar(MockDado)
+
+Usuario -> AlgoRoma: agregarJugador(Gladiador)
+AlgoRoma -> Tablero: posicionInicial()
+Tablero -> MapaLineal: obtenerPosicionInicial()
+MapaLineal --> Tablero: PosicionLineal(0)
+Tablero --> AlgoRoma: PosicionLineal(0)
+
+create Posicion
+AlgoRoma -> Posicion: PosicionLineal(0)
+AlgoRoma -> Gladiador: posicionar(Posicion)
+AlgoRoma -> ListaCircular: agregarElemento(Gladiador)
+
+
+@enduml

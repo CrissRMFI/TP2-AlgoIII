@@ -49,6 +49,7 @@ public abstract class Jugador implements SistemaDefensa, SistemaPosicionamiento,
     public void posicionar(Posicion posicion) {
         this.posicion = posicion;
     }
+
     public abstract void perderTurnos (Turno turnos);
 
 

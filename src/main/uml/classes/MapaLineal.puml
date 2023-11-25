@@ -1,21 +1,4 @@
-@startuml Tablero
-
-class Tablero{
-    +Tablero(mapa: Mapa)
-    +obtenerCasillero(posicion: Posicion): Casillero
-    +calcularPosicion(valor: valorAzar): Posicion
-    +posicionInicial(): Posicion
-    +posicionFinal(): Posicion
-    +posicionMedio(): Posicion
-}
-
-interface Mapa{
-    +{abstract}obtenerCasillero(posicion: Posicion): Casillero
-    +{abstract}calcularPosicion(valor: valorAzar): Posicion
-    +{abstract}obtenerPosicionInicial(): Posicion
-    +{abstract}obtenerPosicionFinal(): Posicion
-    +{abstract}obtenerPosicionDelMedio(): Posicion
-}
+@startuml MapaLineal
 
 class MapaLineal{
     +MapaLineal(informacionMapa: InformacionMapa)
@@ -25,6 +8,7 @@ class MapaLineal{
     +obtenerPosicionFinal(): Posicion
     +obtenerPosicionDelMedio(): Posicion
 }
+
 
 interface Posicion{
     +{abstract}cambiarPosicion(posicion: Posicion): Posicion
@@ -55,11 +39,14 @@ interface Casillero{
 
 class CasilleroMapa{
     +recibirElemento(elemento: Interactuable)
-    +entregarElementos(Jugador jugador)
+    +entregarElementos(jugador: Jugador)
 }
 
-interface Interactuable{
-    +{abstract}interactuar(jugador: Jugador)
+class LinkedList<E> <<Java Class>>{
+}
+
+class Interactuable{
+    +{abstract}interactuar (jugador: Jugador)
     +{abstract}esPremio(): boolean
     +{abstract}interactuo(): boolean
 }
@@ -85,26 +72,27 @@ class InformacionMapaEnMatriz{
 }
 
 
-Tablero --> Mapa
 
-Mapa <|-- MapaLineal
+MapaLineal " 1" --> "*" Posicion
+MapaLineal "1" --> "*" Casillero
+MapaLineal ----> ConstructorMapa
 
-MapaLineal --> Posicion
-MapaLineal --> Casillero
-MapaLineal --> ConstructorMapa
+Posicion - Casillero
+
 MapaLineal ..> InformacionMapa
-
-Casillero <|-- CasilleroMapa
-
-CasilleroMapa "1" --> "*" Interactuable
-
-ConstructorMapa <|-- ConstructorLineal
-
-InformacionMapa <|--- InformacionMapaEnMatriz
 
 Posicion <|-- PosicionLineal
 
+Casillero <|-- CasilleroMapa
+
+ConstructorMapa <|-- ConstructorLineal
+
+InformacionMapa <|-- InformacionMapaEnMatriz
+
 PosicionLineal --> Coordenada
+
+CasilleroMapa --> LinkedList
+LinkedList "1" --> "*" Interactuable
 
 
 @enduml
