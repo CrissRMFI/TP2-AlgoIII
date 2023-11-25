@@ -81,6 +81,8 @@ public abstract class Jugador implements SistemaDefensa, SistemaPosicionamiento,
         return this.dispositivoDeAzar.lanzar();
     }
 
-
+    public String miNombre () {
+        return this.nombre;
+    }
 
 }

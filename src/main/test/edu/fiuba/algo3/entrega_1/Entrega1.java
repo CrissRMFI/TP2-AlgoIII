@@ -1,13 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
 import Entidades.AlgoRoma;
+import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import Entidades.Premios.Comida;
 import Entidades.Elementos.Interactuable;
 import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
 import Entidades.Errores.CantidadMinimaDeJugadores;
 import Entidades.Errores.PartidaFinalizada;
-import Entidades.Errores.SinDispositivoDeAzar;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.FieraSalvaje;
@@ -94,7 +94,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 1 --> Fiera saca 20 ya que no tiene equipamiento
-    public void jugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() throws CantidadMinimaDeJugadores, PartidaFinalizada, SinDispositivoDeAzar {
+    public void jugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres {
         Mapa mapa = this.mapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -121,7 +121,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 2
-    public void jugadorSaleDeLaCasillaInicial() throws CantidadMinimaDeJugadores, PartidaFinalizada, SinDispositivoDeAzar {
+    public void jugadorSaleDeLaCasillaInicial() throws CantidadMinimaDeJugadores,ElNombreDebeContenerUnMinimoDe4Caracteres {
         Mapa mapa = this.mapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -145,7 +145,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 3
-    public void jugadorSinEnergiaNoPuedeJugarTurno() throws CantidadMinimaDeJugadores, PartidaFinalizada, SinDispositivoDeAzar {
+    public void jugadorSinEnergiaNoPuedeJugarTurno() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.mapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -184,7 +184,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 4
-    public void jugadorRecibeComidaEIncrementaSuEnergiaEn15() throws CantidadMinimaDeJugadores, PartidaFinalizada, SinDispositivoDeAzar {
+    public void jugadorRecibeComidaEIncrementaSuEnergiaEn15() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres {
         Mapa mapa = this.mapaConComida();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -211,7 +211,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 7
-    public void SiTieneCascoYPeleaConFieraPierde15Energia() throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SiTieneCascoYPeleaConFieraPierde15Energia() throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.mapa4CasillerosConCascoYFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -249,7 +249,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 8
-    public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5 () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5 () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.mapaConCasco();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -285,7 +285,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 9
-    public void SeJuegaUnaPartidaCon30CasillerosNoSeGanaYElJugadorQuedaPosicoinadoEnLa15AlFinalizarElJuego () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SeJuegaUnaPartidaCon30CasillerosNoSeGanaYElJugadorQuedaPosicoinadoEnLa15AlFinalizarElJuego () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.mapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -330,7 +330,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 10
-    public void SiTieneTodoElEquipamientoYLoAtacaUnaFieraNoHayPerdidaDeEnergia() throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SiTieneTodoElEquipamientoYLoAtacaUnaFieraNoHayPerdidaDeEnergia() throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.mapaConEquipamiento();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -367,7 +367,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 11
-    public void gladiadorConLlaveRecibeOtroPremioYNoPasaNada() throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void gladiadorConLlaveRecibeOtroPremioYNoPasaNada() throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.mapaConEquipamiento();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -403,7 +403,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 12
-    public void Pasan30TurnosYNadieLlegoSeTerminaElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada,SinDispositivoDeAzar {
+    public void Pasan30TurnosYNadieLlegoSeTerminaElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.mapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);

@@ -2,22 +2,29 @@ package Entidades;
 
 import Entidades.Errores.*;
 import Entidades.Jugadores.Jugador;
+import Entidades.Sistemas.ControlCaracteres;
 import Entidades.Sistemas.SistemaControlGanador;
 import Entidades.Tablero.*;
 
 public class AlgoRoma {
-    private ListaCircular<Jugador> jugadores = new ListaCircular<>();
+    private final ListaCircular<Jugador> jugadores = new ListaCircular<>();
     private int turnos= 30;
-    private Tablero tablero;
-    private SistemaControlGanador controlGanador;
+    private final Tablero tablero;
+    private final SistemaControlGanador controlGanador;
+
+    private final ControlCaracteres controlCaracteres;
     private Jugador ganador;
 
     public AlgoRoma(Tablero tablero){
         this.tablero = tablero;
         this.controlGanador = new SistemaControlGanador(tablero);
+        this.controlCaracteres = new ControlCaracteres();
     }
 
-    public void agregarJugador(Jugador jugador) {
+    public void agregarJugador(Jugador jugador) throws ElNombreDebeContenerUnMinimoDe4Caracteres {
+        if (!this.controlCaracteres.minimoCuatroCaracteres(jugador.miNombre())) {
+            throw new ElNombreDebeContenerUnMinimoDe4Caracteres(new Mensajes().Minimo4Caracteres());
+        }
         Posicion posicion = this.tablero.posicionInicial();
         jugador.posicionar(posicion);
         this.jugadores.agregarElemento(jugador);
@@ -68,7 +75,7 @@ public class AlgoRoma {
 
     }
 
-    public void entregarElementos (Jugador jugador) throws SinDispositivoDeAzar {
+    public void entregarElementos (Jugador jugador)  {
         Posicion posicion = jugador.miPosicion();
         Casillero casillero = this.tablero.obtenerCasillero(posicion);
         if (casillero != null) {

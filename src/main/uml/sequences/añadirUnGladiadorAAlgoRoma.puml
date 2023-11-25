@@ -2,17 +2,19 @@
 
 actor Usuario
 
+create MapaLineal
+Usuario ->> MapaLineal: m = new MapaLineal()
 create Tablero
-Usuario -> Tablero: Tablero(MapaLineal)
+Usuario ->>  Tablero: t = new Tablero(m)
 create AlgoRoma
-Usuario -> AlgoRoma: AlgoRoma(Tablero)
+Usuario ->>  AlgoRoma: algoRoma = new AlgoRoma(t)
 create ListaCircular
-AlgoRoma -> ListaCircular: new()
+AlgoRoma ->>  ListaCircular: new()
 create MockDado
-Usuario -> MockDado: new()
+Usuario ->> MockDado: new()
 
 create Gladiador
-Usuario -> Gladiador: new Gladiador("Espartaco")
+Usuario ->>  Gladiador: new Gladiador("Espartaco")
 Usuario -> Gladiador: agregarDispositivoAzar(MockDado)
 
 Usuario -> AlgoRoma: agregarJugador(Gladiador)

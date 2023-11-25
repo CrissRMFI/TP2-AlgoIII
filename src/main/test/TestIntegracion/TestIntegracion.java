@@ -1,6 +1,7 @@
 package TestIntegracion;
 
 import Entidades.AlgoRoma;
+import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import Entidades.Premios.Comida;
 import Entidades.Elementos.Interactuable;
 import Entidades.Elementos.MockDado;
@@ -9,7 +10,6 @@ import Entidades.Equipo.*;
 import Entidades.Errores.CantidadMinimaDeJugadores;
 import Entidades.Errores.PartidaFinalizada;
 import Entidades.Errores.PartidaNoFinalizada;
-import Entidades.Errores.SinDispositivoDeAzar;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.ListaCircular;
@@ -24,11 +24,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestIntegracion {
-    private Jugador Carpoforo = new Gladiador("Carpoforo");
-    private Jugador Espartaco = new Gladiador("Espartaco");
-    private Jugador Crixo = new Gladiador("Crixo");
-    private Jugador MarcoAtilio = new Gladiador("Marco Atilio");
-    private Jugador Comodo = new Gladiador("Cómodo");
+    private  final Jugador Carpoforo = new Gladiador("Carpoforo");
+    private final Jugador Espartaco = new Gladiador("Espartaco");
+    private final Jugador Crixo = new Gladiador("Crixo");
+    private final Jugador MarcoAtilio = new Gladiador("Marco Atilio");
+    private final Jugador Comodo = new Gladiador("Cómodo");
 
     public Mapa MapaConFieraSalvaje() {
         int cantidadCasilleros = 30;
@@ -70,7 +70,7 @@ public class TestIntegracion {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        ListaCircular<Equipo> equipos = new ListaCircular<Equipo>();
+        ListaCircular<Equipo> equipos = new ListaCircular<>();
         equipos.agregarElemento(new Armadura());
         equipos.agregarElemento(new EscudoYEspada());
         equipos.agregarElemento(new Llave());
@@ -88,7 +88,7 @@ public class TestIntegracion {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        ListaCircular<Equipo> equipos = new ListaCircular<Equipo>();
+        ListaCircular<Equipo> equipos = new ListaCircular<>();
         equipos.agregarElemento(new EscudoYEspada());
         equipos.agregarElemento(new Llave());
 
@@ -212,7 +212,7 @@ public class TestIntegracion {
 
     }
     @Test
-    public void NoSePuedeInicializarPartidaConUnSoloJugador(){
+    public void NoSePuedeInicializarPartidaConUnSoloJugador() throws ElNombreDebeContenerUnMinimoDe4Caracteres {
 
         Mapa mapa = this.MapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
@@ -222,7 +222,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void DosGladiadoresJueganDosTurnosYLaPartidaNoFinaliza () throws CantidadMinimaDeJugadores, PartidaFinalizada, SinDispositivoDeAzar {
+    public void DosGladiadoresJueganDosTurnosYLaPartidaNoFinaliza () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres {
         Mapa mapa = this.MapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -245,7 +245,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnError () throws CantidadMinimaDeJugadores, PartidaFinalizada,SinDispositivoDeAzar {
+    public void DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnError () throws CantidadMinimaDeJugadores, PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres {
         Mapa mapa = this.MapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -269,12 +269,12 @@ public class TestIntegracion {
             }
 
         }
-        int a= 2;
+
         assertThrows(PartidaFinalizada.class, () -> algoRoma.siguienteJugador());
     }
 
 
-    @Test public void SeJuegaUnaPartidaSeConsultaPorElGanadorCuandoLaPartidaNoTerminoEntraEnError () throws PartidaFinalizada, PartidaNoFinalizada,CantidadMinimaDeJugadores,SinDispositivoDeAzar {
+    @Test public void SeJuegaUnaPartidaSeConsultaPorElGanadorCuandoLaPartidaNoTerminoEntraEnError () throws PartidaFinalizada,CantidadMinimaDeJugadores,ElNombreDebeContenerUnMinimoDe4Caracteres{
 
         Mapa mapa = this.MapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
@@ -302,7 +302,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaCon30CasillerosElJugadorQuedaLlegaALaMetaNoGanaYQuedaPosicoinadoEnLa15AlFinalizarElJuego () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SeJuegaUnaPartidaCon30CasillerosElJugadorQuedaLlegaALaMetaNoGanaYQuedaPosicoinadoEnLa15AlFinalizarElJuego () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -345,7 +345,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaCasillerosSoloTienenArmaduraElJugadorNoLaPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SeJuegaUnaPartidaCasillerosSoloTienenArmaduraElJugadorNoLaPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaSoloConArmaduras();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -378,7 +378,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaCasillerosSoloTienenCascoElJugadorQueLlegaPrimeroLaPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SeJuegaUnaPartidaCasillerosSoloTienenCascoElJugadorQueLlegaPrimeroLaPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaSoloUnCasco();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -414,7 +414,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaCasillerosTienenEquiposQueNoSonEquipablesAPartirDelEquipoBase () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SeJuegaUnaPartidaCasillerosTienenEquiposQueNoSonEquipablesAPartirDelEquipoBase () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaSoloConArmadurasEscudoYEspadaYLlave();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -454,7 +454,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeEquipaConCascoNoHayArmaduraPeroSiHayEscudoYEspadaYLlaveNoLosPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SeEquipaConCascoNoHayArmaduraPeroSiHayEscudoYEspadaYLlaveNoLosPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaConCascoAlInicioYEnMedioYDespuesEscudoYEspadaYLlave();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -498,7 +498,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JugadoresSeAtraviesanConUnaPiedraPierdenUnTurno () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void JugadoresSeAtraviesanConUnaPiedraPierdenUnTurno () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaConPiedraAlInicioElRestoVacio();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -535,7 +535,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JugadoresAtraviesanMapaLlenoDePiedrasAvanzanHastaLaMitad () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void JugadoresAtraviesanMapaLlenoDePiedrasAvanzanHastaLaMitad () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaLlenoDePiedras();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -570,7 +570,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JugadoresAtraviesanMapaConEquipoBaseConUnBacanalEnElCasillero7PierdeEnergia () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void JugadoresAtraviesanMapaConEquipoBaseConUnBacanalEnElCasillero7PierdeEnergia () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaConBacanalEnElCasillero7();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -603,7 +603,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5 () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5 () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaVacio();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -636,7 +636,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegan12TurnosYJugadoresAsciendenASemiSiniorYSiniorAumentandoEnergiaCorrespondiente () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void SeJuegan12TurnosYJugadoresAsciendenASemiSiniorYSiniorAumentandoEnergiaCorrespondiente () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaVacio();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -669,7 +669,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void Juegan7TurnosConMapaConComidaSeEsperaAumentoDeEnergia () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void Juegan7TurnosConMapaConComidaSeEsperaAumentoDeEnergia () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaLlenoDeComida();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -703,7 +703,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void Juegan8TurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComitaYSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar{
+    public void Juegan8TurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComitaYSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaLlenoDeComida();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -736,7 +736,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JueganTodosLosTurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComitaYSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar,PartidaNoFinalizada{
+    public void JueganTodosLosTurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComitaYSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,PartidaNoFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaLlenoDeComida();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -773,7 +773,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JueganTodosLosTurnosHayUnGanador () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar,PartidaNoFinalizada{
+    public void JueganTodosLosTurnosHayUnGanador () throws CantidadMinimaDeJugadores,PartidaFinalizada,PartidaNoFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaQuePermiteGanar();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -816,7 +816,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JueganSeCruzanConFierasSalvajesEnElPrimerCasilleroPierdenTodaLaEnergiaNoSePuedenMoverPeroAumentanLaEnergiaEn5PuntosPorSuSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,SinDispositivoDeAzar,PartidaNoFinalizada{
+    public void JueganSeCruzanConFierasSalvajesEnElPrimerCasilleroPierdenTodaLaEnergiaNoSePuedenMoverPeroAumentanLaEnergiaEn5PuntosPorSuSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaConFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);

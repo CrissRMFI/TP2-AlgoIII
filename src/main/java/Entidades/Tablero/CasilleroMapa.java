@@ -1,8 +1,6 @@
 package Entidades.Tablero;
 
 import Entidades.Elementos.Interactuable;
-import Entidades.Equipo.Equipamiento;
-import Entidades.Errores.SinDispositivoDeAzar;
 import Entidades.Jugadores.Jugador;
 
 import java.util.LinkedList;
@@ -18,7 +16,7 @@ public class CasilleroMapa implements Casillero{
         this.elementos.add(elemento);
     }
 
-    public void entregarElementos (Jugador jugador) throws SinDispositivoDeAzar {
+    public void entregarElementos (Jugador jugador) {
          for (int i=0;i< this.elementos.size();i++) {
             Interactuable interactuable = this.elementos.get(i);
             if (interactuable != null) {

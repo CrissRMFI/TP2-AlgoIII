@@ -10,5 +10,5 @@ public class Mensajes {
     public String PartidaNoFinalizada () {
         return "La partida aun no finalizo";
     }
-    public String SinDispositivoDeAzar () {return  "No se agrego un dispositivo de azar";}
+    public String Minimo4Caracteres () {return "El nombre debe contener un minimo de cuatro caracteres";}
 }
