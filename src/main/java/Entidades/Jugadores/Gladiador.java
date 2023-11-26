@@ -1,18 +1,23 @@
 package Entidades.Jugadores;
 import Entidades.Elementos.*;
 import Entidades.Energia.Energia;
+import Entidades.Equipo.Equipamiento;
+import Entidades.Equipo.Equipo;
 import Entidades.Equipo.EquipoBase;
+import Entidades.Equipo.JerarquiaEquipos;
 import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
 
 public class Gladiador extends Jugador {
     private Seniority seniority;
+    private Equipamiento equipamiento;
+
     public  Gladiador (String nombre) {
         this.nombre = nombre;
         this.energia = new Energia();
         this.seniority = new Novato();
         this.turno = new Turno();
-        this.equipo = new EquipoBase();
+        this.equipamiento = new EquipoBase();
         this.dispositivoDeAzar = new Dado();
     }
 
@@ -61,9 +66,23 @@ public class Gladiador extends Jugador {
     @Override
     public void defenderse() {
         if (this.turno.estaHabilitado()) {
-            Energia energia = this.equipo.energiaAReducir();
+            Energia energia = this.equipamiento.energiaAReducir();
             this.energia.afectarEnergia(energia);
         }
+    }
+    @Override
+    public void equipar () {
+        this.equipamiento = this.equipamiento.mejorar();
+    }
+
+    @Override
+    public boolean esEquipoMaximo() {
+        return !this.equipamiento.sePuedeMejorar();
+    }
+
+    @Override
+    public boolean compararEquipo(JerarquiaEquipos equipo) {
+        return this.equipamiento.compararEquipo(equipo);
     }
 }
 

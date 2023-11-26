@@ -1,17 +1,12 @@
 package Entidades.Sistemas;
 
 import Entidades.Energia.Energia;
-import Entidades.Equipo.Equipamiento;
-import Entidades.Equipo.Equipo;
+import Entidades.Equipo.JerarquiaEquipos;
 
 public interface SistemaDefensa {
-    public abstract void recibirDanio (Energia energia);
-
-    public abstract void modificarEquipo (Equipo equipo);
-
-    public abstract boolean compararEquipo (Equipamiento equipamiento);
-
-    public abstract void defenderse ();
-
-
+    void recibirDanio (Energia energia);
+    void defenderse ();
+    void equipar();
+    boolean esEquipoMaximo();
+    boolean compararEquipo(JerarquiaEquipos equipo);
 }

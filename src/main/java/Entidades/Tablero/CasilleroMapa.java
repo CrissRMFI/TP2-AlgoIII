@@ -21,9 +21,6 @@ public class CasilleroMapa implements Casillero{
             Interactuable interactuable = this.elementos.get(i);
             if (interactuable != null) {
                 interactuable.interactuar(jugador);
-                if (interactuable.esPremio() && interactuable.interactuo()) {
-                    this.elementos.remove(i);
-                }
             }
         }
     }

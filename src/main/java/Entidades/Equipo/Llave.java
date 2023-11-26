@@ -3,14 +3,24 @@ package Entidades.Equipo;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Gladiador;
 
-public class Llave extends Equipo {
+public class Llave extends Equipamiento {
 
     public Llave () {
-
-        this.tipoEquipo = Equipamiento.LLAVE;
+        this.jerarquia = JerarquiaEquipos.LLAVE;
     }
-    @Override
+   @Override
     public Energia energiaAReducir() {
         return new Energia(0);
+    }
+
+    @Override
+    public Equipamiento mejorar() {
+        return this;
+    }
+
+    @Override
+    public boolean sePuedeMejorar() {
+       return false;
+
     }
 }
