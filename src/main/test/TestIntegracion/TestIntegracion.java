@@ -184,7 +184,7 @@ public class TestIntegracion {
 
     public Mapa MapaCatedra() throws IOException {
 
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/src/main/java/Datos/mapa.json");
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapa.json");
 
         Mapa mapa = new Mapa(informacionMapaEnJSON);
         mapa.contruirMapa();
