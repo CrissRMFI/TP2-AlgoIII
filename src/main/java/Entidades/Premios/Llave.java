@@ -6,10 +6,7 @@ public class Llave extends Equipamiento {
 
     public Llave () {
         this.jerarquia = JerarquiaEquipos.LLAVE;
-    }
-   @Override
-    public Energia energiaAReducir() {
-        return new Energia(0);
+        this.energiaQueAbsorbe = new Energia(20);
     }
 
     @Override
@@ -20,6 +17,5 @@ public class Llave extends Equipamiento {
     @Override
     public boolean sePuedeMejorar() {
        return false;
-
     }
 }

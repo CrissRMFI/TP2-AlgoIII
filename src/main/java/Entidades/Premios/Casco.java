@@ -6,10 +6,7 @@ public class Casco extends Equipamiento {
 
     public Casco () {
         this.jerarquia = JerarquiaEquipos.CASCO;
-    }
-    @Override
-    public Energia energiaAReducir() {
-        return new Energia(-15);
+        this.energiaQueAbsorbe = new Energia(5);
     }
 
     @Override

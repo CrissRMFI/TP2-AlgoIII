@@ -6,16 +6,11 @@ public class EquipoBase extends Equipamiento {
 
     public EquipoBase () {
         this.jerarquia = JerarquiaEquipos.EQUIPO_BASE;
-    }
-    @Override
-    public Energia energiaAReducir() {
-        return new Energia(-20);
+        this.energiaQueAbsorbe = new Energia(0);
     }
 
     @Override
     public Equipamiento mejorar() {
         return new Casco();
     }
-
-
 }

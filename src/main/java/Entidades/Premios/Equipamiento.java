@@ -4,8 +4,14 @@ import Entidades.Energia.Energia;
 
 public abstract class Equipamiento {
     protected JerarquiaEquipos jerarquia;
-    public abstract Energia energiaAReducir();
+    protected Energia energiaQueAbsorbe;
+
     public abstract Equipamiento mejorar();
+
+    public Energia recibirDanio(Energia energia){
+        energia.afectarEnergia(this.energiaQueAbsorbe);
+        return energia;
+    }
 
     public  boolean sePuedeMejorar() {
         return true;
