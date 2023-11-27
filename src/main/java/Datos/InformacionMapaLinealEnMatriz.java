@@ -1,6 +1,7 @@
-package Entidades.Tablero;
+package Datos;
 
-import Entidades.Elementos.Interactuable;
+import Entidades.Interactuable;
+import Entidades.Tablero.*;
 
 import java.util.*;
 
@@ -10,12 +11,12 @@ public class InformacionMapaLinealEnMatriz implements InformacionMapa {
         this.informacionMapa = informacion;
     }
     @Override
-    public Map<Posicion,Casillero> construirMapa(LinkedList<Posicion> posiciones) {
+    public Map<Posicion, Casillero> construirMapa(LinkedList<Posicion> posiciones) {
 
         Map<Posicion,Casillero> mapa = new HashMap<>();
 
         Posicion posicionInicial = new Posicion(0,0);
-        Casillero casilleroInicial = new CasilleroInicial(posicionInicial);
+        Casillero casilleroInicial = new CasilleroInicial();
         mapa.put(posicionInicial,casilleroInicial);
         posiciones.add(posicionInicial);
 
@@ -32,7 +33,7 @@ public class InformacionMapaLinealEnMatriz implements InformacionMapa {
         }
 
         Posicion posicionFinal = new Posicion(k+1,0);
-        Casillero casilleroFinal = new CasilleroFinal(posicionFinal);
+        Casillero casilleroFinal = new CasilleroFinal();
         mapa.put(posicionInicial,casilleroFinal);
         posiciones.add(posicionFinal);
 

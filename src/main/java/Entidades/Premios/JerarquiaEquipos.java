@@ -1,4 +1,4 @@
-package Entidades.Equipo;
+package Entidades.Premios;
 
 public enum JerarquiaEquipos {
     EQUIPO_BASE,

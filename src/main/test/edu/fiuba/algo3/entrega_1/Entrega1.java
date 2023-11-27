@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.entrega_1;
+import Datos.InformacionMapaLinealEnMatriz;
 import Entidades.AlgoRoma;
 import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import Entidades.Premios.Comida;
-import Entidades.Elementos.Interactuable;
+import Entidades.Interactuable;
 import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
 import Entidades.Errores.CantidadMinimaDeJugadores;
@@ -10,8 +11,8 @@ import Entidades.Errores.PartidaFinalizada;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.FieraSalvaje;
+import Entidades.Premios.JerarquiaEquipos;
 import Entidades.Tablero.*;
-import Entidades.Equipo.*;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,7 +1,6 @@
 package Entidades.Sistemas;
 
 import Entidades.AlgoRoma;
-import Entidades.Equipo.Equipamiento;
 import Entidades.Jugadores.Jugador;
 import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;

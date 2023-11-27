@@ -1,23 +1,21 @@
-package Entidades.Equipo;
+package Entidades.Premios;
 
 import Entidades.Energia.Energia;
-import Entidades.Jugadores.Gladiador;
-import Entidades.Jugadores.Jugador;
 
-public class Armadura extends Equipamiento {
-
-    public Armadura () {
-        this.jerarquia = JerarquiaEquipos.ARMADURA;
+public class EscudoYEspada extends Equipamiento{
+    public EscudoYEspada () {
+        this.jerarquia = JerarquiaEquipos.ESCUDO_Y_ESPADA;
     }
     @Override
     public Energia energiaAReducir() {
-        return new Energia(-15);
+        return new Energia(-2);
     }
 
     @Override
     public Equipamiento mejorar() {
-        return new EscudoYEspada();
+        return new Llave();
     }
+
     @Override
     public boolean sePuedeMejorar() {
         return this.jerarquia.ordinal() == JerarquiaEquipos.values()[JerarquiaEquipos.values().length - 1].ordinal();

@@ -1,6 +1,6 @@
 package Entidades.Premios;
 
-import Entidades.Elementos.Interactuable;
+import Entidades.Interactuable;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Jugador;
 

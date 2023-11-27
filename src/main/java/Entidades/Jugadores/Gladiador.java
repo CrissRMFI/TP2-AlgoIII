@@ -1,10 +1,9 @@
 package Entidades.Jugadores;
 import Entidades.Elementos.*;
 import Entidades.Energia.Energia;
-import Entidades.Equipo.Equipamiento;
-import Entidades.Equipo.Equipo;
-import Entidades.Equipo.EquipoBase;
-import Entidades.Equipo.JerarquiaEquipos;
+import Entidades.Premios.Equipamiento;
+import Entidades.Premios.EquipoBase;
+import Entidades.Premios.JerarquiaEquipos;
 import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
 

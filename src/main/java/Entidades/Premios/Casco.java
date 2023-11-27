@@ -1,8 +1,6 @@
-package Entidades.Equipo;
+package Entidades.Premios;
 
 import Entidades.Energia.Energia;
-import Entidades.Jugadores.Gladiador;
-import Entidades.Jugadores.Jugador;
 
 public class Casco extends Equipamiento {
 

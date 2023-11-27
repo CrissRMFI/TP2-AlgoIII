@@ -1,4 +1,4 @@
-package Entidades.Elementos;
+package Entidades;
 
 import Entidades.Jugadores.Jugador;
 
