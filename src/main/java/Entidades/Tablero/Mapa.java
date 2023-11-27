@@ -1,5 +1,6 @@
 package Entidades.Tablero;
 
+import Datos.InformacionMapa;
 import Entidades.Elementos.ValorAzar;
 import java.util.Iterator;
 

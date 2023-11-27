@@ -1,7 +1,6 @@
-package Entidades.Equipo;
+package Entidades.Premios;
 
 import Entidades.Energia.Energia;
-import Entidades.Jugadores.Gladiador;
 
 public class Llave extends Equipamiento {
 

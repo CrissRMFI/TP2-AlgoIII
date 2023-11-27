@@ -1,7 +1,7 @@
 package Entidades.Sistemas;
 
 import Entidades.Energia.Energia;
-import Entidades.Equipo.JerarquiaEquipos;
+import Entidades.Premios.JerarquiaEquipos;
 
 public interface SistemaDefensa {
     void recibirDanio (Energia energia);

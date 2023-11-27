@@ -1,7 +1,6 @@
-package Entidades.Equipo;
+package Entidades.Premios;
 
 import Entidades.Energia.Energia;
-import Entidades.Premios.Premio;
 
 public abstract class Equipamiento {
     protected JerarquiaEquipos jerarquia;
@@ -10,7 +9,6 @@ public abstract class Equipamiento {
 
     public  boolean sePuedeMejorar() {
         return true;
-        //return this.jerarquia.ordinal() < JerarquiaEquipos.values()[JerarquiaEquipos.values().length - 1].ordinal();
     }
 
     public boolean compararEquipo (JerarquiaEquipos equipamiento) {

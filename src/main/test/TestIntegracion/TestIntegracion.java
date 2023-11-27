@@ -1,12 +1,13 @@
 package TestIntegracion;
 
+import Datos.InformacionMapaEnJSON;
+import Datos.InformacionMapaLinealEnMatriz;
 import Entidades.AlgoRoma;
 import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import Entidades.Premios.Comida;
-import Entidades.Elementos.Interactuable;
+import Entidades.Interactuable;
 import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
-import Entidades.Equipo.*;
 import Entidades.Errores.CantidadMinimaDeJugadores;
 import Entidades.Errores.PartidaFinalizada;
 import Entidades.Errores.PartidaNoFinalizada;
@@ -15,6 +16,7 @@ import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.Bacanal;
 import Entidades.Obstaculos.FieraSalvaje;
 import Entidades.Obstaculos.Piedra;
+import Entidades.Premios.JerarquiaEquipos;
 import Entidades.Tablero.*;
 import org.junit.Test;
 

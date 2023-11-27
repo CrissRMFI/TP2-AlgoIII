@@ -4,15 +4,6 @@ import Entidades.Jugadores.Jugador;
 
 import java.util.LinkedList;
 
-public class CasilleroInicial implements Casillero{
-    private Posicion posicion;
+public class CasilleroInicial extends Casillero{
 
-    public CasilleroInicial (Posicion posicion) {
-        this.posicion = posicion;
-    }
-
-    @Override
-    public void entregarElementos(Jugador jugador) {
-
-    }
 }

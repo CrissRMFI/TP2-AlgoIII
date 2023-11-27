@@ -1,7 +1,6 @@
-package Entidades.Equipo;
+package Entidades.Tablero;
 
-import Entidades.Elementos.Interactuable;
-import Entidades.Energia.Energia;
+import Entidades.Interactuable;
 import Entidades.Jugadores.Jugador;
 import Entidades.Premios.Premio;
 
