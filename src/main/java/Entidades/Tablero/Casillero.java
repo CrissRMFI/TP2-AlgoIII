@@ -6,7 +6,7 @@ import Entidades.Jugadores.Jugador;
 import java.util.LinkedList;
 
 public abstract class Casillero {
-    protected LinkedList<Interactuable> elementos;
+    protected LinkedList<Interactuable> elementos = new LinkedList<>();
 
     public void recibirElemento (Interactuable elemento) {
         this.elementos.add(elemento);

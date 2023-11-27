@@ -1147,4 +1147,99 @@ public class TestIntegracion {
 
     }
 
+    @Test
+    public void JueganHayUnGanadorMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,PartidaNoFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        jugador = algoRoma.siguienteJugador();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(4));
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        jugador = algoRoma.siguienteJugador();
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(6));
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        jugador = algoRoma.siguienteJugador();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(23));
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        assertThrows(PartidaFinalizada.class, () -> algoRoma.siguienteJugador());
+        assertNotNull(algoRoma.elGanador());
+        assertEquals("Carpoforo",algoRoma.elGanador().miNombre());
+
+    }
+
+    @Test
+    public void LlegaPeroNoGanaMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,PartidaNoFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado(38);
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        Posicion posicionEsperada = new Posicion(12,3);
+        assertThrows(PartidaNoFinalizada.class, () -> algoRoma.elGanador());
+        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+
+
+    }
 }

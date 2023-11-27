@@ -67,7 +67,6 @@ public class AlgoRoma {
         if (this.turnos!=0) {
             this.sumarUnTurno();
         }
-        //this.jugadores.siguiente();
 
         if (this.turnos == 0 && this.ganador == null) {
             this.finalizarJuego(this.ganador);
