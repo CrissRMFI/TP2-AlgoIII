@@ -4,20 +4,15 @@ import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.Turno;
 import Entidades.Elementos.ValorAzar;
 import Entidades.Energia.Energia;
-import Entidades.Equipo.Equipamiento;
-import Entidades.Equipo.Equipo;
 import Entidades.Sistemas.SistemaDefensa;
 import Entidades.Sistemas.SistemaPosicionamiento;
 import Entidades.Sistemas.SistemaTurnos;
-import Entidades.Tablero.CasilleroMapa;
 import Entidades.Tablero.Posicion;
-import Entidades.Tablero.Tablero;
 
 public abstract class Jugador implements SistemaDefensa, SistemaPosicionamiento, SistemaTurnos {
 
     protected Energia energia;
     protected Posicion posicion;
-    protected Equipo equipo;
     protected DispositivoDeAzar dispositivoDeAzar;
     protected Turno turno;
     protected String nombre;
@@ -31,21 +26,6 @@ public abstract class Jugador implements SistemaDefensa, SistemaPosicionamiento,
     }
 
 
-    @Override
-    public boolean compararEquipo(Equipamiento equipamiento) {
-        return this.equipo.comparar(equipamiento);
-
-    }
-
-    @Override
-    public void modificarEquipo(Equipo equipo) {
-        if (this.equipo.puedoEquipar(equipo)) {
-            equipo.equipoEsEquipado();
-            this.equipo = equipo;
-        }
-    }
-
-    @Override
     public void posicionar(Posicion posicion) {
         this.posicion = posicion;
     }

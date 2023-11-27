@@ -1,5 +1,4 @@
 package edu.fiuba.algo3.entrega_1;
-
 import Entidades.AlgoRoma;
 import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import Entidades.Premios.Comida;
@@ -18,6 +17,18 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Entrega1{
+
+    public Mapa MapaVacio() {
+        int cantidadCasilleros = 30;
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
+
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
+        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
+
+    }
+
     public Mapa mapaConFieraSalvaje() {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
@@ -26,9 +37,11 @@ public class Entrega1{
             elementosMapa[i][0] = new FieraSalvaje();
         }
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     public Mapa mapaConComida() {
@@ -39,57 +52,45 @@ public class Entrega1{
             elementosMapa[i][0] = new Comida();
         }
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
-    public Mapa mapaConCasco() {
+    public Mapa mapaConUnCascoYUnaFieraSalvaje() {
         int cantidadCasilleros = 10;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        for (int i = 0; i < cantidadCasilleros; i++) {
-            elementosMapa[i][0] = new Casco();
-        }
-
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
-
-        return new MapaLineal(informacionMapaEnMatriz);
-    }
-
-    public Mapa mapa4CasillerosConCascoYFieraSalvaje() {
-        int cantidadCasilleros = 4;
-        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
-
-        elementosMapa[0][0] = new Casco();
-        elementosMapa[1][0] = new Casco();
-        elementosMapa[2][0] = new FieraSalvaje();
-        elementosMapa[3][0] = new Casco();
-
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
-
-        return new MapaLineal(informacionMapaEnMatriz);
-    }
-
-    public Mapa mapaConEquipamiento() {
-        int cantidadCasilleros = 10;
-        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
-
-        elementosMapa[0][0] = new Casco();
-        elementosMapa[1][0] = new Casco();
-        elementosMapa[2][0] = new Armadura();
-        elementosMapa[3][0] = new EscudoYEspada();
-        elementosMapa[4][0] = new Llave();
+        elementosMapa[4][0] = new Equipo();
         elementosMapa[5][0] = new FieraSalvaje();
-        elementosMapa[6][0] = new Casco();
 
-        for (int i = 7; i < cantidadCasilleros; i++) {
-            elementosMapa[i][0] = new FieraSalvaje();
-        }
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
+    }
 
-        return new MapaLineal(informacionMapaEnMatriz);
+
+    public Mapa mapaConEquipamientos() {
+        int cantidadCasilleros = 10;
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
+
+        elementosMapa[0][0] = new Equipo();
+        elementosMapa[1][0] = new Equipo();
+        elementosMapa[2][0] = new Equipo();
+        elementosMapa[3][0] = new Equipo();
+        elementosMapa[4][0] = new Equipo();
+        elementosMapa[5][0] = new FieraSalvaje();
+
+
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
+
+        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     @Test
@@ -117,12 +118,13 @@ public class Entrega1{
         Energia energiaEsperada = new Energia(0);
 
         assertTrue(jugador.compararSalud(energiaEsperada));
+        assertTrue(jugador.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
     }
 
     @Test
     //Caso de uso 2
     public void jugadorSaleDeLaCasillaInicial() throws CantidadMinimaDeJugadores,ElNombreDebeContenerUnMinimoDe4Caracteres {
-        Mapa mapa = this.mapaConFieraSalvaje();
+        Mapa mapa = this.MapaVacio();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -140,7 +142,7 @@ public class Entrega1{
         Posicion posicionInicial = tablero.posicionInicial();
         Posicion posicionDelJugador = jugador.miPosicion();
 
-        assertEquals(posicionInicial.obtenerCoordenada().valor(), posicionDelJugador.obtenerCoordenada().valor());
+        assertEquals(posicionInicial, posicionDelJugador);
     }
 
     @Test
@@ -174,12 +176,10 @@ public class Entrega1{
 
         jugador.moverse(tablero);
 
-        Posicion posicionEsperada = new PosicionLineal(1);
-        Posicion posicionDelJugador = jugador.miPosicion();
-
+        Posicion posicionEsperada = new Posicion(1,0);
         assertTrue(jugador.compararSalud(new Energia(5)));
 
-        assertEquals(posicionEsperada.obtenerCoordenada().valor(), posicionDelJugador.obtenerCoordenada().valor());
+        assertTrue(jugador.miPosicion().esIgual(posicionEsperada));
     }
 
     @Test
@@ -212,7 +212,7 @@ public class Entrega1{
     @Test
     //Caso de uso 7
     public void SiTieneCascoYPeleaConFieraPierde15Energia() throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
-        Mapa mapa = this.mapa4CasillerosConCascoYFieraSalvaje();
+        Mapa mapa = this.mapaConUnCascoYUnaFieraSalvaje();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -227,7 +227,7 @@ public class Entrega1{
 
         Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
 
-        for (int i = 0; i< 2 ; i++ ) {
+        for (int i = 0; i<5 ; i++ ) {
             jugador.moverse(tablero);
             algoRoma.entregarElementos(jugador);
             algoRoma.finalizarTurno();
@@ -250,7 +250,7 @@ public class Entrega1{
     @Test
     //Caso de uso 8
     public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5 () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
-        Mapa mapa = this.mapaConCasco();
+        Mapa mapa = this.MapaVacio();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -265,7 +265,7 @@ public class Entrega1{
 
         Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
 
-        for (int i = 0; i<= 8 ; i++ ) {
+        for (int i = 0; i< 9 ; i++ ) {
             jugador.moverse(tablero);
             algoRoma.entregarElementos(jugador);
             algoRoma.finalizarTurno();
@@ -322,7 +322,7 @@ public class Entrega1{
         Posicion posicionCarpoforo = Carpoforo.miPosicion();
         Posicion posicionEspartaco = Espartaco.miPosicion();
 
-        Posicion posicionEsperada = new PosicionLineal(15);
+        Posicion posicionEsperada = new Posicion(16,0);
 
         assertTrue(posicionCarpoforo.esIgual(posicionEsperada));
         assertTrue(posicionEspartaco.esIgual(posicionEsperada));
@@ -331,7 +331,7 @@ public class Entrega1{
     @Test
     //Caso de uso 10
     public void SiTieneTodoElEquipamientoYLoAtacaUnaFieraNoHayPerdidaDeEnergia() throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
-        Mapa mapa = this.mapaConEquipamiento();
+        Mapa mapa = this.mapaConEquipamientos();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -368,7 +368,7 @@ public class Entrega1{
     @Test
     //Caso de uso 11
     public void gladiadorConLlaveRecibeOtroPremioYNoPasaNada() throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
-        Mapa mapa = this.mapaConEquipamiento();
+        Mapa mapa = this.mapaConEquipamientos();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();

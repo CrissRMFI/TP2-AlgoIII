@@ -54,6 +54,7 @@ public class AlgoRoma {
         if (this.turnos == 0) {
             throw new PartidaFinalizada(new Mensajes().PartidaFinalizada());
         }
+        this.jugadores.siguiente();
         Jugador jugador = this.jugadores.obtener();
         jugador.habilitar();
         return jugador;
@@ -66,7 +67,7 @@ public class AlgoRoma {
         if (this.turnos!=0) {
             this.sumarUnTurno();
         }
-        this.jugadores.siguiente();
+        //this.jugadores.siguiente();
 
         if (this.turnos == 0 && this.ganador == null) {
             this.finalizarJuego(this.ganador);

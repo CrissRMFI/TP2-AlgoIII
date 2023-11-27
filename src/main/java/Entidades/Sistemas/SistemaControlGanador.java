@@ -19,7 +19,7 @@ public class SistemaControlGanador {
 
         boolean cumplePosicion = jugador.miPosicion().esMayorIgual(posicion);
 
-        boolean cumpleEquipo = jugador.compararEquipo(Equipamiento.LLAVE);
+        boolean cumpleEquipo = jugador.esEquipoMaximo();
         if (cumplePosicion && cumpleEquipo) {
             algoRoma.finalizarJuego(jugador);
         }

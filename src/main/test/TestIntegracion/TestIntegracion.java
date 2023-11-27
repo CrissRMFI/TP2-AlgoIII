@@ -12,13 +12,13 @@ import Entidades.Errores.PartidaFinalizada;
 import Entidades.Errores.PartidaNoFinalizada;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
-import Entidades.ListaCircular;
 import Entidades.Obstaculos.Bacanal;
 import Entidades.Obstaculos.FieraSalvaje;
 import Entidades.Obstaculos.Piedra;
 import Entidades.Tablero.*;
-import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -38,69 +38,52 @@ public class TestIntegracion {
             elementosMapa[i][0] = new FieraSalvaje();
         }
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
+
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
-    public Mapa MapaSoloConArmaduras () {
+    public Mapa MapaSoloConUnEquipo () {
+        int cantidadCasilleros = 30;
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
+        elementosMapa[8][0] = new Equipo();
+
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
+
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
+    }
+    public Mapa MapaConDosEquipos () {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        for (int i = 0; i < cantidadCasilleros; i++) {
-            elementosMapa[i][0] = new Armadura();
-        }
+        elementosMapa[3][0] = new Equipo();
+        elementosMapa[5][0] = new Equipo();
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
-    public Mapa MapaSoloUnCasco () {
+    public Mapa MapaSoloConTresEquipos () {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
-        elementosMapa[8][0] = new Casco();
+        elementosMapa[8][0] = new Equipo();
+        elementosMapa[18][0] = new Equipo();
+        elementosMapa[12][0] = new Equipo();
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
-    }
-
-    public Mapa MapaSoloConArmadurasEscudoYEspadaYLlave () {
-        int cantidadCasilleros = 30;
-        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
-
-        ListaCircular<Equipo> equipos = new ListaCircular<>();
-        equipos.agregarElemento(new Armadura());
-        equipos.agregarElemento(new EscudoYEspada());
-        equipos.agregarElemento(new Llave());
-
-        for (int i = 0; i < cantidadCasilleros; i++) {
-            elementosMapa[i][0] = equipos.seleccionAleatoria();
-        }
-
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
-
-        return new MapaLineal(informacionMapaEnMatriz);
-    }
-
-    public Mapa MapaConCascoAlInicioYEnMedioYDespuesEscudoYEspadaYLlave () {
-        int cantidadCasilleros = 30;
-        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
-
-        ListaCircular<Equipo> equipos = new ListaCircular<>();
-        equipos.agregarElemento(new EscudoYEspada());
-        equipos.agregarElemento(new Llave());
-
-        elementosMapa[0][0] = new Casco();
-        for (int i = 1; i < cantidadCasilleros; i++) {
-            elementosMapa[i][0] = equipos.seleccionAleatoria();
-        }
-
-        elementosMapa[15][0] = new Casco();
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
-
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     public Mapa MapaConPiedraAlInicioElRestoVacio () {
@@ -109,9 +92,11 @@ public class TestIntegracion {
 
         elementosMapa[0][0] = new Piedra();
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     public Mapa MapaLlenoDePiedras() {
@@ -122,9 +107,11 @@ public class TestIntegracion {
             elementosMapa[i][0] = new Piedra();
         }
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     public Mapa MapaConBacanalEnElCasillero7() {
@@ -133,18 +120,22 @@ public class TestIntegracion {
 
         elementosMapa[6][0] = new Bacanal();
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     public Mapa MapaVacio() {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     public Mapa MapaLlenoDeComida() {
@@ -154,9 +145,11 @@ public class TestIntegracion {
         for (int i=0;i<elementosMapa.length;i++) {
             elementosMapa[i][0] = new Comida();
         }
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     public Mapa MapaQuePermiteGanar() {
@@ -167,54 +160,39 @@ public class TestIntegracion {
             elementosMapa[i][0] = new Comida();
         }
 
-        elementosMapa[4][1] = new Casco();
-        elementosMapa[7][1] = new Casco();
+        elementosMapa[4][1] = new Equipo();
+        elementosMapa[7][1] = new Equipo();
 
-        elementosMapa[9][1] = new Armadura();
-        elementosMapa[13][1] = new Armadura();
+        elementosMapa[9][1] = new Equipo();
+        elementosMapa[13][1] = new Equipo();
 
-        elementosMapa[19][1] = new EscudoYEspada();
-        elementosMapa[22][1] = new EscudoYEspada();
+        elementosMapa[19][1] = new Equipo();
+        elementosMapa[22][1] = new Equipo();
 
-        elementosMapa[28][1] = new Llave();
-        elementosMapa[29][1] = new Llave();
+        elementosMapa[28][1] = new Equipo();
+        elementosMapa[29][1] = new Equipo();
 
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
-    public Mapa MapaConTresTiposDeObstaculos() {
-        int cantidadCasilleros = 30;
-        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
+    public Mapa MapaCatedra() throws IOException {
 
-        elementosMapa[4][0] = new Bacanal();
-        elementosMapa[7][0] = new FieraSalvaje();
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/src/main/java/Datos/mapa.json");
 
-        elementosMapa[9][0] = new Piedra();
-        elementosMapa[13][0] = new Bacanal();
-
-        elementosMapa[19][0] = new Piedra();
-        elementosMapa[22][0] = new Piedra();
-
-        elementosMapa[28][0] = new FieraSalvaje();
-        elementosMapa[29][0] = new FieraSalvaje();
-
-
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
-
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa(informacionMapaEnJSON);
+        mapa.contruirMapa();
+        return mapa;
     }
 
-    @Before
-    public void crearGladiadores () {
-
-    }
     @Test
     public void NoSePuedeInicializarPartidaConUnSoloJugador() throws ElNombreDebeContenerUnMinimoDe4Caracteres {
 
-        Mapa mapa = this.MapaConFieraSalvaje();
+        Mapa mapa = this.MapaVacio();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         algoRoma.agregarJugador(this.Carpoforo);
@@ -223,7 +201,7 @@ public class TestIntegracion {
 
     @Test
     public void DosGladiadoresJueganDosTurnosYLaPartidaNoFinaliza () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres {
-        Mapa mapa = this.MapaConFieraSalvaje();
+        Mapa mapa = this.MapaVacio();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -246,7 +224,7 @@ public class TestIntegracion {
 
     @Test
     public void DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnError () throws CantidadMinimaDeJugadores, PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres {
-        Mapa mapa = this.MapaConFieraSalvaje();
+        Mapa mapa = this.MapaVacio();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -276,7 +254,7 @@ public class TestIntegracion {
 
     @Test public void SeJuegaUnaPartidaSeConsultaPorElGanadorCuandoLaPartidaNoTerminoEntraEnError () throws PartidaFinalizada,CantidadMinimaDeJugadores,ElNombreDebeContenerUnMinimoDe4Caracteres{
 
-        Mapa mapa = this.MapaConFieraSalvaje();
+        Mapa mapa = this.MapaVacio();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -302,8 +280,8 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaCon30CasillerosElJugadorQuedaLlegaALaMetaNoGanaYQuedaPosicoinadoEnLa15AlFinalizarElJuego () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
-        Mapa mapa = this.MapaConFieraSalvaje();
+    public void SeJuegaUnaPartidaCon32CasillerosElJugadorQueLlegaALaMetaNoGanaYQuedaPosicoinadoEnLa15AlFinalizarElJuego () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
+        Mapa mapa = this.MapaVacio();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -315,7 +293,7 @@ public class TestIntegracion {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartida();
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
 
         for (int i = 0; i< 29 ; i++ ) {
             jugador.moverse(tablero);
@@ -324,6 +302,7 @@ public class TestIntegracion {
             jugador.moverse(tablero);
             algoRoma.finalizarTurno();
             jugador = algoRoma.siguienteJugador();
+
         }
 
         mockDado = new MockDado(3);
@@ -338,15 +317,15 @@ public class TestIntegracion {
         Posicion posicionCarpoforo = Carpoforo.miPosicion();
         Posicion posicionEspartaco = Espartaco.miPosicion();
 
-        Posicion posicionEsperada = new PosicionLineal(15);
+        Posicion posicionEsperada = new Posicion(16,0);
 
         assertTrue(posicionCarpoforo.esIgual(posicionEsperada));
         assertTrue(posicionEspartaco.esIgual(posicionEsperada));
     }
 
     @Test
-    public void SeJuegaUnaPartidaCasillerosSoloTienenArmaduraElJugadorNoLaPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
-        Mapa mapa = this.MapaSoloConArmaduras();
+    public void SeJuegaUnaPartidaCasilleroSoloTieneUnEquipoElJugadorLaPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
+        Mapa mapa = this.MapaSoloConUnEquipo();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -370,16 +349,16 @@ public class TestIntegracion {
             jugador = algoRoma.siguienteJugador();
         }
 
-        assertFalse(Carpoforo.compararEquipo(Equipamiento.ARMADURA));
-        assertFalse(Espartaco.compararEquipo(Equipamiento.ARMADURA));
-        assertTrue(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
-        assertTrue(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
+        assertTrue(Espartaco.compararEquipo(JerarquiaEquipos.CASCO));
 
     }
 
     @Test
-    public void SeJuegaUnaPartidaCasillerosSoloTienenCascoElJugadorQueLlegaPrimeroLaPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
-        Mapa mapa = this.MapaSoloUnCasco();
+    public void SeJuegaUnaPartidaCasillerosTienenDosEquiposElJugadorPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
+        Mapa mapa = this.MapaConDosEquipos();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -406,16 +385,18 @@ public class TestIntegracion {
 
         }
 
-        assertTrue(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
-        assertTrue(Carpoforo.compararEquipo(Equipamiento.CASCO));
-        assertFalse(Espartaco.compararEquipo(Equipamiento.CASCO));
-        assertFalse(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.CASCO));
+        assertTrue(Espartaco.compararEquipo(JerarquiaEquipos.ARMADURA));
 
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
+        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.ARMADURA));
     }
 
     @Test
-    public void SeJuegaUnaPartidaCasillerosTienenEquiposQueNoSonEquipablesAPartirDelEquipoBase () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
-        Mapa mapa = this.MapaSoloConArmadurasEscudoYEspadaYLlave();
+    public void SeJuegaUnaPartidaCasillerosTienen3Equipos () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
+        Mapa mapa = this.MapaSoloConTresEquipos();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
         MockDado mockDado = new MockDado();
@@ -439,61 +420,17 @@ public class TestIntegracion {
             jugador = algoRoma.siguienteJugador();
         }
 
-        assertFalse(Espartaco.compararEquipo(Equipamiento.ARMADURA));
-        assertFalse(Espartaco.compararEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Espartaco.compararEquipo(Equipamiento.LLAVE));
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.CASCO));
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.ARMADURA));
+        assertTrue(Espartaco.compararEquipo(JerarquiaEquipos.ESCUDO_Y_ESPADA));
+
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.ARMADURA));
+        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.ESCUDO_Y_ESPADA));
 
 
-        assertFalse(Carpoforo.compararEquipo(Equipamiento.ARMADURA));
-        assertFalse(Carpoforo.compararEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Carpoforo.compararEquipo(Equipamiento.LLAVE));
-
-        assertTrue(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
-        assertTrue(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
-
-    }
-
-    @Test
-    public void SeEquipaConCascoNoHayArmaduraPeroSiHayEscudoYEspadaYLlaveNoLosPuedeEquipar () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
-        Mapa mapa = this.MapaConCascoAlInicioYEnMedioYDespuesEscudoYEspadaYLlave();
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        for (int i = 0; i< 30 ; i++ ) {
-            jugador.moverse(tablero);
-            algoRoma.entregarElementos(jugador);
-            algoRoma.finalizarTurno();
-            jugador = algoRoma.siguienteJugador();
-            jugador.moverse(tablero);
-            algoRoma.entregarElementos(jugador);
-            algoRoma.finalizarTurno();
-            if (i < 29) {
-                jugador = algoRoma.siguienteJugador();
-            }
-
-        }
-
-
-        assertFalse(Espartaco.compararEquipo(Equipamiento.EQUIPOBASE));
-        assertFalse(Espartaco.compararEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Espartaco.compararEquipo(Equipamiento.LLAVE));
-
-        assertFalse(Carpoforo.compararEquipo(Equipamiento.EQUIPOBASE));
-        assertFalse(Carpoforo.compararEquipo(Equipamiento.ESCUDOYESPADA));
-        assertFalse(Carpoforo.compararEquipo(Equipamiento.LLAVE));
-
-        assertTrue(Espartaco.compararEquipo(Equipamiento.CASCO));
-        assertTrue(Carpoforo.compararEquipo(Equipamiento.CASCO));
 
     }
 
@@ -526,11 +463,11 @@ public class TestIntegracion {
 
         }
 
-        Posicion posicionEsperada = new PosicionLineal(29);
+        Posicion posicionEsperada = new Posicion(29,0);
 
         assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
 
-        
+
 
     }
 
@@ -563,7 +500,7 @@ public class TestIntegracion {
 
         }
 
-        Posicion posicionEsperada = new PosicionLineal(15);
+        Posicion posicionEsperada = new Posicion(15,0);
 
         assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
 
@@ -695,7 +632,7 @@ public class TestIntegracion {
         }
 
         Energia eneriaEsperadaCarpoforo = new Energia(125);
-        Energia eneriaEsperadaEspartaco = new Energia(20);
+        Energia eneriaEsperadaEspartaco = new Energia(125);
 
         assertTrue(Carpoforo.compararSalud(eneriaEsperadaCarpoforo));
         assertTrue(Espartaco.compararSalud(eneriaEsperadaEspartaco));
@@ -703,7 +640,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void Juegan8TurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComitaYSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
+    public void Juegan8TurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComidaYSeniority () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres{
         Mapa mapa = this.MapaLlenoDeComida();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -729,7 +666,7 @@ public class TestIntegracion {
         }
 
         Energia eneriaEsperadaCarpoforo = new Energia(160);
-        Energia eneriaEsperadaEspartaco = new Energia(25);
+        Energia eneriaEsperadaEspartaco = new Energia(160);
 
         assertTrue(Carpoforo.compararSalud(eneriaEsperadaCarpoforo));
         assertTrue(Espartaco.compararSalud(eneriaEsperadaEspartaco));
@@ -765,7 +702,7 @@ public class TestIntegracion {
         }
 
         Energia eneriaEsperadaCarpoforo = new Energia(670);
-        Energia eneriaEsperadaEspartaco = new Energia(220);
+        Energia eneriaEsperadaEspartaco = new Energia(670);
 
         assertTrue(Carpoforo.compararSalud(eneriaEsperadaCarpoforo));
         assertTrue(Espartaco.compararSalud(eneriaEsperadaEspartaco));
@@ -804,14 +741,10 @@ public class TestIntegracion {
         jugador.moverse(tablero);
         algoRoma.entregarElementos(jugador);
         algoRoma.finalizarTurno();
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
 
-
-
+        assertThrows(PartidaFinalizada.class, () -> algoRoma.siguienteJugador());
         assertNotNull(algoRoma.elGanador());
+        assertEquals("Carpoforo",algoRoma.elGanador().miNombre());
 
     }
 
@@ -845,8 +778,8 @@ public class TestIntegracion {
         Energia energiaEsperadaEspartaco = new Energia(0);
 
 
-        Posicion posicionEsperadaCarpoforo = new PosicionLineal(1);
-        Posicion posicionEsperadaEspartaco = new PosicionLineal(1);
+        Posicion posicionEsperadaCarpoforo = new Posicion(1,0);
+        Posicion posicionEsperadaEspartaco = new Posicion(1,0);
 
 
         assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperadaCarpoforo));
@@ -867,8 +800,8 @@ public class TestIntegracion {
         energiaEsperadaEspartaco = new Energia(5);
 
 
-        posicionEsperadaCarpoforo = new PosicionLineal(1);
-        posicionEsperadaEspartaco = new PosicionLineal(1);
+        posicionEsperadaCarpoforo = new Posicion(1,0);
+        posicionEsperadaEspartaco = new Posicion(1,0);
 
 
         assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperadaCarpoforo));
@@ -877,4 +810,339 @@ public class TestIntegracion {
         assertTrue(Espartaco.miPosicion().esIgual(posicionEsperadaEspartaco));
         assertTrue(Espartaco.compararSalud(energiaEsperadaEspartaco));
     }
+
+    /* inician test con mapa de catedra*/
+
+    @Test
+    public void NoSePuedeInicializarPartidaConUnSoloJugadorMapaCatedra() throws ElNombreDebeContenerUnMinimoDe4Caracteres,IOException {
+
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        algoRoma.agregarJugador(this.Carpoforo);
+        assertThrows(CantidadMinimaDeJugadores.class, () -> algoRoma.comenzarPartida());
+    }
+
+
+     @Test
+    public void DosGladiadoresJueganDosTurnosYLaPartidaNoFinalizaMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres,IOException {
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartida();
+
+        for (int i = 0; i< 2 ; i++ ) {
+            jugador.moverse(tablero);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+        }
+
+        assertDoesNotThrow(() -> algoRoma.siguienteJugador());
+    }
+
+    @Test
+    public void DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnErrorMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException {
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartida();
+
+        for (int i = 0; i< 30 ; i++ ) {
+            jugador.moverse(tablero);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+            jugador.moverse(tablero);
+            algoRoma.finalizarTurno();
+            if (i<29) {
+                jugador = algoRoma.siguienteJugador();
+            }
+
+        }
+
+
+
+        assertThrows(PartidaFinalizada.class, () -> algoRoma.siguienteJugador());
+    }
+
+
+    @Test public void SeJuegaUnaPartidaSeConsultaPorElGanadorCuandoLaPartidaNoTerminoEntraEnErrorMapaCatedra () throws PartidaFinalizada,CantidadMinimaDeJugadores,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartida();
+
+        for (int i = 0; i< 29 ; i++ ) {
+            jugador.moverse(tablero);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+            jugador.moverse(tablero);
+            algoRoma.finalizarTurno();
+            jugador = algoRoma.siguienteJugador();
+        }
+
+        assertThrows(PartidaNoFinalizada.class, () -> algoRoma.elGanador());
+    }
+
+    @Test
+    public void SeJuegaUnaPartidaElJugadorQueLlegaALaMetaNoGanaYQuedaPosicoinadoEnElMedioMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(39));
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        /*Turno 1*/
+        jugador.moverse(tablero);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+
+        Posicion posicionCarpoforo = Carpoforo.miPosicion();
+        Posicion posicionEspartaco = Espartaco.miPosicion();
+
+
+        Posicion posicionEsperada = new Posicion(12,3);
+
+        assertTrue(posicionCarpoforo.esIgual(posicionEsperada));
+
+    }
+
+    @Test
+    public void SeJuegaUnaPartidaJUgadorEncuentraCasilleroConEquipamientoLoPuedeEquiparYEvoklucionaACascoMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartida();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
+        assertTrue(Espartaco.compararEquipo(JerarquiaEquipos.CASCO));
+
+    }
+
+    @Test
+    public void SeJuegaUnaPartidaSeEquipaDosEquiposElJugadorPuedeEquiparYSuEquipoEsArmaduraMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(4));
+        Espartaco.agregarDispositivoAzar(new MockDado(4));
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.CASCO));
+        assertTrue(Espartaco.compararEquipo(JerarquiaEquipos.ARMADURA));
+
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
+        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.ARMADURA));
+    }
+
+    @Test
+    public void SeJuegaUnaPartidaSeObtienen3Equipos () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(4));
+        Espartaco.agregarDispositivoAzar(new MockDado(4));
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.CASCO));
+        assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.ARMADURA));
+        assertTrue(Espartaco.compararEquipo(JerarquiaEquipos.ESCUDO_Y_ESPADA));
+
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
+        assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.ARMADURA));
+        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.ESCUDO_Y_ESPADA));
+
+
+
+    }
+
+    @Test
+    public void JugadoresSeAtraviesanConUnaPiedraPierdenUnTurnoMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado(3);
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+
+        Posicion posicionEsperada = new Posicion(2,5);
+
+        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Espartaco.miPosicion().esIgual(posicionEsperada));
+
+
+
+    }
+
+    @Test
+    public void JugadoresAtraviesanMapaConEquipoBaseChocanUnBacanalPierdeEnergia () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado(24);
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+
+        Energia eneriaEsperada = new Energia(-76);
+
+        assertTrue(Carpoforo.compararSalud(eneriaEsperada));
+        assertTrue(Espartaco.compararSalud(eneriaEsperada));
+
+    }
+
 }
