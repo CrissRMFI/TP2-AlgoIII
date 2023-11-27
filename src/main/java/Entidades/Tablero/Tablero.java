@@ -12,8 +12,8 @@ public class Tablero {
         return this.mapa.obtenerCasillero(posicion);
     }
 
-    public Posicion calcularPosicion (ValorAzar valor) {
-        return this.mapa.calcularPosicion(valor);
+    public Posicion calcularPosicion (ValorAzar valor, Posicion posicion) {
+        return this.mapa.calcularSiguientePosicion(valor,posicion);
     }
 
     public Posicion posicionInicial () {

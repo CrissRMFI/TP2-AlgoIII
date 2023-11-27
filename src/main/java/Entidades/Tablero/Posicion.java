@@ -1,8 +1,36 @@
 package Entidades.Tablero;
 
-public interface Posicion {
-    public abstract Posicion cambiarPosicion (Posicion posicion);
-    public abstract Coordenada obtenerCoordenada();
-    public abstract boolean esIgual(Posicion posicion);
-    public abstract boolean esMayorIgual(Posicion posicion);
+public class Posicion {
+    private Coordenada x;
+    private Coordenada y;
+
+    public Posicion (int x,int y) {
+        this.x = new Coordenada(x);
+        this.y = new Coordenada(y);
+    }
+    public void cambiarPosicion (Posicion posicion) {
+        this.x.moverCoordenada(posicion.obtenerCoordenadaLinal());
+        this.y.moverCoordenada(posicion.obtenerCoordenadaVertical());
+    }
+    protected Coordenada obtenerCoordenadaLinal() {
+        return this.x;
+    }
+
+    protected Coordenada obtenerCoordenadaVertical() {
+        return this.y;
+    }
+
+
+    public boolean esIgual(Posicion posicion) {
+        boolean lineal = this.x.comparar(posicion.obtenerCoordenadaLinal());
+        boolean vertical = this.y.comparar(posicion.obtenerCoordenadaVertical());
+
+        return lineal && vertical;
+    }
+    public boolean esMayorIgual(Posicion posicion) {
+        boolean lineal = this.x.esMayorOIgual(posicion.obtenerCoordenadaLinal());
+        boolean vertical = this.y.esMayorOIgual(posicion.obtenerCoordenadaVertical());
+
+        return lineal && vertical;
+    }
 }

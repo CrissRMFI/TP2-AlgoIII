@@ -1,7 +1,8 @@
 package Entidades.Tablero;
 
 import java.util.LinkedList;
+import java.util.Map;
 
 public interface InformacionMapa {
-    public abstract LinkedList<Casillero> construirCasilleros();
+    Map<Posicion,Casillero> construirMapa(LinkedList<Posicion> posiciones);
 }

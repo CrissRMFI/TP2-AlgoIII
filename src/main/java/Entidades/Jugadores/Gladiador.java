@@ -31,9 +31,8 @@ public class Gladiador extends Jugador {
 
         if (this.estaHabilitado() && this.energia.tengoEnergia()) {
             ValorAzar valorAzar = this.dispositivoDeAzar.lanzar();
-            Posicion posicion = tablero.calcularPosicion(valorAzar);
-            this.posicion.cambiarPosicion(posicion);
-
+            Posicion posicion = tablero.calcularPosicion(valorAzar,this.miPosicion());
+            this.posicion = posicion;
         }
 
         if (!this.energia.tengoEnergia()) {

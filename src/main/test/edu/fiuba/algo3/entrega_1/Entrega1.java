@@ -1,5 +1,4 @@
 package edu.fiuba.algo3.entrega_1;
-
 import Entidades.AlgoRoma;
 import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import Entidades.Premios.Comida;
@@ -23,9 +22,11 @@ public class Entrega1{
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
+        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
 
-        return new MapaLineal(informacionMapaEnMatriz);
     }
 
     public Mapa mapaConFieraSalvaje() {
@@ -36,9 +37,11 @@ public class Entrega1{
             elementosMapa[i][0] = new FieraSalvaje();
         }
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     public Mapa mapaConComida() {
@@ -49,9 +52,11 @@ public class Entrega1{
             elementosMapa[i][0] = new Comida();
         }
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     public Mapa mapaConUnCascoYUnaFieraSalvaje() {
@@ -61,9 +66,11 @@ public class Entrega1{
         elementosMapa[4][0] = new Equipo();
         elementosMapa[5][0] = new FieraSalvaje();
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
 
@@ -79,9 +86,11 @@ public class Entrega1{
         elementosMapa[5][0] = new FieraSalvaje();
 
 
-        InformacionMapaEnMatriz informacionMapaEnMatriz = new InformacionMapaEnMatriz(elementosMapa);
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        return new MapaLineal(informacionMapaEnMatriz);
+        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
+        mapa.contruirMapa();
+        return mapa;
     }
 
     @Test
@@ -133,7 +142,7 @@ public class Entrega1{
         Posicion posicionInicial = tablero.posicionInicial();
         Posicion posicionDelJugador = jugador.miPosicion();
 
-        assertEquals(posicionInicial.obtenerCoordenada().valor(), posicionDelJugador.obtenerCoordenada().valor());
+        assertEquals(posicionInicial, posicionDelJugador);
     }
 
     @Test
@@ -167,12 +176,10 @@ public class Entrega1{
 
         jugador.moverse(tablero);
 
-        Posicion posicionEsperada = new PosicionLineal(1);
-        Posicion posicionDelJugador = jugador.miPosicion();
-
+        Posicion posicionEsperada = new Posicion(1,0);
         assertTrue(jugador.compararSalud(new Energia(5)));
 
-        assertEquals(posicionEsperada.obtenerCoordenada().valor(), posicionDelJugador.obtenerCoordenada().valor());
+        assertTrue(jugador.miPosicion().esIgual(posicionEsperada));
     }
 
     @Test
@@ -315,7 +322,7 @@ public class Entrega1{
         Posicion posicionCarpoforo = Carpoforo.miPosicion();
         Posicion posicionEspartaco = Espartaco.miPosicion();
 
-        Posicion posicionEsperada = new PosicionLineal(15);
+        Posicion posicionEsperada = new Posicion(16,0);
 
         assertTrue(posicionCarpoforo.esIgual(posicionEsperada));
         assertTrue(posicionEspartaco.esIgual(posicionEsperada));

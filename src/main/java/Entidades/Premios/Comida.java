@@ -4,7 +4,7 @@ import Entidades.Elementos.Interactuable;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Jugador;
 
-public class Comida implements Interactuable {
+public class Comida implements Interactuable,Premio {
 
 
     @Override
