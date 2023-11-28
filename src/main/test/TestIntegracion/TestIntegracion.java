@@ -1253,6 +1253,150 @@ public class TestIntegracion {
         assertThrows(PartidaNoFinalizada.class, () -> algoRoma.elGanador());
         assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
 
+    }
+
+    @Test
+    public void EnfrentaAFieraConArmaduraYReduceSuEnergiaEn10 () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(8));
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(18));
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+
+        Energia energiaEsperada = new Energia(10);
+
+        assertTrue(Carpoforo.compararSalud(energiaEsperada));
+
+
+    }
+
+    @Test
+    public void EnfrentaAFieraConArmaduraYReduceSuEnergiaEn0 () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(8));
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(18));
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+
+        Energia energiaEsperada = new Energia(0);
+
+        assertTrue(Carpoforo.compararSalud(energiaEsperada));
+
+    }
+
+    @Test
+    public void EnfrentaAFieraConArmaduraYReduceSuEnergiaEn10V2 () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado();
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(14));
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(12));
+
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+
+        Energia energiaEsperada = new Energia(10);
+
+        assertTrue(Carpoforo.compararSalud(energiaEsperada));
+
 
     }
 }

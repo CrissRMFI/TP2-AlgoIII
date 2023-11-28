@@ -45,10 +45,12 @@ public class InformacionMapaEnJSON implements InformacionMapa{
             String tipoCasillero = celda.get("tipo").asText();
             Casillero casillero = casilleros.obtenerCasillero(tipoCasillero);
 
-            String tipoObstaculo = celda.get("obstaculo").asText();
-            casillero.recibirElemento(generarInteractuable("Entidades.Obstaculos."+tipoObstaculo));
+
             String tipoPremio = celda.get("premio").asText();
             casillero.recibirElemento(generarInteractuable("Entidades.Premios."+tipoPremio));
+            String tipoObstaculo = celda.get("obstaculo").asText();
+            casillero.recibirElemento(generarInteractuable("Entidades.Obstaculos."+tipoObstaculo));
+
 
             /*
 
