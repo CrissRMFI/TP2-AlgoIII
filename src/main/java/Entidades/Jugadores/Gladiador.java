@@ -44,14 +44,13 @@ public class Gladiador extends Jugador {
         if (this.turno.estaHabilitado()) {
             this.turno.perderTurnos(turnos);
         }
-
     }
+
     @Override
     public void finalizarTurno () {
         this.turno.finalizar();
         this.seniority.aumentarEnergia(this.energia);
         this.ascenderSeniority();
-
     }
 
     @Override
@@ -62,10 +61,10 @@ public class Gladiador extends Jugador {
     }
 
     @Override
-    public void defenderse() {
+    public void defenderse(Energia energia) {
         if (this.turno.estaHabilitado()) {
-            Energia energia = this.equipamiento.energiaAReducir();
-            this.energia.afectarEnergia(energia);
+            Energia energiaAReducir = this.equipamiento.recibirDanio(energia);
+            this.energia.afectarEnergia(energiaAReducir);
         }
     }
     @Override

@@ -6,15 +6,12 @@ import Entidades.Jugadores.Jugador;
 
 public class Bacanal extends Obstaculo{
 
-    private int proporcion = 4;
+    private final int PROPORCION = 4;
 
     @Override
     public void interactuar(Jugador jugador) {
-
         ValorAzar valor = jugador.lanzar();
-
-        Energia energia = new Energia(-proporcion* valor.obtenerValor());
-
+        Energia energia = new Energia(-PROPORCION * valor.obtenerValor());
         jugador.recibirDanio(energia);
     }
 }
