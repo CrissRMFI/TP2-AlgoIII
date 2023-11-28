@@ -1,16 +1,13 @@
 package Datos;
 
 import Entidades.Constructores.Casilleros;
-import Entidades.Constructores.ElementosCamino;
+import Entidades.Errores.ArchivoNoEncontrado;
+import Entidades.Errores.DatoNoEncontrado;
+import Entidades.Errores.DatoNoValido;
 import Entidades.Interactuable;
-import Entidades.Obstaculos.Obstaculo;
-import Entidades.Premios.Premio;
 import Entidades.Tablero.*;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -20,19 +17,21 @@ public class InformacionMapaEnJSON implements InformacionMapa{
     private int ancho;
     private int largo;
     private JsonNode celdas;
-    public InformacionMapaEnJSON (String rutaArchivo) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(new File(rutaArchivo));
 
-        this.ancho = jsonNode.get("mapa").get("ancho").asInt();
-        this.largo = jsonNode.get("mapa").get("largo").asInt();
-        this.celdas = jsonNode.get("camino").get("celdas");
-
+    public InformacionMapaEnJSON (String rutaArchivo) throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+        JsonNode informacion = new InformacionJSON(rutaArchivo).devolverInformacionDelArchivo();
+        revisarSiElDatoEsta(new String[]{"mapa"}, informacion);
+        JsonNode mapaInformacion = informacion.get("mapa");
+        revisarSiElDatoEsta(new String[]{"ancho", "largo"}, mapaInformacion);
+        this.ancho = conseguirNumero("ancho", mapaInformacion);
+        this.largo = conseguirNumero("largo", mapaInformacion);
+        revisarSiElDatoEsta(new String[]{"camino"}, informacion);
+        this.celdas = informacion.get("camino").get("celdas");
     }
+
     @Override
     public Map<Posicion, Casillero> construirMapa(LinkedList<Posicion> posiciones) {
         Map<Posicion,Casillero> mapa = new HashMap<>();
-        ElementosCamino elementosCamino = new ElementosCamino();
         Casilleros casilleros = new Casilleros();
 
         for (JsonNode celda : this.celdas) {
@@ -51,16 +50,6 @@ public class InformacionMapaEnJSON implements InformacionMapa{
             String tipoObstaculo = celda.get("obstaculo").asText();
             casillero.recibirElemento(generarInteractuable("Entidades.Obstaculos."+tipoObstaculo));
 
-
-            /*
-
-            Obstaculo obstaculo = elementosCamino.obtenerTipoDeObstaculo(tipoObstaculo);
-            Premio premio = elementosCamino.obtenerTipoDePremio(tipoPremio);
-
-            if (premio != null) casillero.recibirElemento(premio);
-            if (obstaculo != null) casillero.recibirElemento(obstaculo);
-
-             */
             mapa.put(posicion,casillero);
             posiciones.add(posicion);
         }
@@ -69,7 +58,7 @@ public class InformacionMapaEnJSON implements InformacionMapa{
     }
 
     public Interactuable generarInteractuable(String interactuable){
-        if (noHayNada(interactuable)) return null;
+        if (noExisteInteractuable(interactuable)) return null;
         try {
             Interactuable unInteractuable = (Interactuable) Class.forName(interactuable).getDeclaredConstructor().newInstance();
             return unInteractuable;
@@ -89,7 +78,26 @@ public class InformacionMapaEnJSON implements InformacionMapa{
         return null;
     }
 
-    public boolean noHayNada(String interactuable){
+    private boolean noExisteInteractuable(String interactuable){
         return (interactuable.substring(interactuable.lastIndexOf('.') + 1)).isEmpty();
+    }
+
+    private void revisarSiElDatoEsta(String[] datos, JsonNode informacion) throws DatoNoEncontrado {
+        for (int i=0; i < datos.length; i++){
+            if(!informacion.has(datos[i])){
+                throw new DatoNoEncontrado();
+            }
+        }
+    }
+
+    private int conseguirNumero(String dato, JsonNode informacion) throws DatoNoValido {
+        if (!(informacion.get(dato).isInt())){
+            throw new DatoNoValido();
+        }
+        int numeroEncontrado = informacion.get(dato).asInt();
+        if (numeroEncontrado < 0){
+            throw new DatoNoValido();
+        }
+        return numeroEncontrado;
     }
 }

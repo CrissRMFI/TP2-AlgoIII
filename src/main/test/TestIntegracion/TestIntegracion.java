@@ -3,14 +3,11 @@ package TestIntegracion;
 import Datos.InformacionMapaEnJSON;
 import Datos.InformacionMapaLinealEnMatriz;
 import Entidades.AlgoRoma;
-import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
+import Entidades.Errores.*;
 import Entidades.Premios.Comida;
 import Entidades.Interactuable;
 import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
-import Entidades.Errores.CantidadMinimaDeJugadores;
-import Entidades.Errores.PartidaFinalizada;
-import Entidades.Errores.PartidaNoFinalizada;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.Bacanal;
@@ -183,7 +180,7 @@ public class TestIntegracion {
         return mapa;
     }
 
-    public Mapa MapaCatedra() throws IOException {
+    public Mapa MapaCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
 
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapa.json");
 
@@ -817,7 +814,7 @@ public class TestIntegracion {
     /* inician test con mapa de catedra*/
 
     @Test
-    public void NoSePuedeInicializarPartidaConUnSoloJugadorMapaCatedra() throws ElNombreDebeContenerUnMinimoDe4Caracteres,IOException {
+    public void NoSePuedeInicializarPartidaConUnSoloJugadorMapaCatedra() throws ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
 
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
@@ -828,7 +825,7 @@ public class TestIntegracion {
 
 
      @Test
-    public void DosGladiadoresJueganDosTurnosYLaPartidaNoFinalizaMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres,IOException {
+    public void DosGladiadoresJueganDosTurnosYLaPartidaNoFinalizaMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -851,7 +848,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnErrorMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException {
+    public void DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnErrorMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -882,7 +879,7 @@ public class TestIntegracion {
     }
 
 
-    @Test public void SeJuegaUnaPartidaSeConsultaPorElGanadorCuandoLaPartidaNoTerminoEntraEnErrorMapaCatedra () throws PartidaFinalizada,CantidadMinimaDeJugadores,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    @Test public void SeJuegaUnaPartidaSeConsultaPorElGanadorCuandoLaPartidaNoTerminoEntraEnErrorMapaCatedra () throws PartidaFinalizada, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
 
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
@@ -910,7 +907,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaElJugadorQueLlegaALaMetaNoGanaYQuedaPosicoinadoEnElMedioMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void SeJuegaUnaPartidaElJugadorQueLlegaALaMetaNoGanaYQuedaPosicoinadoEnElMedioMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -944,7 +941,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaJUgadorEncuentraCasilleroConEquipamientoLoPuedeEquiparYEvoklucionaACascoMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void SeJuegaUnaPartidaJUgadorEncuentraCasilleroConEquipamientoLoPuedeEquiparYEvoklucionaACascoMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -973,7 +970,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaSeEquipaDosEquiposElJugadorPuedeEquiparYSuEquipoEsArmaduraMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void SeJuegaUnaPartidaSeEquipaDosEquiposElJugadorPuedeEquiparYSuEquipoEsArmaduraMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -1017,7 +1014,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaSeObtienen3Equipos () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void SeJuegaUnaPartidaSeObtienen3Equipos () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -1075,7 +1072,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JugadoresSeAtraviesanConUnaPiedraPierdenUnTurnoMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void JugadoresSeAtraviesanConUnaPiedraPierdenUnTurnoMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -1118,7 +1115,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JugadoresAtraviesanMapaConEquipoBaseChocanUnBacanalPierdeEnergia () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void JugadoresAtraviesanMapaConEquipoBaseChocanUnBacanalPierdeEnergia () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -1149,7 +1146,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JueganHayUnGanadorMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,PartidaNoFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void JueganHayUnGanadorMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -1211,27 +1208,14 @@ public class TestIntegracion {
         jugador.moverse(tablero);
         algoRoma.entregarElementos(jugador);
         algoRoma.finalizarTurno();
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        jugador = algoRoma.siguienteJugador();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(29));
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
 
         assertThrows(PartidaFinalizada.class, () -> algoRoma.siguienteJugador());
         assertNotNull(algoRoma.elGanador());
         assertEquals("Carpoforo",algoRoma.elGanador().miNombre());
-
     }
 
     @Test
-    public void LlegaPeroNoGanaMapaCatedra () throws CantidadMinimaDeJugadores,PartidaFinalizada,PartidaNoFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void LlegaPeroNoGanaMapaCatedra () throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -1256,7 +1240,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void EnfrentaAFieraConArmaduraYReduceSuEnergiaEn10 () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void EnfrentaAFieraConArmaduraYReduceSuEnergiaEn10 () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -1301,7 +1285,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void EnfrentaAFieraConArmaduraYReduceSuEnergiaEn0 () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void EnfrentaAFieraConArmaduraYReduceSuEnergiaEn0 () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -1350,7 +1334,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void EnfrentaAFieraConArmaduraYReduceSuEnergiaEn10V2 () throws CantidadMinimaDeJugadores,PartidaFinalizada,ElNombreDebeContenerUnMinimoDe4Caracteres,IOException{
+    public void EnfrentaAFieraConArmaduraYReduceSuEnergiaEn10V2 () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         Mapa mapa = this.MapaCatedra();
         Tablero tablero = new Tablero(mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
