@@ -1,7 +1,7 @@
 package Entidades.Jugadores;
 import Entidades.Elementos.*;
 import Entidades.Energia.Energia;
-import Entidades.Premios.Equipamiento;
+import Entidades.Premios.Equipo;
 import Entidades.Premios.EquipoBase;
 import Entidades.Premios.JerarquiaEquipos;
 import Entidades.Tablero.Posicion;
@@ -9,7 +9,7 @@ import Entidades.Tablero.Tablero;
 
 public class Gladiador extends Jugador {
     private Seniority seniority;
-    private Equipamiento equipamiento;
+    private Equipo equipamiento;
 
     public  Gladiador (String nombre) {
         this.nombre = nombre;

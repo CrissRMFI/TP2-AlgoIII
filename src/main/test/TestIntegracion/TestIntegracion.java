@@ -14,8 +14,9 @@ import Entidades.Errores.PartidaNoFinalizada;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.Bacanal;
-import Entidades.Obstaculos.FieraSalvaje;
-import Entidades.Obstaculos.Piedra;
+import Entidades.Obstaculos.Fiera;
+import Entidades.Obstaculos.Lesion;
+import Entidades.Premios.Equipamiento;
 import Entidades.Premios.JerarquiaEquipos;
 import Entidades.Tablero.*;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class TestIntegracion {
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i = 0; i < cantidadCasilleros; i++) {
-            elementosMapa[i][0] = new FieraSalvaje();
+            elementosMapa[i][0] = new Fiera();
         }
 
 
@@ -52,7 +53,7 @@ public class TestIntegracion {
     public Mapa MapaSoloConUnEquipo () {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
-        elementosMapa[8][0] = new Equipo();
+        elementosMapa[8][0] = new Equipamiento();
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
@@ -64,8 +65,8 @@ public class TestIntegracion {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        elementosMapa[3][0] = new Equipo();
-        elementosMapa[5][0] = new Equipo();
+        elementosMapa[3][0] = new Equipamiento();
+        elementosMapa[5][0] = new Equipamiento();
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
@@ -77,9 +78,9 @@ public class TestIntegracion {
     public Mapa MapaSoloConTresEquipos () {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
-        elementosMapa[8][0] = new Equipo();
-        elementosMapa[18][0] = new Equipo();
-        elementosMapa[12][0] = new Equipo();
+        elementosMapa[8][0] = new Equipamiento();
+        elementosMapa[18][0] = new Equipamiento();
+        elementosMapa[12][0] = new Equipamiento();
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
@@ -92,7 +93,7 @@ public class TestIntegracion {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        elementosMapa[0][0] = new Piedra();
+        elementosMapa[0][0] = new Lesion();
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
@@ -106,7 +107,7 @@ public class TestIntegracion {
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i = 0; i < cantidadCasilleros; i++) {
-            elementosMapa[i][0] = new Piedra();
+            elementosMapa[i][0] = new Lesion();
         }
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
@@ -162,17 +163,17 @@ public class TestIntegracion {
             elementosMapa[i][0] = new Comida();
         }
 
-        elementosMapa[4][1] = new Equipo();
-        elementosMapa[7][1] = new Equipo();
+        elementosMapa[4][1] = new Equipamiento();
+        elementosMapa[7][1] = new Equipamiento();
 
-        elementosMapa[9][1] = new Equipo();
-        elementosMapa[13][1] = new Equipo();
+        elementosMapa[9][1] = new Equipamiento();
+        elementosMapa[13][1] = new Equipamiento();
 
-        elementosMapa[19][1] = new Equipo();
-        elementosMapa[22][1] = new Equipo();
+        elementosMapa[19][1] = new Equipamiento();
+        elementosMapa[22][1] = new Equipamiento();
 
-        elementosMapa[28][1] = new Equipo();
-        elementosMapa[29][1] = new Equipo();
+        elementosMapa[28][1] = new Equipamiento();
+        elementosMapa[29][1] = new Equipamiento();
 
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
@@ -184,7 +185,7 @@ public class TestIntegracion {
 
     public Mapa MapaCatedra() throws IOException {
 
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/src/main/java/Datos/mapa.json");
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapa.json");
 
         Mapa mapa = new Mapa(informacionMapaEnJSON);
         mapa.contruirMapa();
@@ -1206,6 +1207,18 @@ public class TestIntegracion {
         jugador = algoRoma.siguienteJugador();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(23));
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+        jugador = algoRoma.siguienteJugador();
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        jugador = algoRoma.siguienteJugador();
+
+        Carpoforo.agregarDispositivoAzar(new MockDado(29));
 
         jugador.moverse(tablero);
         algoRoma.entregarElementos(jugador);

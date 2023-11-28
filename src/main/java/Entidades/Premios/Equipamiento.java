@@ -1,17 +1,13 @@
 package Entidades.Premios;
 
-import Entidades.Energia.Energia;
+import Entidades.Interactuable;
+import Entidades.Jugadores.Jugador;
+import Entidades.Premios.Premio;
 
-public abstract class Equipamiento {
-    protected JerarquiaEquipos jerarquia;
-    public abstract Energia energiaAReducir();
-    public abstract Equipamiento mejorar();
-
-    public  boolean sePuedeMejorar() {
-        return true;
+public class Equipamiento implements Interactuable, Premio {
+    @Override
+    public void interactuar(Jugador jugador) {
+        jugador.equipar();
     }
 
-    public boolean compararEquipo (JerarquiaEquipos equipamiento) {
-        return this.jerarquia.ordinal() == equipamiento.ordinal();
-    }
 }

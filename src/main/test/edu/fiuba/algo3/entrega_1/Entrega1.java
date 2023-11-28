@@ -10,7 +10,8 @@ import Entidades.Errores.CantidadMinimaDeJugadores;
 import Entidades.Errores.PartidaFinalizada;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
-import Entidades.Obstaculos.FieraSalvaje;
+import Entidades.Obstaculos.Fiera;
+import Entidades.Premios.Equipamiento;
 import Entidades.Premios.JerarquiaEquipos;
 import Entidades.Tablero.*;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class Entrega1{
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i = 0; i < cantidadCasilleros; i++) {
-            elementosMapa[i][0] = new FieraSalvaje();
+            elementosMapa[i][0] = new Fiera();
         }
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
@@ -64,8 +65,8 @@ public class Entrega1{
         int cantidadCasilleros = 10;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        elementosMapa[4][0] = new Equipo();
-        elementosMapa[5][0] = new FieraSalvaje();
+        elementosMapa[4][0] = new Equipamiento();
+        elementosMapa[5][0] = new Fiera();
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
@@ -79,12 +80,12 @@ public class Entrega1{
         int cantidadCasilleros = 10;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        elementosMapa[0][0] = new Equipo();
-        elementosMapa[1][0] = new Equipo();
-        elementosMapa[2][0] = new Equipo();
-        elementosMapa[3][0] = new Equipo();
-        elementosMapa[4][0] = new Equipo();
-        elementosMapa[5][0] = new FieraSalvaje();
+        elementosMapa[0][0] = new Equipamiento();
+        elementosMapa[1][0] = new Equipamiento();
+        elementosMapa[2][0] = new Equipamiento();
+        elementosMapa[3][0] = new Equipamiento();
+        elementosMapa[4][0] = new Equipamiento();
+        elementosMapa[5][0] = new Fiera();
 
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);

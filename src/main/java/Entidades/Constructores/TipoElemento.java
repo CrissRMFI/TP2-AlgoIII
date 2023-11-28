@@ -2,7 +2,7 @@ package Entidades.Constructores;
 
 import Entidades.Obstaculos.*;
 import Entidades.Premios.*;
-import Entidades.Tablero.Equipo;
+import Entidades.Premios.Equipamiento;
 
 public enum TipoElemento {
     Lesion,
@@ -16,9 +16,9 @@ public enum TipoElemento {
     public Obstaculo obtenerObstaculo() {
         switch (this) {
             case Lesion:
-                return new Piedra();
+                return new Lesion();
             case Fiera:
-                return new FieraSalvaje();
+                return new Fiera();
             case Bacanal:
                 return new Bacanal();
             default:
@@ -29,7 +29,7 @@ public enum TipoElemento {
     public Premio obtenerPremio() {
         switch (this) {
             case Equipamiento:
-                return new Equipo();
+                return new Equipamiento();
             case Comida:
                 return new Comida();
             default:

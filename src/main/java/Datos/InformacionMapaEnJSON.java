@@ -2,6 +2,7 @@ package Datos;
 
 import Entidades.Constructores.Casilleros;
 import Entidades.Constructores.ElementosCamino;
+import Entidades.Interactuable;
 import Entidades.Obstaculos.Obstaculo;
 import Entidades.Premios.Premio;
 import Entidades.Tablero.*;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -44,7 +46,11 @@ public class InformacionMapaEnJSON implements InformacionMapa{
             Casillero casillero = casilleros.obtenerCasillero(tipoCasillero);
 
             String tipoObstaculo = celda.get("obstaculo").asText();
+            casillero.recibirElemento(generarInteractuable("Entidades.Obstaculos."+tipoObstaculo));
             String tipoPremio = celda.get("premio").asText();
+            casillero.recibirElemento(generarInteractuable("Entidades.Premios."+tipoPremio));
+
+            /*
 
             Obstaculo obstaculo = elementosCamino.obtenerTipoDeObstaculo(tipoObstaculo);
             Premio premio = elementosCamino.obtenerTipoDePremio(tipoPremio);
@@ -52,6 +58,7 @@ public class InformacionMapaEnJSON implements InformacionMapa{
             if (premio != null) casillero.recibirElemento(premio);
             if (obstaculo != null) casillero.recibirElemento(obstaculo);
 
+             */
             mapa.put(posicion,casillero);
             posiciones.add(posicion);
         }
@@ -59,4 +66,28 @@ public class InformacionMapaEnJSON implements InformacionMapa{
         return mapa;
     }
 
+    public Interactuable generarInteractuable(String interactuable){
+        if (noHayNada(interactuable)) return null;
+        try {
+            Interactuable unInteractuable = (Interactuable) Class.forName(interactuable).getDeclaredConstructor().newInstance();
+            return unInteractuable;
+        } catch (NumberFormatException a){
+            System.out.print("NumberFormatException");
+        } catch(InstantiationException b){
+            System.out.print("InstantiationException");
+        } catch (ClassNotFoundException c ){
+            System.out.print("ClassNotFoundException");
+        } catch (NoSuchMethodException d){
+            System.out.print("NoSuchMethodException");
+        } catch (IllegalAccessException e){
+            System.out.print("IllegalAccessException");
+        } catch (InvocationTargetException f){
+            System.out.print("InvocationTargetException");
+        }
+        return null;
+    }
+
+    public boolean noHayNada(String interactuable){
+        return (interactuable.substring(interactuable.lastIndexOf('.') + 1)).isEmpty();
+    }
 }
