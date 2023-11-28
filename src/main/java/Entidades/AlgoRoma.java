@@ -1,5 +1,6 @@
 package Entidades;
 
+import Datos.MensajesErrores;
 import Entidades.Errores.*;
 import Entidades.Jugadores.Jugador;
 import Entidades.Sistemas.ControlCaracteres;
@@ -23,7 +24,7 @@ public class AlgoRoma {
 
     public void agregarJugador(Jugador jugador) throws ElNombreDebeContenerUnMinimoDe4Caracteres {
         if (!this.controlCaracteres.minimoCuatroCaracteres(jugador.miNombre())) {
-            throw new ElNombreDebeContenerUnMinimoDe4Caracteres(new Mensajes().Minimo4Caracteres());
+            throw new ElNombreDebeContenerUnMinimoDe4Caracteres(new MensajesErrores().Minimo4Caracteres());
         }
         Posicion posicion = this.tablero.posicionInicial();
         jugador.posicionar(posicion);
@@ -32,7 +33,7 @@ public class AlgoRoma {
 
     public Jugador comenzarPartida() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
-            Mensajes m = new Mensajes();
+            MensajesErrores m = new MensajesErrores();
             throw new CantidadMinimaDeJugadores(m.CantidadMinimaJugadores());
         }
         Jugador jugador = jugadores.seleccionAleatoria();
@@ -42,7 +43,7 @@ public class AlgoRoma {
 
     public Jugador comenzarPartidaConElPrimerJugador() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
-            Mensajes m = new Mensajes();
+            MensajesErrores m = new MensajesErrores();
             throw new CantidadMinimaDeJugadores(m.CantidadMinimaJugadores());
         }
         Jugador jugador = jugadores.iniciarConElPrimero();
@@ -52,7 +53,7 @@ public class AlgoRoma {
 
     public Jugador siguienteJugador() throws PartidaFinalizada {
         if (this.turnos == 0) {
-            throw new PartidaFinalizada(new Mensajes().PartidaFinalizada());
+            throw new PartidaFinalizada(new MensajesErrores().PartidaFinalizada());
         }
         this.jugadores.siguiente();
         Jugador jugador = this.jugadores.obtener();
@@ -92,7 +93,7 @@ public class AlgoRoma {
 
     public Jugador elGanador () throws PartidaNoFinalizada {
         if (this.turnos != 0) {
-            throw new PartidaNoFinalizada(new Mensajes().PartidaNoFinalizada());
+            throw new PartidaNoFinalizada(new MensajesErrores().PartidaNoFinalizada());
         }
         return this.ganador;
     }

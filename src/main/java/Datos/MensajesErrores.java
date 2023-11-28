@@ -1,6 +1,6 @@
-package Entidades.Errores;
+package Datos;
 
-public class Mensajes {
+public class MensajesErrores {
     public String CantidadMinimaJugadores () {
         return "No hay suficientes jugadorfes para iniciar partida";
     }
