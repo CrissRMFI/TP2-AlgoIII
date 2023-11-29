@@ -1,19 +1,8 @@
 package edu.fiuba.algo3.entrega_2;
-import Datos.InformacionJSON;
+
 import Datos.InformacionMapaEnJSON;
-import Datos.InformacionMapaLinealEnMatriz;
-import Entidades.AlgoRoma;
 import Entidades.Errores.*;
-import Entidades.Premios.Comida;
-import Entidades.Interactuable;
-import Entidades.Elementos.MockDado;
-import Entidades.Energia.Energia;
-import Entidades.Jugadores.Gladiador;
-import Entidades.Jugadores.Jugador;
-import Entidades.Obstaculos.Fiera;
-import Entidades.Premios.Equipamiento;
-import Entidades.Premios.JerarquiaEquipos;
-import Entidades.Tablero.*;
+import Entidades.Tablero.Mapa;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -38,21 +27,69 @@ public class Entrega2 {
 
     @Test
     public void siElArchivoNoTieneDatoLargoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado {
-        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinDatoAlto.json"));
+        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinDatoLargo.json"));
     }
 
     @Test
-    public void siElDatoAnchoEsNegativoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+    public void siElDatoAnchoEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         assertThrows(DatoNoValido.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaConDatoAnchoNegativo.json"));
     }
 
     @Test
-    public void siElDatoAltoEsNegativoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
-        assertThrows(DatoNoValido.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaConDatoAltoNegativo.json"));
+    public void siElDatoLargoEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+        assertThrows(DatoNoValido.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaConDatoLargoNegativo.json"));
     }
 
     @Test
     public void siElArchivoNoTieneDatoCaminoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinDatoCamino.json"));
     }
+
+    @Test
+    public void siElArchivoNoTieneDatoCeldasLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinDatoCeldas.json"));
+    }
+
+    @Test
+    public void siElArchivoNoTieneNingunaCeldaLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinCeldas.json"));
+    }
+
+    @Test
+    public void siElValorXDeUnaCeldaEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorXDeCeldaNegativo.json");
+        Mapa mapa = new Mapa(informacionMapaEnJSON);
+        assertThrows(DatoNoValido.class, () -> mapa.contruirMapa());
+    }
+
+    @Test
+    public void siElValorXDeUnaCeldaEsMayorALargoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorXDeCeldaFueraDeRango.json");
+        Mapa mapa = new Mapa(informacionMapaEnJSON);
+        assertThrows(DatoNoValido.class, () -> mapa.contruirMapa());
+    }
+
+    @Test
+    public void siElValorYDeUnaCeldaEsMayorALargoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorYDeCeldaFueraDeRango.json");
+        Mapa mapa = new Mapa(informacionMapaEnJSON);
+        assertThrows(DatoNoValido.class, () -> mapa.contruirMapa());
+    }
+
+    @Test
+    public void siElValorYDeUnaCeldaEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorYCero.json");
+        Mapa mapa = new Mapa(informacionMapaEnJSON);
+        assertThrows(DatoNoValido.class, () -> mapa.contruirMapa());
+    }
+
+    /*
+    @Test
+    public void elTipoDeCeldaEsBatman() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConCeldaTipoBatman.json");
+        Mapa mapa = new Mapa(informacionMapaEnJSON);
+        mapa.contruirMapa();
+    }
+
+     */
 }

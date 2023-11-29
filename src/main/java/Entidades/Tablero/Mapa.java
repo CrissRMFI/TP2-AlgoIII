@@ -2,6 +2,8 @@ package Entidades.Tablero;
 
 import Datos.InformacionMapa;
 import Entidades.Elementos.ValorAzar;
+import Entidades.Errores.DatoNoValido;
+
 import java.util.Iterator;
 
 
@@ -22,7 +24,7 @@ public class Mapa {
         this.secuenciaPosiciones = new LinkedList<>();
     }
 
-    public void contruirMapa () {
+    public void contruirMapa () throws DatoNoValido {
         this.casilleros = this.informacionMapa.construirMapa(secuenciaPosiciones);
     }
     public Casillero obtenerCasillero (Posicion posicion) {

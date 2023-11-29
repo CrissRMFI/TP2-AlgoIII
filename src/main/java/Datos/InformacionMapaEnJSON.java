@@ -20,24 +20,29 @@ public class InformacionMapaEnJSON implements InformacionMapa{
 
     public InformacionMapaEnJSON (String rutaArchivo) throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
         JsonNode informacion = new InformacionJSON(rutaArchivo).devolverInformacionDelArchivo();
-        revisarSiElDatoEsta(new String[]{"mapa"}, informacion);
+
+        revisarSiLosDatosNecesariosEstan(informacion);
+
         JsonNode mapaInformacion = informacion.get("mapa");
-        revisarSiElDatoEsta(new String[]{"ancho", "largo"}, mapaInformacion);
-        this.ancho = conseguirNumero("ancho", mapaInformacion);
-        this.largo = conseguirNumero("largo", mapaInformacion);
-        revisarSiElDatoEsta(new String[]{"camino"}, informacion);
-        this.celdas = informacion.get("camino").get("celdas");
+
+        this.ancho = conseguirNumero("ancho", mapaInformacion, 100);
+        this.largo = conseguirNumero("largo", mapaInformacion, 100);
+
+        JsonNode caminoInformacion = informacion.get("camino");
+
+        this.celdas = caminoInformacion.get("celdas");
+
     }
 
     @Override
-    public Map<Posicion, Casillero> construirMapa(LinkedList<Posicion> posiciones) {
+    public Map<Posicion, Casillero> construirMapa(LinkedList<Posicion> posiciones) throws DatoNoValido {
         Map<Posicion,Casillero> mapa = new HashMap<>();
         Casilleros casilleros = new Casilleros();
 
         for (JsonNode celda : this.celdas) {
 
-            int x = celda.get("x").asInt();
-            int y = celda.get("y").asInt();
+            int x = this.conseguirNumero("x", celda, this.largo);
+            int y = this.conseguirNumero("y", celda, this.ancho);
             Posicion posicion= new Posicion(x,y);
 
 
@@ -82,22 +87,25 @@ public class InformacionMapaEnJSON implements InformacionMapa{
         return (interactuable.substring(interactuable.lastIndexOf('.') + 1)).isEmpty();
     }
 
-    private void revisarSiElDatoEsta(String[] datos, JsonNode informacion) throws DatoNoEncontrado {
-        for (int i=0; i < datos.length; i++){
-            if(!informacion.has(datos[i])){
-                throw new DatoNoEncontrado();
-            }
-        }
-    }
-
-    private int conseguirNumero(String dato, JsonNode informacion) throws DatoNoValido {
+    private int conseguirNumero(String dato, JsonNode informacion, int limiteMaximo) throws DatoNoValido {
         if (!(informacion.get(dato).isInt())){
             throw new DatoNoValido();
         }
         int numeroEncontrado = informacion.get(dato).asInt();
-        if (numeroEncontrado < 0){
+        if ((numeroEncontrado <= 0) || (numeroEncontrado > limiteMaximo)){
             throw new DatoNoValido();
         }
         return numeroEncontrado;
+    }
+
+
+    private void revisarSiLosDatosNecesariosEstan(JsonNode informacion) throws DatoNoEncontrado{
+        String[] datos = {"mapa", "ancho", "largo",
+                "camino", "celdas", "x", "y", "tipo", "obstaculo", "premio"};
+        for (String dato : datos){
+            if (informacion.findValue(dato) == null ){
+                throw new DatoNoEncontrado();
+            }
+        }
     }
 }

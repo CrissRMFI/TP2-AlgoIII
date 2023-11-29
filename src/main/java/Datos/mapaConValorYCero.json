@@ -1,13 +1,13 @@
 {
   "mapa": {
-    "ancho": -10,
+    "ancho": 10,
     "largo": 18
   },
   "camino": {
     "celdas": [
       {
         "x": 1,
-        "y": 7,
+        "y": 5,
         "tipo": "Salida",
         "obstaculo": "",
         "premio": ""
@@ -21,7 +21,7 @@
       },
       {
         "x": 2,
-        "y": 6,
+        "y": 0,
         "tipo": "Camino",
         "obstaculo": "",
         "premio": "Comida"
@@ -34,7 +34,7 @@
         "premio": ""
       },
       {
-        "x": 2,
+        "x": -2,
         "y": 4,
         "tipo": "Camino",
         "obstaculo": "Fiera",

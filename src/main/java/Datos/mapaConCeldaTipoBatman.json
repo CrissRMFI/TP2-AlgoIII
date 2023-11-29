@@ -1,6 +1,6 @@
 {
   "mapa": {
-    "ancho": -10,
+    "ancho": 10,
     "largo": 18
   },
   "camino": {
@@ -15,7 +15,7 @@
       {
         "x": 2,
         "y": 7,
-        "tipo": "Camino",
+        "tipo": "Batman",
         "obstaculo": "",
         "premio": "Equipamiento"
       },
