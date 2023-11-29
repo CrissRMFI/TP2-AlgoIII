@@ -6,4 +6,6 @@ public class MensajesUsuario {
 
     public String CargarMapa () {return "CARGAR MAPA";}
     public String TituloAplicacion () {return "ALGO ROMA";}
+
+    public String CantidadMinimaDeJugadores () {return "La cantidad mínima de jugadores debe ser dos";}
 }
