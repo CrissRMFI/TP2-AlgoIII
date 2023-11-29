@@ -18,6 +18,7 @@ public class InformacionMapaEnJSON implements InformacionMapa{
     private int ancho;
     private int largo;
     private JsonNode celdas;
+    private LinkedList listaPosiciones = new LinkedList<>();
     public InformacionMapaEnJSON (String rutaArchivo) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(new File(rutaArchivo));
@@ -38,6 +39,7 @@ public class InformacionMapaEnJSON implements InformacionMapa{
             int x = celda.get("x").asInt();
             int y = celda.get("y").asInt();
             Posicion posicion= new Posicion(x,y);
+            this.listaPosiciones.add(posicion);
 
 
             String tipoCasillero = celda.get("tipo").asText();
@@ -57,6 +59,10 @@ public class InformacionMapaEnJSON implements InformacionMapa{
         }
 
         return mapa;
+    }
+    @Override
+    public LinkedList listaDePosiciones () {
+        return this.listaPosiciones;
     }
 
 }

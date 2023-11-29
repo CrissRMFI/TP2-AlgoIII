@@ -7,6 +7,7 @@ import java.util.*;
 
 public class InformacionMapaLinealEnMatriz implements InformacionMapa {
     private Interactuable[][] informacionMapa;
+    private LinkedList listaPosicoines;
     public InformacionMapaLinealEnMatriz(Interactuable[][] informacion) {
         this.informacionMapa = informacion;
     }
@@ -37,6 +38,12 @@ public class InformacionMapaLinealEnMatriz implements InformacionMapa {
         mapa.put(posicionInicial,casilleroFinal);
         posiciones.add(posicionFinal);
 
+        this.listaPosicoines = posiciones;
         return mapa;
+    }
+
+    @Override
+    public LinkedList listaDePosiciones() {
+        return this.listaPosicoines;
     }
 }

@@ -11,4 +11,8 @@ public class MensajesErrores {
         return "La partida aun no finalizo";
     }
     public String Minimo4Caracteres () {return "El nombre debe contener un minimo de cuatro caracteres";}
+
+    public String ErrorAlCargarElMapa () {return "Error: Es posible que no sea una extensión válida";}
+
+    public String ErrorAlIniciarElJuego () {return "Error al iniciar el juego";}
 }

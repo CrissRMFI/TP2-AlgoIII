@@ -20,6 +20,14 @@ public class Posicion {
         return this.y;
     }
 
+    public int posicionLineal () {
+        return this.x.valor();
+    }
+
+    public int posicionVertical () {
+        return this.y.valor();
+    }
+
 
     public boolean esIgual(Posicion posicion) {
         boolean lineal = this.x.comparar(posicion.obtenerCoordenadaLinal());
