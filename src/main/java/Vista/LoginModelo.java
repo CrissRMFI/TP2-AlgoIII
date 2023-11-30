@@ -3,6 +3,9 @@ package Vista;
 import Datos.InformacionMapa;
 import Datos.InformacionMapaEnJSON;
 import Entidades.AlgoRoma;
+import Entidades.Errores.ArchivoNoEncontrado;
+import Entidades.Errores.DatoNoEncontrado;
+import Entidades.Errores.DatoNoValido;
 import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import Entidades.Jugadores.Jugador;
 import Entidades.Tablero.Mapa;
@@ -40,7 +43,7 @@ public class LoginModelo {
 
     }
 
-    public void cargarMapa (String ruta) throws IOException {
+    public void cargarMapa (String ruta) throws ArchivoNoEncontrado, DatoNoValido, DatoNoEncontrado {
         InformacionMapa informacionMapa = new InformacionMapaEnJSON(ruta);
         this.mapa = new Mapa(informacionMapa);
         this.mapa.contruirMapa();

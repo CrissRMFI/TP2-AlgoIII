@@ -2,9 +2,9 @@ package Entidades.Tablero;
 
 import Vista.CasilleroVista;
 
-public class CasilleroFinal extends Casillero{
+public class CasilleroSalida extends Casillero{
     @Override
     public CasilleroVista construirVistaCasillero() {
-        return this.casilleroVista.crearCasilleroFinal();
+        return this.casilleroVista.crearCasilleroInicial();
     }
 }

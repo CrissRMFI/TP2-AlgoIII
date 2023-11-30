@@ -2,7 +2,7 @@ package Entidades.Premios;
 
 import Entidades.Energia.Energia;
 
-public class Llave extends Equipamiento {
+public class Llave extends Equipo {
 
     public Llave () {
         this.jerarquia = JerarquiaEquipos.LLAVE;
@@ -10,7 +10,7 @@ public class Llave extends Equipamiento {
     }
 
     @Override
-    public Equipamiento mejorar() {
+    public Equipo mejorar() {
         return this;
     }
 
