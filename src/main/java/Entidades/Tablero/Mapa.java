@@ -3,6 +3,7 @@ package Entidades.Tablero;
 import Datos.InformacionMapa;
 import Entidades.Elementos.ValorAzar;
 import Entidades.Errores.DatoNoValido;
+import javafx.geometry.Pos;
 
 import java.util.Iterator;
 
@@ -41,27 +42,18 @@ public class Mapa {
     }
 
     public Posicion calcularSiguientePosicion(ValorAzar valor, Posicion posicion) {
-        Posicion posicion1 = null;
-        Iterator<Posicion> iterador = this.secuenciaPosiciones.iterator();
 
-        while (iterador.hasNext()) {
-            posicion1 = iterador.next();
-            if (posicion1.esIgual(posicion)) {
-                break;
-            }
+        int indiceDePosicionActual = this.secuenciaPosiciones.indexOf(posicion) +1;
+        int cantidadDeMovimiento = 0;
+        Posicion nuevaPosicion = null;
+        Iterator<Posicion> iterator = this.secuenciaPosiciones.listIterator(indiceDePosicionActual);
+
+        while (iterator.hasNext() && cantidadDeMovimiento < valor.obtenerValor()) {
+            nuevaPosicion = iterator.next();
+            cantidadDeMovimiento++;
         }
 
-        for (int i=0; i< valor.obtenerValor(); i++) {
-            if (iterador.hasNext()) {
-                posicion1 = iterador.next();
-            } else {
-                return this.obtenerPosicionDelMedio();
-            }
-        }
-
-
-
-        return posicion1;
+        return nuevaPosicion;
     }
 
     public Posicion obtenerPosicionInicial () {

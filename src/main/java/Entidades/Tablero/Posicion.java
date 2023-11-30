@@ -27,10 +27,4 @@ public class Posicion {
 
         return lineal && vertical;
     }
-    public boolean esMayorIgual(Posicion posicion) {
-        boolean lineal = this.x.esMayorOIgual(posicion.obtenerCoordenadaLinal());
-        boolean vertical = this.y.esMayorOIgual(posicion.obtenerCoordenadaVertical());
-
-        return lineal && vertical;
-    }
 }

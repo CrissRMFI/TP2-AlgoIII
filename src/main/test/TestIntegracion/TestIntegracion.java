@@ -1380,7 +1380,31 @@ public class TestIntegracion {
         Energia energiaEsperada = new Energia(10);
 
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
+    }
 
+    @Test
+    public void LaSiguientePosicionEsMayorALaUltimaPeroNoTiraErrorSinoQueLaPosicionAhoraEstaEnElMedio() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+        Mapa mapa = this.MapaCatedra();
+        Tablero tablero = new Tablero(mapa);
+        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        MockDado mockDado = new MockDado(50);
+
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
+
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
+        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+
+        jugador.moverse(tablero);
+        algoRoma.entregarElementos(jugador);
+        algoRoma.finalizarTurno();
+
+        Posicion posicionEsperada = new Posicion(12,3);
+        assertThrows(PartidaNoFinalizada.class, () -> algoRoma.elGanador());
+        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
 
     }
+
 }
