@@ -11,17 +11,19 @@ public class SistemaControlGanador {
     public SistemaControlGanador (Tablero tablero) {
         this.tablero = tablero;
     }
+
     public void gano (Jugador jugador, AlgoRoma algoRoma) {
 
         Posicion posicion = this.tablero.posicionFinal();
 
-
-        boolean cumplePosicion = jugador.miPosicion().esMayorIgual(posicion);
+        boolean cumplePosicion = jugador.miPosicion().esIgual(posicion);
 
         boolean cumpleEquipo = jugador.esEquipoMaximo();
+
         if (cumplePosicion && cumpleEquipo) {
             algoRoma.finalizarJuego(jugador);
         }
+
         if (cumplePosicion && !cumpleEquipo) {
             posicion = this.tablero.posicionMedio();
             jugador.posicionar(posicion);

@@ -2,7 +2,9 @@ package Entidades.Premios;
 
 import Entidades.Energia.Energia;
 
-public class Casco extends Equipamiento {
+import java.util.Arrays;
+
+public class Casco extends Equipo {
 
     public Casco () {
         this.jerarquia = JerarquiaEquipos.CASCO;
@@ -10,12 +12,7 @@ public class Casco extends Equipamiento {
     }
 
     @Override
-    public Equipamiento mejorar() {
+    public Equipo mejorar() {
         return new Armadura();
-    }
-
-    @Override
-    public boolean sePuedeMejorar() {
-        return this.jerarquia.ordinal() == JerarquiaEquipos.values()[JerarquiaEquipos.values().length - 1].ordinal();
     }
 }

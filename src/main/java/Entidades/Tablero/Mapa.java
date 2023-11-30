@@ -4,9 +4,9 @@ import Datos.InformacionMapa;
 import Entidades.Elementos.ValorAzar;
 import Vista.TableroVista;
 import javafx.scene.layout.GridPane;
+import Entidades.Errores.DatoNoValido;
 
 import java.util.Iterator;
-
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -25,9 +25,10 @@ public class Mapa {
         this.secuenciaPosiciones = new LinkedList<>();
     }
 
-    public void contruirMapa () {
+    public void contruirMapa () throws DatoNoValido {
         this.casilleros = this.informacionMapa.construirMapa(secuenciaPosiciones);
     }
+
     public Casillero obtenerCasillero (Posicion posicion) {
         return this.casilleros.get(this.obtenerPosicion(posicion));
     }
@@ -42,24 +43,16 @@ public class Mapa {
     }
 
     public Posicion calcularSiguientePosicion(ValorAzar valor, Posicion posicion) {
-        Posicion posicion1 = null;
-        Iterator<Posicion> iterador = this.secuenciaPosiciones.iterator();
+        int indiceDePosicionActual = this.secuenciaPosiciones.indexOf(posicion) +1;
+        int cantidadDeMovimiento = 0;
+        Posicion nuevaPosicion = null;
+        Iterator<Posicion> iterator = this.secuenciaPosiciones.listIterator(indiceDePosicionActual);
 
-        while (iterador.hasNext()) {
-            posicion1 = iterador.next();
-            if (posicion1.esIgual(posicion)) {
-                break;
-            }
+        while (iterator.hasNext() && cantidadDeMovimiento < valor.obtenerValor()) {
+            nuevaPosicion = iterator.next();
+            cantidadDeMovimiento++;
         }
-
-        for (int i=0; i< valor.obtenerValor(); i++) {
-            if (iterador.hasNext()) {
-                posicion1 = iterador.next();
-            } else {
-                return this.obtenerPosicionDelMedio();
-            }
-        }
-        return posicion1;
+        return nuevaPosicion;
     }
 
     public Posicion obtenerPosicionInicial () {

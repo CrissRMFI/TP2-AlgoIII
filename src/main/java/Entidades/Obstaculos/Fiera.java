@@ -3,7 +3,7 @@ package Entidades.Obstaculos;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Jugador;
 
-public class FieraSalvaje extends Obstaculo{
+public class Fiera extends Obstaculo{
 
     private static final int DANIO = -20;
 
