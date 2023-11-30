@@ -13,7 +13,7 @@ public abstract class Equipo {
         return energia;
     }
 
-    public  boolean sePuedeMejorar() {
+    public boolean sePuedeMejorar() {
         return true;
     }
 

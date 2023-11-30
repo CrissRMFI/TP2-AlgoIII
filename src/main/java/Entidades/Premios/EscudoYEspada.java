@@ -12,9 +12,4 @@ public class EscudoYEspada extends Equipo {
     public Equipo mejorar() {
         return new Llave();
     }
-
-    @Override
-    public boolean sePuedeMejorar() {
-        return this.jerarquia.ordinal() == JerarquiaEquipos.values()[JerarquiaEquipos.values().length - 1].ordinal();
-    }
 }

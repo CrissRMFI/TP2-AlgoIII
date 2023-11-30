@@ -15,9 +15,4 @@ public class Casco extends Equipo {
     public Equipo mejorar() {
         return new Armadura();
     }
-
-    @Override
-    public boolean sePuedeMejorar() {
-        return this.jerarquia.ordinal() == JerarquiaEquipos.values()[JerarquiaEquipos.values().length - 1].ordinal();
-    }
 }

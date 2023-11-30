@@ -1219,7 +1219,6 @@ public class Entrega2 {
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
     }
 
-    /*
     @Test
     public void AgarraElEquipamientoDeLaUltimaCeldaPeroNoElDeLaCeldaDelMedio() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
         Mapa mapa = this.MapaCatedra("mapaConEquipamientoEnLaUltimaCelda.json");
@@ -1248,6 +1247,5 @@ public class Entrega2 {
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
     }
 
-     */
 
 }
