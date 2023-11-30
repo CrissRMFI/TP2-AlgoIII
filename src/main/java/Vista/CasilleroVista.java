@@ -21,7 +21,7 @@ public class CasilleroVista extends HBox {
         cuadradoContenedor.setFill(Color.BLUE);
 
         this.getChildren().addAll(cuadradoContenedor);
-        this.setStyle("-fx-margin: 50; -fx-border-color: blue; -fx-border-radius: 50;-fx-border-width: 10;");
+        this.setStyle("-fx-margin: 50; -fx-border-color: blue; -fx-border-radius: 0;-fx-border-width: 10;");
 
         return this;
     }
@@ -31,7 +31,7 @@ public class CasilleroVista extends HBox {
         cuadradoContenedor.setFill(Color.DARKGREEN);
 
         this.getChildren().addAll(cuadradoContenedor);
-        this.setStyle("-fx-margin: 50; -fx-border-color: green; -fx-border-radius: 50;-fx-border-width: 10;");
+        this.setStyle("-fx-margin: 50; -fx-border-color: green; -fx-border-radius: 0;-fx-border-width: 10;");
 
         return this;
     }

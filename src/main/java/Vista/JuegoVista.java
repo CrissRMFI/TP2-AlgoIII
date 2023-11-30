@@ -23,8 +23,7 @@ public class JuegoVista {
     }
 
     public void agregarVista (GridPane grid) {
-        box.getChildren().add(grid);
+        this.box.getChildren().add(grid);
     }
-
 
 }
