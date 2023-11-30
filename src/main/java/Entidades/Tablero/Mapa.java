@@ -2,6 +2,9 @@ package Entidades.Tablero;
 
 import Datos.InformacionMapa;
 import Entidades.Elementos.ValorAzar;
+import Vista.TableroVista;
+import javafx.scene.layout.GridPane;
+
 import java.util.Iterator;
 
 
@@ -56,9 +59,6 @@ public class Mapa {
                 return this.obtenerPosicionDelMedio();
             }
         }
-
-
-
         return posicion1;
     }
 
@@ -72,5 +72,9 @@ public class Mapa {
 
     public Posicion obtenerPosicionDelMedio() {
         return this.secuenciaPosiciones.get(this.secuenciaPosiciones.size()/2);
+    }
+
+    public GridPane construirVistaMapa (TableroVista tableroVista) {
+        return tableroVista.construirTablero(this.casilleros);
     }
 }

@@ -1,6 +1,10 @@
 package Entidades.Tablero;
 
-import java.util.LinkedList;
+import Vista.CasilleroVista;
 
 public class CasilleroMapa extends Casillero{
+    @Override
+    public CasilleroVista construirVistaCasillero() {
+        return this.casilleroVista.crearCasillero();
+    }
 }

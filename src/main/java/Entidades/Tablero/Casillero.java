@@ -2,11 +2,13 @@ package Entidades.Tablero;
 
 import Entidades.Interactuable;
 import Entidades.Jugadores.Jugador;
+import Vista.CasilleroVista;
 
 import java.util.LinkedList;
 
 public abstract class Casillero {
     protected LinkedList<Interactuable> elementos = new LinkedList<>();
+    protected CasilleroVista casilleroVista = new CasilleroVista();
 
     public void recibirElemento (Interactuable elemento) {
         this.elementos.add(elemento);
@@ -19,4 +21,5 @@ public abstract class Casillero {
             }
         }
     }
+    public abstract CasilleroVista construirVistaCasillero();
 }

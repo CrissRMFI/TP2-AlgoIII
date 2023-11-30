@@ -4,8 +4,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Casillero extends HBox {
-    public Casillero crearCasillero() {
+public class CasilleroVista extends HBox {
+    public CasilleroVista crearCasillero() {
 
         Rectangle cuadradoContenedor = new Rectangle(40, 40);
         cuadradoContenedor.setFill(Color.BLANCHEDALMOND);
@@ -16,7 +16,7 @@ public class Casillero extends HBox {
         return this;
     }
 
-    public Casillero crearCasilleroFinal () {
+    public CasilleroVista crearCasilleroFinal () {
         Rectangle cuadradoContenedor = new Rectangle(40, 40);
         cuadradoContenedor.setFill(Color.BLUE);
 
@@ -26,7 +26,7 @@ public class Casillero extends HBox {
         return this;
     }
 
-    public Casillero crearCasilleroInicial () {
+    public CasilleroVista crearCasilleroInicial () {
         Rectangle cuadradoContenedor = new Rectangle(40, 40);
         cuadradoContenedor.setFill(Color.DARKGREEN);
 

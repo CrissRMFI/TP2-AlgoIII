@@ -6,6 +6,8 @@ import Entidades.Jugadores.Jugador;
 import Entidades.Sistemas.ControlCaracteres;
 import Entidades.Sistemas.SistemaControlGanador;
 import Entidades.Tablero.*;
+import Vista.PanelDeControlVista;
+import javafx.scene.layout.GridPane;
 
 public class AlgoRoma {
     private final ListaCircular<Jugador> jugadores = new ListaCircular<>();
@@ -100,5 +102,10 @@ public class AlgoRoma {
     public void finalizarJuego (Jugador jugador) {
         this.turnos = 0;
         this.ganador = jugador;
+    }
+
+    public GridPane panelControl () {
+        PanelDeControlVista panel = new PanelDeControlVista();
+        return panel.crearVista(this.jugadores);
     }
 }
