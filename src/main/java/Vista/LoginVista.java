@@ -2,6 +2,9 @@ package Vista;
 
 import Datos.MensajesErrores;
 import Datos.MensajesUsuario;
+import Entidades.Errores.ArchivoNoEncontrado;
+import Entidades.Errores.DatoNoEncontrado;
+import Entidades.Errores.DatoNoValido;
 import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
@@ -93,13 +96,13 @@ public class LoginVista {
 
     }
 
-    private void cargarMapa (ActionEvent actionEvent) {
+    private void cargarMapa (ActionEvent actionEvent){
 
 
         try {
             File archivo = fileChooser.showOpenDialog(this.stage);
             this.viewModel.cargarMapa(archivo.getAbsolutePath());
-        } catch (IOException error) {
+        } catch (IOException | ArchivoNoEncontrado | DatoNoValido | DatoNoEncontrado error) {
             MensajesErrores me = new MensajesErrores();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -108,7 +111,7 @@ public class LoginVista {
         }
     }
 
-    private TextField crearTextField () {
+    private TextField crearTextField(){
         TextField textField = new TextField();
         textField.setStyle("-fx-margin: 40");
         return textField;

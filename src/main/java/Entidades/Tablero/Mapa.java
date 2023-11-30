@@ -43,16 +43,24 @@ public class Mapa {
     }
 
     public Posicion calcularSiguientePosicion(ValorAzar valor, Posicion posicion) {
-        int indiceDePosicionActual = this.secuenciaPosiciones.indexOf(posicion) +1;
-        int cantidadDeMovimiento = 0;
-        Posicion nuevaPosicion = null;
-        Iterator<Posicion> iterator = this.secuenciaPosiciones.listIterator(indiceDePosicionActual);
+        Posicion posicion1 = null;
+        Iterator<Posicion> iterador = this.secuenciaPosiciones.iterator();
 
-        while (iterator.hasNext() && cantidadDeMovimiento < valor.obtenerValor()) {
-            nuevaPosicion = iterator.next();
-            cantidadDeMovimiento++;
+        while (iterador.hasNext()) {
+            posicion1 = iterador.next();
+            if (posicion1.esIgual(posicion)) {
+                break;
+            }
         }
-        return nuevaPosicion;
+
+        for (int i=0; i< valor.obtenerValor(); i++) {
+            if (iterador.hasNext()) {
+                posicion1 = iterador.next();
+            } else {
+                return this.obtenerPosicionDelMedio();
+            }
+        }
+        return posicion1;
     }
 
     public Posicion obtenerPosicionInicial () {

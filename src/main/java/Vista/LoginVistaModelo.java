@@ -1,6 +1,9 @@
 package Vista;
 
 import Datos.MensajesUsuario;
+import Entidades.Errores.ArchivoNoEncontrado;
+import Entidades.Errores.DatoNoEncontrado;
+import Entidades.Errores.DatoNoValido;
 import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
@@ -45,7 +48,7 @@ public class LoginVistaModelo {
     public void implementarStage (Stage stage) {
         this.stage = stage;
     }
-    public void cargarMapa (String ruta) throws IOException{
+    public void cargarMapa (String ruta) throws IOException, ArchivoNoEncontrado, DatoNoValido, DatoNoEncontrado {
         this.model.cargarMapa(ruta);
     }
 
