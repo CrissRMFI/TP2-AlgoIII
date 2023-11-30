@@ -4,9 +4,9 @@ import Datos.InformacionMapa;
 import Entidades.Elementos.ValorAzar;
 import Vista.TableroVista;
 import javafx.scene.layout.GridPane;
+import Entidades.Errores.DatoNoValido;
 
 import java.util.Iterator;
-
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -25,9 +25,10 @@ public class Mapa {
         this.secuenciaPosiciones = new LinkedList<>();
     }
 
-    public void contruirMapa () {
+    public void contruirMapa () throws DatoNoValido {
         this.casilleros = this.informacionMapa.construirMapa(secuenciaPosiciones);
     }
+
     public Casillero obtenerCasillero (Posicion posicion) {
         return this.casilleros.get(this.obtenerPosicion(posicion));
     }

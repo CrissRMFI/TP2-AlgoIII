@@ -2,7 +2,7 @@ package Entidades.Premios;
 
 import Entidades.Energia.Energia;
 
-public class EquipoBase extends Equipamiento {
+public class EquipoBase extends Equipo {
 
     public EquipoBase () {
         this.jerarquia = JerarquiaEquipos.EQUIPO_BASE;
@@ -10,7 +10,7 @@ public class EquipoBase extends Equipamiento {
     }
 
     @Override
-    public Equipamiento mejorar() {
+    public Equipo mejorar() {
         return new Casco();
     }
 }
