@@ -1,9 +1,7 @@
 package Datos;
 
 import Entidades.Constructores.Casilleros;
-import Entidades.Errores.ArchivoNoEncontrado;
-import Entidades.Errores.DatoNoEncontrado;
-import Entidades.Errores.DatoNoValido;
+import Entidades.Errores.*;
 import Entidades.Interactuable;
 import Entidades.Tablero.*;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -45,13 +43,11 @@ public class InformacionMapaEnJSON implements InformacionMapa{
             int y = this.conseguirNumero("y", celda, this.ancho);
             Posicion posicion= new Posicion(x,y);
 
-
-            String tipoCasillero = celda.get("tipo").asText();
-            Casillero casillero = casilleros.obtenerCasillero(tipoCasillero);
-
+            Casillero casillero = obtenerCasillero(celda, casilleros);
 
             String tipoPremio = celda.get("premio").asText();
             casillero.recibirElemento(generarInteractuable("Entidades.Premios."+tipoPremio));
+
             String tipoObstaculo = celda.get("obstaculo").asText();
             casillero.recibirElemento(generarInteractuable("Entidades.Obstaculos."+tipoObstaculo));
 
@@ -62,17 +58,14 @@ public class InformacionMapaEnJSON implements InformacionMapa{
         return mapa;
     }
 
-    public Interactuable generarInteractuable(String interactuable){
+    public Interactuable generarInteractuable(String interactuable) throws DatoNoValido {
         if (noExisteInteractuable(interactuable)) return null;
         try {
-            Interactuable unInteractuable = (Interactuable) Class.forName(interactuable).getDeclaredConstructor().newInstance();
-            return unInteractuable;
-        } catch (NumberFormatException a){
-            System.out.print("NumberFormatException");
+            return (Interactuable) Class.forName(interactuable).getDeclaredConstructor().newInstance();
         } catch(InstantiationException b){
             System.out.print("InstantiationException");
         } catch (ClassNotFoundException c ){
-            System.out.print("ClassNotFoundException");
+            throw new InteractuableNoValido();
         } catch (NoSuchMethodException d){
             System.out.print("NoSuchMethodException");
         } catch (IllegalAccessException e){
@@ -93,7 +86,7 @@ public class InformacionMapaEnJSON implements InformacionMapa{
         }
         int numeroEncontrado = informacion.get(dato).asInt();
         if ((numeroEncontrado <= 0) || (numeroEncontrado > limiteMaximo)){
-            throw new DatoNoValido();
+            throw new DatoFueraDeRango();
         }
         return numeroEncontrado;
     }
@@ -106,6 +99,17 @@ public class InformacionMapaEnJSON implements InformacionMapa{
             if (informacion.findValue(dato) == null ){
                 throw new DatoNoEncontrado();
             }
+        }
+    }
+
+    private Casillero obtenerCasillero(JsonNode informacion, Casilleros casilleros) throws DatoNoValido{
+        String tipoCasillero = informacion.get("tipo").asText();
+        try{
+            Casillero casillero = casilleros.obtenerCasillero(tipoCasillero);
+            return casillero;
+        }
+        catch (IllegalArgumentException a){
+            throw new DatoNoValido();
         }
     }
 }

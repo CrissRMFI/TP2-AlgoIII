@@ -31,6 +31,8 @@ public class ListaCircular<T> {
     public T obtener() {
         return this.actual.obtenerElemento();
     }
+
+
     public T eliminar(int indice) {
         if (indice < 0 || indice >= longitud) {
             throw new IndexOutOfBoundsException();
