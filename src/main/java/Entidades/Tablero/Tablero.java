@@ -1,8 +1,11 @@
 package Entidades.Tablero;
 import Entidades.Elementos.ValorAzar;
+import Vista.TableroVista;
+import javafx.scene.layout.GridPane;
 
 public class Tablero {
     private final Mapa mapa;
+    private TableroVista tableroVista = new TableroVista();
 
     public Tablero(Mapa mapa) {
         this.mapa = mapa;
@@ -27,5 +30,11 @@ public class Tablero {
     public Posicion posicionMedio() {
         return mapa.obtenerPosicionDelMedio();
     }
+
+    public GridPane renderizarTablero () {
+        return this.mapa.construirVistaMapa(this.tableroVista);
+    }
+
+
 
 }

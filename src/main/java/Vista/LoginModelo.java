@@ -7,6 +7,7 @@ import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import Entidades.Jugadores.Jugador;
 import Entidades.Tablero.Mapa;
 import Entidades.Tablero.Tablero;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,9 +17,8 @@ public class LoginModelo {
 
     private LinkedList<Jugador> jugadores = new LinkedList<>();
     private Mapa mapa;
-    private TableroVista tablero;
 
-    public void iniciar (Stage stageLogin) throws ElNombreDebeContenerUnMinimoDe4Caracteres,IOException {
+    public void iniciar (Stage stageLogin) throws ElNombreDebeContenerUnMinimoDe4Caracteres {
         stageLogin.close();
         Tablero tablero = new Tablero(this.mapa);
         AlgoRoma algoRoma = new AlgoRoma(tablero);
@@ -28,7 +28,15 @@ public class LoginModelo {
             algoRoma.agregarJugador(jugador);
         }
 
-        this.tablero.mostrarTablero();
+        JuegoVista juegoVista = new JuegoVista();
+
+        GridPane gridTablero = tablero.renderizarTablero();
+        GridPane gridPanelControl = algoRoma.panelControl();
+
+        juegoVista.agregarVista(gridTablero);
+        juegoVista.agregarVista(gridPanelControl);
+
+        juegoVista.renderizarJuego();
 
     }
 
@@ -36,9 +44,8 @@ public class LoginModelo {
         InformacionMapa informacionMapa = new InformacionMapaEnJSON(ruta);
         this.mapa = new Mapa(informacionMapa);
         this.mapa.contruirMapa();
-        this.tablero = new TableroVista();
-        this.tablero.cargarCasilleros(informacionMapa);
     }
+
     public void recibirJugador (Jugador jugador) {
         this.jugadores.add(jugador);
     }

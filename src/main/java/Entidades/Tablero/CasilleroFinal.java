@@ -1,9 +1,10 @@
 package Entidades.Tablero;
 
-import Entidades.Jugadores.Jugador;
-
-import java.util.LinkedList;
+import Vista.CasilleroVista;
 
 public class CasilleroFinal extends Casillero{
-
+    @Override
+    public CasilleroVista construirVistaCasillero() {
+        return this.casilleroVista.crearCasilleroFinal();
+    }
 }

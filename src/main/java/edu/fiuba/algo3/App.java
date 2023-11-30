@@ -13,7 +13,6 @@ public class App extends Application {
         LoginVista login = new LoginVista();
         login.crearVista();
 
-
     }
 
     public static void main(String[] args) {
