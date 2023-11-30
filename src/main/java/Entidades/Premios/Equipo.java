@@ -7,8 +7,8 @@ public abstract class Equipo {
     public abstract Energia energiaAReducir();
     public abstract Equipo mejorar();
 
-    public  boolean sePuedeMejorar() {
-        return true;
+    public boolean esEquipoMaximo(){
+        return this.jerarquia.equals(JerarquiaEquipos.LLAVE);
     }
 
     public boolean compararEquipo (JerarquiaEquipos equipamiento) {

@@ -75,7 +75,7 @@ public class Gladiador extends Jugador {
 
     @Override
     public boolean esEquipoMaximo() {
-        return !this.equipamiento.sePuedeMejorar();
+        return (this.equipamiento.esEquipoMaximo());
     }
 
     @Override

@@ -16,10 +16,4 @@ public class Llave extends Equipo {
     public Equipo mejorar() {
         return this;
     }
-
-    @Override
-    public boolean sePuedeMejorar() {
-       return false;
-
-    }
 }
