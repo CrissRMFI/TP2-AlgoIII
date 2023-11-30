@@ -16,7 +16,7 @@ public class SistemaControlGanador {
         Posicion posicion = this.tablero.posicionFinal();
 
 
-        boolean cumplePosicion = jugador.miPosicion().esMayorIgual(posicion);
+        boolean cumplePosicion = jugador.miPosicion().esIgual(posicion);
 
         boolean cumpleEquipo = jugador.esEquipoMaximo();
         if (cumplePosicion && cumpleEquipo) {
