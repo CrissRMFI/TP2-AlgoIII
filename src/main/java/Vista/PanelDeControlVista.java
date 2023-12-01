@@ -3,22 +3,18 @@ package Vista;
 import Datos.MensajesUsuario;
 import Entidades.Jugadores.Jugador;
 import Entidades.ListaCircular;
-import javafx.beans.binding.Bindings;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.paint.Color;
 
 public class PanelDeControlVista {
     private GridPane grid;
-    private VBox columna1;
+    private GridPane columna1;
     private VBox columna2;
     private VBox columna3;
 
@@ -27,7 +23,7 @@ public class PanelDeControlVista {
 
 
     public PanelDeControlVista() {
-        this.columna1 = new VBox();
+        this.columna1 = new GridPane();
         this.columna2 = new VBox();
         this.columna3 = new VBox();
         this.grid = new GridPane();
@@ -36,64 +32,43 @@ public class PanelDeControlVista {
 
     public GridPane crearVista (ListaCircular<Jugador> jugadores) {
 
-       this.grid.add(this.tabla(),0,0);
-
-        return this.grid;
+       this.grid.add(this.construirColumna1(jugadores),0,0);
+       return this.grid;
     }
 
-    public TableView<Item> tabla () {
+    private GridPane construirColumna1(ListaCircular<Jugador> jugadores) {
+
         MensajesUsuario m = new MensajesUsuario();
         GridPane grid = new GridPane();
-        TableView<Item> tablaItems = new TableView<>();
-        tablaItems.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        Label tituloJugadores = new Label(m.PanelControlTituloJugadores());
 
-        VBox.setVgrow(tablaItems, Priority.ALWAYS );
+        tituloJugadores.setFont(new Font("Arial", 36));
+        tituloJugadores.setTextFill(Color.WHITE);
 
-        TableColumn<Item, String> colJugadores = new TableColumn<>(m.PanelControlTituloJugadores());
-        TableColumn<Item, String> colTurno = new TableColumn<>(m.PanelControlTituloTurno());
-        TableColumn<Item, String> colLanzar = new TableColumn<>(m.PanelControlTituloLanzar());
-
-
-        colJugadores.setCellValueFactory( new PropertyValueFactory<>(m.PanelControlTituloJugadores()) );
-        colTurno.setCellValueFactory( new PropertyValueFactory<>(m.PanelControlTituloTurno()) );
-        colLanzar.setCellValueFactory( new PropertyValueFactory<>(m.PanelControlTituloLanzar()) );
+        this.columna1.add(tituloJugadores,0,0);
+        this.columna1.setPadding(new Insets(10));
+        this.columna1.setHalignment(tituloJugadores, HPos.CENTER);
 
 
-        tablaItems.getColumns().addAll(
-                colJugadores,colTurno,colLanzar
-        );
 
-        tablaItems.getItems().addAll(
-                new Item("KBD-0455892", "Mechanical Keyboard","hola"),
-                new Item( "145256", "Product Docs","hola"),
-                new Item( "OR-198975", "O-Ring (100)","prueba")
-        );
+        for (int i=0; i<jugadores.tamanio(); i++) {
+            Label jugador = new Label(jugadores.obtener().miNombre());
+            jugador.setPadding(new Insets(0, 0, 10, 10));
+            jugador.setFont(new Font("Arial", 24));
+            jugador.setTextFill(Color.WHITE);
+            jugadores.siguiente();
+            this.columna1.add(jugador,0,i+2);
+            this.columna1.setHalignment(jugador, HPos.LEFT);
+        }
 
-        Button btnInventory = new Button("Inventory");
-        Button btnCalcTax = new Button("Tax");
+        grid.add(this.columna1,0,0);
 
-        btnInventory.disableProperty().bind(
-                tablaItems.getSelectionModel().selectedItemProperty().isNull()
-        );
 
-        btnCalcTax.disableProperty().bind(
-                tablaItems.getSelectionModel().selectedItemProperty().isNull().or(
-                        Bindings.select(
-                                tablaItems.getSelectionModel().selectedItemProperty(),
-                                "taxable"
-                        ).isEqualTo(false)
-                )
-        );
+        grid.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(5))));
 
-        HBox buttonHBox = new HBox( btnInventory, btnCalcTax );
-        buttonHBox.setSpacing( 8 );
 
-        VBox vbox = new VBox( tablaItems, buttonHBox );
-        vbox.setPadding( new Insets(10) );
-        vbox.setSpacing( 10 );
 
-        return tablaItems;
+
+        return grid;
     }
-
-
 }
