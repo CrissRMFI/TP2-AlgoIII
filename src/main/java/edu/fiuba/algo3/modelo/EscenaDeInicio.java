@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.botonHandler.BotonSalirEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -32,14 +33,15 @@ public class EscenaDeInicio{
         //this.vbox.setBackground(new Background(imagenDeFondo));
 
         Button botonIniciarJuego = new Button("Iniciar Juego");
-        Button botonInformacion = new Button("Informacion");
+
         Button botonSalirDelJuego = new Button("Salir del juego");
+        BotonSalirEventHandler botonSalirEventHandler = new BotonSalirEventHandler();
+        botonSalirDelJuego.setOnAction(botonSalirEventHandler);
 
         botonIniciarJuego.setMaxWidth(Double.MAX_VALUE);
-        botonInformacion.setMaxWidth(Double.MAX_VALUE);
         botonSalirDelJuego.setMaxWidth(Double.MAX_VALUE);
 
-        this.vbox.getChildren().addAll(botonIniciarJuego, botonInformacion, botonSalirDelJuego);
+        this.vbox.getChildren().addAll(botonIniciarJuego, botonSalirDelJuego);
 
         this.borderPane.setLeft(this.vbox);
 
