@@ -1,11 +1,11 @@
 package Entidades.Jugadores;
+import Entidades.AlgoRoma;
 import Entidades.Elementos.*;
 import Entidades.Energia.Energia;
 import Entidades.Premios.Equipo;
 import Entidades.Premios.EquipoBase;
 import Entidades.Premios.JerarquiaEquipos;
-import Entidades.Tablero.Posicion;
-import Entidades.Tablero.Tablero;
+import Entidades.Tablero.Mapa;
 
 public class Gladiador extends Jugador {
     private Seniority seniority;
@@ -26,19 +26,20 @@ public class Gladiador extends Jugador {
 
 
     @Override
-    public void moverse(Tablero tablero) {
-
+    public void moverse() {
         if (this.estaHabilitado() && this.energia.tengoEnergia()) {
-            ValorAzar valorAzar = this.dispositivoDeAzar.lanzar();
-            Posicion posicion = tablero.calcularPosicion(valorAzar,this.miPosicion());
-            this.posicion = posicion;
+            this.mapa.moverJugador(this.casillero,this);
         }
-
         if (!this.energia.tengoEnergia()) {
             this.energia.afectarEnergia(new Energia(5));
             this.deshabilitar();
         }
     }
+
+    public void obtenerElementos () {
+        this.casillero.entregarElementos(this);
+    }
+
     @Override
     public void perderTurnos (Turno turnos) {
         if (this.turno.estaHabilitado()) {
@@ -47,10 +48,11 @@ public class Gladiador extends Jugador {
     }
 
     @Override
-    public void finalizarTurno () {
+    public void finalizarTurno (AlgoRoma algoRoma) {
         this.turno.finalizar();
         this.seniority.aumentarEnergia(this.energia);
         this.ascenderSeniority();
+        algoRoma.finalizarTurno(this);
     }
 
     @Override
@@ -81,4 +83,6 @@ public class Gladiador extends Jugador {
     public boolean compararEquipo(JerarquiaEquipos equipo) {
         return this.equipamiento.compararEquipo(equipo);
     }
+
+
 }

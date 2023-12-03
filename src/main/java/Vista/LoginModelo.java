@@ -9,11 +9,9 @@ import Entidades.Errores.DatoNoValido;
 import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import Entidades.Jugadores.Jugador;
 import Entidades.Tablero.Mapa;
-import Entidades.Tablero.Tablero;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 public class LoginModelo {
@@ -23,8 +21,8 @@ public class LoginModelo {
 
     public void iniciar (Stage stageLogin) throws ElNombreDebeContenerUnMinimoDe4Caracteres {
         stageLogin.close();
-        Tablero tablero = new Tablero(this.mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+
+        AlgoRoma algoRoma = new AlgoRoma(this.mapa);
 
         for (int i=0;i<this.jugadores.size();i++) {
             Jugador jugador = this.jugadores.get(i);
@@ -33,11 +31,11 @@ public class LoginModelo {
 
         JuegoVista juegoVista = new JuegoVista();
 
-        GridPane gridTablero = tablero.renderizarTablero();
-        GridPane gridPanelControl = algoRoma.panelControl();
+        //GridPane gridTablero = this.mapa.renderizarTablero();
+        //GridPane gridPanelControl = algoRoma.panelControl();
 
-        juegoVista.agregarVista(gridTablero);
-        juegoVista.agregarVista(gridPanelControl);
+        //juegoVista.agregarVista(gridTablero);
+        //juegoVista.agregarVista(gridPanelControl);
 
         juegoVista.renderizarJuego();
 
@@ -46,7 +44,7 @@ public class LoginModelo {
     public void cargarMapa (String ruta) throws ArchivoNoEncontrado, DatoNoValido, DatoNoEncontrado {
         InformacionMapa informacionMapa = new InformacionMapaEnJSON(ruta);
         this.mapa = new Mapa(informacionMapa);
-        this.mapa.contruirMapa();
+
     }
 
     public void recibirJugador (Jugador jugador) {

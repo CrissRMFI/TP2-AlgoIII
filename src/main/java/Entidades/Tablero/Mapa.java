@@ -2,80 +2,64 @@ package Entidades.Tablero;
 
 import Datos.InformacionMapa;
 import Entidades.Elementos.ValorAzar;
-import Vista.TableroVista;
-import javafx.scene.layout.GridPane;
+import Entidades.Jugadores.Jugador;
 import Entidades.Errores.DatoNoValido;
 
-import java.util.Iterator;
-
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 
 public class Mapa {
-    private Map<Posicion, Casillero> casilleros;
+    private LinkedList<Casillero> camino = new LinkedList<>();
 
-    private LinkedList<Posicion> secuenciaPosiciones;
+    public Mapa (InformacionMapa informacionMapa) throws DatoNoValido {
+        informacionMapa.construirCamino(this.camino);
 
-    private InformacionMapa informacionMapa;
-
-    public Mapa (InformacionMapa informacionMapa) {
-        this.casilleros = new HashMap<>();
-        this.informacionMapa = informacionMapa;
-        this.secuenciaPosiciones = new LinkedList<>();
     }
+    public void moverJugador(Casillero casillero,Jugador jugador) {
 
-    public void contruirMapa () throws DatoNoValido {
-        this.casilleros = this.informacionMapa.construirMapa(secuenciaPosiciones);
-    }
+        int posicion = 0;
+        ValorAzar valorAzar = jugador.lanzar();
 
-    public Casillero obtenerCasillero (Posicion posicion) {
-        return this.casilleros.get(this.obtenerPosicion(posicion));
-    }
-
-    private Posicion obtenerPosicion (Posicion posicion) {
-        for (Posicion p : this.casilleros.keySet()) {
-            if (p.esIgual(posicion)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public Posicion calcularSiguientePosicion(ValorAzar valor, Posicion posicion) {
-        Posicion posicion1 = null;
-        Iterator<Posicion> iterador = this.secuenciaPosiciones.iterator();
-
-        while (iterador.hasNext()) {
-            posicion1 = iterador.next();
-            if (posicion1.esIgual(posicion)) {
-                break;
-            }
+        for (int i = 0; i<this.camino.size(); i++) {
+            Casillero c = this.camino.get(i);
+            if (c.equals(casillero)) break;
+            posicion++;
         }
 
-        for (int i=0; i< valor.obtenerValor(); i++) {
-            if (iterador.hasNext()) {
-                posicion1 = iterador.next();
-            } else {
-                return this.obtenerPosicionDelMedio();
-            }
+        for (int i = 0; i<valorAzar.obtenerValor(); i++) {
+            posicion++;
         }
-        return posicion1;
+
+        jugador.posicionar(this.obtenerCasillero(posicion));
     }
 
-    public Posicion obtenerPosicionInicial () {
-        return this.secuenciaPosiciones.get(0);
+    private Casillero obtenerCasillero (int posicion) {
+        if (posicion>= this.camino.size()) {
+            int fin = this.camino.size()-1;
+            return this.camino.get(fin);
+
+        }
+        return this.camino.get(posicion);
     }
 
-    public Posicion obtenerPosicionFinal() {
-        return this.secuenciaPosiciones.get(this.secuenciaPosiciones.size()-1);
+    public void ubicarEnInicio (Jugador jugador) {
+        this.camino.get(0).recibirElemento(jugador);
+        jugador.posicionar(this.camino.get(0));
     }
 
-    public Posicion obtenerPosicionDelMedio() {
-        return this.secuenciaPosiciones.get(this.secuenciaPosiciones.size()/2);
+    public void ubicarEnMitadDelCamino (Jugador jugador) {
+        int medio = this.camino.size() /2;
+        jugador.posicionar(this.camino.get(medio));
     }
 
-    public GridPane construirVistaMapa (TableroVista tableroVista) {
-        return tableroVista.construirTablero(this.casilleros);
+    public boolean jugadorGano(Jugador jugador) {
+        CasilleroLlegada casilleroLlegada = (CasilleroLlegada) this.camino.getLast();
+
+        if (jugador.compararPosicion(casilleroLlegada)) {
+            if (!jugador.esEquipoMaximo()) this.ubicarEnMitadDelCamino(jugador);
+            else return true;
+        }
+        return false;
     }
+
+
 }

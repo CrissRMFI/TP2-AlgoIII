@@ -10,7 +10,7 @@ import java.io.IOException;
 public class InformacionJSON {
     String rutaDelArchivoJSON;
 
-    public InformacionJSON(String rutaDelArchivoJSON) throws ArchivoNoEncontrado {
+    public InformacionJSON(String rutaDelArchivoJSON) {
         this.rutaDelArchivoJSON = rutaDelArchivoJSON;
     }
 

@@ -52,7 +52,7 @@ public class PanelDeControlVista {
 
 
         for (int i=0; i<jugadores.tamanio(); i++) {
-            Label jugador = new Label(jugadores.obtener().miNombre());
+            Label jugador = new Label(jugadores.obtener().yoSoy());
             jugador.setPadding(new Insets(0, 0, 10, 10));
             jugador.setFont(new Font("Arial", 24));
             jugador.setTextFill(Color.WHITE);

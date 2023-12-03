@@ -30,7 +30,7 @@ public class TableroVista {
             int x = posicion.posicionLineal();
             int y = posicion.posicionVertical();
 
-            this.grid.add(casillero.construirVistaCasillero(),x,y);
+            //this.grid.add(casillero.construirVistaCasillero(),x,y);
         }
 
 
