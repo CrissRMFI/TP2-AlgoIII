@@ -34,14 +34,7 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     public void habilitar () {
         this.turno.habilitar();
     }
-    @Override
-    public boolean estaHabilitado () {
-        return this.turno.estaHabilitado();
-    }
-    @Override
-    public void deshabilitar () {
-        this.turno.deshabilitar();
-    }
+
     public void agregarDispositivoAzar (DispositivoDeAzar dispositivoDeAzar) {
         this.dispositivoDeAzar = dispositivoDeAzar;
     }
@@ -63,11 +56,6 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
         this.mapa = mapa;
         this.mapa.ubicarEnInicio(this);
     }
-
-    public boolean estoyEnLaMeta () {
-        return this.casillero.soyMeta();
-    }
-
     @Override
     public boolean soyJugador() {
         return true;
