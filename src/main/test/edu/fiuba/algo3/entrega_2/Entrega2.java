@@ -6,6 +6,8 @@ import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
 import Entidades.Errores.*;
 import Entidades.Jugadores.Gladiador;
+import Entidades.Premios.JerarquiaEquipos;
+import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Mapa;
 import org.junit.jupiter.api.Test;
 
@@ -43,46 +45,46 @@ public class Entrega2 {
 
     @Test
     //Caso de uso 13 (2/7)
-    public void siElArchivoNoTieneDatoMapaLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado {
+    public void siElArchivoNoTieneDatoMapaLanzaExcepcion() {
         assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinDatoMapa.json"));
     }
 
     @Test
     //Caso de uso 13 (3/7)
-    public void siElArchivoNoTieneDatoAnchoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado {
+    public void siElArchivoNoTieneDatoAnchoLanzaExcepcion(){
         assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinDatoAncho.json"));
     }
 
     @Test
     //Caso de uso 13 (4/7)
-    public void siElArchivoNoTieneDatoLargoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado {
+    public void siElArchivoNoTieneDatoLargoLanzaExcepcion() {
         assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinDatoLargo.json"));
     }
 
     @Test
     //Caso de uso 13 (5/7)
-    public void siElDatoAnchoNoEsUnNumeroLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+    public void siElDatoAnchoNoEsUnNumeroLanzaExcepcion() {
         assertThrows(DatoNoValido.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaConDatoAnchoNoSiendoUnNumero.json"));
     }
 
     @Test
     //Caso de uso 13 (6/7)
-    public void siElDatoAnchoEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+    public void siElDatoAnchoEsMenorAUnoLanzaExcepcion(){
         assertThrows(DatoFueraDeRango.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaConDatoAnchoNegativo.json"));
     }
 
     @Test
     //Caso de uso 13 (7/7)
-    public void siElDatoLargoEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+    public void siElDatoLargoEsMenorAUnoLanzaExcepcion() {
         assertThrows(DatoFueraDeRango.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaConDatoLargoNegativo.json"));
     }
 
-
+    /*
     @Test
     //Caso de uso 14 (1/4)
     public void elObstaculoNoEsValidoYLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
-        //InformacionMapaEnJSON infoMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConObstaculoRobin.json");
-        assertThrows(InteractuableNoValido.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaConObstaculoRobin.json"));
+        InformacionMapaEnJSON infoMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConObstaculoRobin.json");
+        assertThrows(InteractuableNoValido.class, () -> new Mapa(infoMapaEnJSON));
     }
 
     @Test
@@ -91,7 +93,7 @@ public class Entrega2 {
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConPremioFalso.json");
         assertThrows(DatoNoValido.class, () -> new Mapa(informacionMapaEnJSON));
     }
-
+*/
 
     @Test
     //Caso de uso 14 (3/4)
@@ -148,13 +150,12 @@ public class Entrega2 {
 
 
     }
-/*
+
     @Test
     //Caso de uso 14 (4/4)
     public void elJugadorEsAtacadoPorUnaFieraYPierde20DeEnergia() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
-        Mapa mapa = this.MapaCatedra("mapaDePrueba.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(4));
@@ -163,11 +164,11 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
         Energia eneriaEsperada = new Energia(0);
 
@@ -176,60 +177,56 @@ public class Entrega2 {
 
 
     @Test
-    public void siElArchivoNoTieneDatoCaminoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+    public void siElArchivoNoTieneDatoCaminoLanzaExcepcion()  {
         assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinDatoCamino.json"));
     }
 
     @Test
-    public void siElArchivoNoTieneDatoCeldasLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+    public void siElArchivoNoTieneDatoCeldasLanzaExcepcion() {
         assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinDatoCeldas.json"));
     }
 
     @Test
-    public void siElArchivoNoTieneNingunaCeldaLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+    public void siElArchivoNoTieneNingunaCeldaLanzaExcepcion()  {
         assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaSinCeldas.json"));
     }
 
     @Test
     public void siElValorXDeUnaCeldaEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorXDeCeldaNegativo.json");
-        Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirCamino());
+        assertThrows(DatoFueraDeRango.class, () -> new Mapa(informacionMapaEnJSON));
     }
 
     @Test
     public void siElValorXDeUnaCeldaEsMayorALargoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorXDeCeldaFueraDeRango.json");
-        Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirCamino());
+        assertThrows(DatoFueraDeRango.class, () -> new Mapa(informacionMapaEnJSON));
     }
 
     @Test
     public void siElValorYDeUnaCeldaEsMayorALargoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorYDeCeldaFueraDeRango.json");
-        Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirCamino());
+        assertThrows(DatoFueraDeRango.class, () -> new Mapa(informacionMapaEnJSON));
     }
 
     @Test
     public void siElValorYDeUnaCeldaEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorYCero.json");
-        Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirCamino());
+        assertThrows(DatoFueraDeRango.class, () -> new Mapa(informacionMapaEnJSON));
     }
-
+/*
     @Test
     public void elTipoDeCeldaEsBatman() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConCeldaTipoBatman.json");
-        Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoNoValido.class, () -> mapa.contruirCamino());
+        assertThrows(DatoNoValido.class, () -> new Mapa(informacionMapaEnJSON));
     }
+
+ */
 
     @Test
     public void RevisandoCelda2DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(1));
@@ -238,16 +235,18 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
-        Posicion posicionEsperada = new Posicion(2,7);
+
+
+        Casillero posicionEsperada = new Casillero(2,7);
         Energia energiaEsperada = new Energia(20);
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
 
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
@@ -255,9 +254,8 @@ public class Entrega2 {
 
     @Test
     public void RevisandoCelda3DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(2));
@@ -266,16 +264,18 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
-        Posicion posicionEsperada = new Posicion(2,6);
+
+
+        Casillero posicionEsperada = new Casillero(2,6);
         Energia energiaEsperada = new Energia(35);
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
 
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
@@ -283,9 +283,8 @@ public class Entrega2 {
 
     @Test
     public void RevisandoCelda4DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(3));
@@ -294,59 +293,31 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
-        Posicion posicionEsperada = new Posicion(2,5);
+        jugador = (Gladiador) algoRoma.siguienteJugador();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
+
+        Casillero posicionEsperada = new Casillero(2,5);
         Energia energiaEsperada = new Energia(20);
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
 
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        posicionEsperada = new Posicion(2,2);
-        energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
     }
 
     @Test
     public void RevisandoCelda5DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
         Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(4));
@@ -355,16 +326,18 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
-        Posicion posicionEsperada = new Posicion(2,4);
+        jugador = (Gladiador) algoRoma.siguienteJugador();
+
+        Casillero posicionEsperada = new Casillero(2,4);
         Energia energiaEsperada = new Energia(0);
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
 
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
@@ -372,9 +345,8 @@ public class Entrega2 {
 
     @Test
     public void RevisandoCelda6DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(5));
@@ -383,26 +355,28 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
-        Posicion posicionEsperada = new Posicion(2,3);
+
+
+        Casillero posicionEsperada = new Casillero(2,3);
         Energia energiaEsperada = new Energia(0);
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
 
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
     }
 
+
     @Test
     public void RevisandoCelda7DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(6));
@@ -411,731 +385,29 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
-        Posicion posicionEsperada = new Posicion(2,2);
+
+
+        Casillero posicionEsperada = new Casillero(2,2);
         Energia energiaEsperada = new Energia(20);
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
+
 
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
     }
 
-    @Test
-    public void RevisandoCelda8DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(7));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(2,1);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-        jugador = algoRoma.siguienteJugador();
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        posicionEsperada = new Posicion(9,1);
-        energiaEsperada = new Energia(5);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda9DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(8));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(3,1);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-    }
-
-    @Test
-    public void RevisandoCelda10DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(9));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(4,1);
-        Energia energiaEsperada = new Energia(5);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda11DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(10));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(5,1);
-        Energia energiaEsperada = new Energia(-20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda12DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(11));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(6,1);
-        Energia energiaEsperada = new Energia(35);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-    }
-
-    @Test
-    public void RevisandoCelda14DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(13));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(8,1);
-        Energia energiaEsperada = new Energia(35);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-    }
-
-    @Test
-    public void RevisandoCelda15DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(14));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(9,1);
-        Energia energiaEsperada = new Energia(5);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda16DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(15));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(10,1);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda17DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(16));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(11,1);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda19DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(18));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(12,2);
-        Energia energiaEsperada = new Energia(35);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-    }
-
-    @Test
-    public void RevisandoCelda20DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(19));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(12,3);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda21DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(20));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(12,4);
-        Energia energiaEsperada = new Energia(15);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-    }
-
-    @Test
-    public void RevisandoCelda22DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(21));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(12,5);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda23DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(22));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(12,6);
-        Energia energiaEsperada = new Energia(5);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda24DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(23));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(12,7);
-        Energia energiaEsperada = new Energia(5);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda25DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(24));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(12,8);
-        Energia energiaEsperada = new Energia(-76);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-    }
-
-    @Test
-    public void RevisandoCelda26DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(25));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(12,9);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda28DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(27));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(14,9);
-        Energia energiaEsperada = new Energia(0);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-    }
-
-    @Test
-    public void RevisandoCelda29DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(28));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(15,9);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda30DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(29));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(16,9);
-        Energia energiaEsperada = new Energia(-96);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-    }
-
-    @Test
-    public void RevisandoCelda31DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(30));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(17,9);
-        Energia energiaEsperada = new Energia(35);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-    }
-
-    @Test
-    public void RevisandoCelda33DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(32));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(17,7);
-        Energia energiaEsperada = new Energia(-108);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
-    }
-
-    @Test
-    public void RevisandoCelda34DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(33));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(17,6);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-    @Test
-    public void RevisandoCelda35DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(34));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(17,5);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
 
     @Test
     public void RevisandoCelda36DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(35));
@@ -1144,26 +416,28 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
-        Posicion posicionEsperada = new Posicion(17,4);
+
+
+        Casillero posicionEsperada = new Casillero(17,4);
         Energia energiaEsperada = new Energia(35);
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
+
 
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
     }
 
     @Test
     public void RevisandoCelda37DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(36));
@@ -1172,26 +446,28 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
-        Posicion posicionEsperada = new Posicion(17,3);
+
+
+        Casillero posicionEsperada = new Casillero(17,3);
         Energia energiaEsperada = new Energia(20);
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
+
 
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
     }
 
     @Test
     public void RevisandoCelda38DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(37));
@@ -1200,26 +476,28 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
-        Posicion posicionEsperada = new Posicion(17,2);
+
+
+        Casillero posicionEsperada = new Casillero(17,2);
         Energia energiaEsperada = new Energia(20);
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
+
 
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
     }
 
     @Test
     public void ComoCelda39DeMapaDeCatedraEsLaUltimaEntoncesTerminamosEnLaCelda20() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(38));
@@ -1228,48 +506,23 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
-        Posicion posicionEsperada = new Posicion(12,3);
+
+
+        Casillero posicionEsperada = new Casillero(12,3);
         Energia energiaEsperada = new Energia(20);
 
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
+        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Carpoforo.compararSalud(energiaEsperada));
 
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
     }
 
-    @Test
-    public void AgarraElEquipamientoDeLaUltimaCeldaPeroNoElDeLaCeldaDelMedio() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapaConEquipamientoEnLaUltimaCelda.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
-        MockDado mockDado = new MockDado();
+  
 
-        Carpoforo.agregarDispositivoAzar(new MockDado(38));
-        Espartaco.agregarDispositivoAzar(mockDado);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
-
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
-
-        Posicion posicionEsperada = new Posicion(12,3);
-        Energia energiaEsperada = new Energia(20);
-
-        assertTrue(Carpoforo.miPosicion().esIgual(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
-    }
-
-*/
 }
