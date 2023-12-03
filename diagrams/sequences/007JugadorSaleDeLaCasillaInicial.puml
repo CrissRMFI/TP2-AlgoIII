@@ -1,0 +1,45 @@
+@startuml
+
+actor ACTOR
+participant "InformacionMapa" as InformacionMapa
+participant "mapa" as Mapa
+participant "AlgoRoma" as AlgoRoma
+participant "Mock Dado" as MockDado
+participant Jugador1 as "Espartaco: Jugador"
+participant Jugador2 as "Carpoforo: Jugador"
+participant Casillero1 as "Casillero1: Casillero"
+
+
+create InformacionMapa
+ACTOR -> InformacionMapa: <<create>>
+create Mapa
+ACTOR -> Mapa: mapa = new Mapa(InformacionMapa)
+create AlgoRoma
+ACTOR -> AlgoRoma: algoRoma = new AlgoRoma(mapa)
+
+create MockDado
+ACTOR -> MockDado: dado = new MockDado(1)
+
+create Jugador1
+ACTOR -> Jugador1: e = new Gladiador("Espartaco")
+create Jugador2
+ACTOR -> Jugador2: c = new Gladiador("Carpoforo")
+
+ACTOR -> Jugador1: agregarDispositivoDeAzar(dado)
+ACTOR -> Jugador2: agregarDispositivoDeAzar(dado)
+
+ACTOR -> AlgoRoma: agregarJugador(e)
+ACTOR -> AlgoRoma: agregarJugador(c)
+
+ACTOR -> AlgoRoma: comenzarPartidaConElPrimerJugador()
+AlgoRoma --> ACTOR: e
+
+ACTOR -> Jugador1: moverse()
+
+create Casillero1
+
+ACTOR -> Casillero1: casillero1 = new Casillero(1,0)
+
+ACTOR -> Jugador1: compararPosicion(casillero)
+Jugador1 --> ACTOR: true
+@enduml

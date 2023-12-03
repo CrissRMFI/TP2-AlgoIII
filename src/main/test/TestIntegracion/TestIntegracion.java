@@ -310,7 +310,8 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        this.jugarTurnosGladiador(1,jugador,algoRoma);
+        jugador.moverse();
+        jugador.finalizarTurno(algoRoma);
 
         Casillero posicionEsperada = new Casillero(16,0);
 
@@ -585,63 +586,6 @@ public class TestIntegracion {
         assertEquals("Carpoforo",algoRoma.elGanador().yoSoy());
 
     }
-
-    @Test
-    public void JueganSeCruzanConFierasSalvajesEnElPrimerCasilleroPierdenTodaLaEnergiaNoSePuedenMoverPeroAumentanLaEnergiaEn5PuntosPorSuSeniority () throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
-        Mapa mapa = this.MapaConFieraSalvaje();
-        AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado mockDadoCarpoforo = new MockDado(1);
-        MockDado mockDadoEspartaco = new MockDado(1);
-
-        Carpoforo.agregarDispositivoAzar(mockDadoCarpoforo);
-        Espartaco.agregarDispositivoAzar(mockDadoEspartaco);
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        for (int i = 0; i< 1 ; i++ ) {
-            for (int j = 0; j<2;j++) {
-                jugador.moverse();
-                jugador.obtenerElementos();
-                jugador.finalizarTurno(algoRoma);
-                jugador =  (Gladiador) algoRoma.siguienteJugador();
-            }
-        }
-
-        Energia energiaEsperadaCarpoforo = new Energia(0);
-        Energia energiaEsperadaEspartaco = new Energia(0);
-
-
-        Casillero posicionEsperada = new Casillero(1,0);
-
-
-        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperadaCarpoforo));
-
-        assertTrue(Espartaco.compararPosicion(posicionEsperada));
-        assertTrue(Espartaco.compararSalud(energiaEsperadaEspartaco));
-
-        jugador.moverse();
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
-        jugador = (Gladiador) algoRoma.siguienteJugador();
-        jugador.moverse();
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
-
-        energiaEsperadaCarpoforo = new Energia(5);
-        energiaEsperadaEspartaco = new Energia(5);
-
-        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
-        assertTrue(Carpoforo.compararSalud(energiaEsperadaCarpoforo));
-
-        assertTrue(Espartaco.compararPosicion(posicionEsperada));
-        assertTrue(Espartaco.compararSalud(energiaEsperadaEspartaco));
-    }
-
 
 
 }

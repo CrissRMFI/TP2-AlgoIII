@@ -1,0 +1,27 @@
+@startuml
+
+actor ACTOR
+participant "AlgoRoma" as AlgoRoma
+participant Jugador1 as "Espartaco: Jugador"
+participant Casillero as "Casillero1: Casillero"
+participant Casillero as "CasilleroTest"
+
+
+ACTOR -> AlgoRoma: comenzarPartidaConElPrimerJugador()
+AlgoRoma --> ACTOR: Espartaco
+
+ACTOR -> Jugador1: moverse()
+ACTOR -> Jugador1: obtenerElementos()
+Jugador1 -> Casillero: entregarElementos(this)
+Casillero --> Fiera: interactuar(jugador)
+Fiera -> Jugador1: defenderse(e = this.energia)
+Jugador1 -> Equipo: recibirDanio(e)
+Equipo --> Jugador1: energia
+Jugador1 -> Energia: afectarEnergia(energia)
+
+ACTOR -> Jugador1: moverse()
+create "CasilleroTest"
+ACTOR -> "CasilleroTest": c = new Casillero(1,0)
+ACTOR -> Jugador1: compararPoscion(c)
+Jugador1 --> ACTOR: true
+@enduml
