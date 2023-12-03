@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
 import Entidades.AlgoRoma;
+import Entidades.Errores.CantidadMinimaDeJugadores;
 import Entidades.Jugadores.Jugador;
 import Entidades.Tablero.Posicion;
 import Entidades.Tablero.Tablero;
+import edu.fiuba.algo3.botonHandler.BotonTirarDadoHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
@@ -27,10 +29,11 @@ public class EscenaDeJuego {
     private ArrayList<Jugador> jugadores;
     private Tablero tablero;
     private GridPane tableroVisual;
+    private Jugador jugadorActual;
 
 
 
-    public EscenaDeJuego(Stage stage, AlgoRoma juego, ArrayList<Jugador> jugadores, Tablero tablero) {
+    public EscenaDeJuego(Stage stage, AlgoRoma juego, ArrayList<Jugador> jugadores, Tablero tablero) throws CantidadMinimaDeJugadores {
         this.stage = stage;
         this.juego = juego;
         this.tablero = tablero;
@@ -39,17 +42,22 @@ public class EscenaDeJuego {
         generarInterfaz();
     }
 
-    private void generarInterfaz() {
+    private void generarInterfaz() throws CantidadMinimaDeJugadores {
         borderPane = new BorderPane();
         tableroVisual = new GridPane();
 
         this.armarTablero();
+        this.jugadorActual = this.juego.comenzarPartidaConElPrimerJugador();
 
         //Button top = createButton("Top");
         Button left = createButton("Left");
         //Button center = createButton("Center");
         Button right = createButton("Right");
-        Button bottom = createButton("Bottom");
+        //Button bottom = createButton("Bottom");
+
+        Button tirarDado = createButton("Tirar dado");
+        BotonTirarDadoHandler botonTirarDadoHandler = new BotonTirarDadoHandler(this.jugadorActual, this.juego, this.tablero);
+        tirarDado.setOnAction(botonTirarDadoHandler);
 
         //tableroVisual.setMaxHeight(Double.MAX_VALUE);
         //tableroVisual.setMaxWidth(Double.MAX_VALUE);
@@ -63,7 +71,7 @@ public class EscenaDeJuego {
         borderPane.setLeft(left);
         borderPane.setCenter(this.tableroVisual);
         borderPane.setRight(right);
-        borderPane.setBottom(bottom);
+        borderPane.setBottom(tirarDado);
 
 
 

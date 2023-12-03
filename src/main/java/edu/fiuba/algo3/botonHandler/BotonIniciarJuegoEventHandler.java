@@ -3,10 +3,7 @@ package edu.fiuba.algo3.botonHandler;
 import Datos.InformacionMapaEnJSON;
 import Entidades.AlgoRoma;
 import Entidades.Elementos.MockDado;
-import Entidades.Errores.ArchivoNoEncontrado;
-import Entidades.Errores.DatoNoEncontrado;
-import Entidades.Errores.DatoNoValido;
-import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
+import Entidades.Errores.*;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.Jugadores.SemiSenior;
@@ -52,7 +49,11 @@ public class BotonIniciarJuegoEventHandler implements EventHandler<ActionEvent> 
             throw new RuntimeException(e);
         }
 
-        this.pasarEscena();
+        try {
+            this.pasarEscena();
+        } catch (CantidadMinimaDeJugadores e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private Mapa generarMapa(){
@@ -82,6 +83,9 @@ public class BotonIniciarJuegoEventHandler implements EventHandler<ActionEvent> 
 
     private void agregarDadosALosGladiadores(MockDado dado){
         for (int i = 0; i < this.jugadores.size(); i++){
+            if (i == 1){
+                jugadores.get(i).agregarDispositivoAzar(new MockDado(3));
+            }
             jugadores.get(i).agregarDispositivoAzar(dado);
         }
     }
@@ -92,7 +96,7 @@ public class BotonIniciarJuegoEventHandler implements EventHandler<ActionEvent> 
         }
     }
 
-    private void pasarEscena(){
+    private void pasarEscena() throws CantidadMinimaDeJugadores {
         EscenaDeJuego creaEscenaDeJuego = new EscenaDeJuego(this.stage, this.juego, this.jugadores, this.tablero);
         Scene escenaDeJuego = creaEscenaDeJuego.devolverEscena();
         this.stage.setScene(escenaDeJuego);
