@@ -5,10 +5,6 @@ import Datos.MensajesUsuario;
 import Entidades.Errores.ArchivoNoEncontrado;
 import Entidades.Errores.DatoNoEncontrado;
 import Entidades.Errores.DatoNoValido;
-import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -17,7 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -25,7 +22,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class LoginVista {
+public class LoginVista extends BorderPane {
+
     private MensajesUsuario m = new MensajesUsuario();
     private GridPane grid = new GridPane();
     private Label titulo = new Label(m.IngresoDeJugadores());
@@ -40,11 +38,18 @@ public class LoginVista {
     private final LoginVistaModelo viewModel =
             new LoginVistaModelo();
 
-    public void crearVista ()  {
+    public LoginVista() {
+        super();
+        this.crearVista();
+    }
 
-        this.grid.setStyle("-fx-background-color: black;");
+    public void crearVista() {
+
+        //this.grid.setStyle("-fx-background-color: black;");
         this.titulo.setStyle("-fx-font-size: 24; -fx-text-fill: white; -fx-padding: 20;");
         this.titulo.setAlignment(Pos.TOP_CENTER);
+
+        this.ponerImagenDeFondo();
 
         this.grid.add(this.titulo, 0, 0);
         this.grid.setAlignment(Pos.TOP_CENTER);
@@ -52,16 +57,16 @@ public class LoginVista {
         this.construirInputs(6);
 
 
-        int j= 0;
-        for (int i=0; i<this.jugadores.size();i++) {
-            grid.add((TextField) this.jugadores.get(i),0,i+1);
+        int j = 0;
+        for (int i = 0; i < this.jugadores.size(); i++) {
+            grid.add((TextField) this.jugadores.get(i), 0, i + 1);
             j++;
         }
 
         this.botonIniciar.setOnAction(this::iniciarJuego);
         this.botonMapa.setOnAction(this::cargarMapa);
         this.botonIniciar.setStyle("-fx-font-size: 18; -fx-text-fill: white;-fx-background-color: green ;-fx-padding: 5;");
-        this.grid.add(this.botonIniciar,0,j+1);
+        this.grid.add(this.botonIniciar, 0, j + 1);
         this.grid.setHalignment(botonIniciar, HPos.CENTER);
 
         grid.setVgap(20);
@@ -70,19 +75,16 @@ public class LoginVista {
 
         this.fileChooser.setTitle(m.CargarMapa());
 
-        this.grid.add(this.botonMapa,0,j+2);
+        this.grid.add(this.botonMapa, 0, j + 2);
 
-        Scene scene = new Scene(this.grid,700,450);
-
-        this.stage.setTitle(m.TituloAplicacion());
-        this.stage.setScene( scene );
-        this.stage.show();
+        this.setCenter(this.grid);
     }
 
-    private void enlazarVistaModelo () {
+    private void enlazarVistaModelo() {
         this.viewModel.implementarStage(this.stage);
     }
-    private void iniciarJuego (ActionEvent actionEvent)  {
+
+    private void iniciarJuego(ActionEvent actionEvent) {
         try {
             this.agregarJugadores();
             this.viewModel.iniciar();
@@ -93,11 +95,9 @@ public class LoginVista {
             alert.setContentText(me.ErrorAlIniciarElJuego());
             alert.show();
         }
-
     }
 
-    private void cargarMapa (ActionEvent actionEvent){
-
+    private void cargarMapa(ActionEvent actionEvent) {
 
         try {
             File archivo = fileChooser.showOpenDialog(this.stage);
@@ -111,24 +111,39 @@ public class LoginVista {
         }
     }
 
-    private TextField crearTextField(){
+    private TextField crearTextField() {
+
         TextField textField = new TextField();
         textField.setStyle("-fx-margin: 40");
         return textField;
     }
 
-    private void construirInputs (int cantidad) {
-        for (int i= 0; i< cantidad ; i++ ) {
+    private void construirInputs(int cantidad) {
+
+        for (int i = 0; i < cantidad; i++) {
             this.jugadores.add(crearTextField());
         }
     }
 
-    private void agregarJugadores () {
-        for (int i=0;i<grid.getChildren().size();i++) {
+    private void agregarJugadores() {
+
+        for (int i = 0; i < grid.getChildren().size(); i++) {
             if (grid.getChildren().get(i).getClass() == TextField.class) {
                 TextField t = (TextField) grid.getChildren().get(i);
                 if (!t.getText().equals("")) this.viewModel.agregarUsuario(t.getText());
             }
         }
+    }
+
+    private void ponerImagenDeFondo(){
+        Image imagen = new Image("file:src/main/java/Vista/Imagenes/roma2.png");
+
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(100, 100, true, true, true, true));
+
+        this.grid.setBackground(new Background(imagenDeFondo));
     }
 }
