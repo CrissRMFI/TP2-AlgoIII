@@ -1,14 +1,16 @@
 package edu.fiuba.algo3.entrega_1;
+import Datos.InformacionMapaEnJSON;
 import Datos.InformacionMapaLinealEnMatriz;
 import Entidades.AlgoRoma;
-import Entidades.Errores.DatoNoValido;
-import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
+import Entidades.ElementoMapa;
+import Entidades.Errores.*;
+import Entidades.Obstaculos.Bacanal;
+import Entidades.Obstaculos.Lesion;
+import Entidades.Obstaculos.SinObstaculo;
 import Entidades.Premios.Comida;
 import Entidades.Interactuable;
 import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
-import Entidades.Errores.CantidadMinimaDeJugadores;
-import Entidades.Errores.PartidaFinalizada;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.Fiera;
@@ -20,88 +22,191 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Entrega1{
-/*
-    public Mapa MapaVacio() throws DatoNoValido {
+
+    private Mapa MapaConFieraSalvaje() throws DatoNoValido {
         int cantidadCasilleros = 30;
-        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
-
-        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
-        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
-        mapa.contruirCamino();
-        return mapa;
-
-    }
-
-    public Mapa mapaConFieraSalvaje() throws DatoNoValido {
-        int cantidadCasilleros = 30;
-        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
+        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
 
         for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new Fiera();
         }
 
+
+
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
-        mapa.contruirCamino();
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+
         return mapa;
     }
 
-    public Mapa mapaConComida() throws DatoNoValido {
-        int cantidadCasilleros = 10;
-        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
+    public Mapa MapaSoloConUnEquipo () throws DatoNoValido {
+        int cantidadCasilleros = 30;
+        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
 
-        for (int i = 0; i < cantidadCasilleros; i++) {
-            elementosMapa[i][0] = new Comida();
+
+        for (int i=0;i<cantidadCasilleros;i++) {
+            elementosMapa[i][0] = new SinObstaculo();
+        }
+
+        elementosMapa[8][0] = new Equipamiento();
+
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
+
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+
+        return mapa;
+    }
+    public Mapa MapaConDosEquipos () throws DatoNoValido {
+        int cantidadCasilleros = 30;
+
+        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+
+        for (int i=0;i<cantidadCasilleros;i++) {
+            elementosMapa[i][0] = new SinObstaculo();
+        }
+
+        elementosMapa[3][0] = new Equipamiento();
+        elementosMapa[7][0] = new Equipamiento();
+
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
+
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+
+        return mapa;
+    }
+
+    public Mapa MapaSoloConTresEquipos () throws DatoNoValido {
+        int cantidadCasilleros = 30;
+        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+
+        for (int i=0;i<cantidadCasilleros;i++) {
+            elementosMapa[i][0] = new SinObstaculo();
+        }
+
+        elementosMapa[8][0] = new Equipamiento();
+        elementosMapa[17][0] = new Equipamiento();
+        elementosMapa[26][0] = new Equipamiento();
+
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
+
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+
+        return mapa;
+    }
+
+    public Mapa MapaConPiedraAlInicioElRestoVacio () throws DatoNoValido {
+        int cantidadCasilleros = 30;
+        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+
+        for (int i=0;i<cantidadCasilleros;i++) {
+            elementosMapa[i][0] = new SinObstaculo();
+        }
+
+        elementosMapa[0][0] = new Lesion();
+
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
+
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+
+        return mapa;
+    }
+
+    public Mapa MapaConBacanalEnElCasillero7() throws DatoNoValido {
+        int cantidadCasilleros = 30;
+        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+
+        for (int i=0;i<cantidadCasilleros;i++) {
+            elementosMapa[i][0] = new SinObstaculo();
+        }
+
+        elementosMapa[6][0] = new Bacanal();
+
+        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
+
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+
+        return mapa;
+    }
+
+    public Mapa MapaVacio() throws DatoNoValido {
+        int cantidadCasilleros = 30;
+        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+
+        for (int i=0;i<cantidadCasilleros;i++) {
+            elementosMapa[i][0] = new SinObstaculo();
         }
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
-        mapa.contruirCamino();
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+
         return mapa;
     }
 
-    public Mapa mapaConUnCascoYUnaFieraSalvaje() throws DatoNoValido {
-        int cantidadCasilleros = 10;
-        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
+    public Mapa MapaLlenoDeComida() throws DatoNoValido {
+        int cantidadCasilleros = 30;
+        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
 
-        elementosMapa[4][0] = new Equipamiento();
-        elementosMapa[5][0] = new Fiera();
+        for (int i=0;i<cantidadCasilleros;i++) {
+            elementosMapa[i][0] = new SinObstaculo();
+        }
 
+        for (int i=0;i<elementosMapa.length;i++) {
+            elementosMapa[i][0] = new Comida();
+        }
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
-        mapa.contruirCamino();
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+
         return mapa;
     }
 
+    public Mapa MapaQuePermiteGanar() throws DatoNoValido {
+        int cantidadCasilleros = 30;
+        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][2];
 
-    public Mapa mapaConEquipamientos() throws DatoNoValido {
-        int cantidadCasilleros = 10;
-        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        elementosMapa[0][0] = new Equipamiento();
-        elementosMapa[1][0] = new Equipamiento();
-        elementosMapa[2][0] = new Equipamiento();
-        elementosMapa[3][0] = new Equipamiento();
-        elementosMapa[4][0] = new Equipamiento();
-        elementosMapa[5][0] = new Fiera();
+        for (int i=0;i<cantidadCasilleros;i++) {
+            elementosMapa[i][0] = new Comida();
+            elementosMapa[i][1] = new SinObstaculo();
+        }
+
+        elementosMapa[4][1] = new Equipamiento();
+        elementosMapa[7][1] = new Equipamiento();
+
+        elementosMapa[9][1] = new Equipamiento();
+        elementosMapa[13][1] = new Equipamiento();
+
+        elementosMapa[19][1] = new Equipamiento();
+        elementosMapa[22][1] = new Equipamiento();
+
+        elementosMapa[28][1] = new Equipamiento();
+        elementosMapa[29][1] = new Equipamiento();
 
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
-        mapa.contruirCamino();
+        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+
+        return mapa;
+    }
+
+    public Mapa MapaCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
+
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapa.json");
+
+
+        Mapa mapa = new Mapa(informacionMapaEnJSON);
+
         return mapa;
     }
 
     @Test
     //Caso de uso 1 --> Fiera saca 20 ya que no tiene equipamiento
     public void jugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
-        Mapa mapa = this.mapaConFieraSalvaje();
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaConFieraSalvaje();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Gladiador Carpoforo = new Gladiador("Carpoforo");
@@ -112,11 +217,12 @@ public class Entrega1{
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartida();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
         Energia energiaEsperada = new Energia(0);
 
