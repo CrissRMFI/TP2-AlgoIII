@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,6 +34,7 @@ public class EscenaDeJuego {
         this.stage = stage;
         this.juego = juego;
         this.tablero = tablero;
+        this.jugadores = jugadores;
 
         generarInterfaz();
     }
@@ -55,11 +57,15 @@ public class EscenaDeJuego {
         //BorderPane.setAlignment(tableroVisual, Pos.CENTER);
         this.tableroVisual.setAlignment(Pos.CENTER);
 
+        this.ponerJugadores();
+
         //borderPane.setTop(top);
         borderPane.setLeft(left);
         borderPane.setCenter(this.tableroVisual);
         borderPane.setRight(right);
         borderPane.setBottom(bottom);
+
+
 
         escena = new Scene(borderPane);
         this.stage.setScene(escena);
@@ -94,6 +100,16 @@ public class EscenaDeJuego {
                 casillero.setStroke(Color.BLACK);
                 this.tableroVisual.add(new StackPane(casillero), i+1, j+1);
             }
+        }
+    }
+
+    private void ponerJugadores(){
+        for (int i = 0; i < this.jugadores.size(); i++){
+            Posicion posicionDeJugador = this.jugadores.get(i).miPosicion();
+            Rectangle jugador = new Rectangle(10, 10);
+            jugador.setFill(Color.DARKGOLDENROD);
+            System.out.print(posicionDeJugador.posicionLineal());
+            this.tableroVisual.add(new StackPane(jugador), posicionDeJugador.posicionLineal(), posicionDeJugador.posicionVertical());
         }
     }
 }
