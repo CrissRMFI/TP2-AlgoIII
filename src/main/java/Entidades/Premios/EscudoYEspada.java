@@ -12,4 +12,9 @@ public class EscudoYEspada extends Equipo {
     public Equipo mejorar() {
         return new Llave();
     }
+
+    @Override
+    public String descripcion() {
+        return "Escudo y Espada";
+    }
 }

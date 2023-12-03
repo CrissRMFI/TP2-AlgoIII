@@ -31,4 +31,6 @@ public abstract class Equipo implements Premio {
     public void interactuar(Jugador jugador) {
         jugador.equipar();
     }
+
+    public abstract String descripcion();
 }

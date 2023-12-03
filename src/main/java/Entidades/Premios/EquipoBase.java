@@ -14,5 +14,8 @@ public class EquipoBase extends Equipo {
         return new Casco();
     }
 
-
+    @Override
+    public String descripcion() {
+        return "Equipo Base";
+    }
 }

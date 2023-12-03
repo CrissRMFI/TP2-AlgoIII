@@ -84,5 +84,14 @@ public class Gladiador extends Jugador {
         return this.equipamiento.compararEquipo(equipo);
     }
 
+    @Override
+    public String miDescripcion() {
+        String nombre = this.nombre;
+        String seniority = this.seniority.descripcion();
+        String equipo = this.equipamiento.descripcion();
+        String energia = this.energia.descripcion();
 
+        String descripcion = "Nombre: "+nombre + " Seniority: " + seniority + " Equipamiento: " + equipo + " Energia: " + energia;
+        return descripcion;
+    }
 }
