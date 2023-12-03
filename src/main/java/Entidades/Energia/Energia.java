@@ -29,4 +29,8 @@ public class Energia {
     protected int cantidadeEnergia () {
         return this.disponible;
     }
+
+    public String descripcion () {
+        return "" + this.disponible;
+    }
 }

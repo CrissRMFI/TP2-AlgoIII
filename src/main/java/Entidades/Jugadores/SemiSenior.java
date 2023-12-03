@@ -19,4 +19,9 @@ public class SemiSenior implements Seniority{
     public void aumentarEnergia(Energia energia) {
         energia.afectarEnergia(this.energia);
     }
+
+    @Override
+    public String descripcion() {
+        return "Semi Senior";
+    }
 }

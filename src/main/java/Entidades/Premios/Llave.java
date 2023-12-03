@@ -18,4 +18,9 @@ public class Llave extends Equipo {
     public boolean sePuedeMejorar() {
        return false;
     }
+
+    @Override
+    public String descripcion() {
+        return "Llave";
+    }
 }

@@ -1,24 +1,40 @@
 package edu.fiuba.algo3.entrega_2;
 
+import Datos.InformacionMapaEnJSON;
+import Entidades.AlgoRoma;
+import Entidades.Elementos.MockDado;
+import Entidades.Energia.Energia;
+import Entidades.Errores.*;
+import Entidades.Jugadores.Gladiador;
+import Entidades.Tablero.Mapa;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class Entrega2 {
-/*
-    private  final Jugador Carpoforo = new Gladiador("Carpoforo");
-    private final Jugador Espartaco = new Gladiador("Espartaco");
+
+    private  final Gladiador Carpoforo = new Gladiador("Carpoforo");
+    private final Gladiador Espartaco = new Gladiador("Espartaco");
 
     public Mapa MapaCatedra(String nombreDelMapa) throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
 
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/" + nombreDelMapa);
 
-        Mapa mapa = new Mapa(informacionMapaEnJSON);
-        mapa.contruirCamino();
-        return mapa;
+        return new Mapa(informacionMapaEnJSON);
+
     }
 
+    public Mapa MapaCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
 
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapa.json");
+
+
+        Mapa mapa = new Mapa(informacionMapaEnJSON);
+
+        return mapa;
+    }
     @Test
     //Caso de uso 13 (1/7)
     public void siElArchivoNoExisteLanzaExcepcion(){
@@ -65,26 +81,23 @@ public class Entrega2 {
     @Test
     //Caso de uso 14 (1/4)
     public void elObstaculoNoEsValidoYLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConObstaculoRobin.json");
-        Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(InteractuableNoValido.class, () -> mapa.contruirCamino());
+        //InformacionMapaEnJSON infoMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConObstaculoRobin.json");
+        assertThrows(InteractuableNoValido.class, () -> new InformacionMapaEnJSON("src/main/java/Datos/mapaConObstaculoRobin.json"));
     }
 
     @Test
     //Caso de uso 14 (2/4)
     public void elPremioNoEsValidoYLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConPremioFalso.json");
-        Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoNoValido.class, () -> mapa.contruirCamino());
+        assertThrows(DatoNoValido.class, () -> new Mapa(informacionMapaEnJSON));
     }
 
 
     @Test
     //Caso de uso 14 (3/4)
     public void elJugadorRecibeComidaYAumentaSuVidaEn15() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
-        Mapa mapa = this.MapaCatedra("mapaDePrueba.json");
-        Tablero tablero = new Tablero(mapa);
-        AlgoRoma algoRoma = new AlgoRoma(tablero);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 
         Carpoforo.agregarDispositivoAzar(new MockDado(2));
@@ -93,11 +106,11 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.comenzarPartidaConElPrimerJugador();
+        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse(tablero);
-        algoRoma.entregarElementos(jugador);
-        algoRoma.finalizarTurno();
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
 
         Energia energiaEsperada = new Energia(35);
 
@@ -106,12 +119,36 @@ public class Entrega2 {
 
     @Test
     //Caso de uso 14 (2/4)
-    public void elCasilleroEstaVacio() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConCeldaTipoVacia.json");
-        Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(CasilleroNoValido.class, () -> mapa.contruirCamino());
-    }
+    public void elCasilleroEstaVacio() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido,CantidadMinimaDeJugadores,PartidaFinalizada{
+       Mapa mapa = this.MapaCatedra();
+       AlgoRoma algoRoma = new AlgoRoma(mapa);
+       MockDado mockDado = new MockDado(6);
 
+       Carpoforo.agregarDispositivoAzar(mockDado);
+       Espartaco.agregarDispositivoAzar(mockDado);
+
+       algoRoma.agregarJugador(Carpoforo);
+       algoRoma.agregarJugador(Espartaco);
+
+       Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
+       jugador.moverse();
+       jugador.obtenerElementos();
+       jugador.finalizarTurno(algoRoma);
+
+       jugador = (Gladiador) algoRoma.siguienteJugador();
+
+        jugador.moverse();
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(algoRoma);
+
+        Energia energiaEsperada = new Energia(20);
+
+        assertTrue(Carpoforo.compararSalud(energiaEsperada));
+        assertTrue(Espartaco.compararSalud(energiaEsperada));
+
+
+    }
+/*
     @Test
     //Caso de uso 14 (4/4)
     public void elJugadorEsAtacadoPorUnaFieraYPierde20DeEnergia() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {

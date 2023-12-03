@@ -13,4 +13,9 @@ public class Armadura extends Equipo {
     public Equipo mejorar() {
         return new EscudoYEspada();
     }
+
+    @Override
+    public String descripcion() {
+        return "Armadura";
+    }
 }

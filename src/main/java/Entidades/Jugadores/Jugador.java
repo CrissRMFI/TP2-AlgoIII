@@ -74,4 +74,6 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
 
 
     public abstract void finalizarTurno (AlgoRoma algoRoma);
+
+    public abstract String miDescripcion ();
 }

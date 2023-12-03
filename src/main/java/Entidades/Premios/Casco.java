@@ -15,4 +15,9 @@ public class Casco extends Equipo {
     public Equipo mejorar() {
         return new Armadura();
     }
+
+    @Override
+    public String descripcion() {
+        return "Casco";
+    }
 }

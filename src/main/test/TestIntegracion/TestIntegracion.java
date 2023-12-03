@@ -1,19 +1,16 @@
 package TestIntegracion;
 
-import Datos.InformacionMapaEnJSON;
 import Datos.InformacionMapaLinealEnMatriz;
 import Entidades.AlgoRoma;
 import Entidades.ElementoMapa;
 import Entidades.Errores.*;
 import Entidades.Obstaculos.SinObstaculo;
 import Entidades.Premios.Comida;
-import Entidades.Interactuable;
 import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.Bacanal;
-import Entidades.Obstaculos.Fiera;
 import Entidades.Obstaculos.Lesion;
 import Entidades.Premios.Equipamiento;
 import Entidades.Premios.JerarquiaEquipos;
@@ -26,32 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestIntegracion {
     private  final Jugador Carpoforo = new Gladiador("Carpoforo");
     private final Jugador Espartaco = new Gladiador("Espartaco");
-    private final Jugador Crixo = new Gladiador("Crixo");
-    private final Jugador MarcoAtilio = new Gladiador("Marco Atilio");
-    private final Jugador Comodo = new Gladiador("Cómodo");
 
-    public Mapa MapaConFieraSalvaje() throws DatoNoValido {
-        int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
-
-        for (int i=0;i<cantidadCasilleros;i++) {
-            elementosMapa[i][0] = new SinObstaculo();
-        }
-
-        for (int i = 0; i < cantidadCasilleros; i++) {
-            elementosMapa[i][0] = new Fiera();
-        }
-
-
-
-        InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
-
-        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
-
-        return mapa;
-    }
-
-    public Mapa MapaSoloConUnEquipo () throws DatoNoValido {
+    private Mapa MapaSoloConUnEquipo () throws DatoNoValido {
         int cantidadCasilleros = 30;
         ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
 
@@ -64,11 +37,9 @@ public class TestIntegracion {
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
-
-        return mapa;
+        return new Mapa(informacionMapaLinealEnMatriz);
     }
-    public Mapa MapaConDosEquipos () throws DatoNoValido {
+    private Mapa MapaConDosEquipos () throws DatoNoValido {
         int cantidadCasilleros = 30;
 
         ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
@@ -82,12 +53,11 @@ public class TestIntegracion {
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
+        return new Mapa(informacionMapaLinealEnMatriz);
 
-        return mapa;
     }
 
-    public Mapa MapaSoloConTresEquipos () throws DatoNoValido {
+    private Mapa MapaSoloConTresEquipos () throws DatoNoValido {
         int cantidadCasilleros = 30;
         ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
 
@@ -106,7 +76,7 @@ public class TestIntegracion {
         return mapa;
     }
 
-    public Mapa MapaConPiedraAlInicioElRestoVacio () throws DatoNoValido {
+    private Mapa MapaConPiedraAlInicioElRestoVacio () throws DatoNoValido {
         int cantidadCasilleros = 30;
         ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
 
@@ -123,7 +93,7 @@ public class TestIntegracion {
         return mapa;
     }
 
-    public Mapa MapaConBacanalEnElCasillero7() throws DatoNoValido {
+    private Mapa MapaConBacanalEnElCasillero7() throws DatoNoValido {
         int cantidadCasilleros = 30;
         ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
 
@@ -155,7 +125,7 @@ public class TestIntegracion {
         return mapa;
     }
 
-    public Mapa MapaLlenoDeComida() throws DatoNoValido {
+    private Mapa MapaLlenoDeComida() throws DatoNoValido {
         int cantidadCasilleros = 30;
         ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
 
@@ -173,7 +143,7 @@ public class TestIntegracion {
         return mapa;
     }
 
-    public Mapa MapaQuePermiteGanar() throws DatoNoValido {
+    private Mapa MapaQuePermiteGanar() throws DatoNoValido {
         int cantidadCasilleros = 30;
         ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][2];
 
@@ -203,15 +173,7 @@ public class TestIntegracion {
         return mapa;
     }
 
-    public Mapa MapaCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
 
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapa.json");
-
-
-        Mapa mapa = new Mapa(informacionMapaEnJSON);
-
-        return mapa;
-    }
 
     private void jugarTurnosGladiador (int cantidad, Gladiador gladiador,AlgoRoma algoRoma) throws PartidaFinalizada {
 
