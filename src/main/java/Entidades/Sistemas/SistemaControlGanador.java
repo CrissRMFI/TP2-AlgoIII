@@ -1,30 +1,23 @@
 package Entidades.Sistemas;
 
-import Entidades.AlgoRoma;
 import Entidades.Jugadores.Jugador;
-import Entidades.Tablero.Posicion;
-import Entidades.Tablero.Tablero;
+import Entidades.Tablero.Casillero;
+import Entidades.Tablero.Mapa;
+
 
 public class SistemaControlGanador {
-    private Tablero tablero;
-
-    public SistemaControlGanador (Tablero tablero) {
-        this.tablero = tablero;
+    private Mapa mapa;
+    public SistemaControlGanador (Mapa mapa) {
+        this.mapa = mapa;
     }
-    public void gano (Jugador jugador, AlgoRoma algoRoma) {
+    public boolean gano (Jugador jugador) {
 
-        Posicion posicion = this.tablero.posicionFinal();
-
-
-        boolean cumplePosicion = jugador.miPosicion().esIgual(posicion);
+        boolean cumplePosicion = jugador.estoyEnLaMeta();
 
         boolean cumpleEquipo = jugador.esEquipoMaximo();
-        if (cumplePosicion && cumpleEquipo) {
-            algoRoma.finalizarJuego(jugador);
-        }
-        if (cumplePosicion && !cumpleEquipo) {
-            posicion = this.tablero.posicionMedio();
-            jugador.posicionar(posicion);
-        }
+
+        if (cumplePosicion && !cumpleEquipo) mapa.ubicarEnMitadDelCamino(jugador);
+
+        return cumpleEquipo && cumplePosicion;
     }
 }

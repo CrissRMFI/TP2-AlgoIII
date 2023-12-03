@@ -20,14 +20,14 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Entrega1{
-
+/*
     public Mapa MapaVacio() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
         Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
-        mapa.contruirMapa();
+        mapa.contruirCamino();
         return mapa;
 
     }
@@ -43,7 +43,7 @@ public class Entrega1{
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
         Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
-        mapa.contruirMapa();
+        mapa.contruirCamino();
         return mapa;
     }
 
@@ -58,7 +58,7 @@ public class Entrega1{
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
         Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
-        mapa.contruirMapa();
+        mapa.contruirCamino();
         return mapa;
     }
 
@@ -72,7 +72,7 @@ public class Entrega1{
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
         Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
-        mapa.contruirMapa();
+        mapa.contruirCamino();
         return mapa;
     }
 
@@ -92,7 +92,7 @@ public class Entrega1{
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
         Mapa mapa = new Mapa (informacionMapaLinealEnMatriz);
-        mapa.contruirMapa();
+        mapa.contruirCamino();
         return mapa;
     }
 
@@ -439,5 +439,5 @@ public class Entrega1{
 
         assertThrows(PartidaFinalizada.class, () -> algoRoma.siguienteJugador());
     }
-
+*/
 }

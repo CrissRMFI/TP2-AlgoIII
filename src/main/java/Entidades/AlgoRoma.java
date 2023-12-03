@@ -1,42 +1,34 @@
 package Entidades;
 
 import Datos.MensajesErrores;
+import Datos.MensajesUsuario;
 import Entidades.Errores.*;
 import Entidades.Jugadores.Jugador;
-import Entidades.Sistemas.ControlCaracteres;
+import Entidades.Jugadores.JugadorGanador;
+import Entidades.Jugadores.NoHayGanador;
 import Entidades.Sistemas.SistemaControlGanador;
 import Entidades.Tablero.*;
-import Vista.PanelDeControlVista;
-import javafx.scene.layout.GridPane;
 
 public class AlgoRoma {
     private final ListaCircular<Jugador> jugadores = new ListaCircular<>();
     private int turnos= 30;
-    private final Tablero tablero;
-    private final SistemaControlGanador controlGanador;
+    private final Mapa mapa;
+    private JugadorGanador ganador;
+    private final MensajesUsuario mensaje = new MensajesUsuario();
 
-    private final ControlCaracteres controlCaracteres;
-    private Jugador ganador;
-
-    public AlgoRoma(Tablero tablero){
-        this.tablero = tablero;
-        this.controlGanador = new SistemaControlGanador(tablero);
-        this.controlCaracteres = new ControlCaracteres();
+    public AlgoRoma(Mapa mapa){
+        this.mapa = mapa;
+        this.ganador = new NoHayGanador();
     }
 
-    public void agregarJugador(Jugador jugador) throws ElNombreDebeContenerUnMinimoDe4Caracteres {
-        if (!this.controlCaracteres.minimoCuatroCaracteres(jugador.miNombre())) {
-            throw new ElNombreDebeContenerUnMinimoDe4Caracteres(new MensajesErrores().Minimo4Caracteres());
-        }
-        Posicion posicion = this.tablero.posicionInicial();
-        jugador.posicionar(posicion);
+    public void agregarJugador(Jugador jugador) {
+        jugador.ingresar(this.mapa);
         this.jugadores.agregarElemento(jugador);
     }
 
     public Jugador comenzarPartida() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
-            MensajesErrores m = new MensajesErrores();
-            throw new CantidadMinimaDeJugadores(m.CantidadMinimaJugadores());
+            throw new CantidadMinimaDeJugadores(this.mensaje.CantidadMinimaDeJugadores());
         }
         Jugador jugador = jugadores.seleccionAleatoria();
         jugador.habilitar();
@@ -63,28 +55,20 @@ public class AlgoRoma {
         return jugador;
     }
 
-    public void finalizarTurno () {
-        Jugador jugador = this.jugadores.obtener();
-        this.controlGanador.gano(jugador,this);
-        jugador.finalizarTurno();
+    public void finalizarTurno (Jugador jugador) {
+
+        if (this.mapa.jugadorGano(jugador)) {
+            this.finalizar(jugador);
+        }
+
         if (this.turnos!=0) {
             this.sumarUnTurno();
         }
-
-        if (this.turnos == 0 && this.ganador == null) {
-            this.finalizarJuego(this.ganador);
-        }
-
-
     }
 
-    public void entregarElementos (Jugador jugador)  {
-        Posicion posicion = jugador.miPosicion();
-        Casillero casillero = this.tablero.obtenerCasillero(posicion);
-        if (casillero != null) {
-            casillero.entregarElementos(jugador);
-        }
-
+    private void finalizar (JugadorGanador jugadorGanador) {
+        this.ganador = jugadorGanador;
+        this.turnos = 0;
     }
 
     private void sumarUnTurno () {
@@ -93,19 +77,10 @@ public class AlgoRoma {
         }
     }
 
-    public Jugador elGanador () throws PartidaNoFinalizada {
+    public JugadorGanador elGanador () throws PartidaNoFinalizada {
         if (this.turnos != 0) {
             throw new PartidaNoFinalizada(new MensajesErrores().PartidaNoFinalizada());
         }
         return this.ganador;
-    }
-    public void finalizarJuego (Jugador jugador) {
-        this.turnos = 0;
-        this.ganador = jugador;
-    }
-
-    public GridPane panelControl () {
-        PanelDeControlVista panel = new PanelDeControlVista();
-        return panel.crearVista(this.jugadores);
     }
 }

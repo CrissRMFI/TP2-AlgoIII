@@ -13,4 +13,6 @@ public class EquipoBase extends Equipo {
     public Equipo mejorar() {
         return new Casco();
     }
+
+
 }

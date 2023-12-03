@@ -1,8 +1,9 @@
 package Entidades.Premios;
 
 import Entidades.Energia.Energia;
+import Entidades.Jugadores.Jugador;
 
-public abstract class Equipo {
+public abstract class Equipo implements Premio {
     protected JerarquiaEquipos jerarquia;
     protected Energia energiaQueAbsorbe;
 
@@ -19,5 +20,15 @@ public abstract class Equipo {
 
     public boolean compararEquipo (JerarquiaEquipos equipamiento) {
         return this.jerarquia.ordinal() == equipamiento.ordinal();
+    }
+
+    @Override
+    public boolean soyJugador() {
+        return false;
+    }
+
+    @Override
+    public void interactuar(Jugador jugador) {
+        jugador.equipar();
     }
 }

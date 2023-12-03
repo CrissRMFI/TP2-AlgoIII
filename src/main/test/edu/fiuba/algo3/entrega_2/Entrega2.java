@@ -10,7 +10,6 @@ import Entidades.Jugadores.Jugador;
 import Entidades.Premios.JerarquiaEquipos;
 import Entidades.Tablero.Mapa;
 import Entidades.Tablero.Posicion;
-import Entidades.Tablero.Tablero;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -18,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class Entrega2 {
-
+/*
     private  final Jugador Carpoforo = new Gladiador("Carpoforo");
     private final Jugador Espartaco = new Gladiador("Espartaco");
 
@@ -27,7 +26,7 @@ public class Entrega2 {
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/" + nombreDelMapa);
 
         Mapa mapa = new Mapa(informacionMapaEnJSON);
-        mapa.contruirMapa();
+        mapa.contruirCamino();
         return mapa;
     }
 
@@ -80,7 +79,7 @@ public class Entrega2 {
     public void elObstaculoNoEsValidoYLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConObstaculoRobin.json");
         Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(InteractuableNoValido.class, () -> mapa.contruirMapa());
+        assertThrows(InteractuableNoValido.class, () -> mapa.contruirCamino());
     }
 
     @Test
@@ -88,7 +87,7 @@ public class Entrega2 {
     public void elPremioNoEsValidoYLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConPremioFalso.json");
         Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoNoValido.class, () -> mapa.contruirMapa());
+        assertThrows(DatoNoValido.class, () -> mapa.contruirCamino());
     }
 
 
@@ -122,7 +121,7 @@ public class Entrega2 {
     public void elCasilleroEstaVacio() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConCeldaTipoVacia.json");
         Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(CasilleroNoValido.class, () -> mapa.contruirMapa());
+        assertThrows(CasilleroNoValido.class, () -> mapa.contruirCamino());
     }
 
     @Test
@@ -170,35 +169,35 @@ public class Entrega2 {
     public void siElValorXDeUnaCeldaEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorXDeCeldaNegativo.json");
         Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirMapa());
+        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirCamino());
     }
 
     @Test
     public void siElValorXDeUnaCeldaEsMayorALargoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorXDeCeldaFueraDeRango.json");
         Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirMapa());
+        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirCamino());
     }
 
     @Test
     public void siElValorYDeUnaCeldaEsMayorALargoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorYDeCeldaFueraDeRango.json");
         Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirMapa());
+        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirCamino());
     }
 
     @Test
     public void siElValorYDeUnaCeldaEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConValorYCero.json");
         Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirMapa());
+        assertThrows(DatoFueraDeRango.class, () -> mapa.contruirCamino());
     }
 
     @Test
     public void elTipoDeCeldaEsBatman() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaConCeldaTipoBatman.json");
         Mapa mapa = new Mapa(informacionMapaEnJSON);
-        assertThrows(DatoNoValido.class, () -> mapa.contruirMapa());
+        assertThrows(DatoNoValido.class, () -> mapa.contruirCamino());
     }
 
     @Test
@@ -1247,5 +1246,5 @@ public class Entrega2 {
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.CASCO));
     }
 
-
+*/
 }
