@@ -7,6 +7,4 @@ public interface SistemaTurnos {
     void finalizarTurno (AlgoRoma algoRoma);
     void perderTurnos (Turno turnos);
     void habilitar();
-    void deshabilitar ();
-    boolean estaHabilitado ();
 }

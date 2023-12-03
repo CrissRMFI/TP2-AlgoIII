@@ -8,20 +8,19 @@ import java.util.*;
 
 public class InformacionMapaLinealEnMatriz implements InformacionMapa {
     private ElementoMapa[][] informacionMapa;
-    private LinkedList<Casillero> camino;
     public InformacionMapaLinealEnMatriz(ElementoMapa[][] informacion) {
         this.informacionMapa = informacion;
     }
     @Override
     public void construirCamino(LinkedList<Casillero> camino) {
 
-        Casillero casilleroInicial = new CasilleroSalida(0,0);
+        Casillero casilleroInicial = new Casillero(0,0);
 
         camino.add(casilleroInicial);
 
         int k = 0;
         for (int i = 0; i < this.informacionMapa.length; i++) {
-            CasilleroCamino casilleroMapa = new CasilleroCamino(i+1,0);
+            Casillero casilleroMapa = new Casillero(i+1,0);
             for (int j = 0; j < this.informacionMapa[i].length ; j++) {
                 casilleroMapa.recibirElemento(this.informacionMapa[i][j]);
             }
@@ -31,7 +30,7 @@ public class InformacionMapaLinealEnMatriz implements InformacionMapa {
         }
 
 
-        Casillero casilleroFinal = new CasilleroLlegada(k+1,0);
+        Casillero casilleroFinal = new Casillero(k+1,0);
         camino.add(casilleroFinal);
 
     }

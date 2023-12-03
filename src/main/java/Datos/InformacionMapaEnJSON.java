@@ -1,19 +1,14 @@
 package Datos;
 
-import Entidades.Constructores.ConstructorCasillero;
 import Entidades.Constructores.ConstructorObstaculo;
 import Entidades.Constructores.ConstructorPremio;
 import Entidades.Errores.*;
-import Entidades.Interactuable;
 import Entidades.Obstaculos.Obstaculo;
 import Entidades.Premios.Premio;
 import Entidades.Tablero.*;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 
 public class InformacionMapaEnJSON implements InformacionMapa{
     private int ancho;
@@ -40,7 +35,6 @@ public class InformacionMapaEnJSON implements InformacionMapa{
     @Override
     public void construirCamino(LinkedList<Casillero> camino) throws DatoNoValido {
 
-        ConstructorCasillero constructorCasillero = new ConstructorCasillero();
         ConstructorPremio constructorPremio = new ConstructorPremio();
         ConstructorObstaculo constructorObstaculo = new ConstructorObstaculo();
 
@@ -49,8 +43,7 @@ public class InformacionMapaEnJSON implements InformacionMapa{
             int y = this.conseguirNumero("y", celda, this.ancho);
 
             
-            String tipoCasillero = celda.get("tipo").asText();
-            Casillero casillero = constructorCasillero.construirCasillero(tipoCasillero,x,y);
+            Casillero casillero = new Casillero(x,y);
             
 
             String tipoPremio = celda.get("premio").asText();

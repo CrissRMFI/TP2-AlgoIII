@@ -52,7 +52,7 @@ public class Mapa {
     }
 
     public boolean jugadorGano(Jugador jugador) {
-        CasilleroLlegada casilleroLlegada = (CasilleroLlegada) this.camino.getLast();
+        Casillero casilleroLlegada = this.camino.getLast();
 
         if (jugador.compararPosicion(casilleroLlegada)) {
             if (!jugador.esEquipoMaximo()) this.ubicarEnMitadDelCamino(jugador);

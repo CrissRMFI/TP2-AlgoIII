@@ -312,7 +312,7 @@ public class TestIntegracion {
 
         this.jugarTurnosGladiador(1,jugador,algoRoma);
 
-        Casillero posicionEsperada = new CasilleroCamino(16,0);
+        Casillero posicionEsperada = new Casillero(16,0);
 
         assertTrue(Carpoforo.compararPosicion(posicionEsperada));
 
@@ -411,7 +411,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
         this.jugarTurnosGladiador(2,jugador,algoRoma);
-        CasilleroCamino casilleroCamino = new CasilleroCamino(1,0); //Porque no se pudo mover
+        Casillero casilleroCamino = new Casillero(1,0); //Porque no se pudo mover
 
         assertTrue(Carpoforo.compararPosicion(casilleroCamino));
 
@@ -615,7 +615,7 @@ public class TestIntegracion {
         Energia energiaEsperadaEspartaco = new Energia(0);
 
 
-        Casillero posicionEsperada = new CasilleroCamino(1,0);
+        Casillero posicionEsperada = new Casillero(1,0);
 
 
         assertTrue(Carpoforo.compararPosicion(posicionEsperada));

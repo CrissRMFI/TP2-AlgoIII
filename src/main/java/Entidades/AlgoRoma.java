@@ -6,7 +6,6 @@ import Entidades.Errores.*;
 import Entidades.Jugadores.Jugador;
 import Entidades.Jugadores.JugadorGanador;
 import Entidades.Jugadores.NoHayGanador;
-import Entidades.Sistemas.SistemaControlGanador;
 import Entidades.Tablero.*;
 
 public class AlgoRoma {
@@ -55,7 +54,7 @@ public class AlgoRoma {
         return jugador;
     }
 
-    public void finalizarTurno (Jugador jugador) {
+    public void turnoFinalizado(Jugador jugador) {
 
         if (this.mapa.jugadorGano(jugador)) {
             this.finalizar(jugador);
