@@ -1,0 +1,22 @@
+@startuml
+
+actor ACTOR
+
+create Jugador
+ACTOR -> Jugador: e = new Gladiador("Espartaco")
+
+create Energia
+Jugador -> Energia: energia = new Energia()
+
+create EquipoBase
+Jugador -> EquipoBase: equipoBase = new EquipoBase()
+
+create Turno
+Jugador -> Turno: turno = new Turno()
+
+create Novato
+Jugador -> Novato: novato = new Novato()
+
+create Dado
+Jugador -> Dado: dado = new Dado()
+@enduml

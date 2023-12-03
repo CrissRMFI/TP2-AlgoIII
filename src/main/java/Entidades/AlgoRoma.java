@@ -15,6 +15,7 @@ public class AlgoRoma {
     private JugadorGanador ganador;
     private final MensajesUsuario mensaje = new MensajesUsuario();
 
+
     public AlgoRoma(Mapa mapa){
         this.mapa = mapa;
         this.ganador = new NoHayGanador();

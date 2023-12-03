@@ -1,0 +1,39 @@
+@startuml
+
+actor ACTOR
+create InformacionMapa
+
+ACTOR -> InformacionMapa
+create Mapa
+ACTOR -> Mapa: mapa = new Mapa(InformacionMapa)
+
+Create AlgoRoma
+ACTOR -> AlgoRoma: algoRoma = new AlgoRoma(mapa)
+
+
+create Jugador
+
+ACTOR -> Jugador: Espartaco = new Gladiador("Espartaco")
+ACTOR -> Jugador: Carpoforo = new Gladiador("Carpoforo")
+
+ACTOR -> AlgoRoma: agregarJugador(Espartaco)
+ACTOR -> AlgoRoma: agregarJugador(Carpoforo)
+
+
+ACTOR -> AlgoRoma: iniciarPartida()
+AlgoRoma --> ACTOR: jugador
+
+ACTOR -> Jugador: moverse()
+
+ACTOR -> Jugador: obtenerElementos()
+
+ACTOR -> Jugador: finalizarTurno()
+Jugador -> Turno: finalizar()
+Jugador -> Seniority: aumentarEnergia(this.energia)
+Jugador -> Seniority: ascenderSeniority()
+Jugador -> AlgoRoma: turnoFinalizado(this)
+
+AlgoRoma -> Mapa: jugadorGano(jugador)
+Mapa --> AlgoRoma: false
+AlgoRoma -> AlgoRoma: sumarUnTurno()
+@enduml

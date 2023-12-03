@@ -11,8 +11,6 @@ import Entidades.Sistemas.SistemaTurnos;
 import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Mapa;
 
-import java.util.Map;
-
 public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorGanador, ElementoMapa {
 
     protected Energia energia;

@@ -1,0 +1,23 @@
+@startuml
+
+actor ACTOR
+create InformacionMapa
+ACTOR -> InformacionMapa
+create Mapa
+ACTOR -> Mapa: mapa = new Mapa(InformacionMapa)
+
+Create AlgoRoma
+ACTOR -> AlgoRoma: algoRoma = new AlgoRoma(mapa)
+
+create Jugador
+ACTOR -> Jugador: Espartaco = new Gladiador("Espartaco")
+
+ACTOR -> AlgoRoma: agregarJugador(Carpoforo)
+AlgoRoma -> Jugador: ingresar(this.mapa)
+AlgoRoma -> AlgoRoma: jugadores.add(jugador)
+
+Jugador -> Mapa: ubicarEnInicio(this)
+Mapa -> Mapa: casilleroInicial = camino.get(0)
+Mapa -> Jugador: posicionar(casilleroInicial)
+
+@enduml
