@@ -5,10 +5,6 @@ import Datos.MensajesUsuario;
 import Entidades.Errores.ArchivoNoEncontrado;
 import Entidades.Errores.DatoNoEncontrado;
 import Entidades.Errores.DatoNoValido;
-import Entidades.Errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -29,7 +25,7 @@ public class LoginVista {
     private MensajesUsuario m = new MensajesUsuario();
     private GridPane grid = new GridPane();
     private Label titulo = new Label(m.IngresoDeJugadores());
-    private Button botonIniciar = new Button(m.IninciarJuego());
+    private Button botonIniciar = new Button(m.IniciarJuego());
 
     private Button botonMapa = new Button(m.CargarMapa());
 
@@ -52,6 +48,7 @@ public class LoginVista {
         this.construirInputs(6);
 
 
+
         int j= 0;
         for (int i=0; i<this.jugadores.size();i++) {
             grid.add((TextField) this.jugadores.get(i),0,i+1);
@@ -62,11 +59,11 @@ public class LoginVista {
         this.botonMapa.setOnAction(this::cargarMapa);
         this.botonIniciar.setStyle("-fx-font-size: 18; -fx-text-fill: white;-fx-background-color: green ;-fx-padding: 5;");
         this.grid.add(this.botonIniciar,0,j+1);
-        this.grid.setHalignment(botonIniciar, HPos.CENTER);
+        this.grid.setHalignment(botonIniciar, HPos.CENTER);     //para poner el boton en el medio.
 
-        grid.setVgap(20);
+        grid.setVgap(20); // separa por 20 los textfields.
 
-        this.enlazarVistaModelo();
+        this.enlazarVistaModelo();      // this.stage = stage en LoginVistaModdelo.java
 
         this.fileChooser.setTitle(m.CargarMapa());
 
@@ -82,6 +79,7 @@ public class LoginVista {
     private void enlazarVistaModelo () {
         this.viewModel.implementarStage(this.stage);
     }
+
     private void iniciarJuego (ActionEvent actionEvent)  {
         try {
             this.agregarJugadores();

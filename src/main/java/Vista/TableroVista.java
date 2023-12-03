@@ -32,8 +32,6 @@ public class TableroVista {
 
             this.grid.add(casillero.construirVistaCasillero(),x,y);
         }
-
-
     }
 
     public GridPane construirTablero(Map<Posicion, Casillero> casilleros) {

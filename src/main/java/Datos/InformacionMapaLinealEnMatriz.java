@@ -6,6 +6,8 @@ import Entidades.Tablero.*;
 import java.util.*;
 
 public class InformacionMapaLinealEnMatriz implements InformacionMapa {
+    private int largo = 50;
+    private int ancho = 50;
     private Interactuable[][] informacionMapa;
     private LinkedList listaPosicoines;
     public InformacionMapaLinealEnMatriz(Interactuable[][] informacion) {
@@ -40,6 +42,14 @@ public class InformacionMapaLinealEnMatriz implements InformacionMapa {
 
         this.listaPosicoines = posiciones;
         return mapa;
+    }
+
+    public int conseguirAncho(){
+        return this.ancho;
+    }
+
+    public int conseguirLargo(){
+        return this.largo;
     }
 
     @Override

@@ -10,4 +10,8 @@ public interface InformacionMapa {
     Map<Posicion, Casillero> construirMapa(LinkedList<Posicion> posiciones) throws DatoNoValido;
 
     LinkedList listaDePosiciones ();
+
+    public int conseguirAncho();
+
+    public int conseguirLargo();
 }

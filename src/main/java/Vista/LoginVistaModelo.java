@@ -24,6 +24,7 @@ public class LoginVistaModelo {
     public void agregarUsuario (String nombre) {
         this.usuarios.add(nombre);
     }
+
     public void iniciar() throws ElNombreDebeContenerUnMinimoDe4Caracteres,IOException {
         MensajesUsuario m = new MensajesUsuario();
 

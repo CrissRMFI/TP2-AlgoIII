@@ -35,6 +35,13 @@ public class Tablero {
         return this.mapa.construirVistaMapa(this.tableroVista);
     }
 
+    public int conseguirAncho(){
+        return this.mapa.conseguirAncho();
+    }
+
+    public int conseguirLargo(){
+        return this.mapa.conseguirLargo();
+    }
 
 
 }

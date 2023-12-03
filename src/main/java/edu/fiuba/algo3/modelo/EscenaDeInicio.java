@@ -10,29 +10,28 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
-public class EscenaDeInicio{
+public class EscenaDeInicio {
     Stage stage;
     BorderPane borderPane;
     VBox vbox;
+    Scene escenaDeInicio;
+    Scene escenaDeElegir;
 
-    public EscenaDeInicio(Stage stage){
+    public EscenaDeInicio(Stage stage, Scene escenaDeElegir){
         this.stage = stage;
+        this.escenaDeElegir = escenaDeElegir;
         this.borderPane = new BorderPane();
-
-        //borderPane.setPadding(new Insets(20, 0, 20, 20));
 
         this.ponerImagenDeFondo();
 
         this.vbox = new VBox();
-        //this.vbox.setAlignment(Pos.CENTER_LEFT);
         this.vbox.setSpacing(10);
         this.vbox.setPadding(new Insets(10, 20, 10, 20));
 
         this.ponerLogo();
 
-        //this.vbox.setBackground(new Background(imagenDeFondo));
-
         Button botonIniciarJuego = new Button("Iniciar Juego");
+        botonIniciarJuego.setOnAction(e -> this.stage.setScene(escenaDeElegir));
 
         Button botonSalirDelJuego = new Button("Salir del juego");
         BotonSalirEventHandler botonSalirEventHandler = new BotonSalirEventHandler();
@@ -45,34 +44,10 @@ public class EscenaDeInicio{
 
         this.borderPane.setLeft(this.vbox);
 
-        /*
-        button1.setMaxSize((Double.MAX_VALUE)/32, (Double.MAX_VALUE)/8);
-        button2.setMaxSize((Double.MAX_VALUE)/32, (Double.MAX_VALUE)/8);
-        button3.setMaxSize((Double.MAX_VALUE)/16, (Double.MAX_VALUE)/8);
-         */
-        /*
-        VBox.setVgrow(button1, Priority.ALWAYS);
-        VBox.setVgrow(button2, Priority.ALWAYS);
-        VBox.setVgrow(button3, Priority.ALWAYS);
+        this.escenaDeInicio = new Scene(this.borderPane, 600, 600);
 
-         */
-        /*
-        Button botonIniciarPartida = new Button("Iniciar Partida");
-        botonIniciarPartida.setMaxSize(100, 200);
-        this.vbox.getChildren().addAll(botonIniciarPartida);
-
-        Button botonInformacion = new Button("Info");
-        botonIniciarPartida.setMaxSize(300, 200);
-        this.vbox.getChildren().addAll(botonInformacion);
-
-        Button botonSalir = new Button("Salir");
-        botonSalir.setMaxSize(100, 200);
-        this.vbox.getChildren().addAll(botonSalir);
-         */
-
-        Scene scene = new Scene(this.borderPane, 600, 600);
-        this.stage.setScene(scene);
-        this.stage.show();
+        //this.stage.setScene(scene);
+        //this.stage.show();
     }
 
     private void ponerImagenDeFondo(){
@@ -90,6 +65,10 @@ public class EscenaDeInicio{
         muestraImagen.setImage(logo);
 
         this.vbox.getChildren().addAll(muestraImagen);
+    }
+
+    public Scene devolverEscena(){
+        return this.escenaDeInicio;
     }
 
 }

@@ -19,6 +19,9 @@ public class Mapa {
 
     private InformacionMapa informacionMapa;
 
+    private int ancho;
+    private int largo;
+
     public Mapa (InformacionMapa informacionMapa) {
         this.casilleros = new HashMap<>();
         this.informacionMapa = informacionMapa;
@@ -27,6 +30,8 @@ public class Mapa {
 
     public void contruirMapa () throws DatoNoValido {
         this.casilleros = this.informacionMapa.construirMapa(secuenciaPosiciones);
+        this.largo = this.informacionMapa.conseguirLargo();
+        this.ancho = this.informacionMapa.conseguirAncho();
     }
 
     public Casillero obtenerCasillero (Posicion posicion) {
@@ -77,5 +82,13 @@ public class Mapa {
 
     public GridPane construirVistaMapa (TableroVista tableroVista) {
         return tableroVista.construirTablero(this.casilleros);
+    }
+
+    public int conseguirAncho(){
+        return this.ancho;
+    }
+
+    public int conseguirLargo(){
+        return this.largo;
     }
 }

@@ -54,7 +54,6 @@ public class InformacionMapaEnJSON implements InformacionMapa{
             mapa.put(posicion,casillero);
             posiciones.add(posicion);
         }
-
         return mapa;
     }
 
@@ -119,5 +118,13 @@ public class InformacionMapaEnJSON implements InformacionMapa{
                 throw new DatoNoEncontrado();
             }
         }
+    }
+
+    public int conseguirAncho(){
+        return this.ancho;
+    }
+
+    public int conseguirLargo(){
+        return this.largo;
     }
 }
