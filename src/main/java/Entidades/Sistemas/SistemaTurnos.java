@@ -6,5 +6,5 @@ import Entidades.Elementos.Turno;
 public interface SistemaTurnos {
     void finalizarTurno (AlgoRoma algoRoma);
     void perderTurnos (Turno turnos);
-    void habilitar();
+    boolean habilitar();
 }

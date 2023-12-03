@@ -51,7 +51,14 @@ public class AlgoRoma {
         }
         this.jugadores.siguiente();
         Jugador jugador = this.jugadores.obtener();
-        jugador.habilitar();
+
+        if (!jugador.habilitar()) {
+            this.turnoFinalizado(jugador);
+
+            this.siguienteJugador();
+            return this.jugadores.obtener();
+        }
+
         return jugador;
     }
 

@@ -1,6 +1,7 @@
 @startuml
 
 actor ACTOR
+participant "Espartaco: Jugador" as Jugador
 
 create Jugador
 ACTOR -> Jugador: e = new Gladiador("Espartaco")

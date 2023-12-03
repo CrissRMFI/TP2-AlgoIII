@@ -29,8 +29,15 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     }
     public abstract void perderTurnos (Turno turnos);
     @Override
-    public void habilitar () {
+    public boolean habilitar () {
+        if (!this.energia.tengoEnergia()) {
+            this.energia.afectarEnergia(new Energia(5));
+            return false;
+        }
+
         this.turno.habilitar();
+        return  true;
+
     }
 
     public void agregarDispositivoAzar (DispositivoDeAzar dispositivoDeAzar) {
