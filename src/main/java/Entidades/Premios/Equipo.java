@@ -5,14 +5,10 @@ import Entidades.Jugadores.Jugador;
 
 public abstract class Equipo implements Premio {
     protected JerarquiaEquipos jerarquia;
-    protected Energia energiaQueAbsorbe;
 
     public abstract Equipo mejorar();
 
-    public Energia recibirDanio(Energia energia){
-        energia.afectarEnergia(this.energiaQueAbsorbe);
-        return energia;
-    }
+    public abstract void recibirDanio(Energia e);
 
     public boolean sePuedeMejorar() {
         return true;
@@ -20,11 +16,6 @@ public abstract class Equipo implements Premio {
 
     public boolean compararEquipo (JerarquiaEquipos equipamiento) {
         return this.jerarquia.ordinal() == equipamiento.ordinal();
-    }
-
-    @Override
-    public boolean soyJugador() {
-        return false;
     }
 
     @Override

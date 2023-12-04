@@ -8,8 +8,4 @@ public class SinObstaculo extends Obstaculo{
 
     }
 
-    @Override
-    public boolean soyJugador() {
-        return false;
-    }
 }

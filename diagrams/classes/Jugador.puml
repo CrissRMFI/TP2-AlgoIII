@@ -1,0 +1,42 @@
+@startuml
+
+interface SistemaDeTurnos {
+    + void finalizarTurno()
+    + void perderTurnos()
+    + boolean habilitar()
+}
+
+interface SistemaDeDefensa {
+    + void recibirDanio(energia: Energia)
+    + void defenderse()
+    + void equipar()
+    + boolean esEquipoMaximo()
+}
+
+interface JugadorGanador {
+    + String yoSoy()
+}
+
+Jugador ..|> SistemaDeTurnos
+Jugador ..|> SistemaDeDefensa
+Jugador ..|> JugadorGanador
+
+abstract class Jugador {
+    # energia: Energia
+    # d: DispositivoDeAzar
+    # turno: Turno
+    # nombre: String
+    # mapa: Mapa
+
+    + afectarEnergia(energia: Energia): void
+    + habilitar(): boolean
+    + lanzar(): ValorAzar
+    + yoSoy(): String
+    + ingresar(mapa: Mapa): void
+    + miDescripcion(): String
+    + {abstract} moverse(): void
+    + {abstract} finalizarTurno(): void 
+
+}
+
+@enduml

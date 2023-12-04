@@ -8,7 +8,11 @@ public class Casco extends Equipo {
 
     public Casco () {
         this.jerarquia = JerarquiaEquipos.CASCO;
-        this.energiaQueAbsorbe = new Energia(5);
+    }
+
+    @Override
+    public void recibirDanio(Energia e) {
+        e.afectarEnergia(new Energia(-15));
     }
 
     @Override
