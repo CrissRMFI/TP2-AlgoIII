@@ -1,23 +1,29 @@
 @startuml
 
 actor ACTOR
+participant InformacionMapa
+participant Mapa
+participant AlgoRoma
+participant Jugador1 as "Espartato: Jugador"
+
 create InformacionMapa
+
 ACTOR -> InformacionMapa
 create Mapa
 ACTOR -> Mapa: mapa = new Mapa(InformacionMapa)
 
-Create AlgoRoma
+create AlgoRoma
 ACTOR -> AlgoRoma: algoRoma = new AlgoRoma(mapa)
 
-create Jugador
-ACTOR -> Jugador: Espartaco = new Gladiador("Espartaco")
+create Jugador1
+ACTOR -> Jugador1: Espartaco = new Gladiador("Espartaco")
 
 ACTOR -> AlgoRoma: agregarJugador(Carpoforo)
-AlgoRoma -> Jugador: ingresar(this.mapa)
 AlgoRoma -> AlgoRoma: jugadores.add(jugador)
+AlgoRoma -> Jugador1: ingresar(this.mapa)
 
-Jugador -> Mapa: ubicarEnInicio(this)
+Jugador1 -> Mapa: ubicarEnInicio(this)
 Mapa -> Mapa: casilleroInicial = camino.get(0)
-Mapa -> Jugador: posicionar(casilleroInicial)
+Mapa -> Jugador1: posicionar(casilleroInicial)
 
 @enduml

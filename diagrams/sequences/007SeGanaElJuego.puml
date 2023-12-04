@@ -1,0 +1,38 @@
+@startuml
+
+actor ACTOR
+
+actor ACTOR
+participant AlgoRoma
+participant Jugador
+participant Casillero
+
+alt para Cada jugador
+create Jugador
+ACTOR -> Jugador
+ACTOR -> AlgoRoma: agregarJugador(jugador))
+end
+
+ACTOR -> AlgoRoma: iniciarPartida()
+AlgoRoma --> ACTOR: jugador
+alt por 30 turnos
+AlgoRoma -> Jugador: habilitar()
+Jugador -> Energia: tengoEnergia()
+Energia --> Jugador: true
+Jugador --> AlgoRoma: true
+AlgoRoma --> ACTOR: jugador
+ACTOR -> Jugador: moverse()
+ACTOR -> Jugador: obtenerElementos()
+Jugador -> Casillero: entregarElementos(this)
+Casillero -> Casillero: elementoMapa = find()
+Casillero -> ElemenotosMapa: interacturar(jugador)
+ACTOR -> Jugador: finalizarTurno
+ACTOR -> AlgoRoma: siguienteJugador
+end
+
+ACTOR -> AlgoRoma: elGandador()
+AlgoRoma --> ACTOR: jugador
+
+ACTOR -> Jugador: yoSoy()
+Jugador --> ACTOR: nombre
+@enduml

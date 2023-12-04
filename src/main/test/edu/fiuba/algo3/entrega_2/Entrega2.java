@@ -523,6 +523,6 @@ public class Entrega2 {
         assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
     }
 
-  
+
 
 }
