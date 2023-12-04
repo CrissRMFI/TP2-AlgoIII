@@ -17,8 +17,8 @@ public class App extends Application {
 
         stage.setTitle(mensajes.TituloAplicacion());
 
-        LoginVista login = new LoginVista();
-        Scene escenaJuego = new Scene(login, 640, 480);
+        LoginVista login = new LoginVista(stage);
+        Scene escenaJuego = new Scene(login, 800, 480);
 
         ContenedorMenuPrincipal contenedorMenuPrincipal = new ContenedorMenuPrincipal(stage, escenaJuego);
         Scene escenaMenuPrincipal = new Scene(contenedorMenuPrincipal, 600, 600);

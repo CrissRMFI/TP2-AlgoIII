@@ -36,7 +36,10 @@ public class ContenedorMenuPrincipal extends BorderPane {
         this.vbox.setSpacing(20);
         this.vbox.setPadding(new Insets(10, 20, 10, 20));
 
-        this.ponerLogo();
+        Titulo titulo = new Titulo("A L G O R O M A");
+        this.vbox.getChildren().add(titulo);
+
+        //this.ponerLogo();
 
         /*
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen,
@@ -47,9 +50,9 @@ public class ContenedorMenuPrincipal extends BorderPane {
         this.setBackground(new Background(imagenDeFondo));
          */
 
-        Label etiqueta = new Label("Bienvenidos a AlgoRoma");
-        etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 30));
-        etiqueta.setTextFill(Color.WHITE); //web("#66A7C5")
+        //Label etiqueta = new Label("Bienvenidos a AlgoRoma");
+        //etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 30));
+        //etiqueta.setTextFill(Color.WHITE); //web("#66A7C5")
 
         /*
         BotonMenuPrincipal botonIniciar = new BotonMenuPrincipal("Iniciar");
@@ -100,6 +103,7 @@ public class ContenedorMenuPrincipal extends BorderPane {
         this.setBackground(new Background(imagenDeFondo));
     }
 
+    /*
     private void ponerLogo(){
         ImageView muestraImagen = new ImageView();
         Image logo = new Image("file:src/main/java/Vista/Imagenes/fetchimage.png", 170, 170, false, false);
@@ -107,6 +111,8 @@ public class ContenedorMenuPrincipal extends BorderPane {
 
         this.vbox.getChildren().addAll(muestraImagen);
     }
+
+     */
 
 
     public Image scale(Image source, int targetWidth, int targetHeight, boolean preserveRatio) {

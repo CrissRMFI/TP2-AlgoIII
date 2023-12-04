@@ -5,16 +5,19 @@ import Datos.MensajesUsuario;
 import Entidades.Errores.ArchivoNoEncontrado;
 import Entidades.Errores.DatoNoEncontrado;
 import Entidades.Errores.DatoNoValido;
+//import Vista.BotonHandlers.BotonCargarMapaEventHandler;
+//import Vista.BotonHandlers.BotonIniciarJuegoEventHandler;
+import Vista.BotonHandlers.BotonIniciarJuegoEventHandler;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -22,68 +25,121 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
+
 public class LoginVista extends BorderPane {
+    private Stage stage;
+    private MensajesUsuario mensajes = new MensajesUsuario();
+    private VBox vBoxDeJugadores;
+    private VBox vBoxDeMapas;
+    private ToggleGroup grupoDeMapas;
 
-    private MensajesUsuario m = new MensajesUsuario();
-    private GridPane grid = new GridPane();
-    private Label titulo = new Label(m.IngresoDeJugadores());
-    private Button botonIniciar = new Button(m.IninciarJuego());
 
-    private Button botonMapa = new Button(m.CargarMapa());
+    public LoginVista(Stage stage){
+        this.stage = stage;
 
-    private FileChooser fileChooser = new FileChooser();
+        this.vBoxDeJugadores = new VBox(15);
+        this.vBoxDeJugadores.setPadding(new Insets(10, 20, 20, 20));
+        this.vBoxDeJugadores.setMaxHeight(100);
+        //this.vBoxDeJugadores.setStyle("-fx-background-color: black;");
 
-    private LinkedList jugadores = new LinkedList<>();
-    private Stage stage = new Stage();
-    private final LoginVistaModelo viewModel =
-            new LoginVistaModelo();
+        this.vBoxDeMapas = new VBox(15);
+        this.vBoxDeMapas.setPadding(new Insets(10, 20, 20, 20));
+        this.vBoxDeMapas.setMaxHeight(100);
+        //this.vBoxDeMapas.setStyle("-fx-background-color: black;");
 
+        this.grupoDeMapas = new ToggleGroup();
+
+        //this.setStyle("-fx-background-color: black;");
+        this.ponerImagenDeFondo();
+
+        this.agregarParaPonerNombres(6);
+
+        this.agregarParaElegirMapa();
+
+        this.agregarBotones();
+
+        HBox hbox = new HBox(50);
+        hbox.setAlignment(Pos.CENTER);
+        hbox.getChildren().addAll(vBoxDeJugadores, vBoxDeMapas);
+
+        //this.setLeft(vBoxDeJugadores);
+        //this.setRight(vBoxDeMapas);
+
+        this.setCenter(hbox);
+
+        //this.add(vBoxDeJugadores, 0, 0);
+        //this.add(vBoxDeMapas, 1, 0);
+
+        //this.setAlignment(Pos.TOP_CENTER);
+
+
+    }
+
+
+    //private GridPane grid = new GridPane();
+    //private Button botonIniciar = new Button(mensajes.IniciarJuego());
+    //private Button botonMapa = new Button(mensajes.CargarMapa());
+    //private FileChooser fileChooser = new FileChooser();
+    //private LinkedList jugadores = new LinkedList<>();
+    //private Stage stage = new Stage();
+    //private final LoginVistaModelo viewModel = new LoginVistaModelo();
+
+    /*
     public LoginVista() {
         super();
         this.crearVista();
     }
 
+     */
+
     public void crearVista() {
 
         //this.grid.setStyle("-fx-background-color: black;");
-        this.titulo.setStyle("-fx-font-size: 24; -fx-text-fill: white; -fx-padding: 20;");
-        this.titulo.setAlignment(Pos.TOP_CENTER);
-
-        this.ponerImagenDeFondo();
-
-        this.grid.add(this.titulo, 0, 0);
-        this.grid.setAlignment(Pos.TOP_CENTER);
-
-        this.construirInputs(6);
 
 
+
+        //this.grid.add(this.titulo, 0, 0);
+        //this.grid.setAlignment(Pos.TOP_CENTER);
+
+
+        //this.construirInputs(6);
+
+
+        /*
         int j = 0;
         for (int i = 0; i < this.jugadores.size(); i++) {
             grid.add((TextField) this.jugadores.get(i), 0, i + 1);
             j++;
         }
+         */
 
-        this.botonIniciar.setOnAction(this::iniciarJuego);
-        this.botonMapa.setOnAction(this::cargarMapa);
-        this.botonIniciar.setStyle("-fx-font-size: 18; -fx-text-fill: white;-fx-background-color: green ;-fx-padding: 5;");
-        this.grid.add(this.botonIniciar, 0, j + 1);
-        this.grid.setHalignment(botonIniciar, HPos.CENTER);
+        //this.botonIniciar.setOnAction(this::iniciarJuego);
+        //this.botonMapa.setOnAction(this::cargarMapa);
+        //this.botonIniciar.setStyle("-fx-font-size: 18; -fx-text-fill: white;-fx-background-color: green ;-fx-padding: 5;");
+        //this.grid.add(this.botonIniciar, 0, j + 1);
 
-        grid.setVgap(20);
 
-        this.enlazarVistaModelo();
+        /////////7///////this.grid.setHalignment(botonIniciar, HPos.CENTER);
 
-        this.fileChooser.setTitle(m.CargarMapa());
+        /////////grid.setVgap(20);
 
-        this.grid.add(this.botonMapa, 0, j + 2);
+        //this.enlazarVistaModelo();
 
-        this.setCenter(this.grid);
+        //this.fileChooser.setTitle(mensajes.CargarMapa());
+
+        //this.grid.add(this.botonMapa, 0, j + 2);
+
+        //this.setCenter(this.grid);
     }
 
+    /*
     private void enlazarVistaModelo() {
         this.viewModel.implementarStage(this.stage);
     }
 
+     */
+
+    /*
     private void iniciarJuego(ActionEvent actionEvent) {
         try {
             this.agregarJugadores();
@@ -97,8 +153,11 @@ public class LoginVista extends BorderPane {
         }
     }
 
-    private void cargarMapa(ActionEvent actionEvent) {
+     */
 
+    /*
+
+    private void cargarMapa(ActionEvent actionEvent) {
         try {
             File archivo = fileChooser.showOpenDialog(this.stage);
             this.viewModel.cargarMapa(archivo.getAbsolutePath());
@@ -111,6 +170,9 @@ public class LoginVista extends BorderPane {
         }
     }
 
+     */
+
+    /*
     private TextField crearTextField() {
 
         TextField textField = new TextField();
@@ -118,6 +180,9 @@ public class LoginVista extends BorderPane {
         return textField;
     }
 
+     */
+
+    /*
     private void construirInputs(int cantidad) {
 
         for (int i = 0; i < cantidad; i++) {
@@ -125,6 +190,9 @@ public class LoginVista extends BorderPane {
         }
     }
 
+     */
+
+    /*
     private void agregarJugadores() {
 
         for (int i = 0; i < grid.getChildren().size(); i++) {
@@ -135,8 +203,10 @@ public class LoginVista extends BorderPane {
         }
     }
 
+     */
+
     private void ponerImagenDeFondo(){
-        Image imagen = new Image("file:src/main/java/Vista/Imagenes/roma2.png");
+        Image imagen = new Image("file:src/main/java/Vista/Imagenes/pruebaDeFondo.png");
 
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen,
                 BackgroundRepeat.REPEAT,
@@ -144,6 +214,91 @@ public class LoginVista extends BorderPane {
                 BackgroundPosition.CENTER,
                 new BackgroundSize(100, 100, true, true, true, true));
 
-        this.grid.setBackground(new Background(imagenDeFondo));
+        this.setBackground(new Background(imagenDeFondo));
+    }
+
+    private void ponerTituloDeJugadores(){
+        Label tituloJugadores = new Label(mensajes.IngresoDeJugadores());
+        tituloJugadores.setFont(new Font(" times new roman", 24));
+        tituloJugadores.setStyle("-fx-font-size: 24; -fx-text-fill: white; -fx-padding: 20;");
+        tituloJugadores.setAlignment(Pos.TOP_CENTER);
+
+        this.vBoxDeJugadores.getChildren().add(tituloJugadores);
+    }
+
+    private void agregarParaPonerNombres(int cantidad){
+        this.ponerTituloDeJugadores();
+        for (int i = 0; i < cantidad; i++){
+            //this.vBoxDeJugadores.add(new Label("Jugador " + (i+1)), 0, i+2);
+            this.vBoxDeJugadores.getChildren().add(new TextField());
+        }
+        //this.vBoxDeJugadores.setHgap(20);
+        //this.vBoxDeJugadores.setVgap(10);
+        //this.vBoxDeJugadores.setPadding(new Insets(10, 10, 10, 10));
+    }
+
+    private void ponerTituloDeMapas(){
+        Label tituloDeMapas = new Label(this.mensajes.eleccionDeMapas());
+        tituloDeMapas.setStyle("-fx-font-size: 24; -fx-text-fill: white; -fx-padding: 20;");
+        tituloDeMapas.setAlignment(Pos.TOP_CENTER);
+
+        this.vBoxDeMapas.getChildren().add(tituloDeMapas);
+    }
+
+
+    private void agregarParaElegirMapa(){
+        this.ponerTituloDeMapas();
+
+        RadioButton mapa1 = new RadioButton("mapaDeLaCatedra");
+        mapa1.setTextFill(Color.WHITE);
+        RadioButton mapa2 = new RadioButton("mapaDeEjemplo");
+        mapa2.setTextFill(Color.WHITE);
+        RadioButton mapa3 = new RadioButton("mapaDeEjemplo2");
+        mapa3.setTextFill(Color.WHITE);
+        RadioButton mapa4 = new RadioButton("mapaDeEjemplo3");
+        mapa4.setTextFill(Color.WHITE);
+
+        mapa1.setToggleGroup(this.grupoDeMapas);
+        mapa2.setToggleGroup(this.grupoDeMapas);
+        mapa3.setToggleGroup(this.grupoDeMapas);
+        mapa4.setToggleGroup(this.grupoDeMapas);
+
+        this.vBoxDeMapas.getChildren().addAll(mapa1, mapa2, mapa3, mapa4);
+
+        //this.gridPaneMapas.setHgap(20);
+        //this.gridPaneMapas.setVgap(10);
+        //this.gridPaneMapas.setPadding(new Insets(10, 10, 10, 10));
+    }
+
+    private void agregarBotones(){
+        this.agregarBotonIniciarJuego();
+        this.agregarBotonParaElegirMapa();
+    }
+
+    private void agregarBotonIniciarJuego(){
+        Button boton = new Button(mensajes.IniciarJuego());
+        boton.setStyle("-fx-font-size: 18; -fx-text-fill: white;-fx-background-color: green ;-fx-padding: 5;");
+        BotonIniciarJuegoEventHandler botonEventHandler = new BotonIniciarJuegoEventHandler(this.stage, this.vBoxDeJugadores, this.grupoDeMapas);
+        boton.setOnAction(botonEventHandler);
+
+        //this.vBoxDeJugadores.getChildren().add(boton);
+        //boton.setMaxWidth(Double.MAX_VALUE);
+        //boton.setMaxHeight(Double.MAX_VALUE);
+        boton.setMinWidth(170);
+        boton.setMinHeight(100);
+        BorderPane.setMargin(boton, new Insets(10, 10, 10, 10));
+        BorderPane.setAlignment(boton, Pos.TOP_CENTER);
+        this.setBottom(boton);
+    }
+
+    private void agregarBotonParaElegirMapa(){
+        Button botonMapa = new Button(mensajes.CargarMapa());
+        botonMapa.setStyle("-fx-font-size: 18; -fx-text-fill: white;-fx-background-color: green ;-fx-padding: 5;");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(mensajes.CargarMapa());
+        //BotonCargarMapaEventHandler botonEventHandler = new BotonCargarMapaEventHandler(this.stage, fileChooser);
+        //botonMapa.setOnAction(botonEventHandler);
+
+        this.vBoxDeMapas.getChildren().add(botonMapa);
     }
 }
