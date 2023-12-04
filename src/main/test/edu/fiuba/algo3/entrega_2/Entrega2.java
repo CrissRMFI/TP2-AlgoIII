@@ -1,14 +1,14 @@
 package edu.fiuba.algo3.entrega_2;
 
-import Datos.InformacionMapaEnJSON;
-import Entidades.AlgoRoma;
-import Entidades.Elementos.MockDado;
-import Entidades.Energia.Energia;
-import Entidades.Errores.*;
-import Entidades.Jugadores.Gladiador;
-import Entidades.Premios.JerarquiaEquipos;
-import Entidades.Tablero.Casillero;
-import Entidades.Tablero.Mapa;
+import datos.InformacionMapaEnJSON;
+import modelo.AlgoRoma;
+import modelo.elementos.MockDado;
+import modelo.energia.Energia;
+import modelo.errores.*;
+import modelo.jugadores.Gladiador;
+import modelo.premios.JerarquiaEquipos;
+import modelo.tablero.Casillero;
+import modelo.tablero.Mapa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
