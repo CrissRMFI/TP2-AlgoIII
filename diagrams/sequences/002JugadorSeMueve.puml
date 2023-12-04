@@ -1,20 +1,14 @@
 @startuml
 
 actor ACTOR
-create InformacionMapa
+participant AlgoRoma
+participant Jugador1 as "Espartaco: Jugador"
+participant Jugador2 as "Caroforo: Jugador"
 
-ACTOR -> InformacionMapa
-create Mapa
-ACTOR -> Mapa: mapa = new Mapa(InformacionMapa)
-
-Create AlgoRoma
-ACTOR -> AlgoRoma: algoRoma = new AlgoRoma(mapa)
-
-
-create Jugador
-
-ACTOR -> Jugador: Espartaco = new Gladiador("Espartaco")
-ACTOR -> Jugador: Carpoforo = new Gladiador("Carpoforo")
+create Jugador1
+ACTOR -> Jugador1: Espartaco = new Gladiador("Espartaco")
+create Jugador2
+ACTOR -> Jugador2: Carpoforo = new Gladiador("Carpoforo")
 
 ACTOR -> AlgoRoma: agregarJugador(Espartaco)
 ACTOR -> AlgoRoma: agregarJugador(Carpoforo)
@@ -23,14 +17,15 @@ ACTOR -> AlgoRoma: agregarJugador(Carpoforo)
 ACTOR -> AlgoRoma: iniciarPartida()
 AlgoRoma --> ACTOR: jugador
 
-ACTOR -> Jugador: moverse()
-Jugador -> Turno: estaHabilitado()
-Turno --> Jugador: t = true
-Jugador -> Energia: tengoEnergia()
-Energia --> Jugador: e = true
+ACTOR -> Jugador1: moverse()
+Jugador1 -> Turno: estaHabilitado()
+Turno --> Jugador1: t = true
+Jugador1 -> Energia: tengoEnergia()
+Energia --> Jugador1: e = true
 
-Jugador -> Mapa: moverJugador(this.casillero,this)
+Jugador1 -> Mapa: moverJugador(this.casillero,this)
 
 Mapa -> Mapa: casilleroNuevo = calculaNuevoCasillero
-Mapa -> Jugador: posicionar(casilleroNuevo)
+Mapa -> Jugador1: posicionar(casilleroNuevo)
+Jugador1 -> Jugador1: this.casillero = casilleroNuevo
 @enduml

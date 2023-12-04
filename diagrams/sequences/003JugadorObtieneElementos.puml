@@ -1,20 +1,15 @@
 @startuml
 
 actor ACTOR
-create InformacionMapa
+participant AlgoRoma
+participant Jugador1 as "Espartaco: Gladiador"
+participant Jugador2 as "Carpoforo: Gladiador"
 
-ACTOR -> InformacionMapa
-create Mapa
-ACTOR -> Mapa: mapa = new Mapa(InformacionMapa)
+create Jugador1
+ACTOR -> Jugador1: Espartaco = new Gladiador("Espartaco")
+create Jugador2
+ACTOR -> Jugador2: Carpoforo = new Gladiador("Carpoforo")
 
-Create AlgoRoma
-ACTOR -> AlgoRoma: algoRoma = new AlgoRoma(mapa)
-
-
-create Jugador
-
-ACTOR -> Jugador: Espartaco = new Gladiador("Espartaco")
-ACTOR -> Jugador: Carpoforo = new Gladiador("Carpoforo")
 
 ACTOR -> AlgoRoma: agregarJugador(Espartaco)
 ACTOR -> AlgoRoma: agregarJugador(Carpoforo)
@@ -23,18 +18,17 @@ ACTOR -> AlgoRoma: agregarJugador(Carpoforo)
 ACTOR -> AlgoRoma: iniciarPartida()
 AlgoRoma --> ACTOR: jugador
 
-ACTOR -> Jugador: moverse()
+ACTOR -> Jugador1: moverse()
 
-ACTOR -> Jugador: obtenerElementos()
+ACTOR -> Jugador1: obtenerElementos()
 
-Jugador -> Casillero: entregarElementos(this)
+Jugador1 -> Casillero: entregarElementos(this)
 
 alt para cada elemento
-    Casillero -> ElementoMapa: get()
-    ElementoMapa --> Casillero: elemento
     Casillero -> ElementoMapa: soyJugador()
     ElementoMapa --> Casillero: false
-    ElementoMapa -> Jugador: interactuar()
+    Casillero -> ElementoMapa: interactuar(jugador)
+    ElementoMapa -> Jugador1: interactuar()
 
 end
 

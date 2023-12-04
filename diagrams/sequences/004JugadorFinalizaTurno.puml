@@ -1,20 +1,15 @@
 @startuml
 
 actor ACTOR
-create InformacionMapa
+participant AlgoRoma
+participant Jugador1 as "Espartaco: Gladiador"
+participant Jugador2 as "Carpoforo: Gladiador"
 
-ACTOR -> InformacionMapa
-create Mapa
-ACTOR -> Mapa: mapa = new Mapa(InformacionMapa)
+create Jugador1
+ACTOR -> Jugador1: Espartaco = new Gladiador("Espartaco")
+create Jugador2
+ACTOR -> Jugador2: Carpoforo = new Gladiador("Carpoforo")
 
-Create AlgoRoma
-ACTOR -> AlgoRoma: algoRoma = new AlgoRoma(mapa)
-
-
-create Jugador
-
-ACTOR -> Jugador: Espartaco = new Gladiador("Espartaco")
-ACTOR -> Jugador: Carpoforo = new Gladiador("Carpoforo")
 
 ACTOR -> AlgoRoma: agregarJugador(Espartaco)
 ACTOR -> AlgoRoma: agregarJugador(Carpoforo)
@@ -23,17 +18,18 @@ ACTOR -> AlgoRoma: agregarJugador(Carpoforo)
 ACTOR -> AlgoRoma: iniciarPartida()
 AlgoRoma --> ACTOR: jugador
 
-ACTOR -> Jugador: moverse()
+ACTOR -> Jugador1: moverse()
 
-ACTOR -> Jugador: obtenerElementos()
+ACTOR -> Jugador1: obtenerElementos()
 
-ACTOR -> Jugador: finalizarTurno()
-Jugador -> Turno: finalizar()
-Jugador -> Seniority: aumentarEnergia(this.energia)
-Jugador -> Seniority: ascenderSeniority()
-Jugador -> AlgoRoma: turnoFinalizado(this)
+ACTOR -> Jugador1: finalizarTurno(algoRoma)
 
-AlgoRoma -> Mapa: jugadorGano(jugador)
+Jugador1 -> Jugador1: this.turno.finalizar()
+Jugador1 -> Jugador1: this.seniority.aumetarEnergia()
+Jugador1 -> Jugador1: this.seniority.ascenderSeniority()
+Jugador1 -> AlgoRoma: turnoFinalizado()
+AlgoRoma -> Mapa: jugadorGano()
 Mapa --> AlgoRoma: false
 AlgoRoma -> AlgoRoma: sumarUnTurno()
+
 @enduml

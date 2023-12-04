@@ -1,0 +1,60 @@
+@startuml
+
+actor ACTOR
+
+actor ACTOR
+participant AlgoRoma
+participant Jugador1 as "Espartaco: Gladiador"
+participant Jugador2 as "Carpoforo: Gladiador"
+participant Casillero
+participant Fiera as "Fiera: Obstaculo"
+
+create Jugador1
+ACTOR -> Jugador1: Espartaco = new Gladiador("Espartaco")
+create Jugador2
+ACTOR -> Jugador2: Carpoforo = new Gladiador("Carpoforo")
+
+
+ACTOR -> AlgoRoma: agregarJugador(Espartaco)
+ACTOR -> AlgoRoma: agregarJugador(Carpoforo)
+
+
+ACTOR -> AlgoRoma: iniciarPartida()
+AlgoRoma -> Jugador1: habilitar()
+Jugador1 -> Energia: tengoEnergia()
+Energia --> Jugador1: true
+Jugador1 --> AlgoRoma: true
+AlgoRoma --> ACTOR: Espartaco
+ACTOR -> Jugador1: moverse()
+ACTOR -> Jugador1: obtenerElementos()
+Jugador1 -> Casillero: entregarElementos(this)
+Casillero -> Casillero: elementoMapa = find()
+Casillero -> Fiera: interacturar(jugador)
+Fiera -> Jugador1: defenderse(this.Energia)
+
+ACTOR -> Jugador1: finalizarTurno(algoRoma)
+Jugador1 -> Jugador1: this.turnos.deshabilitar()
+ACTOR -> AlgoRoma: siguienteJugador()
+AlgoRoma -> Jugador2: habilitar()
+Jugador2 -> Energia: tengoEnergia()
+Energia --> Jugador2: true
+Jugador2 --> AlgoRoma: true
+AlgoRoma --> ACTOR: Carpoforo
+
+ACTOR -> Jugador2: finalizarTurno()
+Jugador2 -> Jugador2: this.turnos.deshabilitar
+
+ACTOR -> AlgoRoma: siguienteJugador()
+AlgoRoma -> Jugador1: habilitar()
+Jugador1 -> Energia: tengoEnergia()
+Energia --> Jugador1: false
+Jugador1 -> Energia: aumentarEnergia()
+Jugador1 --> AlgoRoma: false
+AlgoRoma -> Jugador2: habilitar()
+Jugador2 -> Energia: tengoEnergia()
+Energia --> Jugador2: true
+Jugador2 -> AlgoRoma: true
+AlgoRoma --> ACTOR: Carpoforo
+
+
+@enduml
