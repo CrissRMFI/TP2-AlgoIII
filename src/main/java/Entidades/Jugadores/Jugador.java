@@ -1,7 +1,6 @@
 package Entidades.Jugadores;
 
 import Entidades.AlgoRoma;
-import Entidades.ElementoMapa;
 import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.Turno;
 import Entidades.Elementos.ValorAzar;
@@ -11,7 +10,7 @@ import Entidades.Sistemas.SistemaTurnos;
 import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Mapa;
 
-public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorGanador, ElementoMapa {
+public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorGanador {
 
     protected Energia energia;
     protected DispositivoDeAzar dispositivoDeAzar;
@@ -27,7 +26,7 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     public boolean compararSalud(Energia energia) {
         return this.energia.comparar(energia);
     }
-    public abstract void perderTurnos (Turno turnos);
+
     @Override
     public boolean habilitar () {
         if (!this.energia.tengoEnergia()) {
@@ -47,11 +46,9 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
         return this.dispositivoDeAzar.lanzar();
     }
 
-
     @Override
     public String yoSoy() {
-        return this.nombre;
-    }
+        return this.nombre;}
 
     public void posicionar(Casillero casillero) {
         this.casillero = casillero;
@@ -60,10 +57,6 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     public void ingresar (Mapa mapa) {
         this.mapa = mapa;
         this.mapa.ubicarEnInicio(this);
-    }
-    @Override
-    public boolean soyJugador() {
-        return true;
     }
 
     public abstract void moverse();

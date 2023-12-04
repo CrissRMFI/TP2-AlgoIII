@@ -6,9 +6,12 @@ public class Llave extends Equipo {
 
     public Llave () {
         this.jerarquia = JerarquiaEquipos.LLAVE;
-        this.energiaQueAbsorbe = new Energia(20);
     }
 
+    @Override
+    public void recibirDanio(Energia e) {
+        e.afectarEnergia(new Energia(0));
+    }
     @Override
     public Equipo mejorar() {
         return this;

@@ -6,7 +6,11 @@ public class Armadura extends Equipo {
 
     public Armadura () {
         this.jerarquia = JerarquiaEquipos.ARMADURA;
-        this.energiaQueAbsorbe = new Energia(10);
+    }
+
+    @Override
+    public void recibirDanio(Energia e) {
+        e.afectarEnergia(new Energia(-10));
     }
 
     @Override

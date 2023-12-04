@@ -42,7 +42,6 @@ public class Mapa {
     }
 
     public void ubicarEnInicio (Jugador jugador) {
-        this.camino.get(0).recibirElemento(jugador);
         jugador.posicionar(this.camino.get(0));
     }
 
@@ -53,6 +52,7 @@ public class Mapa {
 
     public boolean jugadorGano(Jugador jugador) {
         Casillero casilleroLlegada = this.camino.getLast();
+
 
         if (jugador.compararPosicion(casilleroLlegada)) {
             if (!jugador.esEquipoMaximo()) this.ubicarEnMitadDelCamino(jugador);
