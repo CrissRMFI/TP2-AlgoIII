@@ -1,20 +1,20 @@
 @startuml
 
 interface SistemaDeTurnos {
-    + void finalizarTurno()
-    + void perderTurnos()
-    + boolean habilitar()
+    + finalizarTurno(): void
+    + perderTurnos(): void
+    + habilitar(): boolean
 }
 
 interface SistemaDeDefensa {
-    + void recibirDanio(energia: Energia)
-    + void defenderse()
-    + void equipar()
-    + boolean esEquipoMaximo()
+    + recibirDanio(energia: Energia): void
+    + defenderse(): void
+    + equipar(): void
+    + esEquipoMaximo(): boolean
 }
 
 interface JugadorGanador {
-    + String yoSoy()
+    + yoSoy(): String
 }
 
 Jugador ..|> SistemaDeTurnos
@@ -35,7 +35,7 @@ abstract class Jugador {
     + ingresar(mapa: Mapa): void
     + miDescripcion(): String
     + {abstract} moverse(): void
-    + {abstract} finalizarTurno(): void 
+    + {abstract} finalizarTurno(): void
 
 }
 

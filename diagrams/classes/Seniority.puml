@@ -1,0 +1,28 @@
+@startuml
+
+interface Seniority {
+    + ascenderSeniority(): Seniority
+    + aumentarEnergia(): void
+    + descripcion(): String
+}
+
+class Novato {
+     + ascenderSeniority(): Seniority
+     + aumentarEnergia(): void
+     + descripcion(): String
+}
+class SemiSenior{
+    + ascenderSeniority(): Seniority
+    + aumentarEnergia(): void
+    + descripcion(): String
+   }
+class Senior {
+     + ascenderSeniority(): Seniority
+     + aumentarEnergia(): void
+     + descripcion(): String
+}
+
+Novato ..|> Seniority
+SemiSenior ..|> Seniority
+Senior ..|> Seniority
+@enduml
