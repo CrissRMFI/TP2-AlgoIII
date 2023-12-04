@@ -2,8 +2,8 @@ package TestIntegracion;
 
 import Datos.InformacionMapaLinealEnMatriz;
 import Entidades.AlgoRoma;
-import Entidades.ElementoMapa;
 import Entidades.Errores.*;
+import Entidades.Interactuable;
 import Entidades.Obstaculos.SinObstaculo;
 import Entidades.Premios.Comida;
 import Entidades.Elementos.MockDado;
@@ -26,7 +26,7 @@ public class TestIntegracion {
 
     private Mapa MapaSoloConUnEquipo () throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
 
         for (int i=0;i<cantidadCasilleros;i++) {
@@ -42,7 +42,7 @@ public class TestIntegracion {
     private Mapa MapaConDosEquipos () throws DatoNoValido {
         int cantidadCasilleros = 30;
 
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -59,7 +59,7 @@ public class TestIntegracion {
 
     private Mapa MapaSoloConTresEquipos () throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -78,7 +78,7 @@ public class TestIntegracion {
 
     private Mapa MapaConPiedraAlInicioElRestoVacio () throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -95,7 +95,7 @@ public class TestIntegracion {
 
     private Mapa MapaConBacanalEnElCasillero7() throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -112,7 +112,7 @@ public class TestIntegracion {
 
     public Mapa MapaVacio() throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -127,7 +127,7 @@ public class TestIntegracion {
 
     private Mapa MapaLlenoDeComida() throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -145,7 +145,7 @@ public class TestIntegracion {
 
     private Mapa MapaQuePermiteGanar() throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][2];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][2];
 
 
         for (int i=0;i<cantidadCasilleros;i++) {

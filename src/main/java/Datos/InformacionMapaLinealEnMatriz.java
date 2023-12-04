@@ -1,15 +1,15 @@
 package Datos;
 
-import Entidades.ElementoMapa;
 import Entidades.Interactuable;
 import Entidades.Tablero.*;
 
 import java.util.*;
 
 public class InformacionMapaLinealEnMatriz implements InformacionMapa {
-    private ElementoMapa[][] informacionMapa;
 
-    public InformacionMapaLinealEnMatriz(ElementoMapa[][] informacion) {
+    private Interactuable[][] informacionMapa;
+    public InformacionMapaLinealEnMatriz(Interactuable[][] informacion) {
+
         this.informacionMapa = informacion;
     }
     @Override

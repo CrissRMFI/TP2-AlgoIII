@@ -14,9 +14,4 @@ public class Bacanal extends Obstaculo{
         Energia energia = new Energia(-PROPORCION * valor.obtenerValor());
         jugador.recibirDanio(energia);
     }
-
-    @Override
-    public boolean soyJugador() {
-        return false;
-    }
 }

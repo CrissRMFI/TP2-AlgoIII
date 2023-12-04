@@ -9,9 +9,4 @@ public class Lesion extends Obstaculo {
     public void interactuar(Jugador jugador) {
         jugador.perderTurnos(this.turnosAPerder);
     }
-
-    @Override
-    public boolean soyJugador() {
-        return false;
-    }
 }

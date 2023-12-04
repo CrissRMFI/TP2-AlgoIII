@@ -55,6 +55,8 @@ public class Gladiador extends Jugador {
         algoRoma.turnoFinalizado(this);
     }
 
+
+
     @Override
     public void recibirDanio(Energia energia) {
         if (this.turno.estaHabilitado()) {
@@ -63,10 +65,9 @@ public class Gladiador extends Jugador {
     }
 
     @Override
-    public void defenderse(Energia energia) {
+    public void defenderse() {
         if (this.turno.estaHabilitado()) {
-            Energia energiaAReducir = this.equipamiento.recibirDanio(energia);
-            this.energia.afectarEnergia(energiaAReducir);
+            this.equipamiento.recibirDanio(this.energia);
         }
     }
     @Override

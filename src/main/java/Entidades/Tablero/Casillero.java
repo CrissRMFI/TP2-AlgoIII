@@ -1,14 +1,12 @@
 package Entidades.Tablero;
 
-import Entidades.ElementoMapa;
 import Entidades.Interactuable;
 import Entidades.Jugadores.Jugador;
-import Vista.CasilleroVista;
 
 import java.util.LinkedList;
 
 public  class Casillero {
-    protected LinkedList<ElementoMapa> elementos = new LinkedList<>();
+    protected LinkedList<Interactuable> elementos = new LinkedList<>();
     protected int x;
     protected int y;
 
@@ -16,20 +14,17 @@ public  class Casillero {
         this.x = x;
         this.y = y;
     }
-    public void recibirElemento (ElementoMapa elemento) {
+    public void recibirElemento (Interactuable elemento) {
         this.elementos.add(elemento);
     }
 
     public void entregarElementos(Jugador jugador) {
         for (int i=0;i< this.elementos.size();i++) {
-            ElementoMapa elementoMapa = this.elementos.get(i);
-            if (!elementoMapa.soyJugador()) {
-                Interactuable interactuable = (Interactuable) elementoMapa;
-                interactuable.interactuar(jugador);
-            }
+            Interactuable elementoMapa = this.elementos.get(i);
+            Interactuable interactuable = elementoMapa;
+            interactuable.interactuar(jugador);
         }
     }
-
     public boolean equals (Casillero casillero) {
         return this.x == casillero.x && this.y == casillero.y;
     }

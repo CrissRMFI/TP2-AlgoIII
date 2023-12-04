@@ -2,13 +2,12 @@ package edu.fiuba.algo3.entrega_1;
 import Datos.InformacionMapaEnJSON;
 import Datos.InformacionMapaLinealEnMatriz;
 import Entidades.AlgoRoma;
-import Entidades.ElementoMapa;
 import Entidades.Errores.*;
+import Entidades.Interactuable;
 import Entidades.Obstaculos.Bacanal;
 import Entidades.Obstaculos.Lesion;
 import Entidades.Obstaculos.SinObstaculo;
 import Entidades.Premios.Comida;
-import Entidades.Interactuable;
 import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Gladiador;
@@ -25,7 +24,7 @@ public class Entrega1{
 
     private Mapa MapaConFieraSalvaje() throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -44,7 +43,7 @@ public class Entrega1{
 
     private Mapa MapaConCuatroEquipamientosYUnaFieraSalvaje () throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
 
         for (int i=0;i<cantidadCasilleros;i++) {
@@ -66,7 +65,7 @@ public class Entrega1{
     private Mapa MapaLlenoDeEquipamientos () throws DatoNoValido {
         int cantidadCasilleros = 30;
 
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][2];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][2];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new Equipamiento();
@@ -84,7 +83,7 @@ public class Entrega1{
 
     public Mapa MapaConUnaPiedra () throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -102,7 +101,7 @@ public class Entrega1{
 
     public Mapa MapaConPiedraAlInicioElRestoVacio () throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -119,7 +118,7 @@ public class Entrega1{
 
     public Mapa MapaConBacanalEnElCasillero7() throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -136,7 +135,7 @@ public class Entrega1{
 
     private Mapa MapaVacio() throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -151,7 +150,7 @@ public class Entrega1{
 
     private Mapa MapaLlenoDeComida() throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][1];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
         for (int i=0;i<cantidadCasilleros;i++) {
             elementosMapa[i][0] = new SinObstaculo();
@@ -169,7 +168,7 @@ public class Entrega1{
 
     public Mapa MapaQuePermiteGanar() throws DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][2];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][2];
 
 
         for (int i=0;i<cantidadCasilleros;i++) {
@@ -199,7 +198,7 @@ public class Entrega1{
 
     private Mapa MapaConUnEquipoYFieraSalvaje() throws  DatoNoValido {
         int cantidadCasilleros = 30;
-        ElementoMapa[][] elementosMapa = new ElementoMapa[cantidadCasilleros][2];
+        Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][2];
 
 
         for (int i=0;i<cantidadCasilleros;i++) {
