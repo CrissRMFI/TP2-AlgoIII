@@ -1,37 +1,17 @@
 @startuml
 
 interface Seniority {
-    + Seniority ascenderSeniority()
-    + void aumentarEnergia()
-    + String descripcion()
+    + ascenderSeniority(): Seniority
+    + aumentarEnergia(): void
+    + descripcion(): String
 }
-
-class Novato {
-     + Seniority ascenderSeniority()
-     + void aumentarEnergia()
-     + String descripcion()
-}
-class SemiSenior{
-    + Seniority ascenderSeniority()
-    + void aumentarEnergia()
-    + String descripcion()
-   }
-class Senior {
-     + Seniority ascenderSeniority()
-     + void aumentarEnergia()
-     + String descripcion()
-}
-
-Novato ..|> Seniority
-SemiSenior ..|> Seniority
-Senior ..|> Seniority
 
 Gladiador ----> Seniority
 Gladiador ---> Equipo
 abstract class Equipo {
-    + Equipo mejorar()
-    + void recibirDanio (energia: Energia)
-    + boolean sePuedeMejorar()
+    + mejorar(): Equipo
+    + recibirDanio (energia: Energia): void
+    + sePuedeMejorar(): boolean
     
 }
 abstract class Jugador {
@@ -40,16 +20,16 @@ Jugador <|- Gladiador
 class Gladiador {
 
     + Gladiador(nombre: String)
-    + void ascenderSeniority()
-    + void moverse()
-    + void obtenerElementos()
-    + void perderTurnos(turnos: Turno)
-    + void finalizarTurno(algoRoma: AlgoRoma)
-    + void recibirDanio(energia: Energia)
-    + void defenderse()
-    + void equiar()
-    + boolean esEquipoMaximo()
-    + String miDescripcion()
+    + ascenderSeniority(): void
+    + moverse(): void
+    + obtenerElementos(): void
+    + perderTurnos(turnos: Turno): void
+    + finalizarTurno(algoRoma: AlgoRoma): void
+    + recibirDanio(energia: Energia): void
+    + defenderse(): void
+    + equiar(): void
+    + esEquipoMaximo(): boolean
+    + miDescripcion(): String
 
 }
 
