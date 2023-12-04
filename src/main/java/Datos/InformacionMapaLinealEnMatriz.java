@@ -8,14 +8,9 @@ import java.util.*;
 
 public class InformacionMapaLinealEnMatriz implements InformacionMapa {
     private ElementoMapa[][] informacionMapa;
-    private int largo;
-    private int ancho;
-    private int y = 1;
-
     public InformacionMapaLinealEnMatriz(ElementoMapa[][] informacion) {
         this.informacionMapa = informacion;
     }
-
     @Override
     public void construirCamino(LinkedList<Casillero> camino) {
 
@@ -42,12 +37,12 @@ public class InformacionMapaLinealEnMatriz implements InformacionMapa {
 
     @Override
     public int conseguirAncho() {
-        return this.ancho;
+        return this.conseguirAncho();
     }
 
     @Override
     public int conseguirLargo() {
-        return this.largo;
+        return this.conseguirLargo();
     }
 
 }
