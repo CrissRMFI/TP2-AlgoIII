@@ -5,6 +5,7 @@ import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.Turno;
 import Entidades.Elementos.ValorAzar;
 import Entidades.Energia.Energia;
+import Entidades.Interactuable;
 import Entidades.Sistemas.SistemaDefensa;
 import Entidades.Sistemas.SistemaTurnos;
 import Entidades.Tablero.Casillero;
@@ -69,4 +70,6 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     public abstract void finalizarTurno (AlgoRoma algoRoma);
 
     public abstract String miDescripcion ();
+
+    public abstract void obtenerElementos();
 }

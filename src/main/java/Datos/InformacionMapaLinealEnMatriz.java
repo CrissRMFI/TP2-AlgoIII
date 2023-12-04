@@ -6,8 +6,10 @@ import Entidades.Tablero.*;
 import java.util.*;
 
 public class InformacionMapaLinealEnMatriz implements InformacionMapa {
+
     private Interactuable[][] informacionMapa;
     public InformacionMapaLinealEnMatriz(Interactuable[][] informacion) {
+
         this.informacionMapa = informacion;
     }
     @Override
@@ -34,5 +36,14 @@ public class InformacionMapaLinealEnMatriz implements InformacionMapa {
 
     }
 
+    @Override
+    public int conseguirAncho() {
+        return 20;
+    }
+
+    @Override
+    public int conseguirLargo() {
+        return 20;
+    }
 
 }
