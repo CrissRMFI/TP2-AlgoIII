@@ -1,32 +1,21 @@
 package Vista;
 
-import Datos.MensajesErrores;
 import Datos.MensajesUsuario;
-import Entidades.Errores.ArchivoNoEncontrado;
-import Entidades.Errores.DatoNoEncontrado;
-import Entidades.Errores.DatoNoValido;
 //import Vista.BotonHandlers.BotonCargarMapaEventHandler;
 //import Vista.BotonHandlers.BotonIniciarJuegoEventHandler;
 import Vista.BotonHandlers.BotonIniciarJuegoEventHandler;
-import javafx.event.ActionEvent;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
 
-
-public class LoginVista extends BorderPane {
+public class ContenedorSeleccionMapaYJugadores extends BorderPane {
     private Stage stage;
     private MensajesUsuario mensajes = new MensajesUsuario();
     private VBox vBoxDeJugadores;
@@ -34,7 +23,7 @@ public class LoginVista extends BorderPane {
     private ToggleGroup grupoDeMapas;
 
 
-    public LoginVista(Stage stage){
+    public ContenedorSeleccionMapaYJugadores(Stage stage){
         this.stage = stage;
 
         this.vBoxDeJugadores = new VBox(15);

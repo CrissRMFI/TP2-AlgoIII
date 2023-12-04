@@ -2,7 +2,7 @@
 package edu.fiuba.algo3;
 
 import Datos.MensajesUsuario;
-import Vista.LoginVista;
+import Vista.ContenedorSeleccionMapaYJugadores;
 import Vista.ContenedorMenuPrincipal;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -17,7 +17,7 @@ public class App extends Application {
 
         stage.setTitle(mensajes.TituloAplicacion());
 
-        LoginVista login = new LoginVista(stage);
+        ContenedorSeleccionMapaYJugadores login = new ContenedorSeleccionMapaYJugadores(stage);
         Scene escenaJuego = new Scene(login, 800, 480);
 
         ContenedorMenuPrincipal contenedorMenuPrincipal = new ContenedorMenuPrincipal(stage, escenaJuego);
