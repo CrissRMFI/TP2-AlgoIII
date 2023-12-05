@@ -76,11 +76,11 @@ public class ContenedorJuego extends BorderPane {
         this.setCenter(this.mapaVisual);
         this.setRight(descripcion);
 
-        VBox vbox = new VBox();
-        vbox.getChildren().add(tirarDado);
-        vbox.getChildren().add(moverse);
-        vbox.getChildren().add(finalizarTurno);
-        this.setBottom(vbox);
+        HBox hbox = new HBox(10);
+        hbox.setAlignment(Pos.BOTTOM_CENTER);
+        hbox.getChildren().addAll(tirarDado, moverse, finalizarTurno);
+        BorderPane.setMargin(hbox, INSETS);
+        this.setBottom(hbox);
 
 
 
