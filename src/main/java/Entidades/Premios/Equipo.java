@@ -8,7 +8,7 @@ public abstract class Equipo implements Premio {
 
     public abstract Equipo mejorar();
 
-    public abstract void recibirDanio(Energia e);
+    public abstract void recibirDanio(Energia energia);
 
     public boolean sePuedeMejorar() {
         return true;

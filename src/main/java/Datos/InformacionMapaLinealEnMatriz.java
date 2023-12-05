@@ -35,15 +35,4 @@ public class InformacionMapaLinealEnMatriz implements InformacionMapa {
         camino.add(casilleroFinal);
 
     }
-
-    @Override
-    public int conseguirAncho() {
-        return 20;
-    }
-
-    @Override
-    public int conseguirLargo() {
-        return 20;
-    }
-
 }

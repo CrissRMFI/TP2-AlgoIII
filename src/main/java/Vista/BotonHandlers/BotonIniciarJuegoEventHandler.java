@@ -7,6 +7,7 @@ import Entidades.Elementos.MockDado;
 import Entidades.Errores.*;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
+import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Mapa;
 import Vista.ContenedorJuego;
 import javafx.event.ActionEvent;
@@ -20,11 +21,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 public class BotonIniciarJuegoEventHandler implements EventHandler<ActionEvent> {
     private Stage stage;
     private AlgoRoma juego;
+    private InformacionMapaEnJSON informacion;
     private Mapa mapa;
     private VBox gridPaneNombres;
     private ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -54,6 +57,8 @@ public class BotonIniciarJuegoEventHandler implements EventHandler<ActionEvent> 
             this.pasarEscena();
         } catch (CantidadMinimaDeJugadores e) {
             throw new RuntimeException(e);
+        } catch (DatoNoValido e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -62,8 +67,8 @@ public class BotonIniciarJuegoEventHandler implements EventHandler<ActionEvent> 
         String nombreDeMapaElegido = botonElegido.getText();
         try {
             System.out.print("src/main/java/Datos/" + nombreDeMapaElegido +".json");
-            InformacionMapaEnJSON informacion = new InformacionMapaEnJSON("src/main/java/Datos/" + nombreDeMapaElegido +".json");
-            this.mapa = new Mapa(informacion);
+            this.informacion = new InformacionMapaEnJSON("src/main/java/Datos/" + nombreDeMapaElegido +".json");
+            this.mapa = new Mapa(this.informacion);
         } catch (ArchivoNoEncontrado | DatoNoEncontrado | DatoNoValido e) {
             MensajesErrores mensajes = new MensajesErrores();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -100,8 +105,8 @@ public class BotonIniciarJuegoEventHandler implements EventHandler<ActionEvent> 
     }
 
 
-    private void pasarEscena() throws CantidadMinimaDeJugadores {
-        ContenedorJuego contenedorJuego = new ContenedorJuego(this.stage, this.juego, this.jugadores, this.mapa);
+    private void pasarEscena() throws CantidadMinimaDeJugadores, DatoNoValido {
+        ContenedorJuego contenedorJuego = new ContenedorJuego(this.stage, this.juego, this.jugadores, this.informacion);
         Scene escenaDeJuego = new Scene(contenedorJuego);
         this.stage.setScene(escenaDeJuego);
 

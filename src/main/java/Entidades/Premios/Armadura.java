@@ -9,8 +9,8 @@ public class Armadura extends Equipo {
     }
 
     @Override
-    public void recibirDanio(Energia e) {
-        e.afectarEnergia(new Energia(-10));
+    public void recibirDanio(Energia energia) {
+        energia.afectarEnergia(new Energia(-10));
     }
 
     @Override

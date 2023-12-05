@@ -8,9 +8,10 @@ public class EscudoYEspada extends Equipo {
     }
 
     @Override
-    public void recibirDanio(Energia e) {
-        e.afectarEnergia(new Energia(-2));
+    public void recibirDanio(Energia energia) {
+        energia.afectarEnergia(new Energia(-2));
     }
+
     @Override
     public Equipo mejorar() {
         return new Llave();
