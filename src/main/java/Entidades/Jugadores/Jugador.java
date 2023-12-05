@@ -5,6 +5,7 @@ import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Elementos.Turno;
 import Entidades.Elementos.ValorAzar;
 import Entidades.Energia.Energia;
+import Entidades.Interactuable;
 import Entidades.Sistemas.SistemaDefensa;
 import Entidades.Sistemas.SistemaTurnos;
 import Entidades.Tablero.Casillero;
@@ -21,6 +22,7 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);
     }
+
     public boolean compararSalud(Energia energia) {
         return this.energia.comparar(energia);
     }
@@ -46,7 +48,8 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
 
     @Override
     public String yoSoy() {
-        return this.nombre;}
+        return this.nombre;
+    }
 
     public void posicionar(Casillero casillero) {
         this.casillero = casillero;
@@ -61,4 +64,6 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     public abstract void finalizarTurno (AlgoRoma algoRoma);
 
     public abstract String miDescripcion ();
+
+    public abstract void obtenerElementos();
 }

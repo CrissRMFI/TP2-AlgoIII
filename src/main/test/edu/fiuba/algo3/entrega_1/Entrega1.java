@@ -148,6 +148,7 @@ public class Entrega1{
         return new Mapa(informacionMapaLinealEnMatriz);
     }
 
+
     @Test
     //Caso de uso 1 --> Fiera saca 20 ya que no tiene equipamiento
     public void jugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {

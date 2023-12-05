@@ -11,8 +11,8 @@ public class Casco extends Equipo {
     }
 
     @Override
-    public void recibirDanio(Energia e) {
-        e.afectarEnergia(new Energia(-15));
+    public void recibirDanio(Energia energia) {
+        energia.afectarEnergia(new Energia(-15));
     }
 
     @Override

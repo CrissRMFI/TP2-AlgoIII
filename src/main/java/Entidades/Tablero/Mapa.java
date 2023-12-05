@@ -12,8 +12,8 @@ public class Mapa {
 
     public Mapa (InformacionMapa informacionMapa) throws DatoNoValido {
         informacionMapa.construirCamino(this.camino);
-
     }
+
     public void moverJugador(Casillero casillero,Jugador jugador) {
 
         int posicion = 0;
@@ -77,6 +77,4 @@ public class Mapa {
         }
         return false;
     }
-
-
 }

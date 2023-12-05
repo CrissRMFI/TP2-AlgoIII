@@ -28,4 +28,12 @@ public  class Casillero {
     public boolean equals (Casillero casillero) {
         return this.x == casillero.x && this.y == casillero.y;
     }
+
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
 }
