@@ -8,7 +8,6 @@ import Entidades.Energia.Energia;
 import Entidades.Sistemas.SistemaDefensa;
 import Entidades.Sistemas.SistemaTurnos;
 import Entidades.Tablero.Casillero;
-import Entidades.Tablero.Mapa;
 
 public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorGanador {
 
