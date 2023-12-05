@@ -138,8 +138,8 @@ public class ContenedorJuego extends BorderPane {
         for (int i = 0; i < this.camino.size(); i++){
             Rectangle casillero = new Rectangle(50, 50);
             casillero.setFill(Color.DARKRED);
-            int x = this.camino.get(i).getX();
-            int y = this.camino.get(i).getY();
+            int x = this.camino.get(i).conseguirX();
+            int y = this.camino.get(i).conseguirY();
             this.mapaVisual.add(new StackPane(casillero), x, y);
         }
     }

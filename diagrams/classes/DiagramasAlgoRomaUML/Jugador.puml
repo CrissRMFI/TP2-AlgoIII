@@ -21,22 +21,24 @@ Jugador ..|> SistemaDeTurnos
 Jugador ..|> SistemaDeDefensa
 Jugador ..|> JugadorGanador
 
-abstract class Jugador {
-    # energia: Energia
-    # d: DispositivoDeAzar
-    # turno: Turno
-    # nombre: String
-    # mapa: Mapa
-
-    + afectarEnergia(energia: Energia): void
-    + habilitar(): boolean
-    + lanzar(): ValorAzar
-    + yoSoy(): String
-    + ingresar(mapa: Mapa): void
-    + miDescripcion(): String
-    + {abstract} moverse(): void
-    + {abstract} finalizarTurno(): void
-
+abstract class Jugador{
+    #energia: Energia
+    #dispositoDeAzar: dispositivoDeAzar
+    #turno: Turno
+    #nombre: String
+    #casillero: Casillero
+    +afectarEnergia(energia: Energia)
+    +compararSalud(energia: Energia)
+    +habilitar()
+    +agregarDispositivoAzar(dispositivoDeAzar: DispositivoDeAzar)
+    +lanzar(): ValorAzar
+    +yoSoy(): String
+    +posicionar(casillero: Casillero)
+    +{abstract}moverse()
+    +compararPosicion(casillero: Casillero): boolean
+    +{abstract}finalizarTurno (algoRoma: AlgoRoma);
+    +{abstract}miDescripcion(): String
+    +{abstract}obtenerElementos();
 }
 
 @enduml

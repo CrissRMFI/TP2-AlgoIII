@@ -11,7 +11,6 @@ import Entidades.Sistemas.SistemaTurnos;
 import Entidades.Tablero.Casillero;
 
 public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorGanador {
-
     protected Energia energia;
     protected DispositivoDeAzar dispositivoDeAzar;
     protected Turno turno;

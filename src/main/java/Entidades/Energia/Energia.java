@@ -3,19 +3,20 @@ package Entidades.Energia;
 public class Energia {
     private int disponible;
 
-    public  Energia () {
+    public Energia () {
         this.disponible = 20;
     }
 
-    public  Energia (int disponible) {
+    public Energia (int disponible) {
         this.disponible = disponible;
     }
-    public void afectarEnergia (Energia energia) {
-        this.disponible += energia.otorgarEnergia();
+
+    protected int cantidadDeEnergia() {
+        return this.disponible;
     }
 
-    public int otorgarEnergia () {
-        return this.disponible;
+    public void afectarEnergia (Energia energia) {
+        this.disponible += energia.cantidadDeEnergia();
     }
 
     public boolean tengoEnergia () {
@@ -23,11 +24,7 @@ public class Energia {
     }
 
     public boolean comparar (Energia energia) {
-        return this.disponible == energia.cantidadeEnergia();
-    }
-
-    protected int cantidadeEnergia () {
-        return this.disponible;
+        return this.disponible == energia.cantidadDeEnergia();
     }
 
     public String descripcion () {

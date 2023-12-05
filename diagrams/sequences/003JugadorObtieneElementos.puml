@@ -25,8 +25,6 @@ ACTOR -> Jugador1: obtenerElementos()
 Jugador1 -> Casillero: entregarElementos(this)
 
 alt para cada elemento
-    Casillero -> ElementoMapa: soyJugador()
-    ElementoMapa --> Casillero: false
     Casillero -> ElementoMapa: interactuar(jugador)
     ElementoMapa -> Jugador1: interactuar()
 

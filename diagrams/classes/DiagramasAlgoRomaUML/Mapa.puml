@@ -1,0 +1,38 @@
+@startuml Mapa
+
+class Mapa{
+    +Mapa(informacionMapa: InformacionMapa)
+    -obtenerCasillero(posicion: int): Casillero
+    +obtenerProximoDestino(jugador: Jugador): Casillero
+    +ubicarEnInicio(jugador: Jugador)
+    +ubicarEnMitadDeCamino(jugador: Jugador)
+    +jugadorGano(jugador: Jugador): boolean
+}
+
+class Casillero{
+    #x: int
+    #y: int
+    +Casillero(x: int, y: int)
+    +recibirElemento(elemento: Interactuable)
+    +entregarElementos(jugador: Jugador)
+    +equals(casillero: Casillero): boolean
+    +conseguirX(): int
+    +conseguirY(): int
+}
+
+interface Interactuable{
+    +{abstract}interactuar(jugador: Jugador)
+}
+
+interface InformacionMapa{
+    +{abstract}construirCamino(LinkedList<Casillero> casilleros)
+}
+
+
+Mapa "1" --> "*" Casillero
+Mapa ..> InformacionMapa
+
+Casillero "1" --> "*" Interactuable
+
+
+@enduml

@@ -14,7 +14,6 @@ public class InformacionMapaEnJSON implements InformacionMapa{
     private int ancho;
     private int largo;
     private JsonNode celdas;
-    private LinkedList listaPosiciones = new LinkedList<>();
 
 
     public InformacionMapaEnJSON (String rutaArchivo) throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {

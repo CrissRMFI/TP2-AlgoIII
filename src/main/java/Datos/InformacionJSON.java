@@ -8,16 +8,16 @@ import java.io.File;
 import java.io.IOException;
 
 public class InformacionJSON {
-    String rutaDelArchivoJSON;
+    private String rutaDelArchivo;
 
-    public InformacionJSON(String rutaDelArchivoJSON) {
-        this.rutaDelArchivoJSON = rutaDelArchivoJSON;
+    public InformacionJSON(String rutaDelArchivo) {
+        this.rutaDelArchivo = rutaDelArchivo;
     }
 
     public JsonNode devolverInformacionDelArchivo() throws ArchivoNoEncontrado {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
-            JsonNode informacion = objectMapper.readTree(new File(this.rutaDelArchivoJSON));
+            JsonNode informacion = objectMapper.readTree(new File(this.rutaDelArchivo));
             return informacion;
         }
         catch (IOException a){

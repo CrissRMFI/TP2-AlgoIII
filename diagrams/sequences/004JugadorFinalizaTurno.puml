@@ -24,8 +24,8 @@ ACTOR -> Jugador1: obtenerElementos()
 
 ACTOR -> Jugador1: finalizarTurno(algoRoma)
 
-Jugador1 -> Jugador1: this.turno.finalizar()
-Jugador1 -> Jugador1: this.seniority.aumetarEnergia()
+Jugador1 -> Turno: finalizar()
+Jugador1 -> Seniority: this.seniority.aumetarEnergia()
 Jugador1 -> Jugador1: this.seniority.ascenderSeniority()
 Jugador1 -> AlgoRoma: turnoFinalizado()
 AlgoRoma -> Mapa: jugadorGano()

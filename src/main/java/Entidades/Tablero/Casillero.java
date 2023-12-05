@@ -19,7 +19,7 @@ public  class Casillero {
     }
 
     public void entregarElementos(Jugador jugador) {
-        for (int i=0;i< this.elementos.size();i++) {
+        for (int i=0; i< this.elementos.size(); i++) {
             Interactuable elementoMapa = this.elementos.get(i);
             Interactuable interactuable = elementoMapa;
             interactuable.interactuar(jugador);
@@ -29,11 +29,11 @@ public  class Casillero {
         return this.x == casillero.x && this.y == casillero.y;
     }
 
-    public int getX(){
+    public int conseguirX(){
         return this.x;
     }
 
-    public int getY(){
+    public int conseguirY(){
         return this.y;
     }
 }
