@@ -22,7 +22,7 @@ public class AlgoRoma {
     }
 
     public void agregarJugador(Jugador jugador) {
-        jugador.ingresar(this.mapa);
+        this.mapa.ubicarEnInicio(jugador);
         this.jugadores.agregarElemento(jugador);
     }
 

@@ -175,14 +175,16 @@ public class TestIntegracion {
 
 
 
-    private void jugarTurnosGladiador (int cantidad, Gladiador gladiador,AlgoRoma algoRoma) throws PartidaFinalizada {
+    private void jugarTurnosGladiador (int cantidad, Gladiador gladiador,AlgoRoma algoRoma,Mapa mapa) throws PartidaFinalizada {
+        Casillero casillero = mapa.obtenerProximoDestino(gladiador);
 
         for (int i = 0; i< cantidad ; i++ ) {
-            gladiador.moverse();
+            gladiador.moverse(casillero);
             gladiador.obtenerElementos();
             gladiador.finalizarTurno(algoRoma);
             gladiador = (Gladiador) algoRoma.siguienteJugador();
-            gladiador.moverse();
+            casillero = mapa.obtenerProximoDestino(gladiador);
+            gladiador.moverse(casillero);
             gladiador.obtenerElementos();
             gladiador.finalizarTurno(algoRoma);
 
@@ -215,7 +217,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
 
-        this.jugarTurnosGladiador(2,jugador,algoRoma);
+        this.jugarTurnosGladiador(2,jugador,algoRoma,mapa);
 
         assertDoesNotThrow(() -> algoRoma.siguienteJugador());
     }
@@ -233,7 +235,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
 
-        this.jugarTurnosGladiador(30,jugador,algoRoma);
+        this.jugarTurnosGladiador(30,jugador,algoRoma,mapa);
 
         assertThrows(PartidaFinalizada.class, () -> algoRoma.siguienteJugador());
     }
@@ -253,7 +255,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
 
-        this.jugarTurnosGladiador(29,jugador,algoRoma);
+        this.jugarTurnosGladiador(29,jugador,algoRoma,mapa);
         assertThrows(PartidaNoFinalizada.class, () -> algoRoma.elGanador());
     }
 
@@ -272,7 +274,8 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.finalizarTurno(algoRoma);
 
         Casillero posicionEsperada = new Casillero(16,0);
@@ -295,7 +298,7 @@ public class TestIntegracion {
 
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
-        this.jugarTurnosGladiador(2,jugador,algoRoma);
+        this.jugarTurnosGladiador(1,jugador,algoRoma,mapa);
 
         assertFalse(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
         assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
@@ -318,7 +321,7 @@ public class TestIntegracion {
 
         Gladiador jugador =  (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        this.jugarTurnosGladiador(2,jugador,algoRoma);
+        this.jugarTurnosGladiador(2,jugador,algoRoma,mapa);
 
 
         assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
@@ -344,7 +347,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        this.jugarTurnosGladiador(3,jugador,algoRoma);
+        this.jugarTurnosGladiador(3,jugador,algoRoma,mapa);
 
         assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
         assertFalse(Espartaco.compararEquipo(JerarquiaEquipos.CASCO));
@@ -373,7 +376,7 @@ public class TestIntegracion {
         algoRoma.agregarJugador(Espartaco);
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-        this.jugarTurnosGladiador(2,jugador,algoRoma);
+        this.jugarTurnosGladiador(2,jugador,algoRoma,mapa);
         Casillero casilleroCamino = new Casillero(1,0); //Porque no se pudo mover
 
         assertTrue(Carpoforo.compararPosicion(casilleroCamino));
@@ -394,7 +397,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        this.jugarTurnosGladiador(1,jugador,algoRoma);
+        this.jugarTurnosGladiador(1,jugador,algoRoma,mapa);
 
         Energia eneriaEsperada = new Energia(-8);
 
@@ -417,7 +420,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        this.jugarTurnosGladiador(9,jugador,algoRoma);
+        this.jugarTurnosGladiador(9,jugador,algoRoma,mapa);
 
         Energia eneriaEsperada = new Energia(25);
 
@@ -440,7 +443,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        this.jugarTurnosGladiador(13,jugador,algoRoma);
+        this.jugarTurnosGladiador(13,jugador,algoRoma,mapa);
 
         Energia eneriaEsperada = new Energia(50);
 
@@ -463,7 +466,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        this.jugarTurnosGladiador(7,jugador,algoRoma);
+        this.jugarTurnosGladiador(7,jugador,algoRoma,mapa);
 
         Energia eneriaEsperadaCarpoforo = new Energia(125);
         Energia eneriaEsperadaEspartaco = new Energia(125);
@@ -487,7 +490,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        this.jugarTurnosGladiador(9,jugador,algoRoma);
+        this.jugarTurnosGladiador(9,jugador,algoRoma,mapa);
 
         Energia eneriaEsperadaCarpoforo = new Energia(160);
         Energia eneriaEsperadaEspartaco = new Energia(160);
@@ -510,7 +513,7 @@ public class TestIntegracion {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        this.jugarTurnosGladiador(30,jugador,algoRoma);
+        this.jugarTurnosGladiador(30,jugador,algoRoma,mapa);
 
 
         Energia eneriaEsperadaCarpoforo = new Energia(670);
@@ -534,13 +537,15 @@ public class TestIntegracion {
         algoRoma.agregarJugador(Espartaco);
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-        this.jugarTurnosGladiador(29,jugador,algoRoma);
+        this.jugarTurnosGladiador(29,jugador,algoRoma,mapa);
 
-        Carpoforo.agregarDispositivoAzar(new MockDado(2));
-        Espartaco.agregarDispositivoAzar(new MockDado(2));
+        Carpoforo.agregarDispositivoAzar(new MockDado(3));
+        Espartaco.agregarDispositivoAzar(new MockDado(3));
 
         jugador = (Gladiador) algoRoma.siguienteJugador();
-        jugador.moverse();
+
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 

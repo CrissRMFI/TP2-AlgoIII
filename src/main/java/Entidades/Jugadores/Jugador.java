@@ -18,7 +18,6 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     protected Turno turno;
     protected String nombre;
     protected Casillero casillero;
-    protected Mapa mapa;
 
 
     public void afectarEnergia (Energia energia) {
@@ -54,13 +53,7 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     public void posicionar(Casillero casillero) {
         this.casillero = casillero;
     }
-
-    public void ingresar (Mapa mapa) {
-        this.mapa = mapa;
-        this.mapa.ubicarEnInicio(this);
-    }
-
-    public abstract void moverse();
+    public abstract void moverse(Casillero casillero);
 
     public boolean compararPosicion (Casillero casillero) {
         return this.casillero.equals(casillero);

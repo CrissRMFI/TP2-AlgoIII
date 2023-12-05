@@ -45,6 +45,23 @@ public class Mapa {
         return this.camino.get(posicion);
     }
 
+    public Casillero obtenerProximoDestino(Jugador jugador) {
+        int posicion = 0;
+        ValorAzar valorAzar = jugador.lanzar();
+
+        for (int i = 0; i<this.camino.size(); i++) {
+            Casillero c = this.camino.get(i);
+            if (jugador.compararPosicion(c)) break;
+            posicion++;
+        }
+
+        for (int i = 0; i<valorAzar.obtenerValor(); i++) {
+            posicion++;
+        }
+
+        return this.obtenerCasillero(posicion);
+    }
+
     public void ubicarEnInicio (Jugador jugador) {
         jugador.posicionar(this.camino.get(0));
     }
