@@ -1,0 +1,68 @@
+@startuml Equipo
+
+abstract class Equipo{
+    +sePuedeMejorar(): boolean
+    +compararEquipo(equipamiento: JerarquiaEquipos): boolean
+    +interactuar(jugador: Jugador)
+    +{abstract}recibirDanio(energia: Energia)
+    +{abstract}mejorar(): Equipo
+    +{abstract} descripcion(): String
+}
+
+
+enum JerarquiaEquipos{
+    EQUIPO_BASE
+    CASCO
+    ARMADURA
+    ESCUDO_Y_ESPADA
+    LLAVE
+}
+
+
+class EquipoBase{
+    +EquipoBase()
+    +recibirDanio(energia: Energia)
+    +mejorar(): Equipo
+    +descripcion(): String
+}
+
+class Casco{
+    +Casco()
+    +recibirDanio(energia: Energia)
+    +mejorar(): Equipo
+    +descripcion(): String
+}
+
+class Armadura{
+    +Armadura()
+    +recibirDanio(energia: Energia)
+    +mejorar(): Equipo
+    +descripcion(): String
+}
+
+class EscudoYEspada{
+    +EscudoYEspada()
+    +recibirDanio(energia: Energia)
+    +mejorar(): Equipo
+    +descripcion(): String
+}
+
+class Llave{
+    +Llave()
+    +recibirDanio(energia: Energia)
+    +mejorar(): Equipo
+    +descripcion(): String
+}
+
+
+Equipo -> JerarquiaEquipos
+
+
+Equipo <|-- EquipoBase
+Equipo <|-- Casco
+Equipo <|-- Armadura
+Equipo <|-- EscudoYEspada
+Equipo <|-- Llave
+
+
+@enduml

@@ -9,15 +9,11 @@ import java.util.LinkedList;
 
 public class Mapa {
     private LinkedList<Casillero> camino = new LinkedList<>();
-    private int ancho;
-    private int largo;
 
     public Mapa (InformacionMapa informacionMapa) throws DatoNoValido {
         informacionMapa.construirCamino(this.camino);
-        this.ancho = informacionMapa.conseguirAncho();
-        this.largo = informacionMapa.conseguirLargo();
-
     }
+
     public void moverJugador(Casillero casillero,Jugador jugador) {
 
         int posicion = 0;
@@ -63,13 +59,5 @@ public class Mapa {
             else return true;
         }
         return false;
-    }
-
-    public int conseguirLargo(){
-        return this.largo;
-    }
-
-    public int conseguirAncho() {
-        return this.ancho;
     }
 }

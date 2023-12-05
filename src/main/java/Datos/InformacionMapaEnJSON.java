@@ -58,12 +58,11 @@ public class InformacionMapaEnJSON implements InformacionMapa{
         }
     }
 
-    @Override
+
     public int conseguirAncho() {
         return this.ancho;
     }
 
-    @Override
     public int conseguirLargo() {
         return this.largo;
     }

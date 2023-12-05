@@ -24,6 +24,7 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     public void afectarEnergia (Energia energia) {
         this.energia.afectarEnergia(energia);
     }
+
     public boolean compararSalud(Energia energia) {
         return this.energia.comparar(energia);
     }
@@ -49,7 +50,8 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
 
     @Override
     public String yoSoy() {
-        return this.nombre;}
+        return this.nombre;
+    }
 
     public void posicionar(Casillero casillero) {
         this.casillero = casillero;

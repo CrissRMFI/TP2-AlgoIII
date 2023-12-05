@@ -3,7 +3,6 @@ package Entidades;
 public class ListaCircular<T> {
     private Nodo<T> inicio;
     private Nodo<T> actual;
-
     private int longitud;
 
     public ListaCircular() {
@@ -30,24 +29,6 @@ public class ListaCircular<T> {
 
     public T obtener() {
         return this.actual.obtenerElemento();
-    }
-    public T eliminar(int indice) {
-        if (indice < 0 || indice >= longitud) {
-            throw new IndexOutOfBoundsException();
-        }
-        Nodo<T> anterior = null;
-        Nodo<T> actual = this.inicio;
-        for (int i = 0; i < indice; i++) {
-            anterior = actual;
-            actual = actual.elSiguiente();
-        }
-        if (anterior == null) {
-            this.inicio = actual.elSiguiente();
-        } else {
-            anterior.cambiarSiguiente(actual.elSiguiente());
-        }
-        this.longitud--;
-        return actual.obtenerElemento();
     }
 
     public T seleccionAleatoria() {
