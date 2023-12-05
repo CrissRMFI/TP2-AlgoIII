@@ -110,7 +110,8 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -133,13 +134,15 @@ public class Entrega2 {
        algoRoma.agregarJugador(Espartaco);
 
        Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
-       jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
        jugador.obtenerElementos();
        jugador.finalizarTurno(algoRoma);
 
        jugador = (Gladiador) algoRoma.siguienteJugador();
 
-        jugador.moverse();
+        casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -166,7 +169,8 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -237,7 +241,8 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -266,7 +271,8 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -295,12 +301,14 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
         jugador = (Gladiador) algoRoma.siguienteJugador();
-        jugador.moverse();
+        casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -328,11 +336,10 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
-
-        jugador = (Gladiador) algoRoma.siguienteJugador();
 
         Casillero posicionEsperada = new Casillero(2,4);
         Energia energiaEsperada = new Energia(0);
@@ -357,7 +364,8 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -387,7 +395,8 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -418,7 +427,8 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -448,7 +458,8 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -478,7 +489,8 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
@@ -508,7 +520,8 @@ public class Entrega2 {
 
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
 
-        jugador.moverse();
+        Casillero casillero = mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 

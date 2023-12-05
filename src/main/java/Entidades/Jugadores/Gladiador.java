@@ -5,6 +5,7 @@ import Entidades.Energia.Energia;
 import Entidades.Premios.Equipo;
 import Entidades.Premios.EquipoBase;
 import Entidades.Premios.JerarquiaEquipos;
+import Entidades.Tablero.Casillero;
 
 public class Gladiador extends Jugador {
     private Seniority seniority;
@@ -25,11 +26,12 @@ public class Gladiador extends Jugador {
 
 
     @Override
-    public void moverse() {
+    public void moverse(Casillero casillero) {
 
         if (this.turno.estaHabilitado() && this.energia.tengoEnergia()) {
-            this.mapa.moverJugador(this.casillero,this);
+            this.casillero = casillero;
         }
+
         if (!this.energia.tengoEnergia()) {
             this.energia.afectarEnergia(new Energia(5));
             this.turno.deshabilitar();
