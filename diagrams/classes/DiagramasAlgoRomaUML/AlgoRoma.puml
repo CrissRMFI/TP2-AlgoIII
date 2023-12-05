@@ -1,0 +1,80 @@
+@startuml AlgoRoma
+
+class AlgoRoma{
+    -turnos: int
+    +AlgoRoma(mapa: Mapa)
+    +agregarJugador(jugador: Jugador)
+    +comenzarPartida(): Jugador
+    +comenzarPartidaConElPrimerJugador(): Jugador
+    +siguienteJugador(): Jugador
+    +turnoFinalizado(jugador: Jugador)
+    -finalizar(jugadorGanador: JugadorGanador)
+    -sumarUnTurno()
+    +elGanador(): JugadorGanador
+}
+
+
+class ListaCircular<T>{
+    -inicio: Nodo<T>
+    -actual: Nodo<T>
+    -longitud: int
+    +agregarElemento(elemento: T)
+    +obtener(): T
+    +seleccionAleatoria(): T
+    +iniciarConElPrimero(): T
+    +siguiente(): T
+    +tamanio(): int
+    +vueltaCompleta(): boolean
+}
+
+
+abstract class Jugador{
+    #energia: Energia
+    #dispositoDeAzar: dispositivoDeAzar
+    #turno: Turno
+    #nombre: String
+    #casillero: Casillero
+    +afectarEnergia(energia: Energia)
+    +compararSalud(energia: Energia)
+    +habilitar()
+    +agregarDispositivoAzar(dispositivoDeAzar: DispositivoDeAzar)
+    +lanzar(): ValorAzar
+    +yoSoy(): String
+    +posicionar(casillero: Casillero)
+    +{abstract}moverse()
+    +compararPosicion(casillero: Casillero): boolean
+    +{abstract}finalizarTurno (algoRoma: AlgoRoma);
+    +{abstract}miDescripcion(): String
+    +{abstract}obtenerElementos();
+}
+
+
+class Mapa{
+    -camino: LinkedList<Casillero>
+    +Mapa(informacionMapa: InformacionMapa)
+    -obtenerCasillero(posicion: int): Casillero
+    +obtenerProximoDestino(jugador: Jugador): Casillero
+    +ubicarEnInicio(jugador: Jugador)
+    +ubicarEnMitadDelCamino(jugador: jugador)
+    +jugadorGano(jugador: Jugador): boolean
+}
+
+
+interface JugadorGanador{
+    +{abstract}yoSoy(): String
+}
+
+Mapa -[hidden]> ListaCircular
+ListaCircular -[hidden]> JugadorGanador
+
+
+AlgoRoma --> ListaCircular
+
+ListaCircular "1 " --> "0 .. 6 " Jugador
+
+AlgoRoma --> Mapa
+AlgoRoma --> JugadorGanador
+
+
+
+@enduml
