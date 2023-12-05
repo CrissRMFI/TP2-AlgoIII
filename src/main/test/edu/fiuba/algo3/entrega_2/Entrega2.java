@@ -30,7 +30,7 @@ public class Entrega2 {
 
     public Mapa MapaCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
 
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapa.json");
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/Datos/mapaDeLaCatedra.json");
 
 
         Mapa mapa = new Mapa(informacionMapaEnJSON);
@@ -123,15 +123,16 @@ public class Entrega2 {
     @Test
     //Caso de uso 14 (2/4)
     public void elCasilleroEstaVacio() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido,CantidadMinimaDeJugadores,PartidaFinalizada{
-       Mapa mapa = this.MapaCatedra();
-       AlgoRoma algoRoma = new AlgoRoma(mapa);
-       MockDado mockDado = new MockDado(6);
+        Mapa mapa = this.MapaCatedra();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
+        MockDado mockDado = new MockDado(6);
 
-       Carpoforo.agregarDispositivoAzar(mockDado);
-       Espartaco.agregarDispositivoAzar(mockDado);
+        Carpoforo.agregarDispositivoAzar(mockDado);
+        Espartaco.agregarDispositivoAzar(mockDado);
 
-       algoRoma.agregarJugador(Carpoforo);
-       algoRoma.agregarJugador(Espartaco);
+        algoRoma.agregarJugador(Carpoforo);
+        algoRoma.agregarJugador(Espartaco);
+
 
        Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
         Casillero casillero = mapa.obtenerProximoDestino(jugador);
@@ -139,7 +140,8 @@ public class Entrega2 {
        jugador.obtenerElementos();
        jugador.finalizarTurno(algoRoma);
 
-       jugador = (Gladiador) algoRoma.siguienteJugador();
+
+        jugador = (Gladiador) algoRoma.siguienteJugador();
 
         casillero = mapa.obtenerProximoDestino(jugador);
         jugador.moverse(casillero);
@@ -324,7 +326,7 @@ public class Entrega2 {
 
     @Test
     public void RevisandoCelda5DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada{
-        Mapa mapa = this.MapaCatedra("mapa.json");
+        Mapa mapa = this.MapaCatedra("mapaDeLaCatedra.json");
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
 

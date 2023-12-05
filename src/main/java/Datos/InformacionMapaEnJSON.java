@@ -58,6 +58,16 @@ public class InformacionMapaEnJSON implements InformacionMapa{
         }
     }
 
+    @Override
+    public int conseguirAncho() {
+        return this.ancho;
+    }
+
+    @Override
+    public int conseguirLargo() {
+        return this.largo;
+    }
+
 
     private int conseguirNumero(String dato, JsonNode informacion, int limiteMaximo) throws DatoNoValido {
         if (!(informacion.get(dato).isInt())){
@@ -79,4 +89,6 @@ public class InformacionMapaEnJSON implements InformacionMapa{
             }
         }
     }
+
+
 }
