@@ -20,35 +20,30 @@ enum JerarquiaEquipos{
 
 
 class EquipoBase{
-    +EquipoBase()
     +recibirDanio(energia: Energia)
     +mejorar(): Equipo
     +descripcion(): String
 }
 
 class Casco{
-    +Casco()
     +recibirDanio(energia: Energia)
     +mejorar(): Equipo
     +descripcion(): String
 }
 
 class Armadura{
-    +Armadura()
     +recibirDanio(energia: Energia)
     +mejorar(): Equipo
     +descripcion(): String
 }
 
 class EscudoYEspada{
-    +EscudoYEspada()
     +recibirDanio(energia: Energia)
     +mejorar(): Equipo
     +descripcion(): String
 }
 
 class Llave{
-    +Llave()
     +recibirDanio(energia: Energia)
     +mejorar(): Equipo
     +descripcion(): String
