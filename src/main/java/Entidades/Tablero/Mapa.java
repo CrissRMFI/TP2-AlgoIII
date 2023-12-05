@@ -14,24 +14,6 @@ public class Mapa {
         informacionMapa.construirCamino(this.camino);
     }
 
-    public void moverJugador(Casillero casillero,Jugador jugador) {
-
-        int posicion = 0;
-        ValorAzar valorAzar = jugador.lanzar();
-
-        for (int i = 0; i<this.camino.size(); i++) {
-            Casillero c = this.camino.get(i);
-            if (c.equals(casillero)) break;
-            posicion++;
-        }
-
-        for (int i = 0; i<valorAzar.obtenerValor(); i++) {
-            posicion++;
-        }
-
-        jugador.posicionar(this.obtenerCasillero(posicion));
-    }
-
     private Casillero obtenerCasillero (int posicion) {
         if (posicion>= this.camino.size()) {
             int fin = this.camino.size()-1;

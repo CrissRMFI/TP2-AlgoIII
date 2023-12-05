@@ -10,14 +10,12 @@ import javafx.stage.Stage;
 public class JuegoVista {
     private VBox box = new VBox();
     public void renderizarJuego () {
-
-        MensajesUsuario m = new MensajesUsuario();
         this.box.setAlignment(Pos.TOP_CENTER);
         Background background = new Background(new BackgroundFill(Color.valueOf("#202124"), null, null));
         this.box.setBackground(background);
         Scene scene = new Scene(this.box,1600,800);
         Stage stage = new Stage();
-        stage.setTitle(m.TituloAplicacion());
+        stage.setTitle(MensajesUsuario.TITULO_JUEGO);
         stage.setScene( scene );
 
         stage.show();

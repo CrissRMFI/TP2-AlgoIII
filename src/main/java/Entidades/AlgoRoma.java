@@ -13,8 +13,6 @@ public class AlgoRoma {
     private int turnos= 30;
     private final Mapa mapa;
     private JugadorGanador ganador;
-    private final MensajesUsuario mensaje = new MensajesUsuario();
-
 
     public AlgoRoma(Mapa mapa){
         this.mapa = mapa;
@@ -28,7 +26,7 @@ public class AlgoRoma {
 
     public Jugador comenzarPartida() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
-            throw new CantidadMinimaDeJugadores(this.mensaje.CantidadMinimaDeJugadores());
+            throw new CantidadMinimaDeJugadores(MensajesUsuario.CANTIDAD_MINIMA_JUGADORES);
         }
         Jugador jugador = jugadores.seleccionAleatoria();
         jugador.habilitar();
@@ -37,8 +35,7 @@ public class AlgoRoma {
 
     public Jugador comenzarPartidaConElPrimerJugador() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
-            MensajesErrores m = new MensajesErrores();
-            throw new CantidadMinimaDeJugadores(m.CantidadMinimaJugadores());
+            throw new CantidadMinimaDeJugadores(MensajesErrores.CANTIDAD_MINIMA_JUGADORES);
         }
         Jugador jugador = jugadores.iniciarConElPrimero();
         jugador.habilitar();
@@ -47,7 +44,7 @@ public class AlgoRoma {
 
     public Jugador siguienteJugador() throws PartidaFinalizada {
         if (this.turnos == 0) {
-            throw new PartidaFinalizada(new MensajesErrores().PartidaFinalizada());
+            throw new PartidaFinalizada(MensajesErrores.PARTIDA_FINALIZADA);
         }
         this.jugadores.siguiente();
         Jugador jugador = this.jugadores.obtener();
@@ -86,7 +83,7 @@ public class AlgoRoma {
 
     public JugadorGanador elGanador () throws PartidaNoFinalizada {
         if (this.turnos != 0) {
-            throw new PartidaNoFinalizada(new MensajesErrores().PartidaNoFinalizada());
+            throw new PartidaNoFinalizada(MensajesErrores.PARTIDA_NO_FINALIZADA);
         }
         return this.ganador;
     }

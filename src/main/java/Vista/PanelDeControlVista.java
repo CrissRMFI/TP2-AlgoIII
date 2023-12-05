@@ -18,10 +18,6 @@ public class PanelDeControlVista {
     private VBox columna2;
     private VBox columna3;
 
-    private MensajesUsuario m = new MensajesUsuario();
-
-
-
     public PanelDeControlVista() {
         this.columna1 = new GridPane();
         this.columna2 = new VBox();
@@ -37,10 +33,8 @@ public class PanelDeControlVista {
     }
 
     private GridPane construirColumna1(ListaCircular<Jugador> jugadores) {
-
-        MensajesUsuario m = new MensajesUsuario();
         GridPane grid = new GridPane();
-        Label tituloJugadores = new Label(m.PanelControlTituloJugadores());
+        Label tituloJugadores = new Label("Jugadores");
 
         tituloJugadores.setFont(new Font("Arial", 36));
         tituloJugadores.setTextFill(Color.WHITE);
