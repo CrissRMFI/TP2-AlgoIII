@@ -2,6 +2,7 @@ package Vista.BotonHandlers;
 
 import Entidades.AlgoRoma;
 import Entidades.Jugadores.Jugador;
+import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Mapa;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,7 +20,8 @@ public class BotonTirarDadoHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.jugador.moverse();
+        Casillero c = mapa.obtenerProximoDestino(this.jugador);
+        this.jugador.moverse(c);
         this.jugador.obtenerElementos();
         this.jugador.finalizarTurno(this.juego);
     }
