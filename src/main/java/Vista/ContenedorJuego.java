@@ -10,7 +10,6 @@ import Entidades.Tablero.Mapa;
 import Vista.BotonHandlers.BotonTirarDadoHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -25,7 +24,7 @@ import java.util.LinkedList;
 public class ContenedorJuego extends BorderPane {
     private Stage stage;
     private Scene escena;
-    private Insets INSETS = new Insets(10, 10, 10, 10);
+    private Insets margenes = new Insets(10, 10, 10, 10);
     private AlgoRoma juego;
     private ArrayList<Jugador> jugadores;
     private LinkedList<Casillero> camino;
@@ -59,11 +58,11 @@ public class ContenedorJuego extends BorderPane {
 
         VBox descripcion = des.descripcion(this.jugadorActual);
 
-        Button left = createButton("Left");
+        Button left = crearBoton("Left");
 
-        Button tirarDado = createButton("Tirar dado");
-        Button moverse = createButton("Moverse");
-        Button finalizarTurno = createButton("Finalizar Turno");
+        Button tirarDado = crearBoton("Tirar dado");
+        Button moverse = crearBoton("Moverse");
+        Button finalizarTurno = crearBoton("Finalizar Turno");
 
         Mapa mapa = new Mapa(this.informacion);
         BotonTirarDadoHandler botonTirarDadoHandler = new BotonTirarDadoHandler(this.jugadorActual, this.juego, mapa);
@@ -79,22 +78,22 @@ public class ContenedorJuego extends BorderPane {
         HBox hbox = new HBox(10);
         hbox.setAlignment(Pos.BOTTOM_CENTER);
         hbox.getChildren().addAll(tirarDado, moverse, finalizarTurno);
-        BorderPane.setMargin(hbox, INSETS);
+        BorderPane.setMargin(hbox, margenes);
         this.setBottom(hbox);
 
 
 
     }
 
-    private Button createButton(String text) {
-        Button button = new Button(text);
-        button.setMaxWidth(Double.MAX_VALUE);
-        button.setMaxHeight(Double.MAX_VALUE);
-        button.setMinWidth(170);
-        button.setMinHeight(100);
-        BorderPane.setMargin(button, INSETS);
-        BorderPane.setAlignment(button, Pos.CENTER);
-        return button;
+    private Button crearBoton(String texto) {
+        Button boton = new Button(texto);
+        boton.setMaxWidth(Double.MAX_VALUE);
+        boton.setMaxHeight(Double.MAX_VALUE);
+        boton.setMinWidth(170);
+        boton.setMinHeight(100);
+        BorderPane.setMargin(boton, margenes);
+        BorderPane.setAlignment(boton, Pos.CENTER);
+        return boton;
     }
 
 
