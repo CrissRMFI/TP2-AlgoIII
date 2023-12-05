@@ -10,6 +10,7 @@ import Entidades.Tablero.Mapa;
 import Vista.BotonHandlers.BotonTirarDadoHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -29,7 +30,6 @@ public class ContenedorJuego extends BorderPane {
     private ArrayList<Jugador> jugadores;
     private LinkedList<Casillero> camino;
     private InformacionMapaEnJSON informacion;
-    private Mapa mapa;
     private GridPane mapaVisual;
     private Jugador jugadorActual;
 
@@ -55,11 +55,11 @@ public class ContenedorJuego extends BorderPane {
 
         this.jugadorActual = this.juego.comenzarPartidaConElPrimerJugador();
 
-        //Button top = createButton("Top");
+        DescripcionGladiadorVista des = new DescripcionGladiadorVista();
+
+        VBox descripcion = des.descripcion(this.jugadorActual);
+
         Button left = createButton("Left");
-        //Button center = createButton("Center");
-        Button right = createButton("Right");
-        //Button bottom = createButton("Bottom");
 
         Button tirarDado = createButton("Tirar dado");
         Button moverse = createButton("Moverse");
@@ -74,7 +74,7 @@ public class ContenedorJuego extends BorderPane {
 
         this.setLeft(left);
         this.setCenter(this.mapaVisual);
-        this.setRight(right);
+        this.setRight(descripcion);
 
         VBox vbox = new VBox();
         vbox.getChildren().add(tirarDado);
