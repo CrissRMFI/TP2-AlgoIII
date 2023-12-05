@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 
 public class ContenedorSeleccionMapaYJugadores extends BorderPane {
     private Stage stage;
-    private MensajesUsuario mensajes = new MensajesUsuario();
     private VBox vBoxDeJugadores;
     private VBox vBoxDeMapas;
     private ToggleGroup grupoDeMapas;
@@ -207,7 +206,7 @@ public class ContenedorSeleccionMapaYJugadores extends BorderPane {
     }
 
     private void ponerTituloDeJugadores(){
-        Label tituloJugadores = new Label(mensajes.IngresoDeJugadores());
+        Label tituloJugadores = new Label(MensajesUsuario.INGRESO_DE_JUGADORES);
         tituloJugadores.setFont(new Font(" times new roman", 24));
         tituloJugadores.setStyle("-fx-font-size: 24; -fx-text-fill: white; -fx-padding: 20;");
         tituloJugadores.setAlignment(Pos.TOP_CENTER);
@@ -227,7 +226,7 @@ public class ContenedorSeleccionMapaYJugadores extends BorderPane {
     }
 
     private void ponerTituloDeMapas(){
-        Label tituloDeMapas = new Label(this.mensajes.eleccionDeMapas());
+        Label tituloDeMapas = new Label(MensajesUsuario.ELEGIR_MAPA);
         tituloDeMapas.setStyle("-fx-font-size: 24; -fx-text-fill: white; -fx-padding: 20;");
         tituloDeMapas.setAlignment(Pos.TOP_CENTER);
 
@@ -265,7 +264,7 @@ public class ContenedorSeleccionMapaYJugadores extends BorderPane {
     }
 
     private void agregarBotonIniciarJuego(){
-        Button boton = new Button(mensajes.IniciarJuego());
+        Button boton = new Button(MensajesUsuario.INICIAR_JUEGO);
         boton.setStyle("-fx-font-size: 18; -fx-text-fill: white;-fx-background-color: green ;-fx-padding: 5;");
         BotonIniciarJuegoEventHandler botonEventHandler = new BotonIniciarJuegoEventHandler(this.stage, this.vBoxDeJugadores, this.grupoDeMapas);
         boton.setOnAction(botonEventHandler);
@@ -281,10 +280,10 @@ public class ContenedorSeleccionMapaYJugadores extends BorderPane {
     }
 
     private void agregarBotonParaElegirMapa(){
-        Button botonMapa = new Button(mensajes.CargarMapa());
+        Button botonMapa = new Button(MensajesUsuario.CARGAR_MAPA);
         botonMapa.setStyle("-fx-font-size: 18; -fx-text-fill: white;-fx-background-color: green ;-fx-padding: 5;");
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle(mensajes.CargarMapa());
+        fileChooser.setTitle(MensajesUsuario.CARGAR_MAPA);
         //BotonCargarMapaEventHandler botonEventHandler = new BotonCargarMapaEventHandler(this.stage, fileChooser);
         //botonMapa.setOnAction(botonEventHandler);
 

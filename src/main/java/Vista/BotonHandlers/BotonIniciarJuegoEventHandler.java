@@ -70,10 +70,9 @@ public class BotonIniciarJuegoEventHandler implements EventHandler<ActionEvent> 
             this.informacion = new InformacionMapaEnJSON("src/main/java/Datos/" + nombreDeMapaElegido +".json");
             this.mapa = new Mapa(this.informacion);
         } catch (ArchivoNoEncontrado | DatoNoEncontrado | DatoNoValido e) {
-            MensajesErrores mensajes = new MensajesErrores();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
-            alert.setContentText(mensajes.ErrorAlCargarElMapa());
+            alert.setContentText(MensajesErrores.ERROR_AL_CARGAR_EL_MAPA);
             alert.show();
         }
     }

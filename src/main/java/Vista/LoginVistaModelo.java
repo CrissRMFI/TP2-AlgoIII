@@ -25,12 +25,10 @@ public class LoginVistaModelo {
         this.usuarios.add(nombre);
     }
     public void iniciar() throws ElNombreDebeContenerUnMinimoDe4Caracteres,IOException {
-        MensajesUsuario m = new MensajesUsuario();
-
         if (this.usuarios.size() < 2) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setContentText(m.CantidadMinimaDeJugadores());
+            alert.setContentText(MensajesUsuario.CANTIDAD_MINIMA_JUGADORES);
             alert.show();
         } else {
             for (int i=0; i< this.usuarios.size(); i++) {

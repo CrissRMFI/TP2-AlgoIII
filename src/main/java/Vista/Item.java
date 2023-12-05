@@ -3,7 +3,6 @@ package Vista;
 import Datos.MensajesUsuario;
 
 public class Item {
-    private MensajesUsuario m = new MensajesUsuario();
     private final String jugadores;
     private final String turno;
     private final String lanzar;

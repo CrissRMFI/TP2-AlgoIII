@@ -10,12 +10,10 @@ import javafx.stage.Stage;
 
 
 public class App extends Application {
-    MensajesUsuario mensajes = new MensajesUsuario();
-
     @Override
     public void start(Stage stage) {
 
-        stage.setTitle(mensajes.TituloAplicacion());
+        stage.setTitle(MensajesUsuario.TITULO_JUEGO);
 
         ContenedorSeleccionMapaYJugadores login = new ContenedorSeleccionMapaYJugadores(stage);
         Scene escenaJuego = new Scene(login, 800, 480);
