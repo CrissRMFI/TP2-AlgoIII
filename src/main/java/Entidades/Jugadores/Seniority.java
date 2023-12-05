@@ -3,8 +3,9 @@ import Entidades.Elementos.Turno;
 import Entidades.Energia.Energia;
 
 public interface Seniority {
-    Seniority ascenderSeniority (Turno turno);
-    void aumentarEnergia (Energia energia);
+    public abstract Seniority ascenderSeniority (Turno turno);
 
-    String descripcion ();
+    public abstract void aumentarEnergia (Energia energia);
+
+    public abstract String descripcion ();
 }

@@ -29,6 +29,8 @@ ACTOR -> Jugador1: moverse(casillero)
 Jugador1 -> Turno: estaHabilitado()
 Turno --> Jugador1: True
 Jugador1 -> Energia: tengoEnergia()
-Energia --> Jugador1: True
-Jugador1 -> Jugador1: this.casillero = casillero
+Energia --> Jugador1: False
+Jugador1 -> Energia: afectarEnergia(new Energia(5))
+Jugador1 -> Turno: deshabilitar()
+
 @enduml

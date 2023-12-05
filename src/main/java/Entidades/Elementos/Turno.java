@@ -5,8 +5,7 @@ public class Turno {
     protected int cantidad;
     private int habilitado;
 
-    public  Turno () {
-
+    public Turno () {
         this.cantidad = 0;
         this.habilitado = 0;
     }

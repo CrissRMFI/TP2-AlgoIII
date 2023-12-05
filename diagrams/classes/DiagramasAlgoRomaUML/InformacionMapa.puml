@@ -1,0 +1,48 @@
+@startuml
+
+interface InformacionMapa{
+    +{abstract}construirCamino(LinkedList<Casillero> casilleros)
+}
+
+class InformacionMapaEnJSON{
+    -ancho: int
+    -largo: int
+    -celdas: JsonNode
+    +InformacionMapaEnJSON(rutaArchivo: String)
+    +construirCamino(camino: LinkedList<Casillero>)
+    +conseguirAncho(): int
+    +conseguirAlto(): int
+    +conseguirNumero(dato: String, informacion: JsonNode, limiteMaximo:int): int
+    +revisarSiLosDatosNecesariosEstan(informacion: JsonNode)
+}
+
+class InformacionJSON{
+    -rutaDelArchivo: String
+    +InformacionJSON(rutaDelArchivo: String)
+    +devolverInformacionDelArchivo(): JsonNode
+}
+
+class ConstructorPremio{
+    +construirPremio(tipo: String): Premio
+}
+
+class ConstructorObstaculo{
+    +construirObstaculo(tipo: String): Obstaculo
+}
+
+class InformacionMapaLinealEnMatriz{
+    +informacionMapa: Interactuable[][] informacionMapa
+    +InformacionMapaLinealEnMatriz(informacion: Interactuable[][])
+    +construirCamino(camino: LinkedList<Casillero>)
+}
+
+
+
+InformacionMapa <|-- InformacionMapaEnJSON
+InformacionMapa <|-- InformacionMapaLinealEnMatriz
+
+InformacionMapaEnJSON ..> InformacionJSON
+InformacionMapaEnJSON ..> ConstructorObstaculo
+InformacionMapaEnJSON ..> ConstructorPremio
+
+@enduml
