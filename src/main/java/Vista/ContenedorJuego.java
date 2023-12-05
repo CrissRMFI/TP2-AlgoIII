@@ -41,10 +41,6 @@ public class ContenedorJuego extends BorderPane {
         this.informacion = informacion;
         this.jugadores = jugadores;
         this.camino = new LinkedList<>();
-
-        //
-        //this.camino.get(0).
-
         this.ponerImagenDeFondo();
 
         generarInterfaz();
@@ -66,22 +62,27 @@ public class ContenedorJuego extends BorderPane {
         //Button bottom = createButton("Bottom");
 
         Button tirarDado = createButton("Tirar dado");
-        BotonTirarDadoHandler botonTirarDadoHandler = new BotonTirarDadoHandler(this.jugadorActual, this.juego, this.mapa);
+        Button moverse = createButton("Moverse");
+        Button finalizarTurno = createButton("Finalizar Turno");
+
+        Mapa mapa = new Mapa(this.informacion);
+        BotonTirarDadoHandler botonTirarDadoHandler = new BotonTirarDadoHandler(this.jugadorActual, this.juego, mapa);
         tirarDado.setOnAction(botonTirarDadoHandler);
 
-        //tableroVisual.setMaxHeight(Double.MAX_VALUE);
-        //tableroVisual.setMaxWidth(Double.MAX_VALUE);
-        //BorderPane.setMargin(tableroVisual, INSETS);
-        //BorderPane.setAlignment(tableroVisual, Pos.CENTER);
+
         this.mapaVisual.setAlignment(Pos.CENTER);
 
-        //this.ponerJugadores();
-
-        //borderPane.setTop(top);
         this.setLeft(left);
         this.setCenter(this.mapaVisual);
         this.setRight(right);
-        this.setBottom(tirarDado);
+
+        VBox vbox = new VBox();
+        vbox.getChildren().add(tirarDado);
+        vbox.getChildren().add(moverse);
+        vbox.getChildren().add(finalizarTurno);
+        this.setBottom(vbox);
+
+
 
     }
 
