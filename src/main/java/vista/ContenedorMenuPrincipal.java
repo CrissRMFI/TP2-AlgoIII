@@ -86,7 +86,7 @@ public class ContenedorMenuPrincipal extends BorderPane {
     }
 
     private void ponerImagenDeFondo() {
-        Image imagen = new Image("imagenes/roma.png");
+        Image imagen = new Image("file:src/main/resources/imagenes/roma.png");
 
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen,
                 BackgroundRepeat.REPEAT,

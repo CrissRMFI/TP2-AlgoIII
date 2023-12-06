@@ -193,7 +193,7 @@ public class ContenedorSeleccionMapaYJugadores extends BorderPane {
      */
 
     private void ponerImagenDeFondo() {
-        Image imagen = new Image("file:src/main/java/Vista/Imagenes/pruebaDeFondo.png");
+        Image imagen = new Image("file:src/main/resources/imagenes/pruebaDeFondo.png");
 
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen,
                 BackgroundRepeat.REPEAT,

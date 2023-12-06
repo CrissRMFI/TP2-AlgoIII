@@ -1,4 +1,4 @@
-package TestListaCircular;
+package testListaCircular;
 
 import utils.ListaCircular;
 import org.junit.Test;

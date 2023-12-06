@@ -121,7 +121,7 @@ public class ContenedorJuego extends BorderPane {
      */
 
     private void ponerImagenDeFondo() {
-        Image imagen = new Image("imagenes/roma3.png");
+        Image imagen = new Image("file:src/main/resources/imagenes/roma3.png");
 
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen,
                 BackgroundRepeat.REPEAT,
