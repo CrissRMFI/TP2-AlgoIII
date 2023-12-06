@@ -1,9 +1,9 @@
 
 package edu.fiuba.algo3;
 
-import Datos.MensajesUsuario;
-import Vista.ContenedorSeleccionMapaYJugadores;
-import Vista.ContenedorMenuPrincipal;
+import datos.MensajesUsuario;
+import vista.ContenedorSeleccionMapaYJugadores;
+import vista.ContenedorMenuPrincipal;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

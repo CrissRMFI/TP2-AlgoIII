@@ -1,6 +1,6 @@
 package TestListaCircular;
 
-import Entidades.ListaCircular;
+import utils.ListaCircular;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,33 +8,34 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestListaCircular {
     private ListaCircular<Integer> listaEnteros = new ListaCircular<Integer>();
     private ListaCircular<String> listaString = new ListaCircular<String>();
+
     @Test
-    public void LaListaCircularAlIniciarTieneTamanioCero () {
-        assertEquals(0,listaEnteros.tamanio());
+    public void LaListaCircularAlIniciarTieneTamanioCero() {
+        assertEquals(0, listaEnteros.tamanio());
     }
 
     @Test
-    public void IngresoUnDatoYLaListaTieneLongitudUno () {
+    public void IngresoUnDatoYLaListaTieneLongitudUno() {
         listaEnteros.agregarElemento(1);
-        assertEquals(1,listaEnteros.tamanio());
+        assertEquals(1, listaEnteros.tamanio());
     }
 
     @Test
-    public void IngresoDosDatosYLaListaTieneLongitudDos () {
+    public void IngresoDosDatosYLaListaTieneLongitudDos() {
         listaEnteros.agregarElemento(1);
         listaEnteros.agregarElemento(2);
-        assertEquals(2,listaEnteros.tamanio());
+        assertEquals(2, listaEnteros.tamanio());
     }
 
     @Test
-    public void IngresoDosDatosIgualesYLaListaTieneLongitudDos () {
+    public void IngresoDosDatosIgualesYLaListaTieneLongitudDos() {
         listaEnteros.agregarElemento(1);
         listaEnteros.agregarElemento(1);
-        assertEquals(2,listaEnteros.tamanio());
+        assertEquals(2, listaEnteros.tamanio());
     }
 
     @Test
-    public void IngresoDiezDatosYLaListaTieneLongitudDiez () {
+    public void IngresoDiezDatosYLaListaTieneLongitudDiez() {
         listaEnteros.agregarElemento(1);
         listaEnteros.agregarElemento(1);
         listaEnteros.agregarElemento(2);
@@ -45,25 +46,25 @@ public class TestListaCircular {
         listaEnteros.agregarElemento(789);
         listaEnteros.agregarElemento(12);
         listaEnteros.agregarElemento(456);
-        assertEquals(10,listaEnteros.tamanio());
+        assertEquals(10, listaEnteros.tamanio());
     }
 
     @Test
-    public void IngresoUnDatoYLoObtengo () {
+    public void IngresoUnDatoYLoObtengo() {
         listaEnteros.agregarElemento(1);
-        assertEquals(1,listaEnteros.obtener());
+        assertEquals(1, listaEnteros.obtener());
     }
 
     @Test
-    public void IngresoDosDatosYAlObtenerNoEsElPrimeroIngresado () {
+    public void IngresoDosDatosYAlObtenerNoEsElPrimeroIngresado() {
         listaEnteros.agregarElemento(1);
         listaEnteros.agregarElemento(2);
-        assertEquals(2,listaEnteros.obtener());
-        assertNotEquals(1,listaEnteros.obtener());
+        assertEquals(2, listaEnteros.obtener());
+        assertNotEquals(1, listaEnteros.obtener());
     }
 
     @Test
-    public void IngresoDiezDatosYAlObtenerEsElUltimoIngresado () {
+    public void IngresoDiezDatosYAlObtenerEsElUltimoIngresado() {
         listaString.agregarElemento("ALgoritmos I");
         listaString.agregarElemento("ALgoritmos II");
         listaString.agregarElemento("ALgoritmos III");
@@ -75,11 +76,11 @@ public class TestListaCircular {
         listaString.agregarElemento("Taller Programacion");
         listaString.agregarElemento("Bases de Datos");
 
-        assertEquals("Bases de Datos",listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
     }
 
     @Test
-    public void IngresoDiezDatosYAlObtenerDiezVecesEsElUltimoIngresado () {
+    public void IngresoDiezDatosYAlObtenerDiezVecesEsElUltimoIngresado() {
         listaString.agregarElemento("ALgoritmos I");
         listaString.agregarElemento("ALgoritmos II");
         listaString.agregarElemento("ALgoritmos III");
@@ -91,38 +92,20 @@ public class TestListaCircular {
         listaString.agregarElemento("Taller Programacion");
         listaString.agregarElemento("Bases de Datos");
 
-        assertEquals("Bases de Datos",listaString.obtener());
-        assertEquals("Bases de Datos",listaString.obtener());
-        assertEquals("Bases de Datos",listaString.obtener());
-        assertEquals("Bases de Datos",listaString.obtener());
-        assertEquals("Bases de Datos",listaString.obtener());
-        assertEquals("Bases de Datos",listaString.obtener());
-        assertEquals("Bases de Datos",listaString.obtener());
-        assertEquals("Bases de Datos",listaString.obtener());
-        assertEquals("Bases de Datos",listaString.obtener());
-        assertEquals("Bases de Datos",listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
+        assertEquals("Bases de Datos", listaString.obtener());
     }
 
     @Test
-    public void IngresoDiezDatosRecorroLaListaUnaVezYObtengoElPrimeroIngresado () {
-        listaString.agregarElemento("ALgoritmos I");
-        listaString.agregarElemento("ALgoritmos II");
-        listaString.agregarElemento("ALgoritmos III");
-        listaString.agregarElemento("Probabilidad y Estadistica");
-        listaString.agregarElemento("Estructura del Computador");
-        listaString.agregarElemento("Organizacion de Datos I");
-        listaString.agregarElemento("TDA");
-        listaString.agregarElemento("Matematica Discreta");
-        listaString.agregarElemento("Taller Programacion");
-        listaString.agregarElemento("Bases de Datos");
-
-        listaString.siguiente();
-        assertEquals("ALgoritmos I",listaString.obtener());
-
-    }
-
-    @Test
-    public void IngresoDiezDatosRecorroLaListaTresVecesYObtengoElTerceroIngresado () {
+    public void IngresoDiezDatosRecorroLaListaUnaVezYObtengoElPrimeroIngresado() {
         listaString.agregarElemento("ALgoritmos I");
         listaString.agregarElemento("ALgoritmos II");
         listaString.agregarElemento("ALgoritmos III");
@@ -135,14 +118,32 @@ public class TestListaCircular {
         listaString.agregarElemento("Bases de Datos");
 
         listaString.siguiente();
-        listaString.siguiente();
-        listaString.siguiente();
-        assertEquals("ALgoritmos III",listaString.obtener());
+        assertEquals("ALgoritmos I", listaString.obtener());
 
     }
 
     @Test
-    public void IngresoDiezDatosRecorroLaListaDiezVecesYObtengoUltimoIngresado () {
+    public void IngresoDiezDatosRecorroLaListaTresVecesYObtengoElTerceroIngresado() {
+        listaString.agregarElemento("ALgoritmos I");
+        listaString.agregarElemento("ALgoritmos II");
+        listaString.agregarElemento("ALgoritmos III");
+        listaString.agregarElemento("Probabilidad y Estadistica");
+        listaString.agregarElemento("Estructura del Computador");
+        listaString.agregarElemento("Organizacion de Datos I");
+        listaString.agregarElemento("TDA");
+        listaString.agregarElemento("Matematica Discreta");
+        listaString.agregarElemento("Taller Programacion");
+        listaString.agregarElemento("Bases de Datos");
+
+        listaString.siguiente();
+        listaString.siguiente();
+        listaString.siguiente();
+        assertEquals("ALgoritmos III", listaString.obtener());
+
+    }
+
+    @Test
+    public void IngresoDiezDatosRecorroLaListaDiezVecesYObtengoUltimoIngresado() {
         listaString.agregarElemento("ALgoritmos I");
         listaString.agregarElemento("ALgoritmos II");
         listaString.agregarElemento("ALgoritmos III");
@@ -165,12 +166,12 @@ public class TestListaCircular {
         listaString.siguiente();
         listaString.siguiente();
         listaString.siguiente();
-        assertEquals(cadenaEsperada,listaString.obtener());
+        assertEquals(cadenaEsperada, listaString.obtener());
 
     }
 
     @Test
-    public void IngresoDosDatosRecorroLaListaUnaVezSeVerificaUnaVueltaCompleta () {
+    public void IngresoDosDatosRecorroLaListaUnaVezSeVerificaUnaVueltaCompleta() {
         listaString.agregarElemento("ALgoritmos I");
         listaString.agregarElemento("ALgoritmos II");
 
@@ -180,7 +181,7 @@ public class TestListaCircular {
     }
 
     @Test
-    public void IngresoDiezDatosInicioConELPrimeroRecorro9VecesYSeCuentaComoVUeltaCompleta () {
+    public void IngresoDiezDatosInicioConELPrimeroRecorro9VecesYSeCuentaComoVUeltaCompleta() {
         listaString.agregarElemento("ALgoritmos I");
         listaString.agregarElemento("ALgoritmos II");
         listaString.agregarElemento("ALgoritmos III");
@@ -195,17 +196,17 @@ public class TestListaCircular {
 
         listaString.iniciarConElPrimero();
 
-        for (int i = 0; i<8 ; i++) {
+        for (int i = 0; i < 8; i++) {
             listaString.siguiente();
             assertFalse(listaString.vueltaCompleta());
         }
         listaString.siguiente();
-       assertTrue(listaString.vueltaCompleta());
+        assertTrue(listaString.vueltaCompleta());
 
     }
 
     @Test
-    public void IngresoDiezDatosInicioConELPrimeroRecorro19VecesYSeCuentaComoDosVUeltaCompletas () {
+    public void IngresoDiezDatosInicioConELPrimeroRecorro19VecesYSeCuentaComoDosVUeltaCompletas() {
         listaString.agregarElemento("ALgoritmos I");
         listaString.agregarElemento("ALgoritmos II");
         listaString.agregarElemento("ALgoritmos III");
@@ -220,19 +221,19 @@ public class TestListaCircular {
 
         listaString.iniciarConElPrimero();
         int vueltas = 0;
-        for (int i = 0; i<19 ; i++) {
+        for (int i = 0; i < 19; i++) {
             listaString.siguiente();
             if (listaString.vueltaCompleta()) {
                 vueltas++;
             }
         }
 
-        assertEquals(2,vueltas);
+        assertEquals(2, vueltas);
 
     }
 
     @Test
-    public void IngresoDiezDatosInicioConELPrimeroRecorro18VecesYSeCuentaComoUnaVUeltaCompleta () {
+    public void IngresoDiezDatosInicioConELPrimeroRecorro18VecesYSeCuentaComoUnaVUeltaCompleta() {
         listaString.agregarElemento("ALgoritmos I");
         listaString.agregarElemento("ALgoritmos II");
         listaString.agregarElemento("ALgoritmos III");
@@ -247,14 +248,14 @@ public class TestListaCircular {
 
         listaString.iniciarConElPrimero();
         int vueltas = 0;
-        for (int i = 0; i<18 ; i++) {
+        for (int i = 0; i < 18; i++) {
             listaString.siguiente();
             if (listaString.vueltaCompleta()) {
                 vueltas++;
             }
         }
 
-        assertEquals(1,vueltas);
+        assertEquals(1, vueltas);
 
     }
 }

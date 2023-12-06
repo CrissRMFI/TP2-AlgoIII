@@ -1,26 +1,25 @@
 package edu.fiuba.algo3.entrega_1;
-import Datos.InformacionMapaEnJSON;
-import Datos.InformacionMapaLinealEnMatriz;
-import Entidades.AlgoRoma;
-import Entidades.Errores.*;
-import Entidades.Interactuable;
-import Entidades.Obstaculos.Bacanal;
-import Entidades.Obstaculos.Lesion;
-import Entidades.Obstaculos.SinObstaculo;
-import Entidades.Premios.Comida;
-import Entidades.Elementos.MockDado;
-import Entidades.Energia.Energia;
-import Entidades.Jugadores.Gladiador;
-import Entidades.Jugadores.Jugador;
-import Entidades.Obstaculos.Fiera;
-import Entidades.Premios.Equipamiento;
-import Entidades.Premios.JerarquiaEquipos;
-import Entidades.Tablero.*;
+
+import datos.InformacionMapaLinealEnMatriz;
+import modelo.AlgoRoma;
+import modelo.errores.*;
+import modelo.Interactuable;
+import modelo.obstaculos.Lesion;
+import modelo.obstaculos.SinObstaculo;
+import modelo.premios.Comida;
+import modelo.elementos.MockDado;
+import modelo.energia.Energia;
+import modelo.jugadores.Gladiador;
+import modelo.jugadores.Jugador;
+import modelo.obstaculos.Fiera;
+import modelo.premios.Equipamiento;
+import modelo.premios.JerarquiaEquipos;
+import modelo.tablero.*;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Entrega1{
+public class Entrega1 {
 
     private Mapa MapaConFieraSalvaje() throws DatoNoValido {
         int cantidadCasilleros = 30;
@@ -33,7 +32,6 @@ public class Entrega1{
         elementosMapa[0][0] = new Fiera();
 
 
-
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
         Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
@@ -41,12 +39,12 @@ public class Entrega1{
         return mapa;
     }
 
-    private Mapa MapaConCuatroEquipamientosYUnaFieraSalvaje () throws DatoNoValido {
+    private Mapa MapaConCuatroEquipamientosYUnaFieraSalvaje() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new SinObstaculo();
         }
 
@@ -62,12 +60,13 @@ public class Entrega1{
 
         return mapa;
     }
-    private Mapa MapaLlenoDeEquipamientos () throws DatoNoValido {
+
+    private Mapa MapaLlenoDeEquipamientos() throws DatoNoValido {
         int cantidadCasilleros = 30;
 
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][2];
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new Equipamiento();
             elementosMapa[i][1] = new SinObstaculo();
         }
@@ -81,11 +80,11 @@ public class Entrega1{
         return mapa;
     }
 
-    private Mapa MapaConUnaPiedra () throws DatoNoValido {
+    private Mapa MapaConUnaPiedra() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new SinObstaculo();
         }
 
@@ -98,11 +97,12 @@ public class Entrega1{
 
         return mapa;
     }
+
     private Mapa MapaVacio() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new SinObstaculo();
         }
 
@@ -117,11 +117,11 @@ public class Entrega1{
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new SinObstaculo();
         }
 
-        for (int i=0;i<elementosMapa.length;i++) {
+        for (int i = 0; i < elementosMapa.length; i++) {
             elementosMapa[i][0] = new Comida();
         }
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
@@ -130,12 +130,13 @@ public class Entrega1{
 
         return mapa;
     }
-    private Mapa MapaConUnEquipoYFieraSalvaje() throws  DatoNoValido {
+
+    private Mapa MapaConUnEquipoYFieraSalvaje() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][2];
 
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][1] = new SinObstaculo();
         }
 
@@ -198,7 +199,7 @@ public class Entrega1{
         jugador.moverse(casillero);
 
 
-        Casillero casilleroSiguienteAlInicial = new Casillero(1,0);
+        Casillero casilleroSiguienteAlInicial = new Casillero(1, 0);
 
 
         assertTrue(jugador.compararPosicion(casilleroSiguienteAlInicial));
@@ -233,8 +234,8 @@ public class Entrega1{
         jugador.obtenerElementos();
         jugador.finalizarTurno(algoRoma);
 
-        Casillero casilleroEsperadoCarpoforo = new Casillero(1,0);
-        Casillero casilleroEsperadoEspartaco = new Casillero(2,0);
+        Casillero casilleroEsperadoCarpoforo = new Casillero(1, 0);
+        Casillero casilleroEsperadoEspartaco = new Casillero(2, 0);
 
         assertTrue(Carpoforo.compararSalud(new Energia(0)));
         assertTrue(Carpoforo.compararPosicion(casilleroEsperadoCarpoforo));
@@ -252,10 +253,10 @@ public class Entrega1{
 
 
         assertTrue(Carpoforo.compararSalud(new Energia(5)));
-        assertTrue(Carpoforo.compararPosicion(new Casillero(1,0)));
+        assertTrue(Carpoforo.compararPosicion(new Casillero(1, 0)));
 
         assertTrue(Espartaco.compararSalud(new Energia(20)));
-        assertTrue(Espartaco.compararPosicion(new Casillero(4,0)));
+        assertTrue(Espartaco.compararPosicion(new Casillero(4, 0)));
 
     }
 
@@ -345,7 +346,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 8
-    public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5 () throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
@@ -361,7 +362,7 @@ public class Entrega1{
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
         Casillero casillero = mapa.obtenerProximoDestino(jugador);
 
-        for (int i = 0; i< 9 ; i++ ) {
+        for (int i = 0; i < 9; i++) {
 
             jugador.moverse(casillero);
             jugador.obtenerElementos();
@@ -402,7 +403,7 @@ public class Entrega1{
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
         Casillero casillero = mapa.obtenerProximoDestino(jugador);
 
-        for (int i = 0; i< 29 ; i++ ) {
+        for (int i = 0; i < 29; i++) {
 
             jugador.moverse(casillero);
             jugador.finalizarTurno(algoRoma);
@@ -425,9 +426,7 @@ public class Entrega1{
         jugador.finalizarTurno(algoRoma);
 
 
-
-
-        Casillero posicionEsperada = new Casillero(16,0);
+        Casillero posicionEsperada = new Casillero(16, 0);
 
         assertTrue(Carpoforo.compararPosicion(posicionEsperada));
         assertTrue(Espartaco.compararPosicion(posicionEsperada));
@@ -451,7 +450,7 @@ public class Entrega1{
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
         Casillero casillero = mapa.obtenerProximoDestino(jugador);
 
-        for (int i = 0; i<= 4 ; i++ ) {
+        for (int i = 0; i <= 4; i++) {
 
             jugador.moverse(casillero);
             jugador.obtenerElementos();
@@ -490,7 +489,7 @@ public class Entrega1{
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
         Casillero casillero = mapa.obtenerProximoDestino(jugador);
 
-        for (int i = 0; i<= 6 ; i++ ) {
+        for (int i = 0; i <= 6; i++) {
 
             jugador.moverse(casillero);
             jugador.obtenerElementos();
@@ -511,7 +510,7 @@ public class Entrega1{
 
     @Test
     //Caso de uso 12
-    public void Pasan30TurnosYNadieLlegoSeTerminaElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada,PartidaNoFinalizada, DatoNoValido {
+    public void Pasan30TurnosYNadieLlegoSeTerminaElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, DatoNoValido {
         Mapa mapa = this.MapaConUnaPiedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         MockDado mockDado = new MockDado();
@@ -527,7 +526,7 @@ public class Entrega1{
         Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
         Casillero casillero = mapa.obtenerProximoDestino(jugador);
 
-        for (int i = 0; i< 30 ; i++ ) {
+        for (int i = 0; i < 30; i++) {
 
             jugador.moverse(casillero);
             jugador.obtenerElementos();
@@ -538,11 +537,11 @@ public class Entrega1{
             jugador.obtenerElementos();
             jugador.finalizarTurno(algoRoma);
 
-            if (i<29) jugador = (Gladiador) algoRoma.siguienteJugador();
+            if (i < 29) jugador = (Gladiador) algoRoma.siguienteJugador();
         }
 
         assertThrows(PartidaFinalizada.class, () -> algoRoma.siguienteJugador());
-        assertEquals("No hay ganador",algoRoma.elGanador().yoSoy());
+        assertEquals("No hay ganador", algoRoma.elGanador().yoSoy());
     }
 
 }

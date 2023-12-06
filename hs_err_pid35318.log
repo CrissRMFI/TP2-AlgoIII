@@ -14,7 +14,7 @@
 
 ---------------  S U M M A R Y ------------
 
-Command Line: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:37371,suspend=y,server=n -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:/snap/intellij-idea-community/467/plugins/java/lib/rt/debugger-agent.jar --patch-module=edu.fiuba.algo3=/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/target/test-classes --add-reads=edu.fiuba.algo3=ALL-UNNAMED --add-opens=edu.fiuba.algo3/TestIntegracion=ALL-UNNAMED --add-modules=edu.fiuba.algo3 -Dfile.encoding=UTF-8 --module-path=/home/criss/.m2/repository/org/openjfx/javafx-controls/15.0.1/javafx-controls-15.0.1-linux.jar:/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/target/classes:/home/criss/.m2/repository/org/openjfx/javafx-graphics/15.0.1/javafx-graphics-15.0.1-linux.jar:/home/criss/.m2/repository/org/openjfx/javafx-base/15.0.1/javafx-base-15.0.1-linux.jar com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit4 TestIntegracion.TestIntegracion,DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnError
+Command Line: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:37371,suspend=y,server=n -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:/snap/intellij-idea-community/467/plugins/java/lib/rt/debugger-agent.jar --patch-module=edu.fiuba.algo3=/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/target/test-classes --add-reads=edu.fiuba.algo3=ALL-UNNAMED --add-opens=edu.fiuba.algo3/testIntegracion=ALL-UNNAMED --add-modules=edu.fiuba.algo3 -Dfile.encoding=UTF-8 --module-path=/home/criss/.m2/repository/org/openjfx/javafx-controls/15.0.1/javafx-controls-15.0.1-linux.jar:/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/target/classes:/home/criss/.m2/repository/org/openjfx/javafx-graphics/15.0.1/javafx-graphics-15.0.1-linux.jar:/home/criss/.m2/repository/org/openjfx/javafx-base/15.0.1/javafx-base-15.0.1-linux.jar com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit4 testIntegracion.testIntegracion,DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnError
 
 Host: 11th Gen Intel(R) Core(TM) i7-11700 @ 2.50GHz, 16 cores, 15G, Ubuntu 22.04.3 LTS
 Time: Wed Nov 22 14:59:32 2023 -03 elapsed time: 5146.759658 seconds (0d 1h 25m 46s)
@@ -435,16 +435,16 @@ Event: 0,190 Thread 0x00007f0a8801a000 DEOPT PACKING pc=0x00007f0a781cb214 sp=0x
 Event: 0,190 Thread 0x00007f0a8801a000 DEOPT UNPACKING pc=0x00007f0a706082a5 sp=0x00007f0a8fffdbf0 mode 2
 
 Classes redefined (10 events):
-Event: 291,919 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=1
-Event: 528,732 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=2
-Event: 970,913 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=3
-Event: 1597,129 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=4
-Event: 1736,754 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=5
-Event: 2015,917 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=6
-Event: 3961,332 Thread 0x00007f0a88274000 redefined class name=Entidades.AlgoRoma, count=1
-Event: 4116,846 Thread 0x00007f0a88274000 redefined class name=TestIntegracion.TestIntegracion, count=1
-Event: 4507,865 Thread 0x00007f0a88274000 redefined class name=TestIntegracion.TestIntegracion, count=2
-Event: 5146,745 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=7
+Event: 291,919 Thread 0x00007f0a88274000 redefined class name=utils.ListaCircular, count=1
+Event: 528,732 Thread 0x00007f0a88274000 redefined class name=utils.ListaCircular, count=2
+Event: 970,913 Thread 0x00007f0a88274000 redefined class name=utils.ListaCircular, count=3
+Event: 1597,129 Thread 0x00007f0a88274000 redefined class name=utils.ListaCircular, count=4
+Event: 1736,754 Thread 0x00007f0a88274000 redefined class name=utils.ListaCircular, count=5
+Event: 2015,917 Thread 0x00007f0a88274000 redefined class name=utils.ListaCircular, count=6
+Event: 3961,332 Thread 0x00007f0a88274000 redefined class name=modelo.AlgoRoma, count=1
+Event: 4116,846 Thread 0x00007f0a88274000 redefined class name=testIntegracion.testIntegracion, count=1
+Event: 4507,865 Thread 0x00007f0a88274000 redefined class name=testIntegracion.testIntegracion, count=2
+Event: 5146,745 Thread 0x00007f0a88274000 redefined class name=utils.ListaCircular, count=7
 
 Internal exceptions (20 events):
 Event: 0,209 Thread 0x00007f0a8801a000 Exception <a 'sun/nio/fs/UnixException'{0x00000006d7f41958}> (0x00000006d7f41958) thrown at [./src/hotspot/share/prims/jni.cpp, line 617]
@@ -744,8 +744,8 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 
 
 VM Arguments:
-jvm_args: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:37371,suspend=y,server=n -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:/snap/intellij-idea-community/467/plugins/java/lib/rt/debugger-agent.jar --patch-module=edu.fiuba.algo3=/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/target/test-classes --add-reads=edu.fiuba.algo3=ALL-UNNAMED --add-opens=edu.fiuba.algo3/TestIntegracion=ALL-UNNAMED --add-modules=edu.fiuba.algo3 -Dfile.encoding=UTF-8 --module-path=/home/criss/.m2/repository/org/openjfx/javafx-controls/15.0.1/javafx-controls-15.0.1-linux.jar:/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/target/classes:/home/criss/.m2/repository/org/openjfx/javafx-graphics/15.0.1/javafx-graphics-15.0.1-linux.jar:/home/criss/.m2/repository/org/openjfx/javafx-base/15.0.1/javafx-base-15.0.1-linux.jar 
-java_command: com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit4 TestIntegracion.TestIntegracion,DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnError
+jvm_args: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:37371,suspend=y,server=n -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:/snap/intellij-idea-community/467/plugins/java/lib/rt/debugger-agent.jar --patch-module=edu.fiuba.algo3=/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/target/test-classes --add-reads=edu.fiuba.algo3=ALL-UNNAMED --add-opens=edu.fiuba.algo3/testIntegracion=ALL-UNNAMED --add-modules=edu.fiuba.algo3 -Dfile.encoding=UTF-8 --module-path=/home/criss/.m2/repository/org/openjfx/javafx-controls/15.0.1/javafx-controls-15.0.1-linux.jar:/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/target/classes:/home/criss/.m2/repository/org/openjfx/javafx-graphics/15.0.1/javafx-graphics-15.0.1-linux.jar:/home/criss/.m2/repository/org/openjfx/javafx-base/15.0.1/javafx-base-15.0.1-linux.jar
+java_command: com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit4 testIntegracion.testIntegracion,DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnError
 java_class_path (initial): /snap/intellij-idea-community/467/lib/idea_rt.jar:/snap/intellij-idea-community/467/plugins/junit/lib/junit5-rt.jar:/snap/intellij-idea-community/467/plugins/junit/lib/junit-rt.jar:/home/criss/AlgoIIIFiuba/TP2-Grupal/algo3_proyecto_base_tp2/target/test-classes:/home/criss/.m2/repository/org/openjfx/javafx-controls/15.0.1/javafx-controls-15.0.1.jar:/home/criss/.m2/repository/org/openjfx/javafx-graphics/15.0.1/javafx-graphics-15.0.1.jar:/home/criss/.m2/repository/org/openjfx/javafx-base/15.0.1/javafx-base-15.0.1.jar:/home/criss/.m2/repository/org/junit/jupiter/junit-jupiter/5.4.0/junit-jupiter-5.4.0.jar:/home/criss/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.4.0/junit-jupiter-api-5.4.0.jar:/home/criss/.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar:/home/criss/.m2/repository/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar:/home/criss/.m2/repository/org/junit/platform/junit-platform-commons/1.4.0/junit-platform-commons-1.4.0.jar:/home/criss/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.4.0/junit-jupiter-params-5.4.0.jar:/home/criss/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.4.0/junit-jupiter-engine-5.4.0.jar:/home/criss/.m2/repository/org/junit/platform/junit-platform-engine/1.4.0/junit-platform-engine-1.4.0.jar:/home/criss/.m2/repository/org/mockito/mockito-core/3.3.0/mockito-core-3.3.0.jar:/home/criss/.m2/repository/net/bytebuddy/byte-buddy/1.10.5/byte-buddy-1.10.5.jar:/home/criss/.m2/repository/net/bytebuddy/byte-buddy-agent/1.10.5/byte-buddy-agent-1.10.5.jar:/home/criss/.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6.jar:/home/criss/.m2/repository/com/tngtech/archunit/archunit/0.21.0/archunit-0.21.0.jar:/home/criss/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/home/criss/.m2/repository/org/slf4j/slf4j-simple/1.7.30/slf4j-simple-1.7.30.jar:/home/criss/.m2/repository/junit/junit/4.12/junit-4.12.jar:/home/criss/.m2/repository/org/hamcrest/hamcres
 Launcher Type: SUN_STANDARD
 
