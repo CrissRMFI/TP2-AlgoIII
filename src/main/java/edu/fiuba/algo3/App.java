@@ -2,30 +2,44 @@
 package edu.fiuba.algo3;
 
 import Datos.MensajesUsuario;
-import Vista.ContenedorSeleccionMapaYJugadores;
-import Vista.ContenedorMenuPrincipal;
+import Vista.*;
+import edu.fiuba.algo3.modelo.AppModelo;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
 public class App extends Application {
+    private Stage stage;
+    private AppModelo modelo;
+
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage){
+
+        this.stage = stage;
+        this.modelo = new AppModelo();
+
+        AppVistaInicio vistaInicio = new AppVistaInicio(this);
 
         stage.setTitle(MensajesUsuario.TITULO_JUEGO);
-
-        ContenedorSeleccionMapaYJugadores login = new ContenedorSeleccionMapaYJugadores(stage);
-        Scene escenaJuego = new Scene(login, 800, 480);
-
-        ContenedorMenuPrincipal contenedorMenuPrincipal = new ContenedorMenuPrincipal(stage, escenaJuego);
-        Scene escenaMenuPrincipal = new Scene(contenedorMenuPrincipal, 600, 600);
-
-        stage.setScene(escenaMenuPrincipal);
-        stage.setFullScreen(true);
-        stage.setFullScreenExitHint("");
+        stage.setScene(vistaInicio.obtenerEscena());
         stage.show();
     }
+
+    public void mostrarVentanaIngreso()  {
+        AppVistaIngreso vistaIngreso = new AppVistaIngreso(this, modelo);
+        this.stage.setScene(vistaIngreso.obtenerEscena());
+
+
+    }
+    public void salirDeEscena () {
+        this.stage.close();
+    }
+
+    public void iniciarJuego (AppModelo modelo) {
+        AppVistaJuego appVistaJuego = new AppVistaJuego(modelo);
+        this.stage.setScene(appVistaJuego.obtenerEscena());
+    }
+
 
     public static void main(String[] args) {
         launch();
