@@ -31,12 +31,16 @@ public class App extends Application {
 
 
     }
+
     public void salirDeEscena () {
         this.stage.close();
     }
 
     public void iniciarJuego (AppModelo modelo) {
+        modelo.crearJuego();
         AppVistaJuego appVistaJuego = new AppVistaJuego(modelo);
+
+
         this.stage.setScene(appVistaJuego.obtenerEscena());
     }
 

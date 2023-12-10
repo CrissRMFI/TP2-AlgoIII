@@ -70,6 +70,7 @@ public class AppVistaIngreso extends GridPane{
 
                 }
             }
+
             controlador.iniciarJuego(modelo);
         });
         escena = new Scene(this, 800, 700);

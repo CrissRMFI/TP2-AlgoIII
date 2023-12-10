@@ -28,8 +28,15 @@ public class AppModelo {
     public void crearMapa (String ruta) throws DatoNoEncontrado, DatoNoValido, ArchivoNoEncontrado {
         InformacionMapa informacionMapa = new InformacionMapaEnJSON(ruta);
         this.mapa = new Mapa(informacionMapa);
-        this.algoRoma = new AlgoRoma(this.mapa);
         this.ruta = ruta;
+    }
+
+    public void crearJuego () {
+        this.algoRoma = new AlgoRoma(this.mapa);
+        for (Jugador jugador : this.jugadores) {
+            this.algoRoma.agregarJugador(jugador.getJugador());
+        }
+
     }
 
     public String getRutaArchivo () {
@@ -43,6 +50,14 @@ public class AppModelo {
     }
 
     public void moverJugador (Componentes.Mapa mapa) {
-        mapa.moverJugador(this.jugadores.get(0));
+        Entidades.Jugadores.Jugador jugador = this.algoRoma.mover();
+
+        for (int i=0; i<this.jugadores.size();i++) {
+            if (jugador.yoSoy() == this.jugadores.get(i).getJugador().yoSoy()) {
+                mapa.moverJugador(this.jugadores.get(i));
+                break;
+            }
+        }
+
     }
 }

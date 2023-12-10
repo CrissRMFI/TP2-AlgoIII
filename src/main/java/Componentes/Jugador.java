@@ -11,7 +11,7 @@ public abstract class Jugador extends HBox {
         casillero.agregar(this);
     }
 
-    protected Entidades.Jugadores.Jugador getJugador () {return this.jugador;}
+    public Entidades.Jugadores.Jugador getJugador () {return this.jugador;}
 
     public boolean comparar (Jugador jugador) {
         return this.jugador.yoSoy() == jugador.getJugador().yoSoy();
