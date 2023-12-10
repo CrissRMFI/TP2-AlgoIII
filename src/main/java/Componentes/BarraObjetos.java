@@ -4,47 +4,64 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
-public class BarraObjetos extends HBox {
+public class BarraObjetos extends GridPane {
     public BarraObjetos () {
 
-        VBox vBox = new VBox();
-        //vBox.getChildren().add(0,new Comida());
-        vBox.getChildren().add(0,new Label("COMIDA"));
-        vBox.getChildren().add(1,new Comida());
+        Comida comida = new Comida();
+        Label text = new Label("COMIDA");
+        text.setTextFill(Color.WHITE);
 
-        this.getChildren().add(vBox);
+        comida.setScaleX(2);
+        comida.setScaleY(2);
+        this.add(comida,0,0);
+        this.add(text,1,0);
 
-        vBox = new VBox();
-        vBox.getChildren().add(0,new Equipamiento());
-        vBox.getChildren().add(1,new Label("EQUIPAMIENTO"));
+        Equipamiento equipamiento= new Equipamiento();
+        text = new Label("EQUIPAMIENTO");
+        text.setTextFill(Color.WHITE);
+        equipamiento.setScaleX(1.5);
+        equipamiento.setScaleY(1.5);
+        this.add(equipamiento,2,0);
+        this.add(text,3,0);
 
-        this.getChildren().add(vBox);
+        Bacanal bacanal= new Bacanal();
+        text = new Label("BACANAL");
+        text.setTextFill(Color.WHITE);
+        bacanal.setScaleX(1.5);
+        bacanal.setScaleY(1.5);
+        this.add(bacanal,4,0);
+        this.add(text,5,0);
 
-        vBox = new VBox();
-        vBox.getChildren().add(0,new Bacanal());
-        vBox.getChildren().add(1,new Label("BACANAL"));
+        Fiera fiera= new Fiera();
+        text = new Label("FIERA SALVAJE");
+        text.setTextFill(Color.WHITE);
+        fiera.setScaleX(1.5);
+        fiera.setScaleY(1.5);
+        this.add(fiera,6,0);
+        this.add(text,7,0);
 
-        this.getChildren().add(vBox);
+        Lesion lesion = new Lesion();
+        text = new Label("PIEDRA");
+        text.setTextFill(Color.WHITE);
+        lesion.setScaleX(1.5);
+        lesion.setScaleY(1.5);
+        this.add(lesion,8,0);
+        this.add(text,9,0);
 
-        vBox = new VBox();
-        vBox.getChildren().add(0,new Fiera());
-        vBox.getChildren().add(1,new Label("FIERA"));
+        this.setPadding(new Insets(20));
+        Insets padding = new Insets(20);
+        GridPane.setMargin(fiera, padding);
+        GridPane.setMargin(bacanal, padding);
+        GridPane.setMargin(lesion, padding);
 
-        this.getChildren().add(vBox);
+        GridPane.setMargin(equipamiento, padding);
+        GridPane.setMargin(comida, padding);
 
-        vBox = new VBox();
-        vBox.getChildren().add(0,new Lesion());
-        vBox.getChildren().add(1,new Label("LESION"));
 
-        this.getChildren().add(vBox);
 
-        this.setPadding(new Insets(10,10,10,10));
-
-        this.setMinHeight(50);
-        this.setAlignment(Pos.TOP_CENTER);
+        this.setAlignment(Pos.BASELINE_CENTER);
 
     }
 }

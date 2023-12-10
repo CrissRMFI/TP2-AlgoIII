@@ -1,10 +1,9 @@
 package Vista;
 
-import Componentes.BotonIniciarJuego;
-import Componentes.InputNombre;
-import Componentes.SeleccionMapa;
+import Componentes.*;
 import Entidades.Errores.*;
 import Entidades.Jugadores.Gladiador;
+import Entidades.Jugadores.Jugador;
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.AppModelo;
 import javafx.geometry.Insets;
@@ -62,7 +61,11 @@ public class AppVistaIngreso extends GridPane{
                 try {
                     TextField text = (TextField) this.getChildren().get(i);
                     String nombre = text.getText();
-                    if (!nombre.equals("")) modelo.agregarJugador(new Gladiador(text.getText()));
+                    if (!nombre.equals("")) {
+                        Jugador jugador = new Gladiador(nombre);
+                        Componentes.Jugador jugadorVista = this.getJugador(i,jugador);
+                        modelo.agregarJugador(jugadorVista);
+                    };
                 } catch (Exception error) {
 
                 }
@@ -70,6 +73,18 @@ public class AppVistaIngreso extends GridPane{
             controlador.iniciarJuego(modelo);
         });
         escena = new Scene(this, 800, 700);
+    }
+
+    private Componentes.Jugador getJugador(int i,Jugador jugador) {
+        switch (i) {
+            case 1 : return new GladiadorUno(jugador);
+            case 2 : return new GladiadorDos(jugador);
+            case 3 : return new GladiadorTres(jugador);
+            case 4 : return new GladiadorCuatro(jugador);
+            case 5 : return new GladiadorCinco(jugador);
+            case 6 : return new GladiadorSeis(jugador);
+            default: return null;
+        }
     }
 
     public Scene obtenerEscena() {

@@ -2,24 +2,26 @@ package Componentes;
 
 import Entidades.Errores.ArchivoNoEncontrado;
 import Parseador.*;
+import edu.fiuba.algo3.modelo.AppModelo;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 import java.util.LinkedList;
 public class Mapa extends GridPane {
     private MapaJson mapaJson;
+    private int x = 0;
+    private int y = 0;
+    private GridPane gridPane = new GridPane();
 
-    public Mapa (String ruta) throws ArchivoNoEncontrado {
+
+    public Mapa (AppModelo modelo) throws ArchivoNoEncontrado {
         Parseador parseador = new ParseadorMapaJson();
-        parseador.leerArchivo(ruta);
+        parseador.leerArchivo(modelo.getRutaArchivo());
         this.mapaJson = (MapaJson) parseador.obtenerInformacion();
         this.construirTablero();
         this.construirCamino();
+        modelo.ubicarJugadoresEnElMapa(this);
     }
 
     private void construirTablero () {
@@ -31,6 +33,7 @@ public class Mapa extends GridPane {
                 this.add(new CasilleroNoCamino(), i+1, j+1);
             }
         }
+
     }
 
     public void construirCamino () {
@@ -45,5 +48,15 @@ public class Mapa extends GridPane {
             this.add(casilleroCamino,celda.getX(),celda.getY());
 
         }
+
+        Celda celdaInicial = camino.getCeldas().get(0);
+        this.add(this.gridPane,celdaInicial.getX(),celdaInicial.getY());
+    }
+
+    public void agregarJugador (Jugador jugador) {
+        this.gridPane.add((HBox)jugador,this.x,this.y);
+        this.x++;
+        this.y++;
+
     }
 }
