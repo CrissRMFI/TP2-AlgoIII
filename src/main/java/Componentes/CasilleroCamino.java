@@ -1,11 +1,15 @@
 package Componentes;
+import javafx.animation.FadeTransition;
+import javafx.scene.Node;
 import javafx.scene.effect.Lighting;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 public class CasilleroCamino extends GridPane {
 
+    private int pos;
     public CasilleroCamino() {
 
         this.setMinWidth(68);
@@ -19,7 +23,27 @@ public class CasilleroCamino extends GridPane {
         lighting.setSurfaceScale(5.0);
 
         this.setEffect(lighting);
+
     }
 
+    public void agregar(Node elemento) {
+        this.pos++;
+        this.add(elemento,0,pos);
+    }
 
+    public void remover(Jugador elemento) {
+        for (int i = 0; i < this.getChildren().size(); i++) {
+            try {
+                Jugador jugadorARemover = (Jugador) this.getChildren().get(i);
+                if (elemento.comparar(jugadorARemover)) {
+                    FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), jugadorARemover);
+                    fadeTransition.setToValue(0.0);
+                    fadeTransition.setOnFinished(event -> this.getChildren().remove(jugadorARemover));
+                    fadeTransition.play();
+                }
+            } catch (ClassCastException er) {
+
+            }
+        }
+    }
 }

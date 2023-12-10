@@ -3,10 +3,11 @@ package Componentes;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
-public class GladiadorUno extends HBox implements Jugador {
-    private Entidades.Jugadores.Jugador jugador;
+public class GladiadorUno extends Jugador {
+
     public GladiadorUno (Entidades.Jugadores.Jugador jugador) {
         this.jugador = jugador;
+
         Image imagen = new Image("file:src/main/java/Imagenes/gladiador1.png");
 
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen,
@@ -19,4 +20,5 @@ public class GladiadorUno extends HBox implements Jugador {
         this.setMinHeight(30);
         this.setBackground(new Background(imagenDeFondo));
     }
+
 }

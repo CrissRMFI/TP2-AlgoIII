@@ -87,4 +87,10 @@ public class AlgoRoma {
         }
         return this.ganador;
     }
+
+    public Jugador mover() {
+        Jugador jugador = this.jugadores.obtener();
+        // implementa como se mueve, tal vez ujn jugador.moverse()
+        return jugador;
+    }
 }

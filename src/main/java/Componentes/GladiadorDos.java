@@ -3,8 +3,8 @@ package Componentes;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
-public class GladiadorDos extends HBox implements Jugador {
-    private Entidades.Jugadores.Jugador jugador;
+public class GladiadorDos extends Jugador {
+
     public GladiadorDos (Entidades.Jugadores.Jugador jugador) {
         this.jugador = jugador;
         Image imagen = new Image("file:src/main/java/Imagenes/gladiador2.png");

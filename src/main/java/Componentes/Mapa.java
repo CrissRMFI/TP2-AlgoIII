@@ -5,14 +5,13 @@ import Parseador.*;
 import edu.fiuba.algo3.modelo.AppModelo;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
 import java.util.LinkedList;
 public class Mapa extends GridPane {
     private MapaJson mapaJson;
-    private int x = 0;
-    private int y = 0;
     private GridPane gridPane = new GridPane();
+    private LinkedList jugadores = new LinkedList();
+    private LinkedList<CasilleroCamino> camino = new LinkedList<>();
 
 
     public Mapa (AppModelo modelo) throws ArchivoNoEncontrado {
@@ -42,21 +41,24 @@ public class Mapa extends GridPane {
 
         for (Celda celda : celdas) {
             CasilleroCamino casilleroCamino = new CasilleroCamino();
-            casilleroCamino.add(celda.getObstaculo(),0,1);
-            casilleroCamino.add(celda.getPremio(),0,2);
+            casilleroCamino.agregar(celda.getObstaculo());
+            casilleroCamino.agregar(celda.getPremio());
             casilleroCamino.setAlignment(Pos.CENTER);
             this.add(casilleroCamino,celda.getX(),celda.getY());
+            this.camino.add(casilleroCamino);
 
         }
 
         Celda celdaInicial = camino.getCeldas().get(0);
         this.add(this.gridPane,celdaInicial.getX(),celdaInicial.getY());
+
+    }
+
+    public void moverJugador (Jugador jugador) {
+        this.camino.get(0).remover(jugador);
     }
 
     public void agregarJugador (Jugador jugador) {
-        this.gridPane.add((HBox)jugador,this.x,this.y);
-        this.x++;
-        this.y++;
-
+        jugador.setCasillero(this.camino.get(0));
     }
 }

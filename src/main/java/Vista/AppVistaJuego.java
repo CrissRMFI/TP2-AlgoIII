@@ -22,7 +22,7 @@ public class AppVistaJuego {
 
             BarraObjetos barraObjetos = new BarraObjetos();
             Mapa mapa = new Mapa(modelo);
-            PanelControl panelControl = new PanelControl(modelo);
+            PanelControl panelControl = new PanelControl(modelo,mapa);
 
             gridPane.add(barraObjetos,0,0);
             gridPane.add(mapa,0,1);

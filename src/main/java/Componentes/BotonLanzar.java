@@ -6,7 +6,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 
 public class BotonLanzar extends Button {
-    public BotonLanzar (String texto, AppModelo modelo) {
+    public BotonLanzar (String texto, AppModelo modelo,Mapa mapa) {
         super(texto);
 
         this.setId("Lanzar");
@@ -19,7 +19,7 @@ public class BotonLanzar extends Button {
         this.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> this.setTranslateZ(2));
         this.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> this.setTranslateZ(0));
 
-        this.setOnAction(e -> modelo.moverJugador());
+        this.setOnAction(e -> modelo.moverJugador(mapa));
 
 
 
