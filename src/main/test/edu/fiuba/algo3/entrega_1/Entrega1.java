@@ -164,12 +164,12 @@ public class Entrega1{
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
         Energia energiaEsperada = new Energia(0);
 
-        assertTrue(jugador.compararSalud(energiaEsperada));
-        assertTrue(jugador.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertTrue(Carpoforo.compararSalud(energiaEsperada));
+        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
     }
 
     @Test
@@ -187,13 +187,13 @@ public class Entrega1{
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
         Casillero casilleroSiguienteAlInicial = new Casillero(1,0);
 
 
-        assertTrue(jugador.compararPosicion(casilleroSiguienteAlInicial));
+        assertTrue(Carpoforo.compararPosicion(casilleroSiguienteAlInicial));
     }
 
     @Test
@@ -211,9 +211,9 @@ public class Entrega1{
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
-        jugador = algoRoma.mover();
+        algoRoma.mover();
 
         Casillero casilleroEsperadoCarpoforo = new Casillero(1,0);
         Casillero casilleroEsperadoEspartaco = new Casillero(2,0);
@@ -225,7 +225,7 @@ public class Entrega1{
 
 
         // El siguinete debe ser Carpoforo, pero como no puede juegar por energia en cero es Espartaco
-        jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
         assertTrue(Carpoforo.compararSalud(new Energia(5)));
@@ -251,9 +251,9 @@ public class Entrega1{
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
-        jugador = algoRoma.mover();
+        algoRoma.mover();
 
         Energia energiaEsperada = new Energia(35);
 
@@ -276,13 +276,13 @@ public class Entrega1{
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
-        jugador = algoRoma.mover();
+        algoRoma.mover();
 
-        jugador = algoRoma.mover();
+        algoRoma.mover();
 
-        jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
         Energia energiaEsperada = new Energia(5);
@@ -308,9 +308,9 @@ public class Entrega1{
 
         for (int i = 0; i< 9 ; i++ ) {
 
-            Jugador jugador = algoRoma.mover();
+            algoRoma.mover();
 
-            jugador = algoRoma.mover();
+            algoRoma.mover();
         }
 
         Energia energiaEsperada = new Energia(25);
@@ -338,17 +338,17 @@ public class Entrega1{
 
         for (int i = 0; i< 29 ; i++ ) {
 
-            Jugador jugador = algoRoma.mover();
+            algoRoma.mover();
 
-            jugador = algoRoma.mover();
+            algoRoma.mover();
         }
 
         Carpoforo.agregarDispositivoAzar(new MockDado(3));
         Espartaco.agregarDispositivoAzar(new MockDado(3));
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
-        jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
 
@@ -376,9 +376,9 @@ public class Entrega1{
 
         for (int i = 0; i<= 4 ; i++ ) {
 
-            Jugador jugador = algoRoma.mover();
+            algoRoma.mover();
 
-            jugador = algoRoma.mover();
+            algoRoma.mover();
 
 
         }
@@ -405,9 +405,9 @@ public class Entrega1{
 
         for (int i = 0; i<= 6 ; i++ ) {
 
-            Jugador jugador = algoRoma.mover();
+            algoRoma.mover();
 
-            jugador = algoRoma.mover();
+            algoRoma.mover();
         }
 
 
@@ -434,9 +434,9 @@ public class Entrega1{
 
         for (int i = 0; i< 30 ; i++ ) {
 
-            Jugador jugador = algoRoma.mover();
+            algoRoma.mover();
 
-            jugador = algoRoma.mover();
+            algoRoma.mover();
 
             //if (i<29) jugador = algoRoma.mover();
         }

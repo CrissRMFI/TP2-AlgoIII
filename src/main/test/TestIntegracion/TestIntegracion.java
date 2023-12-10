@@ -519,7 +519,7 @@ public class TestIntegracion {
         Carpoforo.agregarDispositivoAzar(new MockDado(3));
         Espartaco.agregarDispositivoAzar(new MockDado(3));
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
         assertThrows(PartidaFinalizada.class, () -> algoRoma.mover());
         assertEquals("Carpoforo",algoRoma.elGanador().yoSoy());

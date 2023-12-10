@@ -109,7 +109,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugadorActual = algoRoma.mover();
+        algoRoma.mover();
 
         Energia energiaEsperada = new Energia(35);
 
@@ -130,10 +130,10 @@ public class Entrega2 {
         algoRoma.agregarJugador(Espartaco);
 
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
-        jugador = algoRoma.mover();
+        algoRoma.mover();
 
         Energia energiaEsperada = new Energia(20);
 
@@ -156,7 +156,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
         Energia energiaEsperada = new Energia(0);
 
@@ -223,7 +223,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
 
@@ -248,7 +248,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
 
@@ -273,9 +273,9 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
-        jugador = algoRoma.mover();
+        algoRoma.mover();
 
         Casillero posicionEsperada = new Casillero(2,5);
         Energia energiaEsperada = new Energia(20);
@@ -299,7 +299,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
         Casillero posicionEsperada = new Casillero(2,4);
         Energia energiaEsperada = new Energia(0);
@@ -322,7 +322,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
 
@@ -348,7 +348,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
 
@@ -375,7 +375,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
 
@@ -401,7 +401,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
 
@@ -427,7 +427,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
 
@@ -453,7 +453,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Jugador jugador = algoRoma.mover();
+        algoRoma.mover();
 
 
 
