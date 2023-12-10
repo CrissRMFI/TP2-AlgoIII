@@ -51,7 +51,7 @@ public class ContenedorJuego extends BorderPane {
         this.informacion.construirCamino(this.camino);
         this.agregarCamino();
 
-        this.jugadorActual = this.juego.comenzarPartidaConElPrimerJugador();
+        //this.jugadorActual = this.juego.comenzarPartidaConElPrimerJugador();
 
         DescripcionGladiadorVista des = new DescripcionGladiadorVista();
 

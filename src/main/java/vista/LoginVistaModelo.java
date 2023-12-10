@@ -31,8 +31,8 @@ public class LoginVistaModelo {
             alert.show();
         } else {
             for (int i = 0; i < this.usuarios.size(); i++) {
-                Jugador jugador = this.crearGladiador(this.usuarios.get(i));
-                this.model.recibirJugador(jugador);
+                //Jugador jugador = this.crearGladiador(this.usuarios.get(i));
+                //this.model.recibirJugador(jugador);
             }
 
             this.model.iniciar(this.stage);
@@ -49,7 +49,10 @@ public class LoginVistaModelo {
         this.model.cargarMapa(ruta);
     }
 
+    /*
     private Jugador crearGladiador(String nombre) {
         return new Gladiador(nombre);
     }
+    */
+
 }

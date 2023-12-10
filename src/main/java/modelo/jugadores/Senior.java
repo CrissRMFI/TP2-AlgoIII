@@ -1,14 +1,18 @@
 package modelo.jugadores;
 
+
 import modelo.energia.Energia;
-import modelo.elementos.Turno;
 
 public class Senior implements Seniority {
 
-    private Energia energia = new Energia(10);
+    private Energia energia;
+
+    Senior() {
+        this.energia = new Energia(10);
+    }
 
     @Override
-    public Seniority ascenderSeniority(Turno turnos) {
+    public Seniority ascenderSeniority(int turnos) {
         return this;
     }
 
@@ -19,6 +23,6 @@ public class Senior implements Seniority {
 
     @Override
     public String descripcion() {
-        return "Senior";
+        return "Novato";
     }
 }

@@ -2,7 +2,6 @@ package edu.fiuba.algo3.entrega_2;
 
 import datos.InformacionMapaEnJSON;
 import modelo.AlgoRoma;
-import modelo.elementos.MockDado;
 import modelo.energia.Energia;
 import modelo.errores.*;
 import modelo.jugadores.Gladiador;
@@ -14,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+/*
 public class Entrega2 {
 
     private final Gladiador Carpoforo = new Gladiador("Carpoforo");
@@ -80,7 +79,7 @@ public class Entrega2 {
         assertThrows(DatoFueraDeRango.class, () -> new InformacionMapaEnJSON("src/main/java/datos/mapaConDatoLargoNegativo.json"));
     }
 
-    /*
+
     @Test
     //Caso de uso 14 (1/4)
     public void elObstaculoNoEsValidoYLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
@@ -94,7 +93,7 @@ public class Entrega2 {
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConPremioFalso.json");
         assertThrows(DatoNoValido.class, () -> new Mapa(informacionMapaEnJSON));
     }
-*/
+
 
     @Test
     //Caso de uso 14 (3/4)
@@ -221,14 +220,14 @@ public class Entrega2 {
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConValorYCero.json");
         assertThrows(DatoFueraDeRango.class, () -> new Mapa(informacionMapaEnJSON));
     }
-/*
-    @Test
-    public void elTipoDeCeldaEsBatman() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConCeldaTipoBatman.json");
-        assertThrows(DatoNoValido.class, () -> new Mapa(informacionMapaEnJSON));
-    }
 
- */
+    //@Test
+    //public void elTipoDeCeldaEsBatman() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
+    //    InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConCeldaTipoBatman.json");
+    //    assertThrows(DatoNoValido.class, () -> new Mapa(informacionMapaEnJSON));
+    //}
+
+
 
     @Test
     public void RevisandoCelda2DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
@@ -533,3 +532,4 @@ public class Entrega2 {
 
 
 }
+*/

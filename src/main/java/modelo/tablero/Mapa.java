@@ -1,7 +1,6 @@
 package modelo.tablero;
 
 import datos.InformacionMapa;
-import modelo.elementos.ValorAzar;
 import modelo.jugadores.Jugador;
 import modelo.errores.DatoNoValido;
 
@@ -16,29 +15,27 @@ public class Mapa {
 
     private Casillero obtenerCasillero(int posicion) {
         if (posicion >= this.camino.size()) {
-            int fin = this.camino.size() - 1;
+            int fin = this.camino.size() - 1; // this.camino.getLast();
             return this.camino.get(fin);
 
         }
         return this.camino.get(posicion);
     }
 
-    public Casillero obtenerProximoDestino(Jugador jugador) {
+    public Casillero obtenerProximoDestino(Casillero casillero, int posicionesAMover) {
         int posicion = 0;
-        ValorAzar valorAzar = jugador.lanzar();
-
-        for (int i = 0; i < this.camino.size(); i++) {
-            Casillero c = this.camino.get(i);
-            if (jugador.compararPosicion(c)) break;
+        for (Casillero c : this.camino) {
+            if (c.equals(casillero)) {
+                break;
+            }
             posicion++;
         }
 
-        for (int i = 0; i < valorAzar.obtenerValor(); i++) {
-            posicion++;
-        }
+        posicion += posicionesAMover;
 
         return this.obtenerCasillero(posicion);
     }
+
 
     public void ubicarEnInicio(Jugador jugador) {
         jugador.posicionar(this.camino.get(0));
@@ -53,7 +50,7 @@ public class Mapa {
         Casillero casilleroLlegada = this.camino.getLast();
 
 
-        if (jugador.compararPosicion(casilleroLlegada)) {
+        if (jugador.compararPosicion(casilleroLlegada)) { // TODO: creo se puede mejorar los ifs
             if (!jugador.esEquipoMaximo()) this.ubicarEnMitadDelCamino(jugador);
             else return true;
         }

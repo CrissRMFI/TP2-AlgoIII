@@ -1,16 +1,21 @@
 package modelo.jugadores;
 
-import modelo.elementos.Turno;
+
 import modelo.energia.Energia;
 
 public class Novato implements Seniority {
 
-    private Energia energia = new Energia(0);
-    private Turno turnosParaEvolucionar = new Turno(7);
+    private Energia energia;
+    private final int turnosParaEvolucionar;
+
+    Novato() {
+        this.energia = new Energia(0);
+        this.turnosParaEvolucionar = 7;
+    }
 
     @Override
-    public Seniority ascenderSeniority(Turno turno) {
-        if (turno.esMayor(this.turnosParaEvolucionar)) {
+    public Seniority ascenderSeniority(int turnos) {
+        if (turnos > this.turnosParaEvolucionar) {
             return new SemiSenior();
         }
         return this;

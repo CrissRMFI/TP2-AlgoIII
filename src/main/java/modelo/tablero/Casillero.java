@@ -20,10 +20,8 @@ public class Casillero {
     }
 
     public void entregarElementos(Jugador jugador) {
-        for (int i = 0; i < this.elementos.size(); i++) {
-            Interactuable elementoMapa = this.elementos.get(i);
-            Interactuable interactuable = elementoMapa;
-            interactuable.interactuar(jugador);
+        for (Interactuable elementoMapa : this.elementos) {
+            elementoMapa.interactuar(jugador);
         }
     }
 

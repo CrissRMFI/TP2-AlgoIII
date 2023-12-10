@@ -1,20 +1,29 @@
 package modelo.jugadores;
 
 import modelo.AlgoRoma;
+import modelo.elementos.Dado;
 import modelo.elementos.DispositivoDeAzar;
-import modelo.elementos.Turno;
-import modelo.elementos.ValorAzar;
 import modelo.energia.Energia;
 import modelo.sistemas.SistemaDefensa;
-import modelo.sistemas.SistemaTurnos;
 import modelo.tablero.Casillero;
+import modelo.tablero.Mapa;
 
-public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorGanador {
+public abstract class Jugador implements SistemaDefensa, JugadorGanador {
+
     protected Energia energia;
     protected DispositivoDeAzar dispositivoDeAzar;
-    protected Turno turno;
+    protected Estado estado;
     protected String nombre;
     protected Casillero casillero;
+    protected int turnos;
+
+    public Jugador(String nombre, DispositivoDeAzar dispositivoDeAzar) {
+        this.nombre = nombre;
+        this.energia = new Energia();
+        this.estado = new Habilitado(this);
+        this.dispositivoDeAzar = dispositivoDeAzar;
+        this.turnos = 0;
+    }
 
 
     public void afectarEnergia(Energia energia) {
@@ -25,23 +34,11 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
         return this.energia.comparar(energia);
     }
 
-    @Override
-    public boolean habilitar() {
-        if (!this.energia.tengoEnergia()) {
-            this.energia.afectarEnergia(new Energia(5));
-            return false;
-        }
-
-        this.turno.habilitar();
-        return true;
-
-    }
-
     public void agregarDispositivoAzar(DispositivoDeAzar dispositivoDeAzar) {
         this.dispositivoDeAzar = dispositivoDeAzar;
     }
 
-    public ValorAzar lanzar() {
+    public int lanzar() {
         return this.dispositivoDeAzar.lanzar();
     }
 
@@ -54,16 +51,26 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
         this.casillero = casillero;
     }
 
-    public abstract void moverse(Casillero casillero);
 
     public boolean compararPosicion(Casillero casillero) {
         return this.casillero.equals(casillero);
     }
 
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+        this.estado.setJugador(this);
+    }
 
-    public abstract void finalizarTurno(AlgoRoma algoRoma);
+    public boolean tengoEnergia() {
+        return this.energia.tengoEnergia();
+    }
+
+    //public abstract void finalizarTurno(AlgoRoma algoRoma);
 
     public abstract String miDescripcion();
 
+    /*
     public abstract void obtenerElementos();
+*/
+    public abstract void moverse(Mapa mapa);
 }

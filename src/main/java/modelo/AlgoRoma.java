@@ -9,81 +9,77 @@ import modelo.jugadores.NoHayGanador;
 import modelo.tablero.*;
 import utils.ListaCircular;
 
+import java.util.List;
+
 public class AlgoRoma {
-    private final ListaCircular<Jugador> jugadores = new ListaCircular<>();
-    private int turnos = 30;
+
     private final Mapa mapa;
+
+    private final ListaCircular<Jugador> jugadores;
+    private int rondas;
     private JugadorGanador ganador;
+    private int cantidadTurnosPorRonda;
+    private Jugador jugadorActual;
 
     public AlgoRoma(Mapa mapa) {
         this.mapa = mapa;
+        this.jugadores = new ListaCircular<>();
+        this.rondas = 30;
         this.ganador = new NoHayGanador();
+        this.cantidadTurnosPorRonda = 0;
     }
 
     public void agregarJugador(Jugador jugador) {
         this.mapa.ubicarEnInicio(jugador);
         this.jugadores.agregarElemento(jugador);
+        this.cantidadTurnosPorRonda++;
     }
 
-    public Jugador comenzarPartida() throws CantidadMinimaDeJugadores {
+    public void comenzarPartida() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
             throw new CantidadMinimaDeJugadores(MensajesUsuario.CANTIDAD_MINIMA_JUGADORES);
         }
-        Jugador jugador = jugadores.seleccionAleatoria();
-        jugador.habilitar();
-        return jugador;
+
+        this.jugadorActual = jugadores.seleccionAleatoria();
     }
 
-    public Jugador comenzarPartidaConElPrimerJugador() throws CantidadMinimaDeJugadores {
+    public void comenzarPartidaConElPrimerJugador() throws CantidadMinimaDeJugadores { // TODO: crear criterio de seleccion
         if (this.jugadores.tamanio() < 2) {
             throw new CantidadMinimaDeJugadores(MensajesErrores.CANTIDAD_MINIMA_JUGADORES);
         }
-        Jugador jugador = jugadores.iniciarConElPrimero();
-        jugador.habilitar();
-        return jugador;
+        this.jugadorActual = jugadores.iniciarConElPrimero();
     }
 
-    public Jugador siguienteJugador() throws PartidaFinalizada {
-        if (this.turnos == 0) {
+    public Jugador jugarTurno() throws PartidaFinalizada {
+        Jugador jugadorQueJugo = this.jugadorActual;
+        if (this.rondas == 0) {
             throw new PartidaFinalizada(MensajesErrores.PARTIDA_FINALIZADA);
         }
-        this.jugadores.siguiente();
-        Jugador jugador = this.jugadores.obtener();
-
-        if (!jugador.habilitar()) {
-            this.turnoFinalizado(jugador);
-
-            this.siguienteJugador();
-            return this.jugadores.obtener();
-        }
-
-        return jugador;
+        jugadorActual.moverse(this.mapa);
+        //jugadorActual.obtenerElementos();
+        //jugadorActual.finalizarTurno(this);
+        this.turnoFinalizado(jugadorActual);
+        this.jugadorActual = this.jugadores.siguiente();
+        return jugadorQueJugo;
     }
+
+
 
     public void turnoFinalizado(Jugador jugador) {
-
         if (this.mapa.jugadorGano(jugador)) {
-            this.finalizar(jugador);
+            this.ganador = jugador;
+            this.rondas = 0;
         }
 
-        if (this.turnos != 0) {
-            this.sumarUnTurno();
-        }
-    }
-
-    private void finalizar(JugadorGanador jugadorGanador) {
-        this.ganador = jugadorGanador;
-        this.turnos = 0;
-    }
-
-    private void sumarUnTurno() {
-        if (this.jugadores.vueltaCompleta()) {
-            this.turnos--;
+        this.cantidadTurnosPorRonda--;
+        if (this.cantidadTurnosPorRonda == 0) {
+            this.rondas--;
+            this.cantidadTurnosPorRonda = this.jugadores.tamanio();
         }
     }
 
     public JugadorGanador elGanador() throws PartidaNoFinalizada {
-        if (this.turnos != 0) {
+        if (this.rondas != 0) {
             throw new PartidaNoFinalizada(MensajesErrores.PARTIDA_NO_FINALIZADA);
         }
         return this.ganador;

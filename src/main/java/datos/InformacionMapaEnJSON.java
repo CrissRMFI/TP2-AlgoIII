@@ -51,7 +51,7 @@ public class InformacionMapaEnJSON implements InformacionMapa {
             String tipoObstaculo = celda.get("obstaculo").asText();
             Obstaculo obstaculo = constructorObstaculo.construirObstaculo(tipoObstaculo);
 
-            casillero.recibirElemento(premio);
+            casillero.recibirElemento(premio); // mas en constructores!!!!
             casillero.recibirElemento(obstaculo);
             camino.add(casillero);
         }

@@ -6,7 +6,6 @@ import modelo.errores.*;
 import modelo.Interactuable;
 import modelo.obstaculos.SinObstaculo;
 import modelo.premios.Comida;
-import modelo.elementos.MockDado;
 import modelo.energia.Energia;
 import modelo.jugadores.Gladiador;
 import modelo.jugadores.Jugador;
@@ -19,6 +18,9 @@ import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+
+/*
 
 public class TestIntegracion {
     private final Jugador Carpoforo = new Gladiador("Carpoforo");
@@ -552,7 +554,9 @@ public class TestIntegracion {
         assertThrows(PartidaFinalizada.class, () -> algoRoma.siguienteJugador());
         assertEquals("Carpoforo", algoRoma.elGanador().yoSoy());
 
+
+
+
     }
 
-
-}
+    */

@@ -20,9 +20,8 @@ public class BotonTirarDadoHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        Casillero c = mapa.obtenerProximoDestino(this.jugador);
-        this.jugador.moverse(c);
-        this.jugador.obtenerElementos();
-        this.jugador.finalizarTurno(this.juego);
+        //Casillero c = mapa.obtenerProximoDestino(this.jugador);
+        this.jugador.moverse(mapa);
+        //this.jugador.finalizarTurno(this.juego);
     }
 }

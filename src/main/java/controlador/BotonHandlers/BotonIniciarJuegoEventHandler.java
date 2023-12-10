@@ -3,7 +3,7 @@ package controlador.BotonHandlers;
 import datos.InformacionMapaEnJSON;
 import datos.MensajesErrores;
 import modelo.AlgoRoma;
-import modelo.elementos.MockDado;
+import modelo.elementos.Dado;
 import modelo.errores.*;
 import modelo.jugadores.Gladiador;
 import modelo.jugadores.Jugador;
@@ -41,10 +41,10 @@ public class BotonIniciarJuegoEventHandler implements EventHandler<ActionEvent> 
     public void handle(ActionEvent actionEvent) {
 
         this.generarGladiadores();
-        MockDado mockDado = new MockDado();
+        Dado dado = new Dado();
         generarMapa();
         juego = new AlgoRoma(this.mapa);
-        this.agregarDadosALosGladiadores(mockDado);
+        this.agregarDadosALosGladiadores(dado);
         try {
             this.agregarGladiadorAlJuego();
         } catch (ElNombreDebeContenerUnMinimoDe4Caracteres e) {
@@ -80,16 +80,16 @@ public class BotonIniciarJuegoEventHandler implements EventHandler<ActionEvent> 
             if (this.gridPaneNombres.getChildren().get(i).getClass() == TextField.class) {
                 TextField t = (TextField) this.gridPaneNombres.getChildren().get(i);
                 if (!t.getText().equals("")) {
-                    this.jugadores.add(new Gladiador(t.getText()));
+                    //this.jugadores.add(new Gladiador(t.getText()));
                 }
             }
         }
     }
 
-    private void agregarDadosALosGladiadores(MockDado dado) {
+    private void agregarDadosALosGladiadores(Dado dado) {
         for (int i = 0; i < this.jugadores.size(); i++) {
             if (i == 1) {
-                jugadores.get(i).agregarDispositivoAzar(new MockDado(3));
+                jugadores.get(i).agregarDispositivoAzar(new Dado());
             }
             jugadores.get(i).agregarDispositivoAzar(dado);
         }
