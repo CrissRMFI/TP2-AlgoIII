@@ -10,7 +10,8 @@ import Entidades.Tablero.*;
 
 public class AlgoRoma {
     private final ListaCircular<Jugador> jugadores = new ListaCircular<>();
-    private int turnos= 30;
+    private int turnos = 30;
+    private int turnosJugados = 0;
     private final Mapa mapa;
     private JugadorGanador ganador;
 
@@ -24,7 +25,25 @@ public class AlgoRoma {
         this.jugadores.agregarElemento(jugador);
     }
 
-    public Jugador comenzarPartida() throws CantidadMinimaDeJugadores {
+    public Jugador mover() throws CantidadMinimaDeJugadores, PartidaFinalizada {
+        Jugador jugador;
+        if (this.turnosJugados == 0){
+            jugador = this.comenzarPartidaConElPrimerJugador();
+        }
+        else{
+            jugador = this.siguienteJugador();
+        }
+
+        Casillero casillero = this.mapa.obtenerProximoDestino(jugador);
+        jugador.moverse(casillero);
+        jugador.obtenerElementos();
+        jugador.finalizarTurno(this);
+
+        return jugador;
+    }
+
+
+    private Jugador comenzarPartida() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
             throw new CantidadMinimaDeJugadores(MensajesUsuario.CANTIDAD_MINIMA_JUGADORES);
         }
@@ -33,7 +52,7 @@ public class AlgoRoma {
         return jugador;
     }
 
-    public Jugador comenzarPartidaConElPrimerJugador() throws CantidadMinimaDeJugadores {
+    private Jugador comenzarPartidaConElPrimerJugador() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
             throw new CantidadMinimaDeJugadores(MensajesErrores.CANTIDAD_MINIMA_JUGADORES);
         }
@@ -42,7 +61,7 @@ public class AlgoRoma {
         return jugador;
     }
 
-    public Jugador siguienteJugador() throws PartidaFinalizada {
+    private Jugador siguienteJugador() throws PartidaFinalizada {
         if (this.turnos == 0) {
             throw new PartidaFinalizada(MensajesErrores.PARTIDA_FINALIZADA);
         }
@@ -79,6 +98,7 @@ public class AlgoRoma {
         if (this.jugadores.vueltaCompleta()) {
             this.turnos--;
         }
+        this.turnosJugados++;
     }
 
     public JugadorGanador elGanador () throws PartidaNoFinalizada {
@@ -88,9 +108,5 @@ public class AlgoRoma {
         return this.ganador;
     }
 
-    public Jugador mover() {
-        Jugador jugador = this.jugadores.obtener();
-        // implementa como se mueve, tal vez ujn jugador.moverse()
-        return jugador;
-    }
+
 }

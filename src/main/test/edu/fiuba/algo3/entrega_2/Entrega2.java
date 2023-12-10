@@ -6,6 +6,7 @@ import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
 import Entidades.Errores.*;
 import Entidades.Jugadores.Gladiador;
+import Entidades.Jugadores.Jugador;
 import Entidades.Premios.JerarquiaEquipos;
 import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Mapa;
@@ -108,12 +109,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Jugador jugadorActual = algoRoma.mover();
 
         Energia energiaEsperada = new Energia(35);
 
@@ -134,19 +130,10 @@ public class Entrega2 {
         algoRoma.agregarJugador(Espartaco);
 
 
-       Gladiador jugador = (Gladiador) algoRoma.comenzarPartida();
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-       jugador.obtenerElementos();
-       jugador.finalizarTurno(algoRoma);
+        Jugador jugador = algoRoma.mover();
 
 
-        jugador = (Gladiador) algoRoma.siguienteJugador();
-
-        casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        jugador = algoRoma.mover();
 
         Energia energiaEsperada = new Energia(20);
 
@@ -169,16 +156,11 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
+        Jugador jugador = algoRoma.mover();
 
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Energia energiaEsperada = new Energia(0);
 
-        Energia eneriaEsperada = new Energia(0);
-
-        assertTrue(Carpoforo.compararSalud(eneriaEsperada));
+        assertTrue(Carpoforo.compararSalud(energiaEsperada));
     }
 
 
@@ -241,12 +223,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Jugador jugador = algoRoma.mover();
 
 
 
@@ -271,12 +248,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Jugador jugador = algoRoma.mover();
 
 
 
@@ -301,18 +273,9 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
+        Jugador jugador = algoRoma.mover();
 
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
-
-        jugador = (Gladiador) algoRoma.siguienteJugador();
-        casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        jugador = algoRoma.mover();
 
         Casillero posicionEsperada = new Casillero(2,5);
         Energia energiaEsperada = new Energia(20);
@@ -336,12 +299,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Jugador jugador = algoRoma.mover();
 
         Casillero posicionEsperada = new Casillero(2,4);
         Energia energiaEsperada = new Energia(0);
@@ -364,12 +322,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Jugador jugador = algoRoma.mover();
 
 
 
@@ -395,12 +348,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Jugador jugador = algoRoma.mover();
 
 
 
@@ -427,12 +375,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Jugador jugador = algoRoma.mover();
 
 
 
@@ -458,12 +401,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Jugador jugador = algoRoma.mover();
 
 
 
@@ -489,12 +427,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Jugador jugador = algoRoma.mover();
 
 
 
@@ -520,12 +453,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        Gladiador jugador = (Gladiador) algoRoma.comenzarPartidaConElPrimerJugador();
-
-        Casillero casillero = mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(algoRoma);
+        Jugador jugador = algoRoma.mover();
 
 
 
