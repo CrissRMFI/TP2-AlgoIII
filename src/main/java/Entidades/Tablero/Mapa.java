@@ -59,4 +59,8 @@ public class Mapa {
         }
         return false;
     }
+
+    public LinkedList<Casillero> getCasilleros () {
+        return this.camino;
+    }
 }

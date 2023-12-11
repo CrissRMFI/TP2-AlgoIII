@@ -4,9 +4,8 @@ import Componentes.Jugador;
 import Datos.InformacionMapa;
 import Datos.InformacionMapaEnJSON;
 import Entidades.AlgoRoma;
-import Entidades.Errores.ArchivoNoEncontrado;
-import Entidades.Errores.DatoNoEncontrado;
-import Entidades.Errores.DatoNoValido;
+import Entidades.Errores.*;
+import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Mapa;
 
 import java.util.LinkedList;
@@ -39,6 +38,10 @@ public class AppModelo {
 
     }
 
+    public LinkedList<Casillero> getCasilleros () {
+        return algoRoma.getCasilleros();
+    }
+
     public String getRutaArchivo () {
         return this.ruta;
     }
@@ -49,15 +52,25 @@ public class AppModelo {
         }
     }
 
-    public void moverJugador (Componentes.Mapa mapa) {
+    public void moverJugador (Componentes.Mapa mapa) throws CantidadMinimaDeJugadores, PartidaFinalizada {
         Entidades.Jugadores.Jugador jugador = this.algoRoma.mover();
-
+        Jugador jugadorRemovido = null;
         for (int i=0; i<this.jugadores.size();i++) {
             if (jugador.yoSoy() == this.jugadores.get(i).getJugador().yoSoy()) {
                 mapa.moverJugador(this.jugadores.get(i));
+                jugadorRemovido = this.jugadores.get(i);
                 break;
             }
         }
 
+        Casillero casillero = jugador.miPosicion();
+
+        for (int i=0; i<mapa.getCamino().size();i++) {
+
+            if (mapa.getCamino().get(i).comparar(casillero)) {
+                jugadorRemovido.setCasillero(mapa.getCamino().get(i));
+                break;
+            }
+        }
     }
 }

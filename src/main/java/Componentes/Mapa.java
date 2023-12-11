@@ -1,6 +1,7 @@
 package Componentes;
 
 import Entidades.Errores.ArchivoNoEncontrado;
+import Entidades.Tablero.Casillero;
 import Parseador.*;
 import edu.fiuba.algo3.modelo.AppModelo;
 import javafx.geometry.Pos;
@@ -10,7 +11,6 @@ import java.util.LinkedList;
 public class Mapa extends GridPane {
     private MapaJson mapaJson;
     private GridPane gridPane = new GridPane();
-    private LinkedList jugadores = new LinkedList();
     private LinkedList<CasilleroCamino> camino = new LinkedList<>();
 
 
@@ -19,7 +19,7 @@ public class Mapa extends GridPane {
         parseador.leerArchivo(modelo.getRutaArchivo());
         this.mapaJson = (MapaJson) parseador.obtenerInformacion();
         this.construirTablero();
-        this.construirCamino();
+        this.construirCamino(modelo);
         modelo.ubicarJugadoresEnElMapa(this);
     }
 
@@ -35,16 +35,17 @@ public class Mapa extends GridPane {
 
     }
 
-    public void construirCamino () {
+    public void construirCamino (AppModelo modelo) {
         Camino camino = this.mapaJson.getCamino();
         LinkedList<Celda> celdas = camino.getCeldas();
+        LinkedList<Casillero> casilleros = modelo.getCasilleros();
 
-        for (Celda celda : celdas) {
-            CasilleroCamino casilleroCamino = new CasilleroCamino();
-            casilleroCamino.agregar(celda.getObstaculo());
-            casilleroCamino.agregar(celda.getPremio());
+        for (int i=0; i<celdas.size();i++) {
+            CasilleroCamino casilleroCamino = new CasilleroCamino(casilleros.get(i));
+            casilleroCamino.agregar(celdas.get(i).getObstaculo());
+            casilleroCamino.agregar(celdas.get(i).getPremio());
             casilleroCamino.setAlignment(Pos.CENTER);
-            this.add(casilleroCamino,celda.getX(),celda.getY());
+            this.add(casilleroCamino,celdas.get(i).getX(),celdas.get(i).getY());
             this.camino.add(casilleroCamino);
 
         }
@@ -60,5 +61,9 @@ public class Mapa extends GridPane {
 
     public void agregarJugador (Jugador jugador) {
         jugador.setCasillero(this.camino.get(0));
+    }
+
+    public LinkedList<CasilleroCamino> getCamino () {
+        return this.camino;
     }
 }

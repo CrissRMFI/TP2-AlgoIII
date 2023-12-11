@@ -1,4 +1,5 @@
 package Componentes;
+import Entidades.Tablero.Casillero;
 import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.scene.effect.Lighting;
@@ -10,8 +11,9 @@ import javafx.util.Duration;
 public class CasilleroCamino extends GridPane {
 
     private int pos;
-    public CasilleroCamino() {
-
+    private Casillero casillero;
+    public CasilleroCamino(Casillero casillero) {
+        this.casillero = casillero;
         this.setMinWidth(68);
         this.setMinHeight(68);
         this.setStyle("-fx-background-color: beige;-fx-border-color: black; -fx-border-width: 2;");
@@ -36,14 +38,26 @@ public class CasilleroCamino extends GridPane {
             try {
                 Jugador jugadorARemover = (Jugador) this.getChildren().get(i);
                 if (elemento.comparar(jugadorARemover)) {
+                    this.getChildren().remove(jugadorARemover);
+                    this.pos--;
+                    /*
                     FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), jugadorARemover);
                     fadeTransition.setToValue(0.0);
-                    fadeTransition.setOnFinished(event -> this.getChildren().remove(jugadorARemover));
+                    fadeTransition.setOnFinished(event -> {
+                        this.getChildren().remove(jugadorARemover);
+                        this.pos--;
+                    });
                     fadeTransition.play();
+                    */
+
                 }
             } catch (ClassCastException er) {
 
             }
         }
+    }
+
+    public boolean comparar (Casillero casillero) {
+        return this.casillero.comparar(casillero);
     }
 }

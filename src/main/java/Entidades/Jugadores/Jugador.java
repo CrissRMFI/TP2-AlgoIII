@@ -65,4 +65,8 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     public abstract String miDescripcion ();
 
     public abstract void obtenerElementos();
+
+    public Casillero miPosicion () {
+        return this.casillero;
+    }
 }

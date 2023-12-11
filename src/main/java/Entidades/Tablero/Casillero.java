@@ -36,4 +36,8 @@ public  class Casillero {
     public int conseguirY(){
         return this.y;
     }
+
+    public boolean comparar(Casillero casillero) {
+        return this.x == casillero.x && this.y == casillero.y;
+    }
 }
