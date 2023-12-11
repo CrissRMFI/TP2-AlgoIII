@@ -1,11 +1,12 @@
 package Entidades.Jugadores;
-import Entidades.Elementos.Turno;
+
 import Entidades.Energia.Energia;
 
 public interface Seniority {
-    public abstract Seniority ascenderSeniority (Turno turno);
 
-    public abstract void aumentarEnergia (Energia energia);
+    Seniority ascenderSeniority(int turnos);
 
-    public abstract String descripcion ();
+    void aumentarEnergia(Energia energia);
+
+    String descripcion();
 }

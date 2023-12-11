@@ -1,13 +1,13 @@
 package Entidades.Obstaculos;
 
-import Entidades.Energia.Energia;
+
 import Entidades.Jugadores.Jugador;
 
-public class Fiera extends Obstaculo{
+public class Fiera extends Obstaculo {
 
     @Override
     public void interactuar(Jugador jugador) {
         jugador.defenderse();
-    }
+    } //TODO: refactor esto!!!!!!!!!!!!!
 
 }

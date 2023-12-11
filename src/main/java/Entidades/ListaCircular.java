@@ -61,6 +61,7 @@ public class ListaCircular<T> {
         return this.actual.obtenerElemento();
     }
 
+
     public int tamanio () {
         return this.longitud;
     }

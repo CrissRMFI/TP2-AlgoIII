@@ -1,12 +1,18 @@
 package Entidades.Obstaculos;
 
-import Entidades.Elementos.Turno;
+
+import Entidades.Jugadores.InHabilitado;
 import Entidades.Jugadores.Jugador;
 
 public class Lesion extends Obstaculo {
-    private Turno turnosAPerder = new Turno(1);
+
+    private final int turnosAPerder;
+    public Lesion() {
+        this.turnosAPerder = 1;
+    }
+
     @Override
     public void interactuar(Jugador jugador) {
-        jugador.perderTurnos(this.turnosAPerder);
+        jugador.setEstado(new InHabilitado(jugador, turnosAPerder));
     }
 }

@@ -1,24 +1,32 @@
 package Entidades.Jugadores;
 
-import Entidades.AlgoRoma;
-import Entidades.Elementos.DispositivoDeAzar;
-import Entidades.Elementos.Turno;
-import Entidades.Elementos.ValorAzar;
-import Entidades.Energia.Energia;
-import Entidades.Interactuable;
-import Entidades.Sistemas.SistemaDefensa;
-import Entidades.Sistemas.SistemaTurnos;
-import Entidades.Tablero.Casillero;
 
-public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorGanador {
+import Entidades.Elementos.Dado;
+import Entidades.Elementos.DispositivoDeAzar;
+import Entidades.Energia.Energia;
+import Entidades.Sistemas.SistemaDefensa;
+import Entidades.Tablero.Casillero;
+import Entidades.Tablero.Mapa;
+
+public abstract class Jugador implements SistemaDefensa, JugadorGanador {
+
     protected Energia energia;
     protected DispositivoDeAzar dispositivoDeAzar;
-    protected Turno turno;
+    protected Estado estado;
     protected String nombre;
     protected Casillero casillero;
+    protected int turnos;
+
+    public Jugador(String nombre) { // TODO: directamente pasarle el dispositivo de azar
+        this.nombre = nombre;
+        this.energia = new Energia();
+        this.estado = new Habilitado(this);
+        this.turnos = 0;
+        this.dispositivoDeAzar = new Dado();
+    }
 
 
-    public void afectarEnergia (Energia energia) {
+    public void afectarEnergia(Energia energia) {
         this.energia.afectarEnergia(energia);
     }
 
@@ -26,22 +34,12 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
         return this.energia.comparar(energia);
     }
 
-    @Override
-    public boolean habilitar () {
-        if (!this.energia.tengoEnergia()) {
-            this.energia.afectarEnergia(new Energia(5));
-            return false;
-        }
 
-        this.turno.habilitar();
-        return  true;
-
-    }
-
-    public void agregarDispositivoAzar (DispositivoDeAzar dispositivoDeAzar) {
+    public void agregarDispositivoAzar(DispositivoDeAzar dispositivoDeAzar) {
         this.dispositivoDeAzar = dispositivoDeAzar;
     }
-    public ValorAzar lanzar () {
+
+    public int lanzar() {
         return this.dispositivoDeAzar.lanzar();
     }
 
@@ -53,20 +51,26 @@ public abstract class Jugador implements SistemaDefensa, SistemaTurnos, JugadorG
     public void posicionar(Casillero casillero) {
         this.casillero = casillero;
     }
-    public abstract void moverse(Casillero casillero);
 
-    public boolean compararPosicion (Casillero casillero) {
+    public boolean compararPosicion(Casillero casillero) {
         return this.casillero.equals(casillero);
     }
 
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+        this.estado.setJugador(this);
+    }
 
-    public abstract void finalizarTurno (AlgoRoma algoRoma);
+    public boolean tengoEnergia() {
+        return this.energia.tengoEnergia();
+    }
 
-    public abstract String miDescripcion ();
-
-    public abstract void obtenerElementos();
-
-    public Casillero miPosicion () {
+    public Casillero miPosicion() {
         return this.casillero;
     }
+
+    public abstract String miDescripcion();
+
+
+    public abstract void moverse(Mapa mapa);
 }

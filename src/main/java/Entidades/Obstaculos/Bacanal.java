@@ -1,17 +1,22 @@
 package Entidades.Obstaculos;
 
-import Entidades.Elementos.ValorAzar;
+
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Jugador;
 
-public class Bacanal extends Obstaculo{
+public class Bacanal extends Obstaculo {
 
-    private final int PROPORCION = 4;
+    private final int proporcion;
+
+    public Bacanal() {
+        super();
+        this.proporcion = 4;
+    }
 
     @Override
     public void interactuar(Jugador jugador) {
-        ValorAzar valor = jugador.lanzar();
-        Energia energia = new Energia(-PROPORCION * valor.obtenerValor());
+        int valor = jugador.lanzar();
+        Energia energia = new Energia(-proporcion * valor);
         jugador.recibirDanio(energia);
     }
 }

@@ -9,6 +9,7 @@ import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Mapa;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class AppModelo {
     private LinkedList<Componentes.Jugador> jugadores;
@@ -30,12 +31,12 @@ public class AppModelo {
         this.ruta = ruta;
     }
 
-    public void crearJuego () {
+    public void crearJuego () throws CantidadMinimaDeJugadores {
         this.algoRoma = new AlgoRoma(this.mapa);
         for (Jugador jugador : this.jugadores) {
             this.algoRoma.agregarJugador(jugador.getJugador());
         }
-
+        this.algoRoma.comenzarPartida();
     }
 
     public LinkedList<Casillero> getCasilleros () {
@@ -53,12 +54,12 @@ public class AppModelo {
     }
 
     public void moverJugador (Componentes.Mapa mapa) throws CantidadMinimaDeJugadores, PartidaFinalizada {
-        Entidades.Jugadores.Jugador jugador = this.algoRoma.mover();
+        Entidades.Jugadores.Jugador jugador = this.algoRoma.jugarTurno();
         Jugador jugadorRemovido = null;
-        for (int i=0; i<this.jugadores.size();i++) {
-            if (jugador.yoSoy() == this.jugadores.get(i).getJugador().yoSoy()) {
-                mapa.moverJugador(this.jugadores.get(i));
-                jugadorRemovido = this.jugadores.get(i);
+        for (Jugador jugadore : this.jugadores) { // TODO: cambiar nombre de variable
+            if (Objects.equals(jugador.yoSoy(), jugadore.getJugador().yoSoy())) {
+                mapa.moverJugador(jugadore);
+                jugadorRemovido = jugadore;
                 break;
             }
         }
