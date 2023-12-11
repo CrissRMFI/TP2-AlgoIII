@@ -57,9 +57,8 @@ public class ListaCircular<T> {
     }
 
     public T siguiente() {
-        T elemento = this.actual.obtenerElemento();
         this.actual = this.actual.elSiguiente();
-        return elemento;
+        return this.actual.obtenerElemento();
     }
 
 

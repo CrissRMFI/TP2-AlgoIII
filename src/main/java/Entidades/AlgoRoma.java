@@ -53,20 +53,20 @@ public class AlgoRoma {
      */
 
 
-    public Jugador comenzarPartida() throws CantidadMinimaDeJugadores {
+    public void comenzarPartida() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
             throw new CantidadMinimaDeJugadores(MensajesUsuario.CANTIDAD_MINIMA_JUGADORES);
         }
         this.jugadorActual = jugadores.seleccionAleatoria();
-        return jugadores.seleccionAleatoria();
+        //return jugadores.seleccionAleatoria();
     }
 
-    public Jugador comenzarPartidaConElPrimerJugador() throws CantidadMinimaDeJugadores {
+    public void comenzarPartidaConElPrimerJugador() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
             throw new CantidadMinimaDeJugadores(MensajesErrores.CANTIDAD_MINIMA_JUGADORES);
         }
         this.jugadorActual = jugadores.iniciarConElPrimero();
-        return jugadores.iniciarConElPrimero();
+        //return jugadores.iniciarConElPrimero();
     }
 
     public Jugador jugarTurno() throws PartidaFinalizada {

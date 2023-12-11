@@ -290,7 +290,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 6 -> Verificar que si recibe un premio por tercera vez obtiene escudo y espada
-    public void jugadorRecibeComidaPorTerceraVezYObtieneEscudoYEspada() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void jugadorRecibePremioPorTerceraVezYObtieneEscudoYEspada() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
         Mapa mapa = this.MapaLlenoDeEquipamientos();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -315,7 +315,7 @@ public class Entrega1 {
         assertTrue(espartaco.compararEquipo(JerarquiaEquipos.ESCUDO_Y_ESPADA));
     }
 
-/*
+
     @Test
     //Caso de uso 7
     public void SiTieneCascoYPeleaConFieraPierde15Energia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
@@ -323,8 +323,10 @@ public class Entrega1 {
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
         Mockito.when(dado.lanzar()).thenReturn(3);
-        Gladiador carpoforo = new Gladiador("carpoforo", dado);
-        Gladiador espartaco = new Gladiador("espartaco", dado);
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado);
+        espartaco.agregarDispositivoAzar(dado);
 
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
@@ -352,8 +354,10 @@ public class Entrega1 {
         Dado dado = Mockito.mock(Dado.class);
         Mockito.when(dado.lanzar()).thenReturn(1);
 
-        Gladiador carpoforo = new Gladiador("carpoforo", dado);
-        Gladiador espartaco = new Gladiador("espartaco", dado);
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado);
+        espartaco.agregarDispositivoAzar(dado);
 
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
@@ -372,6 +376,7 @@ public class Entrega1 {
         assertTrue(espartaco.compararSalud(energiaEsperada));
     }
 
+
     @Test
     //Caso de uso 9
     public void SeJuegaUnaPartidaCon30CasillerosNoSeGanaYElJugadorQuedaPosicionadoEnElCasillero15AlFinalizarElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
@@ -380,8 +385,10 @@ public class Entrega1 {
         Dado dado = Mockito.mock(Dado.class);
         Mockito.when(dado.lanzar()).thenReturn(2);
 
-        Gladiador carpoforo = new Gladiador("carpoforo", dado);
-        Gladiador espartaco = new Gladiador("espartaco", dado);
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado);
+        espartaco.agregarDispositivoAzar(dado);
 
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
@@ -409,8 +416,10 @@ public class Entrega1 {
         Dado dado = Mockito.mock(Dado.class);
         Mockito.when(dado.lanzar()).thenReturn(1);
 
-        Gladiador carpoforo = new Gladiador("carpoforo", dado);
-        Gladiador espartaco = new Gladiador("espartaco", dado);
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado);
+        espartaco.agregarDispositivoAzar(dado);
 
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
@@ -427,6 +436,7 @@ public class Entrega1 {
         assertTrue(carpoforo.compararSalud(energiaEsperada));
     }
 
+
     @Test
     //Caso de uso 11
     public void GladiadorConLlaveRecibeOtroPremioYNoPasaNada() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
@@ -435,8 +445,10 @@ public class Entrega1 {
         Dado dado = Mockito.mock(Dado.class);
         Mockito.when(dado.lanzar()).thenReturn(1);
 
-        Gladiador carpoforo = new Gladiador("carpoforo", dado);
-        Gladiador espartaco = new Gladiador("espartaco", dado);
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado);
+        espartaco.agregarDispositivoAzar(dado);
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
 
@@ -452,6 +464,7 @@ public class Entrega1 {
 
         assertTrue(carpoforo.compararSalud(energiaEsperada));
     }
+
 
     @Test
     //Caso de uso 12
@@ -478,7 +491,5 @@ public class Entrega1 {
 
         assertEquals("No hay ganador", algoRoma.elGanador().yoSoy());
     }
-
-     */
 }
 
