@@ -247,7 +247,7 @@ public class TestIntegracion {
         this.jugarTurnosGladiador(29, algoRoma);
         assertThrows(PartidaNoFinalizada.class, () -> algoRoma.elGanador());
     }
-    
+
 
     @Test
     public void SeJuegaUnaPartidaCon32CasillerosElJugadorQueLlegaALaMetaNoGanaYQuedaPosicoinadoEnLa15AlFinalizarElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
@@ -524,7 +524,8 @@ public class TestIntegracion {
     public void JueganTodosLosTurnosHayUnGanador() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
         Mapa mapa = this.MapaQuePermiteGanar();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado dado = new MockDado();
+        Dado dado = Mockito.mock(Dado.class);
+        Mockito.when(dado.lanzar()).thenReturn(1);
 
         Carpoforo.agregarDispositivoAzar(dado);
         Espartaco.agregarDispositivoAzar(dado);
@@ -536,8 +537,7 @@ public class TestIntegracion {
 
         this.jugarTurnosGladiador(29, algoRoma);
 
-        Carpoforo.agregarDispositivoAzar(new MockDado(3));
-        Espartaco.agregarDispositivoAzar(new MockDado(3));
+        Mockito.when(dado.lanzar()).thenReturn(3);
 
         algoRoma.jugarTurno();
 
