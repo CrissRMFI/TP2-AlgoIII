@@ -27,20 +27,25 @@ public class CasilleroCamino extends GridPane {
         this.setEffect(lighting);
 
     }
-
     public void agregar(Node elemento) {
         this.pos++;
-        this.add(elemento,0,pos);
+
+        StackPane stackPane = new StackPane(elemento);
+
+        this.add(stackPane, 0, pos);
+
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), stackPane);
+        fadeTransition.setToValue(1.0);
+        fadeTransition.setFromValue(0.0);
+        fadeTransition.play();
     }
+
 
     public void remover(Jugador elemento) {
         for (int i = 0; i < this.getChildren().size(); i++) {
             try {
                 Jugador jugadorARemover = (Jugador) this.getChildren().get(i);
                 if (elemento.comparar(jugadorARemover)) {
-                    this.getChildren().remove(jugadorARemover);
-                    this.pos--;
-                    /*
                     FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), jugadorARemover);
                     fadeTransition.setToValue(0.0);
                     fadeTransition.setOnFinished(event -> {
@@ -48,7 +53,7 @@ public class CasilleroCamino extends GridPane {
                         this.pos--;
                     });
                     fadeTransition.play();
-                    */
+
 
                 }
             } catch (ClassCastException er) {
