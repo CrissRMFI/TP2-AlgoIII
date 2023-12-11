@@ -3,7 +3,6 @@ package edu.fiuba.algo3.entrega_2;
 import Datos.InformacionMapaEnJSON;
 import Entidades.AlgoRoma;
 import Entidades.Elementos.Dado;
-import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
 import Entidades.Errores.*;
 import Entidades.Jugadores.Gladiador;
