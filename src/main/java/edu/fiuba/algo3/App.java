@@ -2,6 +2,7 @@
 package edu.fiuba.algo3;
 
 import Datos.MensajesUsuario;
+import Entidades.Errores.CantidadMinimaDeJugadores;
 import Vista.*;
 import edu.fiuba.algo3.modelo.AppModelo;
 import javafx.application.Application;
@@ -36,7 +37,7 @@ public class App extends Application {
         this.stage.close();
     }
 
-    public void iniciarJuego (AppModelo modelo) {
+    public void iniciarJuego (AppModelo modelo) throws CantidadMinimaDeJugadores {
         modelo.crearJuego();
         AppVistaJuego appVistaJuego = new AppVistaJuego(modelo);
 

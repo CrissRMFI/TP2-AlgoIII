@@ -71,7 +71,11 @@ public class AppVistaIngreso extends GridPane{
                 }
             }
 
-            controlador.iniciarJuego(modelo);
+            try {
+                controlador.iniciarJuego(modelo);
+            } catch (CantidadMinimaDeJugadores ex) {
+                throw new RuntimeException(ex);
+            }
         });
         escena = new Scene(this, 800, 700);
     }

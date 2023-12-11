@@ -1,6 +1,7 @@
 package Entidades.Jugadores;
 
 
+import Entidades.Elementos.Dado;
 import Entidades.Elementos.DispositivoDeAzar;
 import Entidades.Energia.Energia;
 import Entidades.Sistemas.SistemaDefensa;
@@ -21,6 +22,7 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
         this.energia = new Energia();
         this.estado = new Habilitado(this);
         this.turnos = 0;
+        this.dispositivoDeAzar = new Dado();
     }
 
 

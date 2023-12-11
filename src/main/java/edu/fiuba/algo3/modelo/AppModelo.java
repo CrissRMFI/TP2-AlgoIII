@@ -31,12 +31,12 @@ public class AppModelo {
         this.ruta = ruta;
     }
 
-    public void crearJuego () {
+    public void crearJuego () throws CantidadMinimaDeJugadores {
         this.algoRoma = new AlgoRoma(this.mapa);
         for (Jugador jugador : this.jugadores) {
             this.algoRoma.agregarJugador(jugador.getJugador());
         }
-
+        this.algoRoma.comenzarPartida();
     }
 
     public LinkedList<Casillero> getCasilleros () {
