@@ -7,7 +7,6 @@ import Entidades.Errores.*;
 import Entidades.Interactuable;
 import Entidades.Obstaculos.SinObstaculo;
 import Entidades.Premios.Comida;
-import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
