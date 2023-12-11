@@ -1,79 +1,47 @@
 package Entidades.Jugadores;
-import Entidades.AlgoRoma;
-import Entidades.Elementos.*;
+
+
 import Entidades.Energia.Energia;
 import Entidades.Premios.Equipo;
 import Entidades.Premios.EquipoBase;
 import Entidades.Premios.JerarquiaEquipos;
-import Entidades.Tablero.Casillero;
+import Entidades.Tablero.Mapa;
 
 public class Gladiador extends Jugador {
     private Seniority seniority;
     private Equipo equipamiento;
 
-    public  Gladiador (String nombre) {
-        this.nombre = nombre;
-        this.energia = new Energia();
+    public Gladiador(String nombre) {
+        super(nombre);
         this.seniority = new Novato();
-        this.turno = new Turno();
         this.equipamiento = new EquipoBase();
-        this.dispositivoDeAzar = new Dado();
     }
 
-    private void ascenderSeniority () {
-        this.seniority =  this.seniority.ascenderSeniority(this.turno);
-    }
-
-
-    @Override
-    public void moverse(Casillero casillero) {
-
-        if (this.turno.estaHabilitado() && this.energia.tengoEnergia()) {
-            this.casillero = casillero;
-        }
-
-        if (!this.energia.tengoEnergia()) {
-            this.energia.afectarEnergia(new Energia(5));
-            this.turno.deshabilitar();
-        }
-    }
-
-    public void obtenerElementos () {
-        this.casillero.entregarElementos(this);
+    private void ascenderSeniority() {
+        this.seniority = this.seniority.ascenderSeniority(this.turnos);
     }
 
     @Override
-    public void perderTurnos (Turno turnos) {
-        if (this.turno.estaHabilitado()) {
-            this.turno.perderTurnos(turnos);
-        }
-    }
-
-    @Override
-    public void finalizarTurno (AlgoRoma algoRoma) {
-        this.turno.finalizar();
+    public void moverse(Mapa mapa) {
+        this.casillero = this.estado.mover(mapa, this.casillero);
+        this.turnos++;
         this.seniority.aumentarEnergia(this.energia);
         this.ascenderSeniority();
-        algoRoma.turnoFinalizado(this);
     }
-
 
 
     @Override
     public void recibirDanio(Energia energia) {
-        if (this.turno.estaHabilitado()) {
-            this.energia.afectarEnergia(energia);
-        }
+        this.energia.afectarEnergia(energia);
     }
 
     @Override
     public void defenderse() {
-        if (this.turno.estaHabilitado()) {
-            this.equipamiento.recibirDanio(this.energia);
-        }
+        this.equipamiento.recibirDanio(this.energia);
     }
+
     @Override
-    public void equipar () {
+    public void equipar() {
         this.equipamiento = this.equipamiento.mejorar();
     }
 
@@ -94,7 +62,6 @@ public class Gladiador extends Jugador {
         String equipo = this.equipamiento.descripcion();
         String energia = this.energia.descripcion();
 
-        String descripcion = "Nombre: "+nombre + " Seniority: " + seniority + " Equipamiento: " + equipo + " Energia: " + energia;
-        return descripcion;
+        return "Nombre: " + nombre + " Seniority: " + seniority + " Equipamiento: " + equipo + " Energia: " + energia;
     }
 }

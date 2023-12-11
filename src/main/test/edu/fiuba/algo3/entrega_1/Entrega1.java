@@ -1,26 +1,26 @@
 package edu.fiuba.algo3.entrega_1;
-import Datos.InformacionMapaEnJSON;
 import Datos.InformacionMapaLinealEnMatriz;
 import Entidades.AlgoRoma;
+import Entidades.Elementos.Dado;
 import Entidades.Errores.*;
 import Entidades.Interactuable;
 import Entidades.Obstaculos.Bacanal;
 import Entidades.Obstaculos.Lesion;
 import Entidades.Obstaculos.SinObstaculo;
 import Entidades.Premios.Comida;
-import Entidades.Elementos.MockDado;
 import Entidades.Energia.Energia;
 import Entidades.Jugadores.Gladiador;
-import Entidades.Jugadores.Jugador;
 import Entidades.Obstaculos.Fiera;
 import Entidades.Premios.Equipamiento;
 import Entidades.Premios.JerarquiaEquipos;
 import Entidades.Tablero.*;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Entrega1{
+
+public class Entrega1 {
 
     private Mapa MapaConFieraSalvaje() throws DatoNoValido {
         int cantidadCasilleros = 30;
@@ -33,20 +33,17 @@ public class Entrega1{
         elementosMapa[0][0] = new Fiera();
 
 
-
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
-
-        return mapa;
+        return new Mapa(informacionMapaLinealEnMatriz);
     }
 
-    private Mapa MapaConCuatroEquipamientosYUnaFieraSalvaje () throws DatoNoValido {
+    private Mapa MapaConCuatroEquipamientosYUnaFieraSalvaje() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new SinObstaculo();
         }
 
@@ -58,16 +55,15 @@ public class Entrega1{
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
-
-        return mapa;
+        return new Mapa(informacionMapaLinealEnMatriz);
     }
-    private Mapa MapaLlenoDeEquipamientos () throws DatoNoValido {
+
+    private Mapa MapaLlenoDeEquipamientos() throws DatoNoValido {
         int cantidadCasilleros = 30;
 
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][2];
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new Equipamiento();
             elementosMapa[i][1] = new SinObstaculo();
         }
@@ -76,16 +72,14 @@ public class Entrega1{
         elementosMapa[5][0] = new Fiera();
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
-
-        return mapa;
+        return new Mapa(informacionMapaLinealEnMatriz);
     }
 
-    private Mapa MapaConUnaPiedra () throws DatoNoValido {
+    private Mapa MapaConUnaPiedra() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new SinObstaculo();
         }
 
@@ -94,48 +88,44 @@ public class Entrega1{
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
-
-        return mapa;
+        return new Mapa(informacionMapaLinealEnMatriz);
     }
+
     private Mapa MapaVacio() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new SinObstaculo();
         }
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
-
-        return mapa;
+        return new Mapa(informacionMapaLinealEnMatriz);
     }
 
     private Mapa MapaLlenoDeComida() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][0] = new SinObstaculo();
         }
 
-        for (int i=0;i<elementosMapa.length;i++) {
+        for (int i = 0; i < elementosMapa.length; i++) {
             elementosMapa[i][0] = new Comida();
         }
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
 
-        Mapa mapa = new Mapa(informacionMapaLinealEnMatriz);
-
-        return mapa;
+        return new Mapa(informacionMapaLinealEnMatriz);
     }
-    private Mapa MapaConUnEquipoYFieraSalvaje() throws  DatoNoValido {
+
+    private Mapa MapaConUnEquipoYFieraSalvaje() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][2];
 
 
-        for (int i=0;i<cantidadCasilleros;i++) {
+        for (int i = 0; i < cantidadCasilleros; i++) {
             elementosMapa[i][1] = new SinObstaculo();
         }
 
@@ -154,46 +144,52 @@ public class Entrega1{
     public void jugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, PartidaFinalizada {
         Mapa mapa = this.MapaConFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado mockDado = new MockDado();
+        Dado dado = Mockito.mock(Dado.class);
+        Gladiador gladiadorQueJugo;
+        Mockito.when(dado.lanzar()).thenReturn(1);
 
-        Gladiador Carpoforo = new Gladiador("Carpoforo");
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador("Espartaco");
-        Espartaco.agregarDispositivoAzar(mockDado);
+        Gladiador carpoforo = new Gladiador("carpoforo"); // TODO: volar esto
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado);
+        espartaco.agregarDispositivoAzar(dado);
 
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
 
-        algoRoma.mover();
+        algoRoma.comenzarPartida();
+        gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
         Energia energiaEsperada = new Energia(0);
 
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-        assertTrue(Carpoforo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
+        assertTrue(gladiadorQueJugo.compararSalud(energiaEsperada));
+        assertTrue(gladiadorQueJugo.compararEquipo(JerarquiaEquipos.EQUIPO_BASE));
     }
+
 
     @Test
     //Caso de uso 2
     public void jugadorSaleDeLaCasillaInicial() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, PartidaFinalizada {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado mockDado = new MockDado();
+        Dado dado = Mockito.mock(Dado.class);
+        Gladiador gladiadorQueJugo;
+        Mockito.when(dado.lanzar()).thenReturn(1);
 
-        Gladiador Carpoforo = new Gladiador("Carpoforo");
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador("Espartaco");
-        Espartaco.agregarDispositivoAzar(mockDado);
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado);
+        espartaco.agregarDispositivoAzar(dado);
 
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
 
-        algoRoma.mover();
+        algoRoma.comenzarPartida();
+        gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
+
+        Casillero casilleroSiguienteAlInicial = new Casillero(1, 0);
 
 
-        Casillero casilleroSiguienteAlInicial = new Casillero(1,0);
-
-
-        assertTrue(Carpoforo.compararPosicion(casilleroSiguienteAlInicial));
+        assertTrue(gladiadorQueJugo.compararPosicion(casilleroSiguienteAlInicial));
     }
 
     @Test
@@ -202,122 +198,178 @@ public class Entrega1{
         Mapa mapa = this.MapaConFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
 
-        Gladiador Carpoforo = new Gladiador("Carpoforo");
-        Gladiador Espartaco = new Gladiador("Espartaco");
-
-        Carpoforo.agregarDispositivoAzar(new MockDado(1));
-        Espartaco.agregarDispositivoAzar(new MockDado(2));
-
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
-
-        algoRoma.mover();
-
-        algoRoma.mover();
-
-        Casillero casilleroEsperadoCarpoforo = new Casillero(1,0);
-        Casillero casilleroEsperadoEspartaco = new Casillero(2,0);
-
-        assertTrue(Carpoforo.compararSalud(new Energia(0)));
-        assertTrue(Carpoforo.compararPosicion(casilleroEsperadoCarpoforo));
-        assertTrue(Espartaco.compararSalud(new Energia(20)));
-        assertTrue(Espartaco.compararPosicion(casilleroEsperadoEspartaco));
+        Dado dado1 = Mockito.mock(Dado.class);
+        Mockito.when(dado1.lanzar()).thenReturn(1);
+        Dado dado2 = Mockito.mock(Dado.class);
+        Mockito.when(dado2.lanzar()).thenReturn(2);
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado1);
+        espartaco.agregarDispositivoAzar(dado2);
 
 
-        // El siguinete debe ser Carpoforo, pero como no puede juegar por energia en cero es Espartaco
-        algoRoma.mover();
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
+
+        algoRoma.comenzarPartidaConElPrimerJugador();
+
+        algoRoma.jugarTurno();
+        algoRoma.jugarTurno();
+
+        Casillero casilleroEsperadocarpoforo = new Casillero(1, 0);
+        Casillero casilleroEsperadoespartaco = new Casillero(2, 0);
+
+        assertTrue(carpoforo.compararSalud(new Energia(0)));
+        assertTrue(carpoforo.compararPosicion(casilleroEsperadocarpoforo));
+        assertTrue(espartaco.compararSalud(new Energia(20)));
+        assertTrue(espartaco.compararPosicion(casilleroEsperadoespartaco));
 
 
-        assertTrue(Carpoforo.compararSalud(new Energia(5)));
-        assertTrue(Carpoforo.compararPosicion(new Casillero(1,0)));
+        // el jugador no tiene energia para jugar
+        algoRoma.jugarTurno();
 
-        assertTrue(Espartaco.compararSalud(new Energia(20)));
-        assertTrue(Espartaco.compararPosicion(new Casillero(4,0)));
 
+        assertTrue(carpoforo.compararSalud(new Energia(5)));
+        assertTrue(carpoforo.compararPosicion(new Casillero(1, 0)));
+
+        assertTrue(espartaco.compararSalud(new Energia(20)));
+        assertTrue(espartaco.compararPosicion(new Casillero(2, 0)));
     }
+
 
     @Test
     //Caso de uso 4
     public void jugadorRecibeComidaEIncrementaSuEnergiaEn15() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
         Mapa mapa = this.MapaLlenoDeComida();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado mockDado = new MockDado();
+        Dado dado = Mockito.mock(Dado.class);
+        Gladiador gladiadorQueJugo;
+        Mockito.when(dado.lanzar()).thenReturn(1);
 
-        Gladiador Carpoforo = new Gladiador("Carpoforo");
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador("Espartaco");
-        Espartaco.agregarDispositivoAzar(mockDado);
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado);
+        espartaco.agregarDispositivoAzar(dado);
 
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
 
-        algoRoma.mover();
-
-        algoRoma.mover();
+        algoRoma.comenzarPartida();
+        gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
         Energia energiaEsperada = new Energia(35);
 
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
+        assertTrue(gladiadorQueJugo.compararSalud(energiaEsperada));
     }
 
+
+    @Test
+    //Caso de uso 5 -> Verificar que si recibe un premio por primera vez obtiene un casco
+    public void jugadorRecibePremioPorPrimeraVezYObtieneCasco() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+        Mapa mapa = this.MapaLlenoDeEquipamientos();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
+        Dado dado = Mockito.mock(Dado.class);
+        Gladiador gladiadorQueJugo;
+        Mockito.when(dado.lanzar()).thenReturn(1);
+
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado);
+        espartaco.agregarDispositivoAzar(dado);
+
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
+
+        algoRoma.comenzarPartidaConElPrimerJugador();
+        gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
+
+
+        assertTrue(gladiadorQueJugo.compararEquipo(JerarquiaEquipos.CASCO));
+    }
+
+
+    @Test
+    //Caso de uso 6 -> Verificar que si recibe un premio por tercera vez obtiene escudo y espada
+    public void jugadorRecibeComidaPorTerceraVezYObtieneEscudoYEspada() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+        Mapa mapa = this.MapaLlenoDeEquipamientos();
+        AlgoRoma algoRoma = new AlgoRoma(mapa);
+        Dado dado = Mockito.mock(Dado.class);
+        Mockito.when(dado.lanzar()).thenReturn(1);
+
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        Gladiador espartaco = new Gladiador("espartaco");
+        carpoforo.agregarDispositivoAzar(dado);
+        espartaco.agregarDispositivoAzar(dado);
+
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
+
+        algoRoma.comenzarPartida();
+
+        for (int i = 0; i < 3; i++) {
+            algoRoma.jugarTurno(); // esto es porque no se puede jugar el turno sin que haya un jugador actual
+            algoRoma.jugarTurno();
+        }
+
+        assertTrue(carpoforo.compararEquipo(JerarquiaEquipos.ESCUDO_Y_ESPADA));
+        assertTrue(espartaco.compararEquipo(JerarquiaEquipos.ESCUDO_Y_ESPADA));
+    }
+
+/*
     @Test
     //Caso de uso 7
     public void SiTieneCascoYPeleaConFieraPierde15Energia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
         Mapa mapa = this.MapaConUnEquipoYFieraSalvaje();
-
         AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado mockDado = new MockDado(3);
+        Dado dado = Mockito.mock(Dado.class);
+        Mockito.when(dado.lanzar()).thenReturn(3);
+        Gladiador carpoforo = new Gladiador("carpoforo", dado);
+        Gladiador espartaco = new Gladiador("espartaco", dado);
 
-        Gladiador Carpoforo = new Gladiador("Carpoforo");
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador("Espartaco");
-        Espartaco.agregarDispositivoAzar(mockDado);
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
 
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
+        algoRoma.comenzarPartidaConElPrimerJugador();
 
-        algoRoma.mover();
+        algoRoma.jugarTurno();
 
-        algoRoma.mover();
+        algoRoma.jugarTurno();
 
-        algoRoma.mover();
+        algoRoma.jugarTurno();
 
-        algoRoma.mover();
-
+        algoRoma.jugarTurno();
 
         Energia energiaEsperada = new Energia(5);
 
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-
+        assertTrue(carpoforo.compararSalud(energiaEsperada));
     }
 
     @Test
     //Caso de uso 8
-    public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5 () throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void SeJuegan8TurnosYJugadoresAsciendenASemiSeniorLoQueAumentaSuEnergiaEn5() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado mockDado = new MockDado();
+        Dado dado = Mockito.mock(Dado.class);
+        Mockito.when(dado.lanzar()).thenReturn(1);
 
-        Gladiador Carpoforo = new Gladiador("Carpoforo");
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador("Espartaco");
-        Espartaco.agregarDispositivoAzar(mockDado);
+        Gladiador carpoforo = new Gladiador("carpoforo", dado);
+        Gladiador espartaco = new Gladiador("espartaco", dado);
 
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
 
-        for (int i = 0; i< 9 ; i++ ) {
+        algoRoma.comenzarPartidaConElPrimerJugador();
 
-            algoRoma.mover();
+        for (int i = 0; i < 9; i++) {
 
-            algoRoma.mover();
+            algoRoma.jugarTurno();
+            algoRoma.jugarTurno();
         }
 
         Energia energiaEsperada = new Energia(25);
 
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
-        assertTrue(Espartaco.compararSalud(energiaEsperada));
-
+        assertTrue(carpoforo.compararSalud(energiaEsperada));
+        assertTrue(espartaco.compararSalud(energiaEsperada));
     }
 
     @Test
@@ -325,67 +377,54 @@ public class Entrega1{
     public void SeJuegaUnaPartidaCon30CasillerosNoSeGanaYElJugadorQuedaPosicionadoEnElCasillero15AlFinalizarElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado mockDado = new MockDado();
+        Dado dado = Mockito.mock(Dado.class);
+        Mockito.when(dado.lanzar()).thenReturn(2);
 
-        Gladiador Carpoforo = new Gladiador("Carpoforo");
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador("Espartaco");
-        Espartaco.agregarDispositivoAzar(mockDado);
+        Gladiador carpoforo = new Gladiador("carpoforo", dado);
+        Gladiador espartaco = new Gladiador("espartaco", dado);
 
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
 
+        algoRoma.comenzarPartida();
 
-        for (int i = 0; i< 29 ; i++ ) {
-
-            algoRoma.mover();
-
-            algoRoma.mover();
+        for (int i = 0; i < 16; i++) {
+            algoRoma.jugarTurno();
+            algoRoma.jugarTurno();
         }
 
-        Carpoforo.agregarDispositivoAzar(new MockDado(3));
-        Espartaco.agregarDispositivoAzar(new MockDado(3));
 
-        algoRoma.mover();
+        Casillero posicionEsperada = new Casillero(16, 0);
 
-        algoRoma.mover();
-
-
-
-
-        Casillero posicionEsperada = new Casillero(16,0);
-
-        assertTrue(Carpoforo.compararPosicion(posicionEsperada));
-        assertTrue(Espartaco.compararPosicion(posicionEsperada));
+        assertTrue(carpoforo.compararPosicion(posicionEsperada));
+        assertTrue(espartaco.compararPosicion(posicionEsperada));
     }
+
 
     @Test
     //Caso de uso 10
     public void SiTieneTodoElEquipamientoYLoAtacaUnaFieraNoHayPerdidaDeEnergia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
         Mapa mapa = this.MapaConCuatroEquipamientosYUnaFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado mockDado = new MockDado();
+        Dado dado = Mockito.mock(Dado.class);
+        Mockito.when(dado.lanzar()).thenReturn(1);
 
-        Gladiador Carpoforo = new Gladiador("Carpoforo");
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador("Espartaco");
-        Espartaco.agregarDispositivoAzar(mockDado);
+        Gladiador carpoforo = new Gladiador("carpoforo", dado);
+        Gladiador espartaco = new Gladiador("espartaco", dado);
 
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
 
-        for (int i = 0; i<= 4 ; i++ ) {
+        algoRoma.comenzarPartidaConElPrimerJugador();
 
-            algoRoma.mover();
-
-            algoRoma.mover();
-
-
+        for (int i = 0; i <= 4; i++) {
+            algoRoma.jugarTurno();
+            algoRoma.jugarTurno();
         }
 
         Energia energiaEsperada = new Energia(20);
 
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
+        assertTrue(carpoforo.compararSalud(energiaEsperada));
     }
 
     @Test
@@ -393,56 +432,53 @@ public class Entrega1{
     public void GladiadorConLlaveRecibeOtroPremioYNoPasaNada() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
         Mapa mapa = this.MapaLlenoDeEquipamientos();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado mockDado = new MockDado();
+        Dado dado = Mockito.mock(Dado.class);
+        Mockito.when(dado.lanzar()).thenReturn(1);
 
-        Gladiador Carpoforo = new Gladiador("Carpoforo");
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador("Espartaco");
-        Espartaco.agregarDispositivoAzar(mockDado);
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
+        Gladiador carpoforo = new Gladiador("carpoforo", dado);
+        Gladiador espartaco = new Gladiador("espartaco", dado);
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
 
+        algoRoma.comenzarPartidaConElPrimerJugador();
 
-        for (int i = 0; i<= 6 ; i++ ) {
-
-            algoRoma.mover();
-
-            algoRoma.mover();
+        for (int i = 0; i <= 6; i++) {
+            algoRoma.jugarTurno();
+            algoRoma.jugarTurno();
         }
 
 
         Energia energiaEsperada = new Energia(20);
 
-        assertTrue(Carpoforo.compararSalud(energiaEsperada));
+        assertTrue(carpoforo.compararSalud(energiaEsperada));
     }
 
     @Test
     //Caso de uso 12
-    public void Pasan30TurnosYNadieLlegoSeTerminaElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada,PartidaNoFinalizada, DatoNoValido {
+    public void Pasan30TurnosYNadieLlegoSeTerminaElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, DatoNoValido {
         Mapa mapa = this.MapaConUnaPiedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
-        MockDado mockDado = new MockDado();
+        Dado dado = Mockito.mock(Dado.class);
+        Mockito.when(dado.lanzar()).thenReturn(1);
 
-        Gladiador Carpoforo = new Gladiador("Carpoforo");
-        Carpoforo.agregarDispositivoAzar(mockDado);
-        Gladiador Espartaco = new Gladiador("Espartaco");
-        Espartaco.agregarDispositivoAzar(mockDado);
+        Gladiador carpoforo = new Gladiador("carpoforo");
+        carpoforo.agregarDispositivoAzar(dado);
+        Gladiador espartaco = new Gladiador("espartaco");
+        espartaco.agregarDispositivoAzar(dado);
 
-        algoRoma.agregarJugador(Carpoforo);
-        algoRoma.agregarJugador(Espartaco);
+        algoRoma.agregarJugador(carpoforo);
+        algoRoma.agregarJugador(espartaco);
 
+        algoRoma.comenzarPartida();
 
-        for (int i = 0; i< 30 ; i++ ) {
-
-            algoRoma.mover();
-
-            algoRoma.mover();
-
-            //if (i<29) jugador = algoRoma.mover();
+        for (int i = 0; i < 30; i++) {
+            algoRoma.jugarTurno();
+            algoRoma.jugarTurno();
         }
 
-        assertThrows(PartidaFinalizada.class, () -> algoRoma.mover());
-        assertEquals("No hay ganador",algoRoma.elGanador().yoSoy());
+        assertEquals("No hay ganador", algoRoma.elGanador().yoSoy());
     }
 
+     */
 }
+

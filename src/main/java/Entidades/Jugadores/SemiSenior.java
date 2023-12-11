@@ -1,15 +1,20 @@
 package Entidades.Jugadores;
 
 import Entidades.Energia.Energia;
-import Entidades.Elementos.Turno;
-public class SemiSenior implements Seniority{
-    private  Energia energia = new Energia(5);
 
-    private Turno turnosParaEvolucionar = new Turno(11);
+public class SemiSenior implements Seniority {
+
+    private Energia energia;
+    private final int turnosParaEvolucionar;
+
+    public SemiSenior() {
+        this.energia = new Energia(5);
+        this.turnosParaEvolucionar = 11;
+    }
+
     @Override
-    public Seniority ascenderSeniority(Turno turno) {
-
-        if (turno.esMayor(this.turnosParaEvolucionar)) {
+    public Seniority ascenderSeniority(int turnos) {
+        if (turnos > this.turnosParaEvolucionar) {
             return new Senior();
         }
         return this;

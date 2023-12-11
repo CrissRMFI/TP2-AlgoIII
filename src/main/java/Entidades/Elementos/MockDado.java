@@ -1,19 +1,20 @@
 package Entidades.Elementos;
 
-import Entidades.ListaCircular;
 
-public class MockDado implements DispositivoDeAzar{
+public class MockDado implements DispositivoDeAzar { // TODO: volar esta clase
 
-    private CaraDado cara;
+    private final int cara;
 
-    public MockDado () {
-        this.cara = new CaraDado(1);
+    public MockDado() {
+        this.cara = 1;
     }
-    public MockDado (int valor) {
-        this.cara = new CaraDado(valor);
+
+    public MockDado(int valor) {
+        this.cara = valor;
     }
+
     @Override
-    public CaraDado lanzar() {
+    public int lanzar() {
         return this.cara;
     }
 

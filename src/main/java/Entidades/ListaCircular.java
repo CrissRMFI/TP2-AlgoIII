@@ -57,9 +57,11 @@ public class ListaCircular<T> {
     }
 
     public T siguiente() {
+        T elemento = this.actual.obtenerElemento();
         this.actual = this.actual.elSiguiente();
-        return this.actual.obtenerElemento();
+        return elemento;
     }
+
 
     public int tamanio () {
         return this.longitud;
