@@ -505,8 +505,6 @@ public class TestIntegracion {
     }
 
 
-    /*
-    // SI GANA YA PARA QUE CONTINUAR, IGUAL HAY QUE VER DONDE GANO PARA QUE PASE
     @Test
     public void JueganTodosLosTurnosHayUnGanador() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaQuePermiteGanar();
@@ -531,7 +529,4 @@ public class TestIntegracion {
         //assertEquals("Carpoforo", algoRoma.elGanador().yoSoy());
 
     }
-     */
-
-
 }
