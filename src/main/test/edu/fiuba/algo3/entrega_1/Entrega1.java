@@ -141,7 +141,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 1 --> Fiera saca 20 ya que no tiene equipamiento
-    public void jugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, PartidaFinalizada {
+    public void jugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaConFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -155,8 +155,6 @@ public class Entrega1 {
 
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
-
-        algoRoma.comenzarPartida();
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
         Energia energiaEsperada = new Energia(0);
@@ -168,7 +166,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 2
-    public void jugadorSaleDeLaCasillaInicial() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, PartidaFinalizada {
+    public void jugadorSaleDeLaCasillaInicial() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -182,8 +180,6 @@ public class Entrega1 {
 
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
-
-        algoRoma.comenzarPartida();
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
         Casillero casilleroSiguienteAlInicial = new Casillero(1, 0);
@@ -194,7 +190,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 3
-    public void jugadorSinEnergiaNoPuedeJugarTurno() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void jugadorSinEnergiaNoPuedeJugarTurno() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaConFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
 
@@ -211,7 +207,6 @@ public class Entrega1 {
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
 
-        algoRoma.comenzarPartidaConElPrimerJugador();
 
         algoRoma.jugarTurno();
         algoRoma.jugarTurno();
@@ -239,7 +234,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 4
-    public void jugadorRecibeComidaEIncrementaSuEnergiaEn15() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void jugadorRecibeComidaEIncrementaSuEnergiaEn15() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaLlenoDeComida();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -253,8 +248,6 @@ public class Entrega1 {
 
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
-
-        algoRoma.comenzarPartida();
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
         Energia energiaEsperada = new Energia(35);
@@ -265,7 +258,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 5 -> Verificar que si recibe un premio por primera vez obtiene un casco
-    public void jugadorRecibePremioPorPrimeraVezYObtieneCasco() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void jugadorRecibePremioPorPrimeraVezYObtieneCasco() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaLlenoDeEquipamientos();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -280,7 +273,6 @@ public class Entrega1 {
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
 
-        algoRoma.comenzarPartidaConElPrimerJugador();
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
 
@@ -290,7 +282,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 6 -> Verificar que si recibe un premio por tercera vez obtiene escudo y espada
-    public void jugadorRecibePremioPorTerceraVezYObtieneEscudoYEspada() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void jugadorRecibePremioPorTerceraVezYObtieneEscudoYEspada() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaLlenoDeEquipamientos();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -304,8 +296,6 @@ public class Entrega1 {
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
 
-        algoRoma.comenzarPartida();
-
         for (int i = 0; i < 3; i++) {
             algoRoma.jugarTurno(); // esto es porque no se puede jugar el turno sin que haya un jugador actual
             algoRoma.jugarTurno();
@@ -318,7 +308,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 7
-    public void SiTieneCascoYPeleaConFieraPierde15Energia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SiTieneCascoYPeleaConFieraPierde15Energia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaConUnEquipoYFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -330,8 +320,6 @@ public class Entrega1 {
 
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
-
-        algoRoma.comenzarPartidaConElPrimerJugador();
 
         algoRoma.jugarTurno();
 
@@ -348,7 +336,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 8
-    public void SeJuegan8TurnosYJugadoresAsciendenASemiSeniorLoQueAumentaSuEnergiaEn5() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void SeJuegan8TurnosYJugadoresAsciendenASemiSeniorLoQueAumentaSuEnergiaEn5() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -362,7 +350,6 @@ public class Entrega1 {
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
 
-        algoRoma.comenzarPartidaConElPrimerJugador();
 
         for (int i = 0; i < 9; i++) {
 
@@ -379,7 +366,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 9
-    public void SeJuegaUnaPartidaCon30CasillerosNoSeGanaYElJugadorQuedaPosicionadoEnElCasillero15AlFinalizarElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SeJuegaUnaPartidaCon30CasillerosNoSeGanaYElJugadorQuedaPosicionadoEnElCasillero15AlFinalizarElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -392,8 +379,6 @@ public class Entrega1 {
 
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
-
-        algoRoma.comenzarPartida();
 
         for (int i = 0; i < 16; i++) {
             algoRoma.jugarTurno();
@@ -410,7 +395,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 10
-    public void SiTieneTodoElEquipamientoYLoAtacaUnaFieraNoHayPerdidaDeEnergia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SiTieneTodoElEquipamientoYLoAtacaUnaFieraNoHayPerdidaDeEnergia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaConCuatroEquipamientosYUnaFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -424,7 +409,6 @@ public class Entrega1 {
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
 
-        algoRoma.comenzarPartidaConElPrimerJugador();
 
         for (int i = 0; i <= 4; i++) {
             algoRoma.jugarTurno();
@@ -439,7 +423,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 11
-    public void GladiadorConLlaveRecibeOtroPremioYNoPasaNada() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void GladiadorConLlaveRecibeOtroPremioYNoPasaNada() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaLlenoDeEquipamientos();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -452,7 +436,6 @@ public class Entrega1 {
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
 
-        algoRoma.comenzarPartidaConElPrimerJugador();
 
         for (int i = 0; i <= 6; i++) {
             algoRoma.jugarTurno();
@@ -465,10 +448,9 @@ public class Entrega1 {
         assertTrue(carpoforo.compararSalud(energiaEsperada));
     }
 
-
     @Test
     //Caso de uso 12
-    public void Pasan30TurnosYNadieLlegoSeTerminaElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, DatoNoValido {
+    public void Pasan30TurnosYNadieLlegoSeTerminaElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, DatoNoValido, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaConUnaPiedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -482,14 +464,14 @@ public class Entrega1 {
         algoRoma.agregarJugador(carpoforo);
         algoRoma.agregarJugador(espartaco);
 
-        algoRoma.comenzarPartida();
-
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 29; i++) {
             algoRoma.jugarTurno();
             algoRoma.jugarTurno();
         }
 
-        assertEquals("No hay ganador", algoRoma.elGanador().yoSoy());
+        algoRoma.jugarTurno();
+
+        assertThrows(PartidaFinalizada.class, () -> algoRoma.jugarTurno());
     }
 }
 
