@@ -36,6 +36,7 @@ public class AppModelo {
         for (Jugador jugador : this.jugadores) {
             this.algoRoma.agregarJugador(jugador.getJugador());
         }
+        this.algoRoma.comenzarPartida();
     }
 
     public LinkedList<Casillero> getCasilleros () {
@@ -52,7 +53,7 @@ public class AppModelo {
         }
     }
 
-    public void moverJugador (Componentes.Mapa mapa) throws CantidadMinimaDeJugadores, PartidaFinalizada, JuegoTerminadoHayUnGanador {
+    public void moverJugador (Componentes.Mapa mapa) throws CantidadMinimaDeJugadores, PartidaFinalizada {
         Entidades.Jugadores.Jugador jugador = this.algoRoma.jugarTurno();
         Jugador jugadorRemovido = null;
         for (Jugador jugadore : this.jugadores) { // TODO: cambiar nombre de variable
