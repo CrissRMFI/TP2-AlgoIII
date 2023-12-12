@@ -97,7 +97,7 @@ public class Entrega2 {
 
     @Test
     //Caso de uso 14 (3/4)
-    public void elJugadorRecibeComidaYAumentaSuVidaEn15() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void elJugadorRecibeComidaYAumentaSuVidaEn15() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -110,8 +110,6 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        algoRoma.comenzarPartida();
-
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
         Energia energiaEsperada = new Energia(35);
@@ -122,7 +120,7 @@ public class Entrega2 {
 
     @Test
     //Caso de uso 14 (2/4)
-    public void elCasilleroEstaVacio() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, PartidaFinalizada {
+    public void elCasilleroEstaVacio() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -133,8 +131,6 @@ public class Entrega2 {
 
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
-
-        algoRoma.comenzarPartida();
         algoRoma.jugarTurno();
         algoRoma.jugarTurno();
 
@@ -148,7 +144,7 @@ public class Entrega2 {
 
     @Test
     //Caso de uso 14 (4/4)
-    public void elJugadorEsAtacadoPorUnaFieraYPierde20DeEnergia() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void elJugadorEsAtacadoPorUnaFieraYPierde20DeEnergia() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Gladiador gladiadorQueJugo;
@@ -161,9 +157,7 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        algoRoma.comenzarPartida();
-
-        gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
+        gladiadorQueJugo = (Gladiador) algoRoma.    jugarTurno();
 
         Energia energiaEsperada = new Energia(0);
 
@@ -218,7 +212,7 @@ public class Entrega2 {
 
 
     @Test
-    public void RevisandoCelda2DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda2DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Gladiador gladiadorQueJugo;
@@ -230,8 +224,6 @@ public class Entrega2 {
 
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
-
-        algoRoma.comenzarPartida();
 
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
@@ -245,7 +237,7 @@ public class Entrega2 {
 
 
     @Test
-    public void RevisandoCelda3DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda3DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Gladiador gladiadorQueJugo;
@@ -257,8 +249,6 @@ public class Entrega2 {
 
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
-
-        algoRoma.comenzarPartida();
 
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
@@ -272,7 +262,7 @@ public class Entrega2 {
     }
 
     @Test
-    public void RevisandoCelda4DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda4DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -284,8 +274,6 @@ public class Entrega2 {
 
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
-
-        algoRoma.comenzarPartida();
         //algoRoma.jugarTurno();
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
@@ -298,7 +286,7 @@ public class Entrega2 {
     }
 
     @Test
-    public void RevisandoCelda5DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda5DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra("mapaDeLaCatedra.json");
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -311,8 +299,6 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-        algoRoma.comenzarPartida();
-
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
         Casillero posicionEsperada = new Casillero(2, 4);
@@ -324,7 +310,7 @@ public class Entrega2 {
     }
 
     @Test
-    public void RevisandoCelda6DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda6DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -336,8 +322,6 @@ public class Entrega2 {
 
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
-
-        algoRoma.comenzarPartida();
 
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
@@ -352,7 +336,7 @@ public class Entrega2 {
 
 
     @Test
-    public void RevisandoCelda7DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda7DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -365,8 +349,6 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-
-        algoRoma.comenzarPartida();
 
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
@@ -381,7 +363,7 @@ public class Entrega2 {
 
 
     @Test
-    public void RevisandoCelda36DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda36DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -394,8 +376,6 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-
-        algoRoma.comenzarPartida();
 
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
@@ -411,7 +391,7 @@ public class Entrega2 {
 
 
     @Test
-    public void RevisandoCelda37DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda37DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -424,8 +404,6 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-
-        algoRoma.comenzarPartida();
 
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
@@ -440,7 +418,7 @@ public class Entrega2 {
     }
 
     @Test
-    public void RevisandoCelda38DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda38DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -453,8 +431,6 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-
-        algoRoma.comenzarPartida();
 
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 
@@ -469,7 +445,7 @@ public class Entrega2 {
     }
 
     @Test
-    public void ComoCelda39DeMapaDeCatedraEsLaUltimaEntoncesTerminamosEnLaCelda20() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void ComoCelda39DeMapaDeCatedraEsLaUltimaEntoncesTerminamosEnLaCelda20() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada, JuegoTerminadoHayUnGanador {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -482,8 +458,6 @@ public class Entrega2 {
         algoRoma.agregarJugador(Carpoforo);
         algoRoma.agregarJugador(Espartaco);
 
-
-        algoRoma.comenzarPartida();
 
         gladiadorQueJugo = (Gladiador) algoRoma.jugarTurno();
 

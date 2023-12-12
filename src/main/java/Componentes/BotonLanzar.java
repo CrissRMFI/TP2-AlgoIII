@@ -1,6 +1,7 @@
 package Componentes;
 
 import Entidades.Errores.CantidadMinimaDeJugadores;
+import Entidades.Errores.JuegoTerminadoHayUnGanador;
 import Entidades.Errores.PartidaFinalizada;
 import edu.fiuba.algo3.modelo.AppModelo;
 import javafx.scene.control.Button;
@@ -27,6 +28,8 @@ public class BotonLanzar extends Button {
             } catch (CantidadMinimaDeJugadores er) {
 
             } catch (PartidaFinalizada err) {
+
+            } catch (JuegoTerminadoHayUnGanador ex) {
 
             }
             e.consume();
