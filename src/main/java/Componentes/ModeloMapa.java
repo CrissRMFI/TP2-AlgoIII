@@ -8,13 +8,13 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 
 import java.util.LinkedList;
-public class Mapa extends GridPane {
+public class ModeloMapa extends GridPane {
     private MapaJson mapaJson;
     private GridPane gridPane = new GridPane();
     private LinkedList<CasilleroCamino> camino = new LinkedList<>();
 
 
-    public Mapa (AppModelo modelo) throws ArchivoNoEncontrado {
+    public ModeloMapa(AppModelo modelo) throws ArchivoNoEncontrado {
         Parseador parseador = new ParseadorMapaJson();
         parseador.leerArchivo(modelo.getRutaArchivo());
         this.mapaJson = (MapaJson) parseador.obtenerInformacion();
@@ -55,11 +55,11 @@ public class Mapa extends GridPane {
 
     }
 
-    public void moverJugador (Jugador jugador) {
+    public void moverJugador (ModeloJugador jugador) {
         this.camino.get(0).remover(jugador);
     }
 
-    public void agregarJugador (Jugador jugador) {
+    public void agregarJugador (ModeloJugador jugador) {
         jugador.setCasillero(this.camino.get(0));
     }
 

@@ -4,12 +4,18 @@ import Entidades.Errores.CantidadMinimaDeJugadores;
 import Entidades.Errores.JuegoTerminadoHayUnGanador;
 import Entidades.Errores.PartidaFinalizada;
 import edu.fiuba.algo3.modelo.AppModelo;
+import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class BotonLanzar extends Button {
-    public BotonLanzar (String texto, AppModelo modelo,Mapa mapa) {
+    public BotonLanzar (String texto, AppModelo modelo, ModeloMapa mapa, Stage stage) {
         super(texto);
 
         this.setId("Lanzar");
@@ -27,9 +33,21 @@ public class BotonLanzar extends Button {
                 modelo.moverJugador(mapa);
             } catch (CantidadMinimaDeJugadores er) {
 
-            } catch (PartidaFinalizada err) {
-
             } catch (JuegoTerminadoHayUnGanador ex) {
+                FadeTransition transicion = new FadeTransition(Duration.seconds(6), stage.getScene().getRoot());
+                transicion.setFromValue(1);
+                transicion.setToValue(0);
+                transicion.play();
+
+                transicion.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        Scene escenaDeHayGanador = new ContenedorJugadorGano(modelo.devolverJugadorActual()).obtenerScena();
+                        stage.setScene(escenaDeHayGanador);
+                        stage.show();
+                    }
+                });
+            } catch (PartidaFinalizada err) {
 
             }
             e.consume();

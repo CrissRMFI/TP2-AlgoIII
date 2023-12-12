@@ -1,7 +1,7 @@
 package Vista;
 
 import Componentes.BarraObjetos;
-import Componentes.Mapa;
+import Componentes.ModeloMapa;
 import Componentes.PanelControl;
 import Entidades.Errores.ArchivoNoEncontrado;
 import edu.fiuba.algo3.modelo.AppModelo;
@@ -11,18 +11,21 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class AppVistaJuego {
     private Scene scene;
+    private Stage stage;
 
-    public AppVistaJuego (AppModelo modelo) {
+    public AppVistaJuego (AppModelo modelo, Stage stage) {
+        this.stage =  stage;
         try {
             GridPane gridPane = new GridPane();
             gridPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 
             BarraObjetos barraObjetos = new BarraObjetos();
-            Mapa mapa = new Mapa(modelo);
-            PanelControl panelControl = new PanelControl(modelo,mapa);
+            ModeloMapa mapa = new ModeloMapa(modelo);
+            PanelControl panelControl = new PanelControl(modelo,mapa, stage);
 
             gridPane.add(barraObjetos,0,0);
             gridPane.add(mapa,0,1);

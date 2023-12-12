@@ -4,8 +4,6 @@ import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.scene.effect.Lighting;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class CasilleroCamino extends GridPane {
@@ -14,8 +12,8 @@ public class CasilleroCamino extends GridPane {
     private Casillero casillero;
     public CasilleroCamino(Casillero casillero) {
         this.casillero = casillero;
-        this.setMinWidth(68);
-        this.setMinHeight(68);
+        this.setMinWidth(48);
+        this.setMinHeight(48);
         this.setStyle("-fx-background-color: beige;-fx-border-color: black; -fx-border-width: 2;");
 
         Lighting lighting = new Lighting();
@@ -41,10 +39,10 @@ public class CasilleroCamino extends GridPane {
     }
 
 
-    public void remover(Jugador elemento) {
+    public void remover(ModeloJugador elemento) {
         for (int i = 0; i < this.getChildren().size(); i++) {
             try {
-                Jugador jugadorARemover = (Jugador) this.getChildren().get(i);
+                ModeloJugador jugadorARemover = (ModeloJugador) this.getChildren().get(i);
                 if (elemento.comparar(jugadorARemover)) {
                     FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), jugadorARemover);
                     fadeTransition.setToValue(0.0);

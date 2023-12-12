@@ -8,8 +8,8 @@ import javafx.scene.shape.Rectangle;
 
 public class CasilleroNoCamino extends GridPane {
     public CasilleroNoCamino() {
-        this.setMinWidth(70);
-        this.setMinHeight(70);
+        this.setMinWidth(50);
+        this.setMinHeight(50);
         this.setStyle("-fx-background-color: brown;-fx-border-color: black; -fx-border-width: 2;");
 
 

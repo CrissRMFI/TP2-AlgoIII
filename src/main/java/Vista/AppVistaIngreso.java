@@ -63,7 +63,7 @@ public class AppVistaIngreso extends GridPane{
                     String nombre = text.getText();
                     if (!nombre.equals("")) {
                         Jugador jugador = new Gladiador(nombre);
-                        Componentes.Jugador jugadorVista = this.getJugador(i,jugador);
+                        ModeloJugador jugadorVista = this.getJugador(i,jugador);
                         modelo.agregarJugador(jugadorVista);
                     };
                 } catch (Exception error) {
@@ -80,7 +80,7 @@ public class AppVistaIngreso extends GridPane{
         escena = new Scene(this, 800, 700);
     }
 
-    private Componentes.Jugador getJugador(int i,Jugador jugador) {
+    private ModeloJugador getJugador(int i, Jugador jugador) {
         switch (i) {
             case 1 : return new GladiadorUno(jugador);
             case 2 : return new GladiadorDos(jugador);

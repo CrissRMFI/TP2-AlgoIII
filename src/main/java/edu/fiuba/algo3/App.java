@@ -39,7 +39,7 @@ public class App extends Application {
 
     public void iniciarJuego (AppModelo modelo) throws CantidadMinimaDeJugadores {
         modelo.crearJuego();
-        AppVistaJuego appVistaJuego = new AppVistaJuego(modelo);
+        AppVistaJuego appVistaJuego = new AppVistaJuego(modelo, this.stage);
 
 
         this.stage.setScene(appVistaJuego.obtenerEscena());

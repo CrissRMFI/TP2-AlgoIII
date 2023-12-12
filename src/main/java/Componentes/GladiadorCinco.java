@@ -3,7 +3,7 @@ package Componentes;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
-public class GladiadorCinco extends Jugador {
+public class GladiadorCinco extends ModeloJugador {
 
     public GladiadorCinco (Entidades.Jugadores.Jugador jugador) {
         this.jugador = jugador;

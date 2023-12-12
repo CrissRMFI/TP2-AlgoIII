@@ -1,12 +1,8 @@
 package Parseador;
 
-import Componentes.Mapa;
 import Entidades.Errores.ArchivoNoEncontrado;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 import java.io.IOException;

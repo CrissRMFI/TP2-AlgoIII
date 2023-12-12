@@ -1,19 +1,21 @@
 package Componentes;
 
-
+import Entidades.Jugadores.Jugador;
 import javafx.scene.layout.HBox;
 
-public abstract class Jugador extends HBox {
+public abstract class ModeloJugador extends HBox {
     protected CasilleroCamino casilleroCamino;
-    protected Entidades.Jugadores.Jugador jugador;
+    protected Jugador jugador;
     public void setCasillero(CasilleroCamino casillero) {
         this.casilleroCamino = casillero;
         casillero.agregar(this);
     }
 
-    public Entidades.Jugadores.Jugador getJugador () {return this.jugador;}
+    public Jugador getJugador () {
+        return this.jugador;
+    }
 
-    public boolean comparar (Jugador jugador) {
+    public boolean comparar (ModeloJugador jugador) {
         return this.jugador.yoSoy() == jugador.getJugador().yoSoy();
     }
 }
