@@ -5,9 +5,7 @@ import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 public class TestListaCircular {
-    /*
     private ListaCircular<Integer> listaEnteros = new ListaCircular<Integer>();
     private ListaCircular<String> listaString = new ListaCircular<String>();
     @Test
@@ -259,7 +257,4 @@ public class TestListaCircular {
         assertEquals(1,vueltas);
 
     }
-     */
 }
-
-
