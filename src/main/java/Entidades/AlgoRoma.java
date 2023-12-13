@@ -127,4 +127,9 @@ public class AlgoRoma {
         return this.mapa.getCasilleros();
     }
 
+    public Jugador jugadorActual () {
+        Jugador jugador = this.jugadores.obtener();
+        return jugador;
+    }
+
 }

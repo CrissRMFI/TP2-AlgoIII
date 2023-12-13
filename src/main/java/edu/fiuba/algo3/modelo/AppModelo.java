@@ -1,12 +1,17 @@
 package edu.fiuba.algo3.modelo;
 
 import Componentes.Jugador;
+import Componentes.PanelEstadisticasJugadores;
 import Datos.InformacionMapa;
 import Datos.InformacionMapaEnJSON;
 import Entidades.AlgoRoma;
 import Entidades.Errores.*;
 import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Mapa;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.LinkedList;
 import java.util.Objects;
@@ -73,5 +78,28 @@ public class AppModelo {
                 break;
             }
         }
+    }
+
+    public void cargarEstadisticas (PanelEstadisticasJugadores panelEstadisticasJugadores) {
+        VBox vBox = new VBox();
+
+        Label estadisticas = new Label("ESTADISTICAS");
+        estadisticas.setStyle("-fx-text-fill: white; -fx-font-size: 24;");
+        vBox.getChildren().add(estadisticas);
+
+        for (Jugador jugador : this.jugadores) {
+            HBox hBox = new HBox();
+            Label descripcion = new Label(jugador.getJugador().miDescripcion());
+            descripcion.setStyle("-fx-text-fill: white; -fx-font-size: 20;");
+
+            
+            hBox.getChildren().add(descripcion);
+
+            hBox.setPadding(new Insets(0,50,0,0));
+            vBox.getChildren().add(hBox);
+        }
+
+        panelEstadisticasJugadores.getChildren().add(vBox);
+
     }
 }
