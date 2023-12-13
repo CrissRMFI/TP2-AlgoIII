@@ -1,11 +1,10 @@
 package Componentes;
 import Entidades.Tablero.Casillero;
 import javafx.animation.FadeTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.effect.Lighting;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class CasilleroCamino extends GridPane {
@@ -14,8 +13,19 @@ public class CasilleroCamino extends GridPane {
     private Casillero casillero;
     public CasilleroCamino(Casillero casillero) {
         this.casillero = casillero;
-        this.setMinWidth(68);
-        this.setMinHeight(68);
+        this.setMinSize(65,65);
+        this.setPrefSize(65,65);
+        this.setMaxSize(65,65);
+
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setPercentWidth(20);
+        this.getColumnConstraints().add(columnConstraints);
+
+
+        RowConstraints rowConstraints = new RowConstraints();
+        rowConstraints.setPercentHeight(20);
+        this.getRowConstraints().add(rowConstraints);
+
         this.setStyle("-fx-background-color: beige;-fx-border-color: black; -fx-border-width: 2;");
 
         Lighting lighting = new Lighting();
@@ -25,6 +35,7 @@ public class CasilleroCamino extends GridPane {
         lighting.setSurfaceScale(5.0);
 
         this.setEffect(lighting);
+        this.setAlignment(Pos.CENTER);
 
     }
     public void agregar(Node elemento) {
@@ -45,7 +56,7 @@ public class CasilleroCamino extends GridPane {
         for (int i = 0; i < this.getChildren().size(); i++) {
             try {
                 Jugador jugadorARemover = (Jugador) this.getChildren().get(i);
-                if (elemento.comparar(jugadorARemover)) {
+                if (elemento.equals(jugadorARemover)) {
                     FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), jugadorARemover);
                     fadeTransition.setToValue(0.0);
                     fadeTransition.setOnFinished(event -> {

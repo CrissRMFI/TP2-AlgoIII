@@ -8,7 +8,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 
 public class BotonLanzar extends Button {
-    public BotonLanzar (String texto, AppModelo modelo,Mapa mapa) {
+    public BotonLanzar (String texto) {
         super(texto);
 
         this.setId("Lanzar");
@@ -21,20 +21,11 @@ public class BotonLanzar extends Button {
         this.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> this.setTranslateZ(2));
         this.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> this.setTranslateZ(0));
 
-        this.setOnAction(e -> {
-            try {
-                modelo.moverJugador(mapa);
-            } catch (CantidadMinimaDeJugadores er) {
-
-            } catch (PartidaFinalizada err) {
-
-            }
-            e.consume();
-        });
 
 
 
-        this.setStyle("-fx-background-color: purple; -fx-text-fill: white;");
+
+        this.setStyle("-fx-background-color: gold; -fx-text-fill: white;");
         this.setPrefWidth(300);
         this.setPrefHeight(30);
     }
