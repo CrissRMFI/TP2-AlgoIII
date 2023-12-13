@@ -4,7 +4,9 @@ public class Turno {
     protected int cantidad;
 
 
-    public Turno () {}
+    public Turno () {
+        this.cantidad = 0;
+    }
 
     public Turno (int cantidad) {
         this.cantidad = cantidad;
