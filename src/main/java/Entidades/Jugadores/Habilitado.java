@@ -17,7 +17,7 @@ public class Habilitado extends Estado {
         casilleroAMover.entregarElementos(this.jugador);
 
         if (!this.jugador.tengoEnergia()) {
-            this.jugador.setEstado(new InHabilitado(this.jugador));
+            this.jugador.setEstado(new InHabilitadoEnergia(this.jugador));
         }
 
         return casilleroAMover;
