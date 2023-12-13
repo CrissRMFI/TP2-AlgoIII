@@ -4,17 +4,12 @@ import Entidades.Energia.Energia;
 
 public class SemiSenior implements Seniority {
 
-    private Energia energia;
-    private final int turnosParaEvolucionar;
-
-    public SemiSenior() {
-        this.energia = new Energia(5);
-        this.turnosParaEvolucionar = 11;
-    }
+    private final Energia energia = new Energia(5);
+    private final Turno turnosParaEvolucionar = new Turno(11);
 
     @Override
-    public Seniority ascenderSeniority(int turnos) {
-        if (turnos > this.turnosParaEvolucionar) {
+    public Seniority ascenderSeniority(Turno turno) {
+        if (turno.puedeAscender(turnosParaEvolucionar)) {
             return new Senior();
         }
         return this;

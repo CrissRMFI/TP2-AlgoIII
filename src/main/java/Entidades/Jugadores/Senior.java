@@ -11,7 +11,7 @@ public class Senior implements Seniority {
     }
 
     @Override
-    public Seniority ascenderSeniority(int turnos) {
+    public Seniority ascenderSeniority(Turno turno) {
         return this;
     }
 

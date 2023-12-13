@@ -15,13 +15,13 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
     protected Estado estado;
     protected String nombre;
     protected Casillero casillero;
-    protected int turnos;
+    protected Turno turno;
 
     public Jugador(String nombre) { // TODO: directamente pasarle el dispositivo de azar
         this.nombre = nombre;
         this.energia = new Energia();
         this.estado = new Habilitado(this);
-        this.turnos = 0;
+        this.turno = new Turno();
         this.dispositivoDeAzar = new Dado();
     }
 

@@ -12,7 +12,6 @@ import java.util.LinkedList;
 
 public class AlgoRoma {
     private final Mapa mapa;
-
     private final ListaCircular<Jugador> jugadores;
     private int rondas;
     private JugadorGanador ganador;
@@ -32,33 +31,12 @@ public class AlgoRoma {
         this.jugadores.agregarElemento(jugador);
         this.cantidadTurnosPorRonda++;
     }
-    /*
-
-    public Jugador mover() throws CantidadMinimaDeJugadores, PartidaFinalizada {
-        Jugador jugador;
-        if (this.turnosJugados == 0) {
-            jugador = this.comenzarPartidaConElPrimerJugador();
-        } else {
-            jugador = this.siguienteJugador();
-        }
-
-        Casillero casillero = this.mapa.obtenerProximoDestino(jugador);
-        jugador.moverse(casillero);
-        jugador.obtenerElementos();
-        jugador.finalizarTurno(this);
-
-        return jugador;
-    }
-
-     */
-
 
     public void comenzarPartida() throws CantidadMinimaDeJugadores {
         if (this.jugadores.tamanio() < 2) {
             throw new CantidadMinimaDeJugadores(MensajesUsuario.CANTIDAD_MINIMA_JUGADORES);
         }
         this.jugadorActual = jugadores.seleccionAleatoria();
-        //return jugadores.seleccionAleatoria();
     }
 
     public void comenzarPartidaConElPrimerJugador() throws CantidadMinimaDeJugadores {
@@ -66,7 +44,6 @@ public class AlgoRoma {
             throw new CantidadMinimaDeJugadores(MensajesErrores.CANTIDAD_MINIMA_JUGADORES);
         }
         this.jugadorActual = jugadores.iniciarConElPrimero();
-        //return jugadores.iniciarConElPrimero();
     }
 
     public Jugador jugarTurno() throws PartidaFinalizada {
@@ -75,8 +52,6 @@ public class AlgoRoma {
             throw new PartidaFinalizada(MensajesErrores.PARTIDA_FINALIZADA);
         }
         jugadorActual.moverse(this.mapa);
-        //jugadorActual.obtenerElementos();
-        //jugadorActual.finalizarTurno(this);
         this.turnoFinalizado(jugadorActual);
         this.jugadorActual = this.jugadores.siguiente();
         return jugadorQueJugo;

@@ -4,7 +4,7 @@ import Entidades.Energia.Energia;
 
 public interface Seniority {
 
-    Seniority ascenderSeniority(int turnos);
+    Seniority ascenderSeniority(Turno turno);
 
     void aumentarEnergia(Energia energia);
 

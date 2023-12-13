@@ -17,16 +17,13 @@ public class Gladiador extends Jugador {
         this.equipamiento = new EquipoBase();
     }
 
-    private void ascenderSeniority() {
-        this.seniority = this.seniority.ascenderSeniority(this.turnos);
-    }
 
     @Override
     public void moverse(Mapa mapa) {
         this.seniority.aumentarEnergia(this.energia);
         this.casillero = this.estado.mover(mapa, this.casillero);
-        this.turnos++;
-        this.ascenderSeniority();
+        this.turno.finalizarTurno();
+        this.seniority = this.seniority.ascenderSeniority(this.turno);
     }
 
 
