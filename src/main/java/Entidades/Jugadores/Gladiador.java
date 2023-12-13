@@ -23,9 +23,9 @@ public class Gladiador extends Jugador {
 
     @Override
     public void moverse(Mapa mapa) {
+        this.seniority.aumentarEnergia(this.energia);
         this.casillero = this.estado.mover(mapa, this.casillero);
         this.turnos++;
-        this.seniority.aumentarEnergia(this.energia);
         this.ascenderSeniority();
     }
 

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import Componentes.CasilleroCamino;
 import Componentes.Jugador;
 import Componentes.PanelEstadisticasJugadores;
 import Datos.InformacionMapa;
@@ -23,8 +24,10 @@ public class AppModelo {
 
     private String ruta;
 
+
     public AppModelo () {
         this.jugadores = new LinkedList<>();
+
     }
     public void agregarJugador(Componentes.Jugador jugador) {
         this.jugadores.add(jugador);
@@ -71,10 +74,9 @@ public class AppModelo {
 
         Casillero casillero = jugador.miPosicion();
 
-        for (int i=0; i<mapa.getCamino().size();i++) {
-
-            if (mapa.getCamino().get(i).comparar(casillero)) {
-                jugadorRemovido.setCasillero(mapa.getCamino().get(i));
+        for (CasilleroCamino casilleroCamino : mapa.getCamino()) {
+            if (casilleroCamino.comparar(casillero)) {
+                jugadorRemovido.setCasillero(casilleroCamino);
                 break;
             }
         }
@@ -92,10 +94,12 @@ public class AppModelo {
             Label descripcion = new Label(jugador.getJugador().miDescripcion());
             descripcion.setStyle("-fx-text-fill: white; -fx-font-size: 20;");
 
-            
+
             hBox.getChildren().add(descripcion);
 
             hBox.setPadding(new Insets(0,50,0,0));
+
+
             vBox.getChildren().add(hBox);
         }
 
