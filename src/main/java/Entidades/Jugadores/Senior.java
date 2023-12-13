@@ -22,6 +22,6 @@ public class Senior implements Seniority {
 
     @Override
     public String descripcion() {
-        return "Novato";
+        return "Senior";
     }
 }
