@@ -15,13 +15,13 @@ import javafx.scene.paint.Color;
 public class AppVistaJuego {
     private Scene scene;
 
-    public AppVistaJuego (AppModelo modelo) {
+    public AppVistaJuego (AppModelo modelo,String ruta) {
         try {
             GridPane gridPane = new GridPane();
             gridPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 
             BarraObjetos barraObjetos = new BarraObjetos();
-            Mapa mapa = new Mapa(modelo);
+            Mapa mapa = modelo.crearMapaInterface(ruta);
             PanelControl panelControl = new PanelControl(modelo,mapa);
 
             gridPane.add(barraObjetos,0,0);

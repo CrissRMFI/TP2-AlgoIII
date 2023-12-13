@@ -16,41 +16,33 @@ import javafx.scene.layout.VBox;
 
 import java.util.LinkedList;
 public class AppModelo {
-    private LinkedList<Componentes.Jugador> jugadores;
+    private LinkedList<Componentes.Jugador> jugadores = new LinkedList<>();
     private Mapa mapa;
     private AlgoRoma algoRoma;
-
     private String ruta;
 
 
-    public AppModelo () {
-        this.jugadores = new LinkedList<>();
-
+    public Componentes.Mapa crearMapaInterface(String ruta) throws ArchivoNoEncontrado {
+        return new Componentes.Mapa(ruta,this);
     }
-    public void agregarJugador(Componentes.Jugador jugador) {
-        this.jugadores.add(jugador);
-    }
-
-    public void crearMapa (String ruta) throws DatoNoEncontrado, DatoNoValido, ArchivoNoEncontrado {
+    public void crearJuego (String ruta) throws DatoNoEncontrado, DatoNoValido, ArchivoNoEncontrado,CantidadMinimaDeJugadores {
         InformacionMapa informacionMapa = new InformacionMapaEnJSON(ruta);
         this.mapa = new Mapa(informacionMapa);
         this.ruta = ruta;
-    }
-
-    public void crearJuego () throws CantidadMinimaDeJugadores {
-        this.algoRoma = new AlgoRoma(this.mapa);
+        this.algoRoma = new AlgoRoma(mapa);
         for (Jugador jugador : this.jugadores) {
             this.algoRoma.agregarJugador(jugador.getJugador());
         }
         this.algoRoma.comenzarPartida();
     }
 
-    public LinkedList<Casillero> getCasilleros () {
-        return algoRoma.getCasilleros();
+    public void agregarJugador(Componentes.Jugador jugador) {
+        this.jugadores.add(jugador);
+        this.algoRoma.agregarJugador(jugador.getJugador());
     }
 
-    public String getRutaArchivo () {
-        return this.ruta;
+    public LinkedList<Casillero> getCasilleros () {
+        return algoRoma.getCasilleros();
     }
 
     public void ubicarJugadoresEnElMapa (Componentes.Mapa mapa) {

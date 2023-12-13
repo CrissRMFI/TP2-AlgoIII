@@ -18,14 +18,14 @@ public class AppVistaIngreso extends GridPane{
     private App controlador;
     private AppModelo modelo;
     private Scene escena;
+    private String rutaMapa;
 
     public AppVistaIngreso(App controlador, AppModelo modelo) {
         this.controlador = controlador;
         this.modelo = modelo;
         this.imagenDeFondo();
 
-
-        Button iniciar = new BotonIniciarJuego("INICIAR JUEGO");
+        SeleccionMapa selectMapa = new SeleccionMapa();
 
         TextField input1 = new InputNombre();
 
@@ -39,8 +39,7 @@ public class AppVistaIngreso extends GridPane{
 
         TextField input6 = new InputNombre();
 
-
-        SeleccionMapa selectMapa = new SeleccionMapa(this.modelo);
+        Button iniciar = new BotonIniciarJuego("INICIAR JUEGO");
 
         this.addRow(0,selectMapa);
 
@@ -65,6 +64,7 @@ public class AppVistaIngreso extends GridPane{
                         Jugador jugador = new Gladiador(nombre);
                         Componentes.Jugador jugadorVista = this.getJugador(i,jugador);
                         modelo.agregarJugador(jugadorVista);
+
                     };
                 } catch (Exception error) {
 
@@ -72,9 +72,9 @@ public class AppVistaIngreso extends GridPane{
             }
 
             try {
-                controlador.iniciarJuego(modelo);
-            } catch (CantidadMinimaDeJugadores ex) {
-                throw new RuntimeException(ex);
+                controlador.iniciarJuego(modelo,selectMapa.obtenerRutaMapa());
+            } catch (CantidadMinimaDeJugadores | DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado er) {
+                throw new RuntimeException(er);
             }
         });
         escena = new Scene(this, 800, 700);
@@ -105,5 +105,8 @@ public class AppVistaIngreso extends GridPane{
                 new BackgroundSize(100, 100, true, true, true, true));
 
         this.setBackground(new Background(imagenDeFondo));
+    }
+    private String rutaMapa () {
+        return this.rutaMapa;
     }
 }
