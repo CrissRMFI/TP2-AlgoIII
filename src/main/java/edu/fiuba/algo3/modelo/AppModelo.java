@@ -64,10 +64,10 @@ public class AppModelo {
     public void moverJugador (Componentes.Mapa mapa) throws CantidadMinimaDeJugadores, PartidaFinalizada {
         Entidades.Jugadores.Jugador jugador = this.algoRoma.jugarTurno();
         Jugador jugadorRemovido = null;
-        for (Jugador jugadore : this.jugadores) { // TODO: cambiar nombre de variable
-            if (Objects.equals(jugador.yoSoy(), jugadore.getJugador().yoSoy())) {
-                mapa.moverJugador(jugadore);
-                jugadorRemovido = jugadore;
+        for (Jugador iJugador : this.jugadores) {
+            if (jugador.equals(iJugador.getJugador())) {
+                mapa.moverJugador(iJugador);
+                jugadorRemovido = iJugador;
                 break;
             }
         }
