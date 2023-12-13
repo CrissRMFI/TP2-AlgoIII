@@ -24,8 +24,7 @@ public class AppVistaIngreso extends GridPane{
         this.modelo = modelo;
         this.imagenDeFondo();
 
-
-        Button iniciar = new BotonIniciarJuego("INICIAR JUEGO");
+        SeleccionMapa selectMapa = new SeleccionMapa(this.modelo);
 
         TextField input1 = new InputNombre();
 
@@ -39,8 +38,7 @@ public class AppVistaIngreso extends GridPane{
 
         TextField input6 = new InputNombre();
 
-
-        SeleccionMapa selectMapa = new SeleccionMapa(this.modelo);
+        Button iniciar = new BotonIniciarJuego("INICIAR JUEGO");
 
         this.addRow(0,selectMapa);
 
@@ -65,6 +63,7 @@ public class AppVistaIngreso extends GridPane{
                         Jugador jugador = new Gladiador(nombre);
                         Componentes.Jugador jugadorVista = this.getJugador(i,jugador);
                         modelo.agregarJugador(jugadorVista);
+
                     };
                 } catch (Exception error) {
 

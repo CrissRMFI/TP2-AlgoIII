@@ -21,7 +21,7 @@ public class AppVistaJuego {
             gridPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 
             BarraObjetos barraObjetos = new BarraObjetos();
-            Mapa mapa = new Mapa(modelo);
+            Mapa mapa = modelo.crearMapaInterface();
             PanelControl panelControl = new PanelControl(modelo,mapa);
 
             gridPane.add(barraObjetos,0,0);

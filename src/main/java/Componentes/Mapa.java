@@ -14,9 +14,9 @@ public class Mapa extends GridPane {
     private LinkedList<CasilleroCamino> camino = new LinkedList<>();
 
 
-    public Mapa (AppModelo modelo) throws ArchivoNoEncontrado {
+    public Mapa (String ruta,AppModelo modelo) throws ArchivoNoEncontrado {
         Parseador parseador = new ParseadorMapaJson();
-        parseador.leerArchivo(modelo.getRutaArchivo());
+        parseador.leerArchivo(ruta);
         this.mapaJson = (MapaJson) parseador.obtenerInformacion();
         this.construirTablero();
         this.construirCamino(modelo);
@@ -34,7 +34,6 @@ public class Mapa extends GridPane {
         }
 
     }
-
     public void construirCamino (AppModelo modelo) {
         Camino camino = this.mapaJson.getCamino();
         LinkedList<Celda> celdas = camino.getCeldas();

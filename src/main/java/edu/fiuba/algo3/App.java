@@ -28,23 +28,16 @@ public class App extends Application {
     public void mostrarVentanaIngreso()  {
         AppVistaIngreso vistaIngreso = new AppVistaIngreso(this, modelo);
         this.stage.setScene(vistaIngreso.obtenerEscena());
+    }
 
-
+    public void iniciarJuego (AppModelo modelo) {
+        AppVistaJuego appVistaJuego = new AppVistaJuego(modelo);
+        this.stage.setScene(appVistaJuego.obtenerEscena());
     }
 
     public void salirDeEscena () {
         this.stage.close();
     }
-
-    public void iniciarJuego (AppModelo modelo) {
-        modelo.crearJuego();
-        AppVistaJuego appVistaJuego = new AppVistaJuego(modelo);
-
-
-        this.stage.setScene(appVistaJuego.obtenerEscena());
-    }
-
-
     public static void main(String[] args) {
         launch();
     }
