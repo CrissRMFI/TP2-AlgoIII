@@ -82,27 +82,6 @@ public class AlgoRoma {
         return jugadorQueJugo;
     }
 
-    /*
-    private Jugador siguienteJugador() throws PartidaFinalizada {
-        if (this.turnos == 0) {
-            throw new PartidaFinalizada(MensajesErrores.PARTIDA_FINALIZADA);
-        }
-        this.jugadores.siguiente();
-        Jugador jugador = this.jugadores.obtener();
-
-        if (!jugador.habilitar()) {
-            this.turnoFinalizado(jugador);
-
-            this.siguienteJugador();
-            return this.jugadores.obtener();
-        }
-
-        return jugador;
-    }
-
-     */
-
-
     private void turnoFinalizado(Jugador jugador) {
         if (this.mapa.jugadorGano(jugador)) {
             this.ganador = jugador;

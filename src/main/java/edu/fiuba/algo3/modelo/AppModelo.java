@@ -15,8 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.LinkedList;
-import java.util.Objects;
-
 public class AppModelo {
     private LinkedList<Componentes.Jugador> jugadores;
     private Mapa mapa;
