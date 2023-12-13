@@ -20,4 +20,11 @@ public class Turno {
         return this.cantidad > turno.cantidad;
     }
 
+    public void restarTurno() {
+        this.cantidad--;
+    }
+
+    public boolean esMenorAUno() {
+        return this.cantidad < 1;
+    }
 }

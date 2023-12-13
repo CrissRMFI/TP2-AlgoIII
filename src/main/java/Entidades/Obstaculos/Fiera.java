@@ -8,6 +8,6 @@ public class Fiera extends Obstaculo {
     @Override
     public void interactuar(Jugador jugador) {
         jugador.defenderse();
-    } //TODO: refactor esto!!!!!!!!!!!!!
+    }
 
 }
