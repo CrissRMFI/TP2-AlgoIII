@@ -7,6 +7,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
+
+
 public class PanelControl extends VBox {
     public PanelControl (AppModelo modelo,Mapa mapa) {
         BotonLanzar botonLanzar = new BotonLanzar("LANZAR");
@@ -19,6 +21,7 @@ public class PanelControl extends VBox {
         this.getChildren().add(panelEstadisticasJugadores);
         botonLanzar.setOnAction(e -> {
             try {
+
                 modelo.moverJugador(mapa);
                 panelEstadisticasJugadores.actualizarEstadisticas(modelo);
             } catch (CantidadMinimaDeJugadores er) {

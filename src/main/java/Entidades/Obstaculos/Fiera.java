@@ -2,7 +2,6 @@ package Entidades.Obstaculos;
 
 
 import Entidades.Jugadores.Jugador;
-
 public class Fiera extends Obstaculo {
 
     @Override
