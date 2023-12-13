@@ -31,6 +31,7 @@ public class Entrega1 {
         }
 
         elementosMapa[0][0] = new Fiera();
+        elementosMapa[1][0] = new Fiera();
 
 
         InformacionMapaLinealEnMatriz informacionMapaLinealEnMatriz = new InformacionMapaLinealEnMatriz(elementosMapa);
@@ -215,13 +216,15 @@ public class Entrega1 {
 
         algoRoma.jugarTurno();
         algoRoma.jugarTurno();
+        algoRoma.jugarTurno();
+        algoRoma.jugarTurno();
 
-        Casillero casilleroEsperadocarpoforo = new Casillero(1, 0);
-        Casillero casilleroEsperadoespartaco = new Casillero(2, 0);
+        Casillero casilleroEsperadocarpoforo = new Casillero(2, 0);
+        Casillero casilleroEsperadoespartaco = new Casillero(4, 0);
 
-        assertTrue(carpoforo.compararSalud(new Energia(0)));
+        assertTrue(carpoforo.compararSalud(new Energia(-20)));
         assertTrue(carpoforo.compararPosicion(casilleroEsperadocarpoforo));
-        assertTrue(espartaco.compararSalud(new Energia(20)));
+        assertTrue(espartaco.compararSalud(new Energia(0)));
         assertTrue(espartaco.compararPosicion(casilleroEsperadoespartaco));
 
 
@@ -229,11 +232,8 @@ public class Entrega1 {
         algoRoma.jugarTurno();
 
 
-        assertTrue(carpoforo.compararSalud(new Energia(5)));
-        assertTrue(carpoforo.compararPosicion(new Casillero(1, 0)));
-
-        assertTrue(espartaco.compararSalud(new Energia(20)));
-        assertTrue(espartaco.compararPosicion(new Casillero(2, 0)));
+        assertTrue(carpoforo.compararSalud(new Energia(-15)));
+        assertTrue(carpoforo.compararPosicion(new Casillero(2, 0)));
     }
 
 

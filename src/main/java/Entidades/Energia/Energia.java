@@ -20,7 +20,7 @@ public class Energia {
     }
 
     public boolean tengoEnergia () {
-        return this.disponible > 0;
+        return this.disponible >= 0;
     }
 
     public boolean comparar (Energia energia) {
