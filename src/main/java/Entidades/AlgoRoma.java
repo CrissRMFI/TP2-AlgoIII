@@ -108,11 +108,12 @@ public class AlgoRoma {
             this.ganador = jugador;
             this.rondas = 0;
         }
-
-        this.cantidadTurnosPorRonda--;
-        if (this.cantidadTurnosPorRonda == 0) {
-            this.rondas--;
-            this.cantidadTurnosPorRonda = this.jugadores.tamanio();
+        else {
+            this.cantidadTurnosPorRonda--;
+            if (this.cantidadTurnosPorRonda == 0) {
+                this.rondas--;
+                this.cantidadTurnosPorRonda = this.jugadores.tamanio();
+            }
         }
     }
 
