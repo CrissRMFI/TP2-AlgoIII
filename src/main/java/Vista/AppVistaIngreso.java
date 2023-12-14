@@ -67,7 +67,7 @@ public class AppVistaIngreso extends GridPane {
                         modelo.agregarJugador(jugadorVista);
 
                     }
-                    ;
+
                 } catch (Exception error) {
                 }
             }
@@ -86,6 +86,8 @@ public class AppVistaIngreso extends GridPane {
     }
 
     private Componentes.Jugador getJugador(int i, Jugador jugador) {
+        return new GladiadorVista(jugador, i);
+        /*
         switch (i) {
             case 1:
                 return new GladiadorUno(jugador);
@@ -102,6 +104,8 @@ public class AppVistaIngreso extends GridPane {
             default:
                 return null;
         }
+        */
+
     }
 
     public Scene obtenerEscena() {
