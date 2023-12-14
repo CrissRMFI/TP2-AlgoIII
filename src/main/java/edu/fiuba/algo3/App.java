@@ -1,10 +1,12 @@
 package edu.fiuba.algo3;
 
+import Componentes.VentanaCantidadJugadores;
 import Datos.MensajesUsuario;
 import Entidades.Errores.*;
 import Vista.*;
 import edu.fiuba.algo3.modelo.AppModelo;
 import javafx.application.Application;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 
@@ -36,8 +38,12 @@ public class App extends Application {
     }
 
 
-    public void iniciarJuego (AppModelo modelo, String ruta) throws CantidadMinimaDeJugadores, DatoNoValido, DatoNoEncontrado, ArchivoNoEncontrado {
+    public void crearJuego (AppModelo modelo, String ruta) throws DatoNoValido, DatoNoEncontrado, ArchivoNoEncontrado,CantidadMinimaDeJugadores {
         modelo.crearJuego(ruta);
+
+    }
+
+    public void iniciarJuego (AppModelo modelo, String ruta) {
         AppVistaJuego appVistaJuego = new AppVistaJuego(modelo,ruta);
         this.stage.setScene(appVistaJuego.obtenerEscena());
     }

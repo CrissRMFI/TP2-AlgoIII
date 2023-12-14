@@ -13,26 +13,19 @@ import java.util.LinkedList;
 
 public class AlgoRoma {
     private final Mapa mapa;
-    //private final ListaCircular<Jugador> jugadores;
-    //private int rondas;
     private JugadorGanador ganador;
-    //private int cantidadTurnosPorRonda;
     private Jugador jugadorActual;
 
     private SistemaTurnos sistemaTurnos;
 
     public AlgoRoma(Mapa mapa) {
         this.mapa = mapa;
-        //this.jugadores = new ListaCircular<>();
-        //this.rondas = 30;
         this.ganador = new NoHayGanador();
         this.sistemaTurnos = new SistemaTurnos(30);
     }
 
     public void agregarJugador(Jugador jugador) {
         this.mapa.ubicarEnInicio(jugador);
-        //this.jugadores.agregarElemento(jugador);
-        //this.cantidadTurnosPorRonda++;
         this.sistemaTurnos.agregarJugador(jugador);
     }
 
@@ -76,8 +69,5 @@ public class AlgoRoma {
         return this.mapa.getCasilleros();
     }
 
-    public Jugador jugadorActual () {
-        return this.sistemaTurnos.jugadorActual();
-    }
 
 }

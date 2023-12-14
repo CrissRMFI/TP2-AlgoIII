@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import Componentes.CasilleroCamino;
-import Componentes.Jugador;
-import Componentes.PanelEstadisticasJugadores;
+import Componentes.*;
 import Datos.InformacionMapa;
 import Datos.InformacionMapaEnJSON;
 import Entidades.AlgoRoma;
@@ -10,6 +8,7 @@ import Entidades.Errores.*;
 import Entidades.Tablero.Casillero;
 import Entidades.Tablero.Mapa;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -30,15 +29,24 @@ public class AppModelo {
         this.mapa = new Mapa(informacionMapa);
         this.ruta = ruta;
         this.algoRoma = new AlgoRoma(mapa);
+
         for (Jugador jugador : this.jugadores) {
             this.algoRoma.agregarJugador(jugador.getJugador());
         }
+
         this.algoRoma.comenzarPartida();
+
     }
 
+
     public void agregarJugador(Componentes.Jugador jugador) {
-        this.jugadores.add(jugador);
-        this.algoRoma.agregarJugador(jugador.getJugador());
+        if (this.algoRoma != null) {
+            this.jugadores.add(jugador);
+            this.algoRoma.agregarJugador(jugador.getJugador());
+        } else {
+            this.jugadores.clear();
+        }
+
     }
 
     public LinkedList<Casillero> getCasilleros () {
@@ -51,25 +59,32 @@ public class AppModelo {
         }
     }
 
-    public void moverJugador (Componentes.Mapa mapa) throws CantidadMinimaDeJugadores, PartidaFinalizada {
-        Entidades.Jugadores.Jugador jugador = this.algoRoma.jugarTurno();
-        Jugador jugadorRemovido = null;
-        for (Jugador iJugador : this.jugadores) {
-            if (jugador.equals(iJugador.getJugador())) {
-                mapa.moverJugador(iJugador);
-                jugadorRemovido = iJugador;
-                break;
+    public void moverJugador (Componentes.Mapa mapa) throws  PartidaFinalizada,PartidaNoFinalizada {
+        try {
+            Entidades.Jugadores.Jugador jugador = this.algoRoma.jugarTurno();
+            Jugador jugadorRemovido = null;
+            for (Jugador iJugador : this.jugadores) {
+                if (jugador.equals(iJugador.getJugador())) {
+                    mapa.moverJugador(iJugador);
+                    jugadorRemovido = iJugador;
+                    break;
+                }
             }
+
+            Casillero casillero = jugador.miPosicion();
+
+            for (CasilleroCamino casilleroCamino : mapa.getCamino()) {
+                if (casilleroCamino.comparar(casillero)) {
+                    jugadorRemovido.setCasillero(casilleroCamino);
+                    break;
+                }
+            }
+        } catch (PartidaFinalizada err) {
+            VentanaPartidaFinalizada v = new VentanaPartidaFinalizada(Alert.AlertType.INFORMATION);
+            v.setContentText("PARTIDA FINALIZADA: "+ this.algoRoma.elGanador().yoSoy());
+            v.show();
         }
 
-        Casillero casillero = jugador.miPosicion();
-
-        for (CasilleroCamino casilleroCamino : mapa.getCamino()) {
-            if (casilleroCamino.comparar(casillero)) {
-                jugadorRemovido.setCasillero(casilleroCamino);
-                break;
-            }
-        }
     }
 
     public void cargarEstadisticas (PanelEstadisticasJugadores panelEstadisticasJugadores) {
@@ -95,5 +110,9 @@ public class AppModelo {
 
         panelEstadisticasJugadores.getChildren().add(vBox);
 
+    }
+
+    public void clearJugadors () {
+        this.jugadores.clear();
     }
 }

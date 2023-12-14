@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.AppModelo;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -67,14 +68,17 @@ public class AppVistaIngreso extends GridPane{
 
                     };
                 } catch (Exception error) {
-
                 }
             }
 
             try {
+                controlador.crearJuego(modelo,selectMapa.obtenerRutaMapa());
                 controlador.iniciarJuego(modelo,selectMapa.obtenerRutaMapa());
-            } catch (CantidadMinimaDeJugadores | DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado er) {
-                throw new RuntimeException(er);
+            } catch ( DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado | CantidadMinimaDeJugadores er) {
+                modelo.clearJugadors();
+                VentanaCantidadJugadores v = new VentanaCantidadJugadores(Alert.AlertType.WARNING);
+                v.setContentText("LA CANITDAD DE JUGAODRES DEBE SER DE DOS COMO MINIMO");
+                v.show();
             }
         });
         escena = new Scene(this, 800, 700);

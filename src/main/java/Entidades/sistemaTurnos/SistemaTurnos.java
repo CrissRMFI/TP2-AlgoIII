@@ -18,7 +18,7 @@ public class SistemaTurnos {
     private int indiceJugadorActual = 0;
 
     public SistemaTurnos(int rondas) {
-        this.turnosPorRonda = new Turno(0);
+        this.turnosPorRonda = new Turno();
         this.rondasRestantes = rondas;
         this.jugadores = new LinkedList<>();
     }
@@ -59,12 +59,6 @@ public class SistemaTurnos {
         }
         return this.jugadores.get(this.indiceJugadorActual);
     }
-
-    public Jugador jugadorActual() {
-        return this.jugadores.get(this.indiceJugadorActual);
-    }
-
-
     public void terminarTurnoJugador() {
         this.turnosPorRonda.restarTurno();
         if (this.turnosPorRonda.igualACero()) {
