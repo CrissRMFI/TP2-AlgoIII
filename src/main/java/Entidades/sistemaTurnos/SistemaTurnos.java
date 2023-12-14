@@ -3,13 +3,14 @@ package Entidades.sistemaTurnos;
 import Datos.MensajesUsuario;
 import Entidades.Errores.CantidadMinimaDeJugadores;
 import Entidades.Jugadores.Jugador;
+import Entidades.Jugadores.Turno;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class SistemaTurnos {
 
-    private int turnosPorRonda;
+    private Turno turnosPorRonda;
     private int rondasRestantes;
 
     private List<Jugador> jugadores;
@@ -17,14 +18,14 @@ public class SistemaTurnos {
     private int indiceJugadorActual = 0;
 
     public SistemaTurnos(int rondas) {
-        this.turnosPorRonda = 0;
+        this.turnosPorRonda = new Turno(0);
         this.rondasRestantes = rondas;
         this.jugadores = new LinkedList<>();
     }
 
     public void agregarJugador(Jugador jugador) {
         this.jugadores.add(jugador);
-        this.turnosPorRonda++;
+        this.turnosPorRonda.sumarTurno();
     }
 
     public Jugador comenzarConElPrimero() throws CantidadMinimaDeJugadores {
@@ -65,10 +66,10 @@ public class SistemaTurnos {
 
 
     public void terminarTurnoJugador() {
-        this.turnosPorRonda--;
-        if (this.turnosPorRonda == 0) {
+        this.turnosPorRonda.restarTurno();
+        if (this.turnosPorRonda.igualACero()) {
             this.rondasRestantes--;
-            this.turnosPorRonda = this.jugadores.size();
+            this.turnosPorRonda = new Turno(this.jugadores.size());
         }
     }
 
