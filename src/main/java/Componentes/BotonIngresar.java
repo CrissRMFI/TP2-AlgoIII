@@ -1,5 +1,6 @@
 package Componentes;
 
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +20,11 @@ public class BotonIngresar extends Button {
         this.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> this.setTranslateZ(0));
 
 
+
+
+        this.setMinSize(150, 50);
+        this.setMaxSize(250, 50);
         this.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        this.setCursor(Cursor.HAND);
     }
 }
