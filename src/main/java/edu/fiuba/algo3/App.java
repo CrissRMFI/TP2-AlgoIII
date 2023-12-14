@@ -29,6 +29,7 @@ public class App extends Application  {
 
         stage.setTitle(MensajesUsuario.TITULO_JUEGO);
         stage.setScene(vistaInicio.obtenerEscena());
+        stage.setMaximized(true);
         stage.show();
 
         String rutaSonido = "src/main/resources/sonidos/inicio.mp3";
@@ -38,6 +39,7 @@ public class App extends Application  {
     }
 
     public void mostrarVentanaIngreso()  {
+        stage.setMaximized(false);
         this.mediaPlayer.stop();
         AppVistaIngreso vistaIngreso = new AppVistaIngreso(this, modelo);
         this.stage.setScene(vistaIngreso.obtenerEscena());
@@ -46,6 +48,7 @@ public class App extends Application  {
         this.mediaPlayer = new MediaPlayer(media);
         this.mediaPlayer.setVolume(0.15);
         this.mediaPlayer.play();
+        stage.setMaximized(true);
     }
 
 
@@ -60,8 +63,10 @@ public class App extends Application  {
     }
 
     public void iniciarJuego (AppModelo modelo, String ruta) {
+        stage.setMaximized(false);
         AppVistaJuego appVistaJuego = new AppVistaJuego(modelo,ruta);
         this.stage.setScene(appVistaJuego.obtenerEscena());
+        stage.setMaximized(true);
     }
     public static void main(String[] args) {
         launch();

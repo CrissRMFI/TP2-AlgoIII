@@ -28,29 +28,18 @@ public class AppVistaIngreso extends GridPane {
 
         SeleccionMapa selectMapa = new SeleccionMapa();
 
-        TextField input1 = new InputNombre();
-
-        TextField input2 = new InputNombre();
-
-        TextField input3 = new InputNombre();
-
-        TextField input4 = new InputNombre();
-
-        TextField input5 = new InputNombre();
-
-        TextField input6 = new InputNombre();
-
+        HBox hbox = new HBox();
         Button iniciar = new BotonIniciarJuego("INICIAR JUEGO");
+        hbox.getChildren().add(iniciar);
+        hbox.setAlignment(Pos.CENTER);
 
         this.addRow(0, selectMapa);
 
-        this.addRow(2, input1);
-        this.addRow(3, input2);
-        this.addRow(4, input3);
-        this.addRow(5, input4);
-        this.addRow(6, input5);
-        this.addRow(7, input6);
-        this.addRow(10, iniciar);
+        for(int i = 2; i < 8 ; i++){
+            TextField input = new InputNombre();
+            this.addRow(i, input);
+        }
+        this.addRow(10, hbox);
 
         this.setPadding(new Insets(10, 0, 10, 0));
         this.setAlignment(Pos.CENTER);
@@ -87,25 +76,6 @@ public class AppVistaIngreso extends GridPane {
 
     private Componentes.Jugador getJugador(int i, Jugador jugador) {
         return new GladiadorVista(jugador, i);
-        /*
-        switch (i) {
-            case 1:
-                return new GladiadorUno(jugador);
-            case 2:
-                return new GladiadorDos(jugador);
-            case 3:
-                return new GladiadorTres(jugador);
-            case 4:
-                return new GladiadorCuatro(jugador);
-            case 5:
-                return new GladiadorCinco(jugador);
-            case 6:
-                return new GladiadorSeis(jugador);
-            default:
-                return null;
-        }
-        */
-
     }
 
     public Scene obtenerEscena() {
