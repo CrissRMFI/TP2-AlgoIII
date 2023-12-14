@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
-public class AppVistaIngreso extends GridPane{
+public class AppVistaIngreso extends GridPane {
     private App controlador;
     private AppModelo modelo;
     private Scene escena;
@@ -42,39 +42,40 @@ public class AppVistaIngreso extends GridPane{
 
         Button iniciar = new BotonIniciarJuego("INICIAR JUEGO");
 
-        this.addRow(0,selectMapa);
+        this.addRow(0, selectMapa);
 
-        this.addRow(2,input1);
-        this.addRow(3,input2);
-        this.addRow(4,input3);
-        this.addRow(5,input4);
-        this.addRow(6,input5);
-        this.addRow(7,input6);
-        this.addRow(10,iniciar);
+        this.addRow(2, input1);
+        this.addRow(3, input2);
+        this.addRow(4, input3);
+        this.addRow(5, input4);
+        this.addRow(6, input5);
+        this.addRow(7, input6);
+        this.addRow(10, iniciar);
 
-        this.setPadding(new Insets(10,0,10,0));
+        this.setPadding(new Insets(10, 0, 10, 0));
         this.setAlignment(Pos.CENTER);
         this.setVgap(10);
 
         iniciar.setOnAction(e -> {
-            for (int i=0;i<this.getChildren().size();i++) {
+            for (int i = 0; i < this.getChildren().size(); i++) {
                 try {
                     TextField text = (TextField) this.getChildren().get(i);
                     String nombre = text.getText();
                     if (!nombre.equals("")) {
                         Jugador jugador = new Gladiador(nombre);
-                        Componentes.Jugador jugadorVista = this.getJugador(i,jugador);
+                        Componentes.Jugador jugadorVista = this.getJugador(i, jugador);
                         modelo.agregarJugador(jugadorVista);
 
-                    };
+                    }
+
                 } catch (Exception error) {
                 }
             }
 
             try {
-                controlador.crearJuego(modelo,selectMapa.obtenerRutaMapa());
-                controlador.iniciarJuego(modelo,selectMapa.obtenerRutaMapa());
-            } catch ( DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado | CantidadMinimaDeJugadores er) {
+                controlador.crearJuego(modelo, selectMapa.obtenerRutaMapa());
+                controlador.iniciarJuego(modelo, selectMapa.obtenerRutaMapa());
+            } catch (DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado | CantidadMinimaDeJugadores er) {
                 modelo.clearJugadors();
                 VentanaCantidadJugadores v = new VentanaCantidadJugadores(Alert.AlertType.WARNING);
                 v.setContentText("LA CANITDAD DE JUGAODRES DEBE SER DE DOS COMO MINIMO");
@@ -84,22 +85,34 @@ public class AppVistaIngreso extends GridPane{
         escena = new Scene(this, 800, 700);
     }
 
-    private Componentes.Jugador getJugador(int i,Jugador jugador) {
+    private Componentes.Jugador getJugador(int i, Jugador jugador) {
+        return new GladiadorVista(jugador, i);
+        /*
         switch (i) {
-            case 1 : return new GladiadorUno(jugador);
-            case 2 : return new GladiadorDos(jugador);
-            case 3 : return new GladiadorTres(jugador);
-            case 4 : return new GladiadorCuatro(jugador);
-            case 5 : return new GladiadorCinco(jugador);
-            case 6 : return new GladiadorSeis(jugador);
-            default: return null;
+            case 1:
+                return new GladiadorUno(jugador);
+            case 2:
+                return new GladiadorDos(jugador);
+            case 3:
+                return new GladiadorTres(jugador);
+            case 4:
+                return new GladiadorCuatro(jugador);
+            case 5:
+                return new GladiadorCinco(jugador);
+            case 6:
+                return new GladiadorSeis(jugador);
+            default:
+                return null;
         }
+        */
+
     }
 
     public Scene obtenerEscena() {
         return this.escena;
     }
-    private void imagenDeFondo(){
+
+    private void imagenDeFondo() {
         Image imagen = new Image("file:src/main/java/Vista/Imagenes/pruebaDeFondo.png");
 
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen,
@@ -110,7 +123,8 @@ public class AppVistaIngreso extends GridPane{
 
         this.setBackground(new Background(imagenDeFondo));
     }
-    private String rutaMapa () {
+
+    private String rutaMapa() {
         return this.rutaMapa;
     }
 }

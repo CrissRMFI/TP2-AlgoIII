@@ -1,18 +1,22 @@
 package edu.fiuba.algo3;
 
-import Componentes.VentanaCantidadJugadores;
 import Datos.MensajesUsuario;
 import Entidades.Errores.*;
 import Vista.*;
 import edu.fiuba.algo3.modelo.AppModelo;
 import javafx.application.Application;
-import javafx.scene.control.Alert;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import java.io.File;
 
 
-public class App extends Application {
+public class App extends Application  {
     private Stage stage;
     private AppModelo modelo;
+
+    private Media media;
+    private MediaPlayer mediaPlayer;
 
     @Override
     public void start(Stage stage){
@@ -22,14 +26,26 @@ public class App extends Application {
 
         AppVistaInicio vistaInicio = new AppVistaInicio(this);
 
+
         stage.setTitle(MensajesUsuario.TITULO_JUEGO);
         stage.setScene(vistaInicio.obtenerEscena());
         stage.show();
+
+        String rutaSonido = "src/main/resources/sonidos/inicio.mp3";
+        this.media = new Media(new File(rutaSonido).toURI().toString());
+        this.mediaPlayer = new MediaPlayer(media);
+        this.mediaPlayer.play();
     }
 
     public void mostrarVentanaIngreso()  {
+        this.mediaPlayer.stop();
         AppVistaIngreso vistaIngreso = new AppVistaIngreso(this, modelo);
         this.stage.setScene(vistaIngreso.obtenerEscena());
+        String rutaSonido = "src/main/resources/sonidos/musicaIngresoJugadores.mp3";
+        this.media = new Media(new File(rutaSonido).toURI().toString());
+        this.mediaPlayer = new MediaPlayer(media);
+        this.mediaPlayer.setVolume(0.15);
+        this.mediaPlayer.play();
     }
 
 

@@ -12,13 +12,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.LinkedList;
+
 public class AppModelo {
     private LinkedList<Componentes.Jugador> jugadores = new LinkedList<>();
     private Mapa mapa;
     private AlgoRoma algoRoma;
     private String ruta;
+
+    private Media media;
+    private MediaPlayer mediaPlayer;
 
 
     public Componentes.Mapa crearMapaInterface(String ruta) throws ArchivoNoEncontrado {
@@ -61,6 +68,10 @@ public class AppModelo {
 
     public void moverJugador (Componentes.Mapa mapa) throws  PartidaFinalizada,PartidaNoFinalizada {
         try {
+            String rutaSonido = "src/main/resources/sonidos/moverJugador.mp3";
+            this.media = new Media(new File(rutaSonido).toURI().toString());
+            this.mediaPlayer = new MediaPlayer(media);
+            this.mediaPlayer.play();
             Entidades.Jugadores.Jugador jugador = this.algoRoma.jugarTurno();
             Jugador jugadorRemovido = null;
             for (Jugador iJugador : this.jugadores) {
@@ -80,9 +91,14 @@ public class AppModelo {
                 }
             }
         } catch (PartidaFinalizada err) {
+            this.mediaPlayer.stop();
             VentanaPartidaFinalizada v = new VentanaPartidaFinalizada(Alert.AlertType.INFORMATION);
             v.setContentText("PARTIDA FINALIZADA: "+ this.algoRoma.elGanador().yoSoy());
             v.show();
+            String rutaSonido = "src/main/resources/sonidos/ganador.mp3";
+            this.media = new Media(new File(rutaSonido).toURI().toString());
+            this.mediaPlayer = new MediaPlayer(media);
+            this.mediaPlayer.play();
         }
 
     }
