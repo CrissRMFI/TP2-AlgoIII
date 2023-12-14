@@ -27,4 +27,12 @@ public class Turno {
     public boolean esMenorAUno() {
         return this.cantidad < 1;
     }
+
+    public void sumarTurno() {
+        this.cantidad++;
+    }
+
+    public boolean igualACero() {
+        return this.cantidad == 0;
+    }
 }
