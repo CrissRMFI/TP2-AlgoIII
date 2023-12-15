@@ -1,5 +1,6 @@
 package Componentes;
 
+import Componentes.botones.BotonJuego;
 import Entidades.Errores.PartidaFinalizada;
 import Entidades.Errores.PartidaNoFinalizada;
 import edu.fiuba.algo3.modelo.AppModelo;
@@ -9,14 +10,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 
 
-
 public class PanelControl extends VBox {
-    public PanelControl (AppModelo modelo,Mapa mapa) {
-        BotonLanzar botonLanzar = new BotonLanzar("LANZAR");
+    public PanelControl(AppModelo modelo, Mapa mapa) {
+        BotonJuego botonLanzar = new BotonJuego("LANZAR", "blue");
         PanelEstadisticasJugadores panelEstadisticasJugadores = new PanelEstadisticasJugadores(modelo);
         VentanaPartidaFinalizada ventanaPartidaFinalizada = new VentanaPartidaFinalizada(Alert.AlertType.INFORMATION);
-
-        botonLanzar.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
 
         this.getChildren().add(botonLanzar);
         this.getChildren().add(panelEstadisticasJugadores);

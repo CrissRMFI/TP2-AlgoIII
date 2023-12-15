@@ -1,6 +1,7 @@
 package Vista;
 
 import Componentes.*;
+import Componentes.botones.BotonJuego;
 import Entidades.Errores.*;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
@@ -10,7 +11,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -29,13 +29,13 @@ public class AppVistaIngreso extends GridPane {
         SeleccionMapa selectMapa = new SeleccionMapa();
 
         HBox hbox = new HBox();
-        Button iniciar = new BotonIniciarJuego("INICIAR JUEGO");
-        hbox.getChildren().add(iniciar);
+        BotonJuego botonIniciar = new BotonJuego("INICIAR JUEGO", "blue");
+        hbox.getChildren().add(botonIniciar);
         hbox.setAlignment(Pos.CENTER);
 
         this.addRow(0, selectMapa);
 
-        for(int i = 2; i < 8 ; i++){
+        for (int i = 2; i < 8; i++) {
             TextField input = new InputNombre();
             this.addRow(i, input);
         }
@@ -45,18 +45,16 @@ public class AppVistaIngreso extends GridPane {
         this.setAlignment(Pos.CENTER);
         this.setVgap(10);
 
-        iniciar.setOnAction(e -> {
+        botonIniciar.setOnAction(e -> {
             for (int i = 0; i < this.getChildren().size(); i++) {
                 try {
                     TextField text = (TextField) this.getChildren().get(i);
                     String nombre = text.getText();
-                    if (!nombre.equals("")) {
+                    if (!nombre.isEmpty()) {
                         Jugador jugador = new Gladiador(nombre);
                         Componentes.Jugador jugadorVista = this.getJugador(i, jugador);
                         modelo.agregarJugador(jugadorVista);
-
                     }
-
                 } catch (Exception error) {
                 }
             }

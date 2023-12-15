@@ -1,34 +1,30 @@
 package Componentes;
 
-import Entidades.AlgoRoma;
-import Entidades.Errores.ArchivoNoEncontrado;
-import Entidades.Errores.DatoNoEncontrado;
-import Entidades.Errores.DatoNoValido;
+import Componentes.botones.BotonMenuPrincipal;
 import Vista.Titulo;
 import edu.fiuba.algo3.App;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 public class MenuPrincipal extends BorderPane {
     private Image background;
 
-    public MenuPrincipal(App controlador)  {
+    public MenuPrincipal(App controlador) {
         super();
-
 
         this.imagenDeFondo();
 
-        Button ingresar = new BotonIngresar("INGRESAR");
-        Button salir = new BotonSalir("SALIR");
-        Titulo titulo = new Titulo("A L G O R O M A");
-        VBox botonesLayout = new VBox(ingresar, salir);
+        BotonMenuPrincipal Botoningresar = new BotonMenuPrincipal("INGRESAR", "#4CAF50");
+        Botoningresar.setOnAction(e -> controlador.mostrarVentanaIngreso());
 
-        ingresar.setOnAction(e -> {controlador.mostrarVentanaIngreso();
-        });
-        salir.setOnAction(e -> controlador.salirDeEscena());
+        BotonMenuPrincipal Botonsalir = new BotonMenuPrincipal("SALIR", "red");
+        Botonsalir.setOnAction(e -> controlador.salirDeEscena());
+
+        Titulo titulo = new Titulo("A L G O R O M A");
+        VBox botonesLayout = new VBox(Botoningresar, Botonsalir);
+
 
         setAlignment(titulo, Pos.CENTER);
         setTop(titulo);
