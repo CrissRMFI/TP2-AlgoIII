@@ -59,7 +59,7 @@ public class AppVistaIngreso extends GridPane {
             } catch (DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado | CantidadMinimaDeJugadores er) {
                 modelo.clearJugadores();
                 VentanaCantidadJugadores v = new VentanaCantidadJugadores(Alert.AlertType.WARNING);
-                v.setContentText("LA CANITDAD DE JUGAODRES DEBE SER DE DOS COMO MINIMO");
+                v.setContentText("LA CANTIDAD DE JUGAODRES DEBE SER DE DOS COMO MINIMO");
                 v.show();
             }
         });

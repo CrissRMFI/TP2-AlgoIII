@@ -1,5 +1,6 @@
 package Componentes.botones;
 
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
@@ -22,5 +23,6 @@ public class BotonJuego extends Button {
         this.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
         this.setPrefWidth(300);
         this.setPrefHeight(30);
+        this.setCursor(Cursor.HAND);
     }
 }
