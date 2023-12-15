@@ -1,6 +1,7 @@
 package Vista;
 
 import Componentes.*;
+import Componentes.botones.BotonJuego;
 import Entidades.Errores.*;
 import Entidades.Jugadores.Gladiador;
 import Entidades.Jugadores.Jugador;
@@ -10,10 +11,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+
+import java.util.LinkedList;
 
 public class AppVistaIngreso extends GridPane {
     private App controlador;
@@ -28,84 +30,44 @@ public class AppVistaIngreso extends GridPane {
 
         SeleccionMapa selectMapa = new SeleccionMapa();
 
-        TextField input1 = new InputNombre();
-
-        TextField input2 = new InputNombre();
-
-        TextField input3 = new InputNombre();
-
-        TextField input4 = new InputNombre();
-
-        TextField input5 = new InputNombre();
-
-        TextField input6 = new InputNombre();
-
-        Button iniciar = new BotonIniciarJuego("INICIAR JUEGO");
+        HBox contenedorBoton = new HBox();
+        BotonJuego botonIniciar = new BotonJuego("INICIAR JUEGO", "blue");
+        contenedorBoton.getChildren().add(botonIniciar);
+        contenedorBoton.setAlignment(Pos.CENTER);
 
         this.addRow(0, selectMapa);
 
-        this.addRow(2, input1);
-        this.addRow(3, input2);
-        this.addRow(4, input3);
-        this.addRow(5, input4);
-        this.addRow(6, input5);
-        this.addRow(7, input6);
-        this.addRow(10, iniciar);
+        ContenedorIngresoNombres contenedorIngreso = new ContenedorIngresoNombres();
+
+        this.addRow(1, contenedorIngreso);
+        this.addRow(2, contenedorBoton);
 
         this.setPadding(new Insets(10, 0, 10, 0));
         this.setAlignment(Pos.CENTER);
         this.setVgap(10);
 
-        iniciar.setOnAction(e -> {
-            for (int i = 0; i < this.getChildren().size(); i++) {
-                try {
-                    TextField text = (TextField) this.getChildren().get(i);
-                    String nombre = text.getText();
-                    if (!nombre.equals("")) {
-                        Jugador jugador = new Gladiador(nombre);
-                        Componentes.Jugador jugadorVista = this.getJugador(i, jugador);
-                        modelo.agregarJugador(jugadorVista);
-
-                    }
-
-                } catch (Exception error) {
-                }
+        botonIniciar.setOnAction(e -> {
+            int jugadorNumero = 1;
+            for (String nombreJugador : contenedorIngreso.conseguirNombres()) {
+                Jugador jugador = new Gladiador(nombreJugador);
+                modelo.agregarJugador(this.getJugador(jugador, jugadorNumero));
+                jugadorNumero++;
             }
-
             try {
                 controlador.crearJuego(modelo, selectMapa.obtenerRutaMapa());
                 controlador.iniciarJuego(modelo, selectMapa.obtenerRutaMapa());
             } catch (DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado | CantidadMinimaDeJugadores er) {
-                modelo.clearJugadors();
+                modelo.clearJugadores();
                 VentanaCantidadJugadores v = new VentanaCantidadJugadores(Alert.AlertType.WARNING);
-                v.setContentText("LA CANITDAD DE JUGAODRES DEBE SER DE DOS COMO MINIMO");
+                v.setContentText("LA CANTIDAD DE JUGAODRES DEBE SER DE DOS COMO MINIMO");
                 v.show();
             }
         });
         escena = new Scene(this, 800, 700);
     }
 
-    private Componentes.Jugador getJugador(int i, Jugador jugador) {
+    private Componentes.Jugador getJugador(Jugador jugador, int i) {
         return new GladiadorVista(jugador, i);
-        /*
-        switch (i) {
-            case 1:
-                return new GladiadorUno(jugador);
-            case 2:
-                return new GladiadorDos(jugador);
-            case 3:
-                return new GladiadorTres(jugador);
-            case 4:
-                return new GladiadorCuatro(jugador);
-            case 5:
-                return new GladiadorCinco(jugador);
-            case 6:
-                return new GladiadorSeis(jugador);
-            default:
-                return null;
-        }
-        */
-
     }
 
     public Scene obtenerEscena() {

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3;
 
+import Componentes.Jugador;
 import Datos.MensajesUsuario;
 import Entidades.Errores.*;
 import Vista.*;
@@ -8,10 +9,12 @@ import javafx.application.Application;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
+
 import java.io.File;
+import java.util.List;
 
 
-public class App extends Application  {
+public class App extends Application {
     private Stage stage;
     private AppModelo modelo;
 
@@ -19,16 +22,16 @@ public class App extends Application  {
     private MediaPlayer mediaPlayer;
 
     @Override
-    public void start(Stage stage){
+    public void start(Stage stage) {
 
         this.stage = stage;
         this.modelo = new AppModelo();
 
         AppVistaInicio vistaInicio = new AppVistaInicio(this);
 
-
         stage.setTitle(MensajesUsuario.TITULO_JUEGO);
         stage.setScene(vistaInicio.obtenerEscena());
+        stage.setMaximized(true);
         stage.show();
 
         String rutaSonido = "src/main/resources/sonidos/inicio.mp3";
@@ -37,7 +40,8 @@ public class App extends Application  {
         this.mediaPlayer.play();
     }
 
-    public void mostrarVentanaIngreso()  {
+    public void mostrarVentanaIngreso() {
+        stage.setMaximized(false);
         this.mediaPlayer.stop();
         AppVistaIngreso vistaIngreso = new AppVistaIngreso(this, modelo);
         this.stage.setScene(vistaIngreso.obtenerEscena());
@@ -46,25 +50,25 @@ public class App extends Application  {
         this.mediaPlayer = new MediaPlayer(media);
         this.mediaPlayer.setVolume(0.15);
         this.mediaPlayer.play();
+        stage.setMaximized(true);
     }
 
-
-    public void salirDeEscena () {
+    public void salirDeEscena() {
         this.stage.close();
     }
 
-
-    public void crearJuego (AppModelo modelo, String ruta) throws DatoNoValido, DatoNoEncontrado, ArchivoNoEncontrado,CantidadMinimaDeJugadores {
+    public void crearJuego(AppModelo modelo, String ruta) throws DatoNoValido, DatoNoEncontrado, ArchivoNoEncontrado, CantidadMinimaDeJugadores {
         modelo.crearJuego(ruta);
-
     }
 
-    public void iniciarJuego (AppModelo modelo, String ruta) {
-        AppVistaJuego appVistaJuego = new AppVistaJuego(modelo,ruta);
+    public void iniciarJuego(AppModelo modelo, String ruta) {
+        stage.setMaximized(false);
+        AppVistaJuego appVistaJuego = new AppVistaJuego(modelo, ruta);
         this.stage.setScene(appVistaJuego.obtenerEscena());
+        stage.setMaximized(true);
     }
+
     public static void main(String[] args) {
         launch();
     }
-
 }

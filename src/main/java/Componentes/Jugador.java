@@ -3,7 +3,6 @@ package Componentes;
 
 import javafx.scene.layout.HBox;
 
-import java.util.Objects;
 
 public abstract class Jugador extends HBox {
     protected CasilleroCamino casilleroCamino;

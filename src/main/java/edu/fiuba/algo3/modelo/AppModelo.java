@@ -17,6 +17,7 @@ import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.util.LinkedList;
+import java.util.List;
 
 public class AppModelo {
     private LinkedList<Componentes.Jugador> jugadores = new LinkedList<>();
@@ -37,23 +38,22 @@ public class AppModelo {
         this.ruta = ruta;
         this.algoRoma = new AlgoRoma(mapa);
 
-        for (Jugador jugador : this.jugadores) {
-            this.algoRoma.agregarJugador(jugador.getJugador());
+        // TODO: arreglar estooo
+        for (Jugador jugadorVista : this.jugadores) {
+            this.algoRoma.agregarJugador(jugadorVista.getJugador());
         }
 
         this.algoRoma.comenzarPartida();
-
     }
 
 
     public void agregarJugador(Componentes.Jugador jugador) {
-        if (this.algoRoma != null) {
+        //if (this.algoRoma != null) {
             this.jugadores.add(jugador);
-            this.algoRoma.agregarJugador(jugador.getJugador());
-        } else {
-            this.jugadores.clear();
-        }
-
+            //this.algoRoma.agregarJugador(jugador.getJugador());
+       // } else {
+       //     this.jugadores.clear();
+        //}
     }
 
     public LinkedList<Casillero> getCasilleros () {
@@ -128,7 +128,7 @@ public class AppModelo {
 
     }
 
-    public void clearJugadors () {
+    public void clearJugadores () {
         this.jugadores.clear();
     }
 }
