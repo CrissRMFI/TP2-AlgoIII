@@ -15,6 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
+import java.util.LinkedList;
+
 public class AppVistaIngreso extends GridPane {
     private App controlador;
     private AppModelo modelo;
@@ -28,42 +30,34 @@ public class AppVistaIngreso extends GridPane {
 
         SeleccionMapa selectMapa = new SeleccionMapa();
 
-        HBox hbox = new HBox();
+        HBox contenedorBoton = new HBox();
         BotonJuego botonIniciar = new BotonJuego("INICIAR JUEGO", "blue");
-        hbox.getChildren().add(botonIniciar);
-        hbox.setAlignment(Pos.CENTER);
+        contenedorBoton.getChildren().add(botonIniciar);
+        contenedorBoton.setAlignment(Pos.CENTER);
 
         this.addRow(0, selectMapa);
 
-        for (int i = 2; i < 8; i++) {
-            TextField input = new InputNombre();
-            this.addRow(i, input);
-        }
-        this.addRow(10, hbox);
+        ContenedorIngresoNombres contenedorIngreso = new ContenedorIngresoNombres();
+
+        this.addRow(1, contenedorIngreso);
+        this.addRow(2, contenedorBoton);
 
         this.setPadding(new Insets(10, 0, 10, 0));
         this.setAlignment(Pos.CENTER);
         this.setVgap(10);
 
         botonIniciar.setOnAction(e -> {
-            for (int i = 0; i < this.getChildren().size(); i++) {
-                try {
-                    TextField text = (TextField) this.getChildren().get(i);
-                    String nombre = text.getText();
-                    if (!nombre.isEmpty()) {
-                        Jugador jugador = new Gladiador(nombre);
-                        Componentes.Jugador jugadorVista = this.getJugador(i, jugador);
-                        modelo.agregarJugador(jugadorVista);
-                    }
-                } catch (Exception error) {
-                }
+            int jugadorNumero = 1;
+            for (String nombreJugador : contenedorIngreso.conseguirNombres()) {
+                Jugador jugador = new Gladiador(nombreJugador);
+                modelo.agregarJugador(this.getJugador(jugador, jugadorNumero));
+                jugadorNumero++;
             }
-
             try {
                 controlador.crearJuego(modelo, selectMapa.obtenerRutaMapa());
                 controlador.iniciarJuego(modelo, selectMapa.obtenerRutaMapa());
             } catch (DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado | CantidadMinimaDeJugadores er) {
-                modelo.clearJugadors();
+                modelo.clearJugadores();
                 VentanaCantidadJugadores v = new VentanaCantidadJugadores(Alert.AlertType.WARNING);
                 v.setContentText("LA CANITDAD DE JUGAODRES DEBE SER DE DOS COMO MINIMO");
                 v.show();
@@ -72,7 +66,7 @@ public class AppVistaIngreso extends GridPane {
         escena = new Scene(this, 800, 700);
     }
 
-    private Componentes.Jugador getJugador(int i, Jugador jugador) {
+    private Componentes.Jugador getJugador(Jugador jugador, int i) {
         return new GladiadorVista(jugador, i);
     }
 

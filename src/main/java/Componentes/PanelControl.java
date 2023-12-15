@@ -26,6 +26,7 @@ public class PanelControl extends VBox {
             } catch (PartidaFinalizada | PartidaNoFinalizada err) {
 
             }
+            //
             e.consume();
         });
 

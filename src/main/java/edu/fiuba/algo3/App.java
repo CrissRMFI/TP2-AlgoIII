@@ -1,5 +1,6 @@
 package edu.fiuba.algo3;
 
+import Componentes.Jugador;
 import Datos.MensajesUsuario;
 import Entidades.Errores.*;
 import Vista.*;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.scene.media.Media;
 
 import java.io.File;
+import java.util.List;
 
 
 public class App extends Application {
