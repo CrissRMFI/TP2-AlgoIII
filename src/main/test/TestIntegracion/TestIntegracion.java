@@ -1,20 +1,20 @@
 package TestIntegracion;
 
-import Datos.InformacionMapaLinealEnMatriz;
-import Entidades.AlgoRoma;
-import Entidades.Elementos.Dado;
-import Entidades.Errores.*;
-import Entidades.Interactuable;
-import Entidades.Obstaculos.SinObstaculo;
-import Entidades.Premios.Comida;
-import Entidades.Energia.Energia;
-import Entidades.Jugadores.Gladiador;
-import Entidades.Jugadores.Jugador;
-import Entidades.Obstaculos.Bacanal;
-import Entidades.Obstaculos.Lesion;
-import Entidades.Premios.Equipamiento;
-import Entidades.Premios.JerarquiaEquipos;
-import Entidades.Tablero.*;
+import datos.InformacionMapaLinealEnMatriz;
+import entidades.AlgoRoma;
+import entidades.dispositivoDeAzar.Dado;
+import entidades.errores.*;
+import entidades.Interactuable;
+import entidades.obstaculos.SinObstaculo;
+import entidades.premios.Comida;
+import entidades.energia.Energia;
+import entidades.jugadores.Gladiador;
+import entidades.jugadores.Jugador;
+import entidades.obstaculos.Bacanal;
+import entidades.obstaculos.Lesion;
+import entidades.premios.Equipamiento;
+import entidades.premios.JerarquiaEquipos;
+import entidades.tablero.*;
 import org.junit.Test;
 import org.mockito.Mockito;
 
