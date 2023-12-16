@@ -20,7 +20,6 @@ import java.io.File;
 public class App extends Application {
     private Stage stage;
     private AppModelo modelo;
-
     private Media media;
     private MediaPlayer mediaPlayer;
 

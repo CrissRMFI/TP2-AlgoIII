@@ -8,12 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SistemaTurnos {
-
     private Turno turnosPorRonda;
     private int rondasRestantes;
-
     private List<Jugador> jugadores;
-
     private int indiceJugadorActual = 0;
 
     public SistemaTurnos(int rondas) {
@@ -61,7 +58,7 @@ public class SistemaTurnos {
 
     public void terminarTurnoJugador() {
         this.turnosPorRonda.restarTurno();
-        if (this.turnosPorRonda.igualACero()) {
+        if (this.turnosPorRonda.esIgualA(new Turno())) {
             this.rondasRestantes--;
             this.turnosPorRonda = new Turno(this.jugadores.size());
         }

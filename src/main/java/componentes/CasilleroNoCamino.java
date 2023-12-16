@@ -5,10 +5,10 @@ import javafx.scene.layout.GridPane;
 
 
 public class CasilleroNoCamino extends GridPane {
-    public CasilleroNoCamino() {
-        this.setMinSize(65, 65);
-        this.setPrefSize(65, 65);
-        this.setMaxSize(65, 65);
+    public CasilleroNoCamino(int tamanio) {
+        this.setMinSize(tamanio, tamanio);
+        this.setPrefSize(tamanio, tamanio);
+        this.setMaxSize(tamanio, tamanio);
 
         this.setStyle("-fx-background-color: brown;-fx-border-color: black; -fx-border-width: 2;");
 
