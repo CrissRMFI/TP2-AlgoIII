@@ -1,17 +1,20 @@
 package edu.fiuba.algo3;
 
-import Componentes.Jugador;
-import Datos.MensajesUsuario;
-import Entidades.Errores.*;
-import Vista.*;
+import datos.MensajesUsuario;
 import edu.fiuba.algo3.modelo.AppModelo;
+import entidades.errores.ArchivoNoEncontrado;
+import entidades.errores.CantidadMinimaDeJugadores;
+import entidades.errores.DatoNoEncontrado;
+import entidades.errores.DatoNoValido;
 import javafx.application.Application;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.scene.media.Media;
+import vista.AppVistaIngreso;
+import vista.AppVistaInicio;
+import vista.AppVistaJuego;
 
 import java.io.File;
-import java.util.List;
 
 
 public class App extends Application {

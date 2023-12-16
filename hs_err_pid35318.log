@@ -435,16 +435,16 @@ Event: 0,190 Thread 0x00007f0a8801a000 DEOPT PACKING pc=0x00007f0a781cb214 sp=0x
 Event: 0,190 Thread 0x00007f0a8801a000 DEOPT UNPACKING pc=0x00007f0a706082a5 sp=0x00007f0a8fffdbf0 mode 2
 
 Classes redefined (10 events):
-Event: 291,919 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=1
-Event: 528,732 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=2
-Event: 970,913 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=3
-Event: 1597,129 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=4
-Event: 1736,754 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=5
-Event: 2015,917 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=6
-Event: 3961,332 Thread 0x00007f0a88274000 redefined class name=Entidades.AlgoRoma, count=1
+Event: 291,919 Thread 0x00007f0a88274000 redefined class name=entidades.ListaCircular, count=1
+Event: 528,732 Thread 0x00007f0a88274000 redefined class name=entidades.ListaCircular, count=2
+Event: 970,913 Thread 0x00007f0a88274000 redefined class name=entidades.ListaCircular, count=3
+Event: 1597,129 Thread 0x00007f0a88274000 redefined class name=entidades.ListaCircular, count=4
+Event: 1736,754 Thread 0x00007f0a88274000 redefined class name=entidades.ListaCircular, count=5
+Event: 2015,917 Thread 0x00007f0a88274000 redefined class name=entidades.ListaCircular, count=6
+Event: 3961,332 Thread 0x00007f0a88274000 redefined class name=entidades.AlgoRoma, count=1
 Event: 4116,846 Thread 0x00007f0a88274000 redefined class name=TestIntegracion.TestIntegracion, count=1
 Event: 4507,865 Thread 0x00007f0a88274000 redefined class name=TestIntegracion.TestIntegracion, count=2
-Event: 5146,745 Thread 0x00007f0a88274000 redefined class name=Entidades.ListaCircular, count=7
+Event: 5146,745 Thread 0x00007f0a88274000 redefined class name=entidades.ListaCircular, count=7
 
 Internal exceptions (20 events):
 Event: 0,209 Thread 0x00007f0a8801a000 Exception <a 'sun/nio/fs/UnixException'{0x00000006d7f41958}> (0x00000006d7f41958) thrown at [./src/hotspot/share/prims/jni.cpp, line 617]
