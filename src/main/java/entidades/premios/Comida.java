@@ -1,9 +1,10 @@
 package entidades.premios;
 
+import entidades.Interactuable;
 import entidades.energia.Energia;
 import entidades.jugadores.Jugador;
 
-public class Comida implements Premio {
+public class Comida implements Interactuable {
 
 
     @Override

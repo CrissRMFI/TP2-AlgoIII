@@ -1,8 +1,9 @@
 package entidades.premios;
 
+import entidades.Interactuable;
 import entidades.jugadores.Jugador;
 
-public class Equipamiento implements Premio {
+public class Equipamiento implements Interactuable {
     @Override
     public void interactuar(Jugador jugador) {
         jugador.equipar();

@@ -29,11 +29,13 @@ class ConstructorObstaculo{
 }
 
 class InformacionMapaLinealEnMatriz{
-    +informacionMapa: Interactuable[][] informacionMapa
     +InformacionMapaLinealEnMatriz(informacion: Interactuable[][])
     +construirCamino(camino: LinkedList<Casillero>)
 }
 
+interface Interactuable{
+    +{abstract} interactuar(jugador: Jugador)
+}
 
 InformacionMapa <|.. InformacionMapaEnJSON
 InformacionMapa <|.. InformacionMapaLinealEnMatriz
@@ -41,5 +43,10 @@ InformacionMapa <|.. InformacionMapaLinealEnMatriz
 InformacionMapaEnJSON ...> InformacionJSON
 InformacionMapaEnJSON ..> ConstructorObstaculo
 InformacionMapaEnJSON ..> ConstructorPremio
+
+ConstructorObstaculo ..> Interactuable
+ConstructorPremio ..> Interactuable
+
+InformacionMapaLinealEnMatriz "1 " --> "*" Interactuable
 
 @enduml

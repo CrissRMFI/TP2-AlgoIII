@@ -1,9 +1,10 @@
 package entidades.premios;
 
+import entidades.Interactuable;
 import entidades.energia.Energia;
 import entidades.jugadores.Jugador;
 
-public abstract class Equipo implements Premio {
+public abstract class Equipo implements Interactuable {
     protected JerarquiaEquipos jerarquia;
 
     public abstract Equipo mejorar();

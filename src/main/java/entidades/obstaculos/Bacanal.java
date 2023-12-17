@@ -1,10 +1,11 @@
 package entidades.obstaculos;
 
 
+import entidades.Interactuable;
 import entidades.energia.Energia;
 import entidades.jugadores.Jugador;
 
-public class Bacanal implements Obstaculo {
+public class Bacanal implements Interactuable {
 
     private final int proporcion;
 

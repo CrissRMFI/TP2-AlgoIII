@@ -1,12 +1,12 @@
 package entidades.constructores;
 
+import entidades.Interactuable;
 import entidades.premios.Comida;
 import entidades.premios.Equipamiento;
-import entidades.premios.Premio;
 import entidades.premios.SinPremio;
 
 public class ConstructorPremio {
-    public Premio construirPremio(String tipo) {
+    public Interactuable construirPremio(String tipo) {
         switch (tipo) {
             case "Comida":
                 return new Comida();

@@ -1,9 +1,10 @@
 package entidades.constructores;
 
+import entidades.Interactuable;
 import entidades.obstaculos.*;
 
 public class ConstructorObstaculo {
-    public Obstaculo construirObstaculo(String tipo) {
+    public Interactuable construirObstaculo(String tipo) {
         switch (tipo) {
             case "Lesion":
                 return new Lesion();

@@ -1,11 +1,12 @@
 package entidades.obstaculos;
 
 
+import entidades.Interactuable;
 import entidades.jugadores.InhabilitadoTurnos;
 import entidades.jugadores.Jugador;
 import entidades.sistemaTurnos.Turno;
 
-public class Lesion implements Obstaculo {
+public class Lesion implements Interactuable {
 
     private final Turno turnosAPerder;
 
