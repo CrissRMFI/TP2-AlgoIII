@@ -141,7 +141,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 1 --> Fiera saca 20 ya que no tiene equipamiento
-    public void jugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, PartidaFinalizada {
+    public void jugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() throws CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido, PartidaFinalizada {
         Mapa mapa = this.MapaConFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -168,7 +168,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 2
-    public void jugadorSaleDeLaCasillaInicial() throws CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido, PartidaFinalizada {
+    public void jugadorSaleDeLaCasillaInicial() throws CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido, PartidaFinalizada {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -194,7 +194,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 3
-    public void jugadorSinEnergiaNoPuedeJugarTurno() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void jugadorSinEnergiaNoPuedeJugarTurno() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaConFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
 
@@ -317,7 +317,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 7
-    public void SiTieneCascoYPeleaConFieraPierde15Energia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SiTieneCascoYPeleaConFieraPierde15Energia() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaConUnEquipoYFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -378,7 +378,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 9
-    public void SeJuegaUnaPartidaCon30CasillerosNoSeGanaYElJugadorQuedaPosicionadoEnElCasillero15AlFinalizarElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SeJuegaUnaPartidaCon30CasillerosNoSeGanaYElJugadorQuedaPosicionadoEnElCasillero15AlFinalizarElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -409,7 +409,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 10
-    public void SiTieneTodoElEquipamientoYLoAtacaUnaFieraNoHayPerdidaDeEnergia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SiTieneTodoElEquipamientoYLoAtacaUnaFieraNoHayPerdidaDeEnergia() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaConCuatroEquipamientosYUnaFieraSalvaje();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -438,7 +438,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 11
-    public void GladiadorConLlaveRecibeOtroPremioYNoPasaNada() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void GladiadorConLlaveRecibeOtroPremioYNoPasaNada() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaLlenoDeEquipamientos();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);

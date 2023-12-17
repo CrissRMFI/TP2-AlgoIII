@@ -1,9 +1,9 @@
 package entidades.jugadores;
 
-
 import entidades.dispositivoDeAzar.Dado;
 import entidades.dispositivoDeAzar.DispositivoDeAzar;
 import entidades.energia.Energia;
+import entidades.errores.NombreDeJugadorConMenosDe4CaracteresExcepcion;
 import entidades.sistemaTurnos.Turno;
 import entidades.sistemas.SistemaDefensa;
 import entidades.tablero.Casillero;
@@ -18,7 +18,10 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
     protected Casillero casillero;
     protected Turno turno;
 
-    public Jugador(String nombre) { // TODO: directamente pasarle el dispositivo de azar
+    public Jugador(String nombre) throws NombreDeJugadorConMenosDe4CaracteresExcepcion {
+        if (nombre.trim().length() < 4){
+            throw new NombreDeJugadorConMenosDe4CaracteresExcepcion();
+        }
         this.nombre = nombre;
         this.energia = new Energia();
         this.estado = new Habilitado(this);
@@ -26,7 +29,7 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
         this.dispositivoDeAzar = new Dado();
     }
 
-
+    @Override
     public void afectarEnergia(Energia energia) {
         this.energia.afectarEnergia(energia);
     }
@@ -34,7 +37,6 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
     public boolean compararSalud(Energia energia) {
         return this.energia.comparar(energia);
     }
-
 
     public void agregarDispositivoAzar(DispositivoDeAzar dispositivoDeAzar) {
         this.dispositivoDeAzar = dispositivoDeAzar;
@@ -54,7 +56,7 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
     }
 
     public boolean compararPosicion(Casillero casillero) {
-        return this.casillero.equals(casillero);
+        return this.casillero.esIgualQue(casillero);
     }
 
     public void setEstado(Estado estado) {

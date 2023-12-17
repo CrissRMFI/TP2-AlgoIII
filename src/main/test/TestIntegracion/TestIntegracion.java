@@ -25,6 +25,9 @@ public class TestIntegracion {
     private final Jugador Carpoforo = new Gladiador("Carpoforo");
     private final Jugador Espartaco = new Gladiador("Espartaco");
 
+    public TestIntegracion() throws DatoNoValido {
+    }
+
     private Mapa MapaSoloConUnEquipo() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];
@@ -180,7 +183,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void NoSePuedeInicializarPartidaConUnSoloJugador() throws ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void NoSePuedeInicializarPartidaConUnSoloJugador() throws NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
 
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
@@ -189,7 +192,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void DosGladiadoresJueganDosTurnosYLaPartidaNoFinaliza() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void DosGladiadoresJueganDosTurnosYLaPartidaNoFinaliza() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -208,7 +211,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnError() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void DosGladiadoresJueganTodosLosTurnosSeQuiereJugarUnaVezMasEntraEnError() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -228,7 +231,7 @@ public class TestIntegracion {
 
 
     @Test
-    public void SeJuegaUnaPartidaSeConsultaPorElGanadorCuandoLaPartidaNoTerminoEntraEnError() throws PartidaFinalizada, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SeJuegaUnaPartidaSeConsultaPorElGanadorCuandoLaPartidaNoTerminoEntraEnError() throws PartidaFinalizada, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
 
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
@@ -249,7 +252,7 @@ public class TestIntegracion {
 
 
     @Test
-    public void SeJuegaUnaPartidaCon32CasillerosElJugadorQueLlegaALaMetaNoGanaYQuedaPosicoinadoEnLa15AlFinalizarElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SeJuegaUnaPartidaCon32CasillerosElJugadorQueLlegaALaMetaNoGanaYQuedaPosicoinadoEnLa15AlFinalizarElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Gladiador gladiadorQueJugo;
@@ -273,7 +276,7 @@ public class TestIntegracion {
 
 
     @Test
-    public void SeJuegaUnaPartidaCasilleroSoloTieneUnEquipoElJugadorLaPuedeEquipar() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SeJuegaUnaPartidaCasilleroSoloTieneUnEquipoElJugadorLaPuedeEquipar() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaSoloConUnEquipo();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -296,7 +299,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaCasillerosTienenDosEquiposElJugadorPuedeEquipar() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SeJuegaUnaPartidaCasillerosTienenDosEquiposElJugadorPuedeEquipar() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaConDosEquipos();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -323,7 +326,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegaUnaPartidaMapaConTresEquipoSeEsperaEquipamientoARMADURA() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SeJuegaUnaPartidaMapaConTresEquipoSeEsperaEquipamientoARMADURA() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaSoloConTresEquipos();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -352,7 +355,7 @@ public class TestIntegracion {
 
 
     @Test
-    public void JugadoresSeAtraviesanConUnaPiedraPierdenUnTurno() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void JugadoresSeAtraviesanConUnaPiedraPierdenUnTurno() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaConPiedraAlInicioElRestoVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -374,7 +377,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JugadoresAtraviesanMapaConEquipoBaseConUnBacanalEnElCasillero7PierdeEnergia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void JugadoresAtraviesanMapaConEquipoBaseConUnBacanalEnElCasillero7PierdeEnergia() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaConBacanalEnElCasillero7();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -397,7 +400,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SeJuegan8TurnosYJugadoresAsciendenASemiSiniorLoQueAumentaSuEnergiaEn5() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -420,7 +423,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void SeJuegan12TurnosYJugadoresAsciendenASemiSiniorYSiniorAumentandoEnergiaCorrespondiente() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void SeJuegan12TurnosYJugadoresAsciendenASemiSiniorYSiniorAumentandoEnergiaCorrespondiente() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -445,7 +448,7 @@ public class TestIntegracion {
 
 
     @Test
-    public void Juegan7TurnosConMapaConComidaSeEsperaAumentoDeEnergia() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void Juegan7TurnosConMapaConComidaSeEsperaAumentoDeEnergia() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaLlenoDeComida();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -469,7 +472,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void Juegan8TurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComidaYSeniority() throws CantidadMinimaDeJugadores, PartidaFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void Juegan8TurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComidaYSeniority() throws CantidadMinimaDeJugadores, PartidaFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaLlenoDeComida();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -493,7 +496,7 @@ public class TestIntegracion {
     }
 
     @Test
-    public void JueganTodosLosTurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComitaYSeniority() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void JueganTodosLosTurnosConMapaConComidaSeEsperaAumentoDeEnergiaPorComitaYSeniority() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaLlenoDeComida();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -520,7 +523,7 @@ public class TestIntegracion {
 
 
     @Test
-    public void JueganTodosLosTurnosHayUnGanador() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, ElNombreDebeContenerUnMinimoDe4Caracteres, DatoNoValido {
+    public void JueganTodosLosTurnosHayUnGanador() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, NombreDeJugadorConMenosDe4CaracteresExcepcion, DatoNoValido {
         Mapa mapa = this.MapaQuePermiteGanar();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);

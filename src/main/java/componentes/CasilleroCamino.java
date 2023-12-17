@@ -77,6 +77,6 @@ public class CasilleroCamino extends GridPane {
     }
 
     public boolean comparar(Casillero casillero) {
-        return this.casillero.comparar(casillero);
+        return this.casillero.esIgualQue(casillero);
     }
 }

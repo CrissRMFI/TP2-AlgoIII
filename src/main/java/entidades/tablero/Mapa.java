@@ -23,7 +23,7 @@ public class Mapa {
     public Casillero obtenerProximoDestino(Casillero casillero, int posicionesAMover) {
         int posicion = 0;
         for (Casillero c : this.camino) {
-            if (c.equals(casillero)) {
+            if (c.esIgualQue(casillero)) {
                 break;
             }
             posicion++;

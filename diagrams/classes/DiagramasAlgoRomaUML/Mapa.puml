@@ -3,10 +3,11 @@
 class Mapa{
     +Mapa(informacionMapa: InformacionMapa)
     -obtenerCasillero(posicion: int): Casillero
-    +obtenerProximoDestino(jugador: Jugador): Casillero
+    +obtenerProximoDestino(casillero: Casillero, posicionAMover: int): Casillero
     +ubicarEnInicio(jugador: Jugador)
-    +ubicarEnMitadDeCamino(jugador: Jugador)
+    +ubicarEnMitadDelCamino(jugador: Jugador)
     +jugadorGano(jugador: Jugador): boolean
+    +getCasilleros(): LinkedList<Casillero>
 }
 
 class Casillero{
@@ -15,24 +16,24 @@ class Casillero{
     +Casillero(x: int, y: int)
     +recibirElemento(elemento: Interactuable)
     +entregarElementos(jugador: Jugador)
-    +equals(casillero: Casillero): boolean
-    +conseguirX(): int
-    +conseguirY(): int
+    +esIgualQue(casillero: Casillero): boolean
 }
 
 interface Interactuable{
-    +{abstract}interactuar(jugador: Jugador)
+    +{abstract} interactuar(jugador: Jugador)
 }
 
 interface InformacionMapa{
-    +{abstract}construirCamino(LinkedList<Casillero> casilleros)
+    +{abstract} construirCamino(casilleros: LinkedList<Casillero>)
 }
 
 
+
 Mapa "1" --> "*" Casillero
-Mapa ..> InformacionMapa
 
 Casillero "1" --> "*" Interactuable
+
+Mapa ..> InformacionMapa
 
 
 @enduml

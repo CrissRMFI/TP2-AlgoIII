@@ -5,7 +5,7 @@ import entidades.jugadores.InhabilitadoTurnos;
 import entidades.jugadores.Jugador;
 import entidades.sistemaTurnos.Turno;
 
-public class Lesion extends Obstaculo {
+public class Lesion implements Obstaculo {
 
     private final Turno turnosAPerder;
 

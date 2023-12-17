@@ -2,6 +2,7 @@ package entidades.jugadores;
 
 
 import entidades.energia.Energia;
+import entidades.errores.NombreDeJugadorConMenosDe4CaracteresExcepcion;
 import entidades.premios.Equipo;
 import entidades.premios.EquipoBase;
 import entidades.premios.JerarquiaEquipos;
@@ -11,12 +12,11 @@ public class Gladiador extends Jugador {
     private Seniority seniority;
     private Equipo equipamiento;
 
-    public Gladiador(String nombre) {
+    public Gladiador(String nombre) throws NombreDeJugadorConMenosDe4CaracteresExcepcion {
         super(nombre);
         this.seniority = new Novato();
         this.equipamiento = new EquipoBase();
     }
-
 
     @Override
     public void moverse(Mapa mapa) {
@@ -24,12 +24,6 @@ public class Gladiador extends Jugador {
         this.casillero = this.estado.mover(mapa, this.casillero);
         this.turno.finalizarTurno();
         this.seniority = this.seniority.ascenderSeniority(this.turno);
-    }
-
-
-    @Override
-    public void recibirDanio(Energia energia) {
-        this.energia.afectarEnergia(energia);
     }
 
     @Override

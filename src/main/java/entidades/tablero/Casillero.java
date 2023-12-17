@@ -25,19 +25,7 @@ public class Casillero {
         }
     }
 
-    public boolean equals(Casillero casillero) {
-        return this.x == casillero.x && this.y == casillero.y;
-    }
-
-    public int conseguirX() {
-        return this.x;
-    }
-
-    public int conseguirY() {
-        return this.y;
-    }
-
-    public boolean comparar(Casillero casillero) {
+    public boolean esIgualQue(Casillero casillero) {
         return this.x == casillero.x && this.y == casillero.y;
     }
 }

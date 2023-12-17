@@ -4,10 +4,7 @@ import componentes.*;
 import componentes.botones.BotonJuego;
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.AppModelo;
-import entidades.errores.ArchivoNoEncontrado;
-import entidades.errores.CantidadMinimaDeJugadores;
-import entidades.errores.DatoNoEncontrado;
-import entidades.errores.DatoNoValido;
+import entidades.errores.*;
 import entidades.jugadores.Gladiador;
 import entidades.jugadores.Jugador;
 import javafx.geometry.Insets;
@@ -49,7 +46,12 @@ public class AppVistaIngreso extends GridPane {
         botonIniciar.setOnAction(e -> {
             int jugadorNumero = 1;
             for (String nombreJugador : contenedorIngreso.conseguirNombres()) {
-                Jugador jugador = new Gladiador(nombreJugador);
+                Jugador jugador = null;
+                try {
+                    jugador = new Gladiador(nombreJugador);
+                } catch (NombreDeJugadorConMenosDe4CaracteresExcepcion ex) {
+                    throw new RuntimeException(ex);
+                }
                 modelo.agregarJugador(this.getJugador(jugador, jugadorNumero));
                 jugadorNumero++;
             }
