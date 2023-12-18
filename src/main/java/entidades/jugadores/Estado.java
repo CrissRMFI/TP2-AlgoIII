@@ -11,9 +11,5 @@ public abstract class Estado {
         this.jugador = jugador;
     }
 
-    abstract public Casillero mover(Mapa mapa, Casillero casillero);
-
-    public void setJugador(Jugador jugador) {
-        this.jugador = jugador;
-    }
+    public abstract Casillero mover(Mapa mapa, Casillero casillero);
 }

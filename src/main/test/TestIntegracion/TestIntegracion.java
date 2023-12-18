@@ -168,17 +168,9 @@ public class TestIntegracion {
 
 
     private void jugarTurnosGladiador(int cantidad, AlgoRoma algoRoma) throws PartidaFinalizada, CantidadMinimaDeJugadores {
-
         for (int i = 0; i < cantidad; i++) {
             algoRoma.jugarTurno();
-
             algoRoma.jugarTurno();
-
-
-            //if (i<cantidad-1) {
-            //    gladiador = (Gladiador) algoRoma.siguienteJugador();
-            //}
-
         }
     }
 

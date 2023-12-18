@@ -1,28 +1,36 @@
-@startuml
+@startuml Seniority
 
 interface Seniority {
-    + ascenderSeniority(): Seniority
-    + aumentarEnergia(): void
-    + descripcion(): String
+    + {abstract}ascenderSeniority(turno: Turno): Seniority
+    + {abstract}aumentarEnergia(energia: Energia)
+    + {abstract}descripcion(): String
 }
 
 class Novato {
-     + ascenderSeniority(): Seniority
-     + aumentarEnergia(): void
-     + descripcion(): String
-}
-class SemiSenior{
-    + ascenderSeniority(): Seniority
-    + aumentarEnergia(): void
+    -energia: Energia
+    -turnosParaEvolucionar: Turno
+    + ascenderSeniority(turno: Turno): Seniority
+    + aumentarEnergia(energia: Energia)
     + descripcion(): String
-   }
-class Senior {
-     + ascenderSeniority(): Seniority
-     + aumentarEnergia(): void
-     + descripcion(): String
 }
 
-Novato ..|> Seniority
-SemiSenior ..|> Seniority
-Senior ..|> Seniority
+class SemiSenior{
+    -energia: Energia
+    -turnosParaEvolucionar: Turno
+    + ascenderSeniority(turno: Turno): Seniority
+    + aumentarEnergia(energia: Energia)
+    + descripcion(): String
+   }
+
+class Senior {
+    -energia: Energia
+    + ascenderSeniority(turno: Turno): Seniority
+    + aumentarEnergia(Energia energia)
+    + descripcion(): String
+}
+
+Seniority <|.. Novato
+Seniority <|... SemiSenior
+Seniority <|.. Senior
+
 @enduml

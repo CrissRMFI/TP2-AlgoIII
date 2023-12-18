@@ -26,7 +26,7 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
         this.energia = new Energia();
         this.estado = new Habilitado(this);
         this.turno = new Turno();
-        this.dispositivoDeAzar = new Dado();
+        this.dispositivoDeAzar = new Dado(6);
     }
 
     @Override
@@ -61,7 +61,6 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
-        this.estado.setJugador(this);
     }
 
     public boolean tengoEnergia() {

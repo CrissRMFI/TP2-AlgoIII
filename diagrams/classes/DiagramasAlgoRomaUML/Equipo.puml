@@ -1,11 +1,10 @@
 @startuml Equipo
 
 abstract class Equipo{
+    +{abstract}mejorar(): Equipo
+    +{abstract}recibirDanio()
     +sePuedeMejorar(): boolean
     +compararEquipo(equipamiento: JerarquiaEquipos): boolean
-    +interactuar(jugador: Jugador)
-    +{abstract}recibirDanio(energia: Energia)
-    +{abstract}mejorar(): Equipo
     +{abstract} descripcion(): String
 }
 
@@ -46,6 +45,7 @@ class EscudoYEspada{
 class Llave{
     +recibirDanio(energia: Energia)
     +mejorar(): Equipo
+    +sePuedeMejorar(): boolean
     +descripcion(): String
 }
 
@@ -54,9 +54,9 @@ Equipo -> JerarquiaEquipos
 
 
 Equipo <|-- EquipoBase
-Equipo <|-- Casco
+Equipo <|--- Casco
 Equipo <|-- Armadura
-Equipo <|-- EscudoYEspada
+Equipo <|--- EscudoYEspada
 Equipo <|-- Llave
 
 

@@ -1,7 +1,5 @@
 package entidades.jugadores;
 
-
-import entidades.energia.Energia;
 import entidades.errores.NombreDeJugadorConMenosDe4CaracteresExcepcion;
 import entidades.premios.Equipo;
 import entidades.premios.EquipoBase;

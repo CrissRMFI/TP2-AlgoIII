@@ -23,6 +23,6 @@ public class SemiSenior implements Seniority {
 
     @Override
     public String descripcion() {
-        return "Semi Senior";
+        return "SemiSenior";
     }
 }

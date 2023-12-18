@@ -1,10 +1,8 @@
 package entidades.premios;
 
-import entidades.Interactuable;
 import entidades.energia.Energia;
-import entidades.jugadores.Jugador;
 
-public abstract class Equipo implements Interactuable {
+public abstract class Equipo{
     protected JerarquiaEquipos jerarquia;
 
     public abstract Equipo mejorar();
@@ -17,11 +15,6 @@ public abstract class Equipo implements Interactuable {
 
     public boolean compararEquipo(JerarquiaEquipos equipamiento) {
         return this.jerarquia.ordinal() == equipamiento.ordinal();
-    }
-
-    @Override
-    public void interactuar(Jugador jugador) {
-        jugador.equipar();
     }
 
     public abstract String descripcion();

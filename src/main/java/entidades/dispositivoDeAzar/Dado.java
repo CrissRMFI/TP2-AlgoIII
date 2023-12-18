@@ -1,11 +1,10 @@
 package entidades.dispositivoDeAzar;
 
 public class Dado implements DispositivoDeAzar {
-
     private final int caras;
 
-    public Dado() {
-        this.caras = 6;
+    public Dado(int caras) {
+        this.caras = caras;
     }
 
     @Override

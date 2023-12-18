@@ -1,6 +1,5 @@
 package entidades.dispositivoDeAzar;
 
 public interface DispositivoDeAzar {
-
-    int lanzar();
+    public abstract int lanzar();
 }

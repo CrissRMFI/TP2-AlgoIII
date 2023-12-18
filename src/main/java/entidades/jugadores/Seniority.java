@@ -5,9 +5,9 @@ import entidades.sistemaTurnos.Turno;
 
 public interface Seniority {
 
-    Seniority ascenderSeniority(Turno turno);
+    public abstract Seniority ascenderSeniority(Turno turno);
 
-    void aumentarEnergia(Energia energia);
+    public abstract void aumentarEnergia(Energia energia);
 
-    String descripcion();
+    public abstract String descripcion();
 }

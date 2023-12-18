@@ -1,61 +1,32 @@
 @startuml Gladiador
 
 class Gladiador {
-    + Gladiador(nombre: String)
-    + ascenderSeniority(): void
-    + moverse(casillero: Casillero): void
-    + obtenerElementos(): void
-    + perderTurnos(turnos: Turno): void
-    + finalizarTurno(algoRoma: AlgoRoma): void
-    + recibirDanio(energia: Energia): void
-    + defenderse(): void
-    + equipar(): void
-    + esEquipoMaximo(): boolean
-    + compararEquipo(equipo: JerarquiaEquipos): boolean
-    + miDescripcion(): String
+    +Gladiador(nombre: String)
+    +moverse(mapa: Mapa)
+    +defenderse()
+    +equipar()
+    +esEquipoMaximo(): boolean
+    +compararEquipo(equipo: JerarquiaEquipos): boolean
+    +miDescripcion(): String
 }
 
-
-abstract class Jugador{
-    #energia: Energia
-    #dispositoDeAzar: dispositivoDeAzar
-    #turno: Turno
-    #nombre: String
-    #casillero: Casillero
-    +afectarEnergia(energia: Energia): void
-    +compararSalud(energia: Energia): void
-    +habilitar(): void
-    +agregarDispositivoAzar(dispositivoDeAzar: DispositivoDeAzar): void
-    +lanzar(): ValorAzar
-    +yoSoy(): String
-    +posicionar(casillero: Casillero): void
-    +{abstract}moverse(): void
-    +compararPosicion(casillero: Casillero): boolean
-    +{abstract}finalizarTurno (algoRoma: AlgoRoma): void
-    +{abstract}miDescripcion(): String
-    +{abstract}obtenerElementos(): void
+interface Seniority{
+    +{abstract} ascenderSeniority(turno: Turno): Seniority
+    +{abstract} aumentarEnergia(energia: Energia)
+    +{abstract} description(): String
 }
 
-
-interface Seniority {
-    + {abstract}ascenderSeniority(turno: Turno): Seniority
-    + {abstract}aumentarEnergia(energia: Energia): void
-    + {abstract}descripcion(): String
+abstract class Equipo{
+    -jerarquia: JerarquiaEquipos
+    +{abstract}mejorar(): Equipo
+    +{abstract}recibirDanio()
+    +sePuedeMejorar(): boolean
+    +compararEquipo(equipamiento: JerarquiaEquipos): boolean
+    +{abstract} descripcion(): String
 }
 
-abstract class Equipo {
-    # jerarquia: JerarquiaEquipos
-    + {abstract} mejorar(): Equipo
-    + recibirDanio (energia: Energia): void
-    + sePuedeMejorar(): boolean
-    + compararEquipo(equipamiento: JerarquiaEquipos): boolean
-    + interactuar(jugador: Jugador): void
-    + {abstract} descripcion(): String
-}
+Gladiador <|-- Seniority
+Gladiador <|-- Equipo
 
-Jugador <|-- Gladiador
-
-Gladiador --> Seniority
-Gladiador --> Equipo
 
 @enduml
