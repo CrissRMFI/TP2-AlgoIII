@@ -18,6 +18,9 @@ public class SeleccionMapa extends HBox {
         RadioButton radioButton3 = this.crearRadioButton("Mapa Medio", "src/main/java/datos/mapaDeEjemplo2.json");
         RadioButton radioButton4 = this.crearRadioButton("Mapa Dificil", "src/main/java/datos/mapaDeLaCatedra.json");
 
+        radioButton1.setSelected(true);
+        radioButton1.getOnAction().handle(null);
+
         this.getChildren().addAll(radioButton1, radioButton2, radioButton3, radioButton4);
     }
 
