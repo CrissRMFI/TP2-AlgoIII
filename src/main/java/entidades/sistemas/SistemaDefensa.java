@@ -5,13 +5,13 @@ import entidades.premios.JerarquiaEquipos;
 
 public interface SistemaDefensa {
 
-    public abstract void afectarEnergia(Energia energia);
+    void afectarEnergia(Energia energia);
 
-    public abstract void defenderse();
+    void defenderse();
 
-    public abstract void equipar();
+    void equipar();
 
-    public abstract boolean esEquipoMaximo();
+    boolean esEquipoMaximo();
 
-    public abstract boolean compararEquipo(JerarquiaEquipos equipo);
+    boolean compararEquipo(JerarquiaEquipos equipo);
 }
