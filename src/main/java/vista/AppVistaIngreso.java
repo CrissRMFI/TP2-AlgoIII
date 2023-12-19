@@ -4,10 +4,7 @@ import componentes.*;
 import componentes.botones.BotonJuego;
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.AppModelo;
-import entidades.errores.ArchivoNoEncontrado;
-import entidades.errores.CantidadMinimaDeJugadores;
-import entidades.errores.DatoNoEncontrado;
-import entidades.errores.DatoNoValido;
+import entidades.errores.*;
 import entidades.jugadores.Gladiador;
 import entidades.jugadores.Jugador;
 import javafx.geometry.Insets;
@@ -47,19 +44,20 @@ public class AppVistaIngreso extends GridPane {
         this.setVgap(10);
 
         botonIniciar.setOnAction(e -> {
-            int jugadorNumero = 1;
-            for (String nombreJugador : contenedorIngreso.conseguirNombres()) {
-                Jugador jugador = new Gladiador(nombreJugador);
-                modelo.agregarJugador(this.getJugador(jugador, jugadorNumero));
-                jugadorNumero++;
-            }
             try {
+                int jugadorNumero = 1;
+                for (String nombreJugador : contenedorIngreso.conseguirNombres()) {
+                    Jugador jugador = new Gladiador(nombreJugador);
+                    modelo.agregarJugador(this.getJugador(jugador, jugadorNumero));
+                    jugadorNumero++;
+                }
                 controlador.crearJuego(modelo, selectMapa.obtenerRutaMapa());
                 controlador.iniciarJuego(modelo, selectMapa.obtenerRutaMapa());
-            } catch (DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado | CantidadMinimaDeJugadores er) {
+            } catch (DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado | CantidadMinimaDeJugadores |
+                     ElNombreDebeContenerUnMinimoDe4Caracteres er) {
                 modelo.clearJugadores();
-                VentanaCantidadJugadores v = new VentanaCantidadJugadores(Alert.AlertType.WARNING);
-                v.setContentText("LA CANTIDAD DE JUGAODRES DEBE SER DE DOS COMO MINIMO");
+                VentanaErrores v = new VentanaErrores(Alert.AlertType.WARNING);
+                v.setContentText(er.getMessage());
                 v.show();
             }
         });

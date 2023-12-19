@@ -2,6 +2,7 @@ package entidades.jugadores;
 
 
 import entidades.energia.Energia;
+import entidades.errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import entidades.premios.Equipo;
 import entidades.premios.EquipoBase;
 import entidades.premios.JerarquiaEquipos;
@@ -11,7 +12,7 @@ public class Gladiador extends Jugador {
     private Seniority seniority;
     private Equipo equipamiento;
 
-    public Gladiador(String nombre) {
+    public Gladiador(String nombre) throws ElNombreDebeContenerUnMinimoDe4Caracteres {
         super(nombre);
         this.seniority = new Novato();
         this.equipamiento = new EquipoBase();

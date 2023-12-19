@@ -25,6 +25,9 @@ public class TestIntegracion {
     private final Jugador Carpoforo = new Gladiador("Carpoforo");
     private final Jugador Espartaco = new Gladiador("Espartaco");
 
+    public TestIntegracion() throws ElNombreDebeContenerUnMinimoDe4Caracteres {
+    }
+
     private Mapa MapaSoloConUnEquipo() throws DatoNoValido {
         int cantidadCasilleros = 30;
         Interactuable[][] elementosMapa = new Interactuable[cantidadCasilleros][1];

@@ -20,6 +20,9 @@ public class Entrega2 {
     private final Gladiador Carpoforo = new Gladiador("Carpoforo");
     private final Gladiador Espartaco = new Gladiador("Espartaco");
 
+    public Entrega2() throws ElNombreDebeContenerUnMinimoDe4Caracteres {
+    }
+
     public Mapa MapaCatedra(String nombreDelMapa) throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
 
         InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/" + nombreDelMapa);
