@@ -45,12 +45,12 @@ public class AppVistaIngreso extends GridPane {
 
         botonIniciar.setOnAction(e -> {
             try {
-            int jugadorNumero = 1;
-            for (String nombreJugador : contenedorIngreso.conseguirNombres()) {
-                Jugador jugador = new Gladiador(nombreJugador);
-                modelo.agregarJugador(this.getJugador(jugador, jugadorNumero));
-                jugadorNumero++;
-            }
+                int jugadorNumero = 1;
+                for (String nombreJugador : contenedorIngreso.conseguirNombres()) {
+                    Jugador jugador = new Gladiador(nombreJugador);
+                    modelo.agregarJugador(this.getJugador(jugador, jugadorNumero));
+                    jugadorNumero++;
+                }
                 controlador.crearJuego(modelo, selectMapa.obtenerRutaMapa());
                 controlador.iniciarJuego(modelo, selectMapa.obtenerRutaMapa());
             } catch (DatoNoEncontrado | DatoNoValido | ArchivoNoEncontrado | CantidadMinimaDeJugadores |

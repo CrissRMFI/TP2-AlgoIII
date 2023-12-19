@@ -24,10 +24,6 @@ public class Turno {
         this.cantidad--;
     }
 
-    public boolean esMenorAUno() {
-        return this.cantidad < 1;
-    }
-
     public void sumarTurno() {
         this.cantidad++;
     }
