@@ -5,8 +5,8 @@ import entidades.premios.Comida;
 import entidades.premios.Equipamiento;
 import entidades.premios.SinPremio;
 
-public class ConstructorPremio {
-    public Interactuable construirPremio(String tipo) {
+public class ConstructorPremio implements ConstructorInteractuable{
+    public Interactuable construir(String tipo) {
         switch (tipo) {
             case "Comida":
                 return new Comida();

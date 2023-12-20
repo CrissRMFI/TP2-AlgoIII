@@ -17,7 +17,6 @@ public class AlgoRoma {
     private final Mapa mapa;
     private JugadorGanador ganador;
     private Jugador jugadorActual;
-
     private SistemaTurnos sistemaTurnos;
 
     public AlgoRoma(Mapa mapa) {

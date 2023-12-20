@@ -6,11 +6,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class ContenedorIngresoNombres extends GridPane {
 
     private int cantidadMaximaDeJugadores;
+    private LinkedList<TextField> textFields = new LinkedList<>();
 
     public ContenedorIngresoNombres() {
 
@@ -22,20 +22,12 @@ public class ContenedorIngresoNombres extends GridPane {
 
         for (int i = 0; i < cantidadMaximaDeJugadores; i++) {
             TextField input = new InputNombre();
+            textFields.add(input);
             this.addRow(i, input);
         }
     }
 
-    public List<String> conseguirNombres() {
-        LinkedList<String> nombres = new LinkedList<>();
-        for (int i = 0; i < this.cantidadMaximaDeJugadores; i++) {
-            TextField input = (TextField) this.getChildren().get(i);
-            if (!input.getText().isEmpty()) {
-                nombres.add(input.getText());
-            }
-        }
-        return nombres;
+    public LinkedList<TextField> conseguirTextFields(){
+        return this.textFields;
     }
-
-
 }

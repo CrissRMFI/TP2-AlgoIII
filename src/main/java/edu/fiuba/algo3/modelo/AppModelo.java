@@ -23,8 +23,6 @@ public class AppModelo {
     private LinkedList<JugadorVista> jugadores = new LinkedList<>();
     private Mapa mapa;
     private AlgoRoma algoRoma;
-    private String ruta;
-
     private Media media;
     private MediaPlayer mediaPlayer;
 
@@ -33,28 +31,24 @@ public class AppModelo {
         return new MapaVista(ruta, this);
     }
 
-    public void crearJuego(String ruta) throws DatoNoEncontrado, DatoNoValido, ArchivoNoEncontrado, CantidadMinimaDeJugadores {
-        InformacionMapa informacionMapa = new InformacionMapaEnJSON(ruta);
-        this.mapa = new Mapa(informacionMapa);
-        this.ruta = ruta;
-        this.algoRoma = new AlgoRoma(mapa);
+    public void crearAlgoRoma(){
+        this.algoRoma = new AlgoRoma(this.mapa);
+    }
 
-        // TODO: arreglar estooo
-        for (JugadorVista jugadorVista : this.jugadores) {
-            this.algoRoma.agregarJugador(jugadorVista.getJugador());
-        }
-
+    public void comenzarPartida() throws CantidadMinimaDeJugadores {
         this.algoRoma.comenzarPartida();
     }
 
+    public void agregarMapa(Mapa mapa){
+        this.mapa = mapa;
+    }
+
+    public void agregarJugador(Jugador jugador){
+        algoRoma.agregarJugador(jugador);
+    }
 
     public void agregarJugador(JugadorVista jugadorVista) {
-        //if (this.algoRoma != null) {
         this.jugadores.add(jugadorVista);
-        //this.algoRoma.agregarJugador(jugador.getJugador());
-        // } else {
-        //     this.jugadores.clear();
-        //}
     }
 
     public LinkedList<Casillero> getCasilleros() {
