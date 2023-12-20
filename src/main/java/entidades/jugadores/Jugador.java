@@ -18,8 +18,9 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
     protected Casillero casillero;
     protected Turno turno;
 
+
     public Jugador(String nombre) throws NombreDeJugadorConMenosDe4CaracteresExcepcion {
-        if (nombre.trim().length() < 4){
+        if (nombre.trim().length() < 4) {
             throw new NombreDeJugadorConMenosDe4CaracteresExcepcion();
         }
         this.nombre = nombre;

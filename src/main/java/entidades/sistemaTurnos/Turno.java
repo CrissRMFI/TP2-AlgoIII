@@ -30,7 +30,7 @@ public class Turno {
     public boolean esMenorA(Turno turno){
         return this.cantidad < turno.cantidadDeTurnos();
     }
-
+  
     public void sumarTurno() {
         this.cantidad++;
     }

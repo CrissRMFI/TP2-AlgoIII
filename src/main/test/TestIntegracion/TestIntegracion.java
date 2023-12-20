@@ -25,7 +25,9 @@ public class TestIntegracion {
     private final Jugador Carpoforo = new Gladiador("Carpoforo");
     private final Jugador Espartaco = new Gladiador("Espartaco");
 
-    public TestIntegracion() throws DatoNoValido {
+
+    public TestIntegracion() throws NombreDeJugadorConMenosDe4CaracteresExcepcion {
+
     }
 
     private Mapa MapaSoloConUnEquipo() throws DatoNoValido {

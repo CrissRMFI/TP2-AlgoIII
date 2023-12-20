@@ -21,6 +21,9 @@ public class SeleccionMapa extends HBox {
         radioButton1.setSelected(true);
         radioButton1.getOnAction().handle(null);
 
+        radioButton1.setSelected(true);
+        radioButton1.getOnAction().handle(null);
+
         this.getChildren().addAll(radioButton1, radioButton2, radioButton3, radioButton4);
     }
 

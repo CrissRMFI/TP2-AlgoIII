@@ -9,7 +9,7 @@ import entidades.tablero.Mapa;
 public class Gladiador extends Jugador {
     private Seniority seniority;
     private Equipo equipamiento;
-
+  
     public Gladiador(String nombre) throws NombreDeJugadorConMenosDe4CaracteresExcepcion {
         super(nombre);
         this.seniority = new Novato();

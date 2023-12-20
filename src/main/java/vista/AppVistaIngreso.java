@@ -54,6 +54,7 @@ public class AppVistaIngreso extends GridPane {
         BotonHandlerIniciar botonHandlerIniciar = new BotonHandlerIniciar(contenedorIngreso.conseguirTextFields(),
                 controlador, modelo, selectMapa);
         botonIniciar.setOnAction(botonHandlerIniciar);
+
         escena = new Scene(this, 800, 700);
     }
 

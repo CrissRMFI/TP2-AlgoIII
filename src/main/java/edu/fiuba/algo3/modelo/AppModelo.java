@@ -85,6 +85,7 @@ public class AppModelo {
                     break;
                 }
             }
+
         } catch (PartidaFinalizada err) {
             this.mediaPlayer.stop();
             VentanaPartidaFinalizada v = new VentanaPartidaFinalizada(Alert.AlertType.INFORMATION);

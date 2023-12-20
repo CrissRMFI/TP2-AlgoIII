@@ -20,7 +20,7 @@ public class Entrega2 {
     private final Gladiador Carpoforo = new Gladiador("Carpoforo");
     private final Gladiador Espartaco = new Gladiador("Espartaco");
 
-    public Entrega2() throws DatoNoValido {
+    public Entrega2() throws NombreDeJugadorConMenosDe4CaracteresExcepcion {
     }
 
     public Mapa MapaCatedra(String nombreDelMapa) throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
