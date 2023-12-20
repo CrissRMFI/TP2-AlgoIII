@@ -16,7 +16,7 @@ public class InhabilitadoTurnos extends Estado {
     @Override
     public Casillero mover(Mapa mapa, Casillero casillero) {
         turnosRestantes.restarTurno();
-        if (turnosRestantes.esMenorA(new Turno(1))) {
+        if (turnosRestantes.igualACero()) {
             this.jugador.setEstado(new Habilitado(this.jugador));
         }
         return casillero;

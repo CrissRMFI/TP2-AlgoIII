@@ -3,7 +3,7 @@ package entidades.jugadores;
 import entidades.dispositivoDeAzar.Dado;
 import entidades.dispositivoDeAzar.DispositivoDeAzar;
 import entidades.energia.Energia;
-import entidades.errores.NombreDeJugadorConMenosDe4CaracteresExcepcion;
+import entidades.errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
 import entidades.sistemaTurnos.Turno;
 import entidades.sistemas.SistemaDefensa;
 import entidades.tablero.Casillero;
@@ -18,9 +18,10 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
     protected Casillero casillero;
     protected Turno turno;
 
-    public Jugador(String nombre) throws NombreDeJugadorConMenosDe4CaracteresExcepcion {
-        if (nombre.trim().length() < 4){
-            throw new NombreDeJugadorConMenosDe4CaracteresExcepcion();
+
+    public Jugador(String nombre) throws ElNombreDebeContenerUnMinimoDe4Caracteres {
+        if (nombre.length() < 4) {
+            throw new ElNombreDebeContenerUnMinimoDe4Caracteres("El nombre debe contener un minimo de 4 caracteres");
         }
         this.nombre = nombre;
         this.energia = new Energia();

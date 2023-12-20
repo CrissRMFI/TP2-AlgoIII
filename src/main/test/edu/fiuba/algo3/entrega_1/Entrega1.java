@@ -238,7 +238,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 4
-    public void jugadorRecibeComidaEIncrementaSuEnergiaEn15() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void jugadorRecibeComidaEIncrementaSuEnergiaEn15() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido, ElNombreDebeContenerUnMinimoDe4Caracteres {
         Mapa mapa = this.MapaLlenoDeComida();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -264,7 +264,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 5 -> Verificar que si recibe un premio por primera vez obtiene un casco
-    public void jugadorRecibePremioPorPrimeraVezYObtieneCasco() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void jugadorRecibePremioPorPrimeraVezYObtieneCasco() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido, ElNombreDebeContenerUnMinimoDe4Caracteres {
         Mapa mapa = this.MapaLlenoDeEquipamientos();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -289,7 +289,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 6 -> Verificar que si recibe un premio por tercera vez obtiene escudo y espada
-    public void jugadorRecibePremioPorTerceraVezYObtieneEscudoYEspada() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void jugadorRecibePremioPorTerceraVezYObtieneEscudoYEspada() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido, ElNombreDebeContenerUnMinimoDe4Caracteres {
         Mapa mapa = this.MapaLlenoDeEquipamientos();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -347,7 +347,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 8
-    public void SeJuegan8TurnosYJugadoresAsciendenASemiSeniorLoQueAumentaSuEnergiaEn5() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido {
+    public void SeJuegan8TurnosYJugadoresAsciendenASemiSeniorLoQueAumentaSuEnergiaEn5() throws CantidadMinimaDeJugadores, PartidaFinalizada, DatoNoValido, ElNombreDebeContenerUnMinimoDe4Caracteres {
         Mapa mapa = this.MapaVacio();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -467,7 +467,7 @@ public class Entrega1 {
 
     @Test
     //Caso de uso 12
-    public void Pasan30TurnosYNadieLlegoSeTerminaElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, DatoNoValido {
+    public void Pasan30TurnosYNadieLlegoSeTerminaElJuego() throws CantidadMinimaDeJugadores, PartidaFinalizada, PartidaNoFinalizada, DatoNoValido, ElNombreDebeContenerUnMinimoDe4Caracteres {
         Mapa mapa = this.MapaConUnaPiedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
