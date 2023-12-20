@@ -1,0 +1,27 @@
+@startuml algoRoma
+
+package entidades{
+    class AlgoRoma
+
+    package tablero{
+        class Mapa
+    }
+
+    package jugadores{
+        class Jugador
+        class Gladiador
+        interface JugadorGanador
+    }
+
+    package sistemaTurnos{
+        class SistemaTurnos
+        class Turno
+    }
+}
+
+AlgoRoma --> Mapa
+AlgoRoma --> Jugador
+AlgoRoma --> JugadorGanador
+AlgoRoma -> SistemaTurnos
+
+@enduml

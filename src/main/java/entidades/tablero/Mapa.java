@@ -48,7 +48,7 @@ public class Mapa {
         Casillero casilleroLlegada = this.camino.getLast();
 
 
-        if (jugador.compararPosicion(casilleroLlegada)) { // TODO: creo se puede mejorar los ifs
+        if (jugador.compararPosicion(casilleroLlegada)) {
             if (!jugador.esEquipoMaximo()) this.ubicarEnMitadDelCamino(jugador);
             else return true;
         }

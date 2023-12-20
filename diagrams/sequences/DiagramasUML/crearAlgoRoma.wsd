@@ -1,0 +1,13 @@
+@startuml crearAlgoRoma
+
+actor ACTOR
+
+create AlgoRoma as ":AlgoRoma"
+ACTOR -> AlgoRoma: new AlgoRoma(mapa)
+create NoHayGanador as ":NoHayGanador"
+AlgoRoma -> NoHayGanador: <<create>>
+create SistemaTurnos as ":SistemaTurnos"
+AlgoRoma -> SistemaTurnos: new SistemaTurnos(30)
+
+
+@enduml

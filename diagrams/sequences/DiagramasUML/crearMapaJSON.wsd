@@ -1,0 +1,52 @@
+@startuml crearMapaJSON
+
+autonumber
+
+actor ACTOR
+
+create Mapa as ":Mapa"
+ACTOR -> Mapa: new Mapa(informacion)
+
+participant camino as "camino: LinkedList<Casillero>"
+
+participant InformacionMapaEnJSON as "informacion: InformacionMapaEnJSON"
+
+Mapa -> InformacionMapaEnJSON: construirCamino(camino)
+
+create ConstructorPremio as ":ConstructorPremio"
+InformacionMapaEnJSON -> ConstructorPremio: <<create>>
+
+create ConstructorObstaculo as ":ConstructorObstaculo"
+InformacionMapaEnJSON -> ConstructorObstaculo: <<create>>
+
+participant Celda as "celda: JsonNode"
+
+loop Para cada celda
+InformacionMapaEnJSON -> Celda: get("x")
+Celda -> InformacionMapaEnJSON: valorX
+InformacionMapaEnJSON -> Celda: get("y")
+Celda -> InformacionMapaEnJSON: valorY
+create Casillero as ":Casillero"
+InformacionMapaEnJSON -> Casillero: new Casillero(valorX, valorY)
+
+InformacionMapaEnJSON -> Celda: get("premio")
+Celda --> InformacionMapaEnJSON: nombrePremio
+InformacionMapaEnJSON -> ConstructorPremio: construirPremio(nombrePremio)
+ConstructorPremio --> InformacionMapaEnJSON: unPremio
+
+InformacionMapaEnJSON -> Celda: get("obstaculo")
+Celda --> InformacionMapaEnJSON: nombreObstaculo
+InformacionMapaEnJSON -> ConstructorObstaculo: construirObstaculo(nombrePremio)
+ConstructorPremio --> InformacionMapaEnJSON: unObstaculo
+
+InformacionMapaEnJSON -> Casillero: recibirElemento(unPremio)
+InformacionMapaEnJSON -> Casillero: recibirElemento(unObstaculo)
+
+InformacionMapaEnJSON -> camino: add(Casillero)
+
+end
+
+
+
+
+@enduml

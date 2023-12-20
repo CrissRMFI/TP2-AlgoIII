@@ -1,0 +1,16 @@
+@startuml gladiadorSemiSeniorAscenderSeniorityTurno12
+
+participant Gladiador as ":Gladiador"
+participant SemiSenior as ":SemiSenior"
+participant Turno as ":Turno"
+
+Gladiador -> SemiSenior: ascenderSeniority(Turno(12))
+SemiSenior -> Turno: esMayorQue(Turno(11))
+Turno --> SemiSenior: True
+
+create Senior as ":Senior"
+SemiSenior -> Senior: <<create>>
+
+SemiSenior --> Gladiador: Senior
+
+@enduml

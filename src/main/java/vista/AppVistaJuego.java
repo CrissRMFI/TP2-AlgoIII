@@ -27,7 +27,7 @@ public class AppVistaJuego {
             gridPane.add(barraObjetos, 0, 0);
             gridPane.add(mapaVista, 0, 1);
             gridPane.add(panelControl, 0, 2);
-            gridPane.setAlignment(Pos.BASELINE_CENTER);
+            gridPane.setAlignment(Pos.TOP_CENTER);
 
             this.scene = new Scene(gridPane, 1000, 800);
         } catch (ArchivoNoEncontrado e) {

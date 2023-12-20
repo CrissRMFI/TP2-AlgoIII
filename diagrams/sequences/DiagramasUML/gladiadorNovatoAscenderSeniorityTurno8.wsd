@@ -1,0 +1,16 @@
+@startuml gladiadorNovatoAscenderSeniorityTurno8
+
+participant Gladiador as ":Gladiador"
+participant Novato as ":Novato"
+participant Turno as ":Turno"
+
+Gladiador -> Novato: ascenderSeniority(Turno(8))
+Novato -> Turno: esMayorQue(Turno(7))
+Turno --> Novato: True
+
+create SemiSenior as ":SemiSenior"
+Novato -> SemiSenior: <<create>>
+
+Novato --> Gladiador: SemiSenior
+
+@enduml

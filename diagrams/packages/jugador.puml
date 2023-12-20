@@ -1,0 +1,38 @@
+@startuml jugador
+
+package entidades{
+    package jugadores{
+        abstract class Jugador
+        class Gladiador
+        abstract class Estado
+    }
+
+    package energia{
+        class Energia
+    }
+
+    package dispositivoDeAzar{
+        interface DispositivoDeAzar
+        class Dado
+    }
+
+    package sistemaTurnos{
+        class SistemaTurnos
+        class Turno
+    }
+
+    package tablero{
+        class Casillero
+        class Mapa
+    }
+}
+
+Jugador --> Energia
+Jugador --> DispositivoDeAzar
+Jugador --> Estado
+Jugador --> Casillero
+Jugador --> Turno
+
+Jugador <|-- Gladiador
+
+@enduml

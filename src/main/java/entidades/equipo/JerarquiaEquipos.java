@@ -1,4 +1,4 @@
-package entidades.premios;
+package entidades.equipo;
 
 public enum JerarquiaEquipos {
     EQUIPO_BASE,

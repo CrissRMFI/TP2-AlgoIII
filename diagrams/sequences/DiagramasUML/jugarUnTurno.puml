@@ -1,0 +1,34 @@
+@startuml jugarUnTurno
+
+actor ACTOR
+Participant AlgoRoma as ":AlgoRoma"
+Participant Gladiador as "Carpoforo: Gladiador"
+Participant SistemaTurnos as ":SistemaTurnos"
+Participant Novato as ":Novato"
+Participant EquipoBase as ":EquipoBase"
+Participant Mapa as ":Mapa"
+Participant energiaGladiador as ":energiaGladiador"
+Participant Habilitado as ":Habilitado"
+Participant NuevoCasillero as "nuevoCasillero: Casillero"
+
+ACTOR -> AlgoRoma: comenzarPartida()
+AlgoRoma -> SistemaTurnos: comenzarConAleatorio()
+SistemaTurnos --> AlgoRoma: Gladiador
+
+ACTOR -> AlgoRoma: jugarTurno()
+AlgoRoma -> Gladiador: moverse(Mapa)
+
+Gladiador -> Novato: aumentarEnergia(energiaGladiador)
+Novato -> energiaGladiador: afectarEnergia(0);
+
+Gladiador -> Habilitado: mover(mapa, casilleroGladiador)
+Habilitado -> Gladiador: lanzar()
+Gladiador --> Habilitado: posicionesAMover
+Habilitado -> Mapa: obtenerProximoDestino(casilleroGladiador, posicionesAMover)
+Mapa --> Habilitado: casillero
+Habilitado -> NuevoCasillero: entregarElementos(Gladiador)
+Habilitado --> Gladiador: nuevoCasillero
+
+Gladiador -> Novato: ascenderSeniority(turnoGladiador)
+
+@enduml

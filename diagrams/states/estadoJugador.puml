@@ -1,0 +1,12 @@
+@startuml estadoJugador
+
+[*] --> EstadoHabilitado
+EstadoHabilitado ---> EstadoInhabilitadoEnergia: Jugador sin energia
+
+EstadoInhabilitadoEnergia ---> EstadoHabilitado: Jugador tiene energia
+
+EstadoHabilitado ---> EstadoInhabilitadoTurnos: Se inhabilitan turnos de Jugador
+
+EstadoInhabilitadoTurnos -> EstadoHabilitado: Tiene cero turnos inhabilitados
+
+@enduml

@@ -1,4 +1,4 @@
-package entidades.premios;
+package entidades.equipo;
 
 import entidades.energia.Energia;
 

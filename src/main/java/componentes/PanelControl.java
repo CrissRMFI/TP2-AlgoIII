@@ -20,7 +20,6 @@ public class PanelControl extends VBox {
         this.getChildren().add(panelEstadisticasJugadores);
         botonLanzar.setOnAction(e -> {
             try {
-
                 modelo.moverJugador(mapaVista);
                 panelEstadisticasJugadores.actualizarEstadisticas(modelo);
             } catch (PartidaFinalizada | PartidaNoFinalizada err) {

@@ -13,7 +13,7 @@ import entidades.jugadores.Jugador;
 import entidades.obstaculos.Bacanal;
 import entidades.obstaculos.Lesion;
 import entidades.premios.Equipamiento;
-import entidades.premios.JerarquiaEquipos;
+import entidades.equipo.JerarquiaEquipos;
 import entidades.tablero.*;
 import org.junit.Test;
 import org.mockito.Mockito;

@@ -1,0 +1,7 @@
+@startuml comenzarJuego
+
+[*] --> comenzarJuego
+comenzarJuego --> [*]: Tiene menos de dos jugadores
+comenzarJuego --> devolverJugador: Tiene dos o mas jugadores
+
+@enduml

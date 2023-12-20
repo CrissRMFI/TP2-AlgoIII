@@ -2,7 +2,7 @@ package entidades.jugadores;
 
 import entidades.energia.Energia;
 import entidades.errores.NombreDeJugadorConMenosDe4CaracteresExcepcion;
-import entidades.premios.JerarquiaEquipos;
+import entidades.equipo.JerarquiaEquipos;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

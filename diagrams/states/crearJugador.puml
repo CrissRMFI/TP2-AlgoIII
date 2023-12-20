@@ -1,0 +1,11 @@
+@startuml crearUnJugador
+
+[*] --> creoJugador
+creoJugador --> [*]: El nombre tiene menos de 4 caracteres
+creoJugador --> añadoNombre
+añadoNombre --> añadoEnergia
+añadoEnergia --> loHabilito
+loHabilito --> añadoTurnos
+añadoTurnos --> leAgregoUnDado
+
+@enduml

@@ -1,9 +1,9 @@
 package entidades.jugadores;
 
 import entidades.errores.NombreDeJugadorConMenosDe4CaracteresExcepcion;
-import entidades.premios.Equipo;
-import entidades.premios.EquipoBase;
-import entidades.premios.JerarquiaEquipos;
+import entidades.equipo.Equipo;
+import entidades.equipo.EquipoBase;
+import entidades.equipo.JerarquiaEquipos;
 import entidades.tablero.Mapa;
 
 public class Gladiador extends Jugador {

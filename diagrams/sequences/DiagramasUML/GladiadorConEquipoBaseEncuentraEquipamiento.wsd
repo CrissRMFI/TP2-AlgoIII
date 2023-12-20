@@ -1,0 +1,20 @@
+@startuml GladiadorConEquipoBaseEncuentraEquipamiento
+
+participant Habilitado as ":Habilitado"
+participant Gladiador as ":Gladiador"
+
+participant Casillero as ":Casillero"
+participant Equipamiento as ":Equipamiento"
+
+participant EquipoBase as ":EquipoBase"
+
+Habilitado -> Casillero: entregarElementos(Gladiador)
+Casillero -> Equipamiento: interactuar(Gladiador)
+
+Equipamiento -> Gladiador: equipar()
+Gladiador -> EquipoBase: mejorar()
+create Casco as ":Casco"
+EquipoBase -> Casco: <<create>>
+EquipoBase --> Gladiador: Casco
+
+@enduml

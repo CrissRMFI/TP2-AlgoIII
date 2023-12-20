@@ -1,0 +1,23 @@
+@startuml GladiadorAsisteAUnBacanal
+
+participant Habilitado as ":Habilitado"
+participant Gladiador as ":Gladiador"
+
+participant Casillero as ":Casillero"
+participant Bacanal as ":Bacanal"
+
+participant EnergiaG as "energiaGladiador: Energia"
+
+Habilitado -> Casillero: entregarElementos(Gladiador)
+Casillero -> Bacanal: interactuar(Gladiador)
+
+Bacanal -> Gladiador: lanzar()
+Gladiador --> Bacanal: valor
+
+create Energia as ":Energia"
+Bacanal -> Energia: new Energia(-4*valor)
+
+Bacanal -> Gladiador: afectarEnergia(Energia)
+Gladiador -> EnergiaG: afectarEnergia(Energia)
+
+@enduml

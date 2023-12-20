@@ -11,7 +11,7 @@ import entidades.energia.Energia;
 import entidades.jugadores.Gladiador;
 import entidades.obstaculos.Fiera;
 import entidades.premios.Equipamiento;
-import entidades.premios.JerarquiaEquipos;
+import entidades.equipo.JerarquiaEquipos;
 import entidades.tablero.*;
 import org.junit.Test;
 import org.mockito.Mockito;

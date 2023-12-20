@@ -1,0 +1,21 @@
+@startuml crearGladiador
+
+Actor ACTOR
+
+create Gladiador as "Carpoforo: Gladiador"
+ACTOR -> Gladiador: new Gladiador("Carpoforo")
+create Energia as ":Energia"
+Gladiador -> Energia: <<create>>
+create Habilitado as ":Habilitado"
+Gladiador -> Habilitado: new Habilitado(Gladiador)
+create Turno as ":Turno"
+Gladiador -> Turno: <<create>>
+create Dado as ":DispositivoDeAzar"
+Gladiador -> Dado: new Dado(6)
+create Novato as ":Novato"
+Gladiador -> Novato: <<create>>
+create EquipoBase as ":EquipoBase"
+Gladiador -> EquipoBase: <<create>>
+
+
+@enduml

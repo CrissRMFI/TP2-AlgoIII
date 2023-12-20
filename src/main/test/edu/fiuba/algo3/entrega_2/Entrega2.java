@@ -6,7 +6,7 @@ import entidades.dispositivoDeAzar.Dado;
 import entidades.energia.Energia;
 import entidades.errores.*;
 import entidades.jugadores.Gladiador;
-import entidades.premios.JerarquiaEquipos;
+import entidades.equipo.JerarquiaEquipos;
 import entidades.tablero.Casillero;
 import entidades.tablero.Mapa;
 import org.junit.jupiter.api.Test;
