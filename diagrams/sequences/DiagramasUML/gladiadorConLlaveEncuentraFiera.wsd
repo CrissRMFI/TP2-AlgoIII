@@ -1,0 +1,20 @@
+@startuml gladiadorConLlaveEncuentraUnaFiera
+
+participant Habilitado as ":Habilitado"
+participant Gladiador as ":Gladiador"
+
+participant Casillero as ":Casillero"
+participant Fiera as ":Fiera"
+
+participant Llave as ":Llave"
+participant energiaGladiador as "energiaGladiador:Energia"
+
+Habilitado -> Casillero: entregarElementos(Gladiador)
+Casillero -> Fiera: interactuar(Gladiador)
+
+Fiera -> Gladiador: defenderse()
+Gladiador -> Llave: recibirDanio(energiaGladiador)
+Llave -> energiaGladiador: afectarEnergia(Energia(0))
+
+
+@enduml

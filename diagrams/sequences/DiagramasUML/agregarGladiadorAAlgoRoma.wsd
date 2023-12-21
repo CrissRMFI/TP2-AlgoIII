@@ -1,0 +1,19 @@
+@startuml agregarGladiadorAAlgoRoma
+
+Actor ACTOR
+Participant AlgoRoma as ":AlgoRoma"
+Participant Gladiador as ":Gladiador"
+Participant Mapa as ":Mapa"
+collections Camino as "camino"
+Participant SistemaTurnos as ":SistemaTurnos"
+
+ACTOR -> AlgoRoma: agregarJugador(Gladiador)
+AlgoRoma -> Mapa: ubicarEnInicio(Gladiador)
+Mapa -> Camino: get(0)
+Camino --> Mapa: Casillero
+Mapa -> Gladiador: posicionar(Casillero)
+
+AlgoRoma -> SistemaTurnos: agregarJugador(Gladiador)
+
+
+@enduml

@@ -1,11 +1,11 @@
 package entidades.sistemas;
 
 import entidades.energia.Energia;
-import entidades.premios.JerarquiaEquipos;
+import entidades.equipo.JerarquiaEquipos;
 
 public interface SistemaDefensa {
 
-    void recibirDanio(Energia energia);
+    void afectarEnergia(Energia energia);
 
     void defenderse();
 

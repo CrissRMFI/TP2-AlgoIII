@@ -1,10 +1,9 @@
 package entidades.jugadores;
 
-
 import entidades.dispositivoDeAzar.Dado;
 import entidades.dispositivoDeAzar.DispositivoDeAzar;
 import entidades.energia.Energia;
-import entidades.errores.ElNombreDebeContenerUnMinimoDe4Caracteres;
+import entidades.errores.NombreDeJugadorConMenosDe4CaracteresExcepcion;
 import entidades.sistemaTurnos.Turno;
 import entidades.sistemas.SistemaDefensa;
 import entidades.tablero.Casillero;
@@ -19,18 +18,19 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
     protected Casillero casillero;
     protected Turno turno;
 
-    public Jugador(String nombre) throws ElNombreDebeContenerUnMinimoDe4Caracteres {
-        if (nombre.length() < 4) {
-            throw new ElNombreDebeContenerUnMinimoDe4Caracteres("El nombre debe contener un minimo de 4 caracteres");
+
+    public Jugador(String nombre) throws NombreDeJugadorConMenosDe4CaracteresExcepcion {
+        if (nombre.trim().length() < 4) {
+            throw new NombreDeJugadorConMenosDe4CaracteresExcepcion();
         }
         this.nombre = nombre;
         this.energia = new Energia();
         this.estado = new Habilitado(this);
         this.turno = new Turno();
-        this.dispositivoDeAzar = new Dado();
+        this.dispositivoDeAzar = new Dado(6);
     }
 
-
+    @Override
     public void afectarEnergia(Energia energia) {
         this.energia.afectarEnergia(energia);
     }
@@ -38,7 +38,6 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
     public boolean compararSalud(Energia energia) {
         return this.energia.comparar(energia);
     }
-
 
     public void agregarDispositivoAzar(DispositivoDeAzar dispositivoDeAzar) {
         this.dispositivoDeAzar = dispositivoDeAzar;
@@ -58,12 +57,11 @@ public abstract class Jugador implements SistemaDefensa, JugadorGanador {
     }
 
     public boolean compararPosicion(Casillero casillero) {
-        return this.casillero.equals(casillero);
+        return this.casillero.esIgualQue(casillero);
     }
 
     public void setEstado(Estado estado) {
         this.estado = estado;
-        this.estado.setJugador(this);
     }
 
     public boolean tengoEnergia() {

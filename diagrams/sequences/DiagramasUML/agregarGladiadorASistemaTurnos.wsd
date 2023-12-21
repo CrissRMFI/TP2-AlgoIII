@@ -1,0 +1,13 @@
+@startuml agregarGladiadorASistemaTurnos
+
+participant AlgoRoma as ":AlgoRoma"
+participant Gladiador as ":Gladiador"
+participant SistemaTurnos as ":SistemaTurnos"
+collections jugadores
+participant Turno as "turnosPorRonda: Turno"
+
+AlgoRoma -> SistemaTurnos: agregarJugador(Gladiador)
+SistemaTurnos -> jugadores: add(Gladiador)
+SistemaTurnos -> Turno: sumarTurno()
+
+@enduml

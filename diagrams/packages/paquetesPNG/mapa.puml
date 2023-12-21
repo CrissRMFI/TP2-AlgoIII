@@ -1,0 +1,38 @@
+@startuml mapa
+
+package entidades{
+    package tablero{
+        class Mapa
+        class Casillero
+    }
+
+    package constructores{
+        interface ConstructorInteractuable
+        class ConstructorPremio
+        class ConstructorObstaculo
+    }
+
+    interface Interactuable
+}
+
+package datos{
+    class InformacionJSON
+    interface InformacionMapa
+    class InformacionMapaEnJSON
+}
+
+Mapa "1" --> "*" Casillero
+Mapa ..> InformacionMapa
+
+InformacionMapa <|-- InformacionMapaEnJSON
+InformacionMapaEnJSON ..> InformacionJSON
+InformacionMapaEnJSON ..> ConstructorObstaculo
+InformacionMapaEnJSON ..> ConstructorPremio
+
+ConstructorInteractuable <|-- ConstructorPremio
+ConstructorInteractuable <|-- ConstructorObstaculo
+
+ConstructorPremio ..> Interactuable
+ConstructorObstaculo ..> Interactuable
+
+@enduml

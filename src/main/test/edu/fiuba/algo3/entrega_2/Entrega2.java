@@ -6,7 +6,7 @@ import entidades.dispositivoDeAzar.Dado;
 import entidades.energia.Energia;
 import entidades.errores.*;
 import entidades.jugadores.Gladiador;
-import entidades.premios.JerarquiaEquipos;
+import entidades.equipo.JerarquiaEquipos;
 import entidades.tablero.Casillero;
 import entidades.tablero.Mapa;
 import org.junit.jupiter.api.Test;
@@ -20,12 +20,12 @@ public class Entrega2 {
     private final Gladiador Carpoforo = new Gladiador("Carpoforo");
     private final Gladiador Espartaco = new Gladiador("Espartaco");
 
-    public Entrega2() throws ElNombreDebeContenerUnMinimoDe4Caracteres {
+    public Entrega2() throws NombreDeJugadorConMenosDe4CaracteresExcepcion {
     }
 
     public Mapa MapaCatedra(String nombreDelMapa) throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
 
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/" + nombreDelMapa);
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/resources/mapas/" + nombreDelMapa);
 
         return new Mapa(informacionMapaEnJSON);
 
@@ -33,7 +33,7 @@ public class Entrega2 {
 
     public Mapa MapaCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
 
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaDeLaCatedra.json");
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/resources/mapas/mapaDeLaCatedra.json");
 
 
         return new Mapa(informacionMapaEnJSON);
@@ -48,58 +48,58 @@ public class Entrega2 {
     @Test
     //Caso de uso 13 (2/7)
     public void siElArchivoNoTieneDatoMapaLanzaExcepcion() {
-        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/datos/mapaSinDatoMapa.json"));
+        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/resources/mapas/mapaSinDatoMapa.json"));
     }
 
     @Test
     //Caso de uso 13 (3/7)
     public void siElArchivoNoTieneDatoAnchoLanzaExcepcion() {
-        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/datos/mapaSinDatoAncho.json"));
+        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/resources/mapas/mapaSinDatoAncho.json"));
     }
 
     @Test
     //Caso de uso 13 (4/7)
     public void siElArchivoNoTieneDatoLargoLanzaExcepcion() {
-        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/datos/mapaSinDatoLargo.json"));
+        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/resources/mapas/mapaSinDatoLargo.json"));
     }
 
     @Test
     //Caso de uso 13 (5/7)
     public void siElDatoAnchoNoEsUnNumeroLanzaExcepcion() {
-        assertThrows(DatoNoValido.class, () -> new InformacionMapaEnJSON("src/main/java/datos/mapaConDatoAnchoNoSiendoUnNumero.json"));
+        assertThrows(DatoNoValido.class, () -> new InformacionMapaEnJSON("src/main/resources/mapas/mapaConDatoAnchoNoSiendoUnNumero.json"));
     }
 
     @Test
     //Caso de uso 13 (6/7)
     public void siElDatoAnchoEsMenorAUnoLanzaExcepcion() {
-        assertThrows(DatoFueraDeRango.class, () -> new InformacionMapaEnJSON("src/main/java/datos/mapaConDatoAnchoNegativo.json"));
+        assertThrows(DatoFueraDeRango.class, () -> new InformacionMapaEnJSON("src/main/resources/mapas/mapaConDatoAnchoNegativo.json"));
     }
 
     @Test
     //Caso de uso 13 (7/7)
     public void siElDatoLargoEsMenorAUnoLanzaExcepcion() {
-        assertThrows(DatoFueraDeRango.class, () -> new InformacionMapaEnJSON("src/main/java/datos/mapaConDatoLargoNegativo.json"));
+        assertThrows(DatoFueraDeRango.class, () -> new InformacionMapaEnJSON("src/main/resources/mapas/mapaConDatoLargoNegativo.json"));
     }
 
     /*
     @Test
     //Caso de uso 14 (1/4)
     public void elObstaculoNoEsValidoYLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
-        InformacionMapaEnJSON infoMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConObstaculoRobin.json");
+        InformacionMapaEnJSON infoMapaEnJSON = new InformacionMapaEnJSON("src/main/resources/mapas/mapaConObstaculoRobin.json");
         assertThrows(InteractuableNoValido.class, () -> new Mapa(infoMapaEnJSON));
     }
 
     @Test
     //Caso de uso 14 (2/4)
     public void elPremioNoEsValidoYLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConPremioFalso.json");
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/resources/mapas/mapaConPremioFalso.json");
         assertThrows(DatoNoValido.class, () -> new Mapa(informacionMapaEnJSON));
     }
 */
 
     @Test
     //Caso de uso 14 (3/4)
-    public void elJugadorRecibeComidaYAumentaSuVidaEn15() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void elJugadorRecibeComidaYAumentaSuVidaEn15() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -150,7 +150,7 @@ public class Entrega2 {
 
     @Test
     //Caso de uso 14 (4/4)
-    public void elJugadorEsAtacadoPorUnaFieraYPierde20DeEnergia() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void elJugadorEsAtacadoPorUnaFieraYPierde20DeEnergia() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Gladiador gladiadorQueJugo;
@@ -175,52 +175,52 @@ public class Entrega2 {
 
     @Test
     public void siElArchivoNoTieneDatoCaminoLanzaExcepcion() {
-        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/datos/mapaSinDatoCamino.json"));
+        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/resources/mapas/mapaSinDatoCamino.json"));
     }
 
     @Test
     public void siElArchivoNoTieneDatoCeldasLanzaExcepcion() {
-        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/datos/mapaSinDatoCeldas.json"));
+        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/resources/mapas/mapaSinDatoCeldas.json"));
     }
 
     @Test
     public void siElArchivoNoTieneNingunaCeldaLanzaExcepcion() {
-        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/java/datos/mapaSinCeldas.json"));
+        assertThrows(DatoNoEncontrado.class, () -> new InformacionMapaEnJSON("src/main/resources/mapas/mapaSinCeldas.json"));
     }
 
     @Test
     public void siElValorXDeUnaCeldaEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConValorXDeCeldaNegativo.json");
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/resources/mapas/mapaConValorXDeCeldaNegativo.json");
         assertThrows(DatoFueraDeRango.class, () -> new Mapa(informacionMapaEnJSON));
     }
 
     @Test
     public void siElValorXDeUnaCeldaEsMayorALargoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConValorXDeCeldaFueraDeRango.json");
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/resources/mapas/mapaConValorXDeCeldaFueraDeRango.json");
         assertThrows(DatoFueraDeRango.class, () -> new Mapa(informacionMapaEnJSON));
     }
 
     @Test
     public void siElValorYDeUnaCeldaEsMayorALargoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConValorYDeCeldaFueraDeRango.json");
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/resources/mapas/mapaConValorYDeCeldaFueraDeRango.json");
         assertThrows(DatoFueraDeRango.class, () -> new Mapa(informacionMapaEnJSON));
     }
 
     @Test
     public void siElValorYDeUnaCeldaEsMenorAUnoLanzaExcepcion() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido {
-        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConValorYCero.json");
+        InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/resources/mapas/mapaConValorYCero.json");
         assertThrows(DatoFueraDeRango.class, () -> new Mapa(informacionMapaEnJSON));
     }
 
     // @Test
     //public void elTipoDeCeldaEsBatman() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido{
-    //    InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/java/datos/mapaConCeldaTipoBatman.json");
+    //    InformacionMapaEnJSON informacionMapaEnJSON = new InformacionMapaEnJSON("src/main/resources/mapas/mapaConCeldaTipoBatman.json");
     //    assertThrows(DatoNoValido.class, () -> new Mapa(informacionMapaEnJSON));
     //}
 
 
     @Test
-    public void RevisandoCelda2DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda2DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Gladiador gladiadorQueJugo;
@@ -247,7 +247,7 @@ public class Entrega2 {
 
 
     @Test
-    public void RevisandoCelda3DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda3DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Gladiador gladiadorQueJugo;
@@ -274,7 +274,7 @@ public class Entrega2 {
     }
 
     @Test
-    public void RevisandoCelda4DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda4DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -300,7 +300,7 @@ public class Entrega2 {
     }
 
     @Test
-    public void RevisandoCelda5DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda5DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra("mapaDeLaCatedra.json");
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -326,7 +326,7 @@ public class Entrega2 {
     }
 
     @Test
-    public void RevisandoCelda6DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda6DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -354,7 +354,7 @@ public class Entrega2 {
 
 
     @Test
-    public void RevisandoCelda7DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda7DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -383,7 +383,7 @@ public class Entrega2 {
 
 
     @Test
-    public void RevisandoCelda36DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda36DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -413,7 +413,7 @@ public class Entrega2 {
 
 
     @Test
-    public void RevisandoCelda37DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda37DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -442,7 +442,7 @@ public class Entrega2 {
     }
 
     @Test
-    public void RevisandoCelda38DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void RevisandoCelda38DeMapaDeCatedra() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);
@@ -471,7 +471,7 @@ public class Entrega2 {
     }
 
     @Test
-    public void ComoCelda39DeMapaDeCatedraEsLaUltimaEntoncesTerminamosEnLaCelda20() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, ElNombreDebeContenerUnMinimoDe4Caracteres, PartidaFinalizada {
+    public void ComoCelda39DeMapaDeCatedraEsLaUltimaEntoncesTerminamosEnLaCelda20() throws ArchivoNoEncontrado, DatoNoEncontrado, DatoNoValido, CantidadMinimaDeJugadores, NombreDeJugadorConMenosDe4CaracteresExcepcion, PartidaFinalizada {
         Mapa mapa = this.MapaCatedra();
         AlgoRoma algoRoma = new AlgoRoma(mapa);
         Dado dado = Mockito.mock(Dado.class);

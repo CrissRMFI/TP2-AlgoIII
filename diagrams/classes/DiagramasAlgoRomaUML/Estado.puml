@@ -1,0 +1,34 @@
+@startuml Estado
+
+abstract class Estado{
+    #jugador: Jugador
+    +Estado(estado: Estado)
+    +{abstract}mover(mapa: Mapa, casillero: Casillero): Casillero
+}
+
+
+class Habilitado{
+    +Habilitado(jugador: Jugador)
+    +mover(mapa: Mapa, casillero: Casillero): Casillero
+}
+
+
+class InHabilitadoEnergia{
+    -energiaExtraAlPasarTurno: Energia
+    +InHabilitadoEnergia(jugador: Jugador)
+    +mover(mapa: Mapa, casillero: Casillero): Casillero
+}
+
+
+class InhabilitadoTurnos{
+    -turnosRestantes: Turno
+    +InhabilitadoTurnos(jugador: Jugador, turnosRestantes: Turno)
+    +mover(mapa: Mapa, casillero: Casillero): Casillero
+}
+
+
+Estado <|-- Habilitado
+Estado <|-- InhabilitadoTurnos
+Estado <|--- InHabilitadoEnergia
+
+@enduml

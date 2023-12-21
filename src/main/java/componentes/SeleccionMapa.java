@@ -13,10 +13,13 @@ public class SeleccionMapa extends HBox {
     public SeleccionMapa() {
         this.setSpacing(15);
 
-        RadioButton radioButton1 = this.crearRadioButton("Mapa Catedra", "src/main/java/datos/mapaDeLaCatedra.json");
-        RadioButton radioButton2 = this.crearRadioButton("Mapa Facil", "src/main/java/datos/mapaDeEjemplo.json");
-        RadioButton radioButton3 = this.crearRadioButton("Mapa Medio", "src/main/java/datos/mapaDeEjemplo2.json");
-        RadioButton radioButton4 = this.crearRadioButton("Mapa Dificil", "src/main/java/datos/mapaDeLaCatedra.json");
+        RadioButton radioButton1 = this.crearRadioButton("Mapa Catedra", "src/main/resources/mapas/mapaDeLaCatedra.json");
+        RadioButton radioButton2 = this.crearRadioButton("Mapa Facil", "src/main/resources/mapas/mapaDeEjemplo.json");
+        RadioButton radioButton3 = this.crearRadioButton("Mapa Medio", "src/main/resources/mapas/mapaDeEjemplo2.json");
+        RadioButton radioButton4 = this.crearRadioButton("Mapa Dificil", "src/main/resources/mapas/mapaDeLaCatedra.json");
+
+        radioButton1.setSelected(true);
+        radioButton1.getOnAction().handle(null);
 
         radioButton1.setSelected(true);
         radioButton1.getOnAction().handle(null);

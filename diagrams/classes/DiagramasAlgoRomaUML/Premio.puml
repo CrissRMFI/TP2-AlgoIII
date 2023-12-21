@@ -1,0 +1,29 @@
+@startuml Premio
+
+interface Interactuable{
+    +{abstract} interactuar(jugador: Jugador)
+}
+
+
+class SinPremio{
+    +interactuar(jugador: Jugador)
+}
+
+
+class Comida{
+    +interactuar(jugador: Jugador)
+    +entregarEnergia(): Energia
+}
+
+
+class Equipamiento{
+    +interactuar(jugador: Jugador)
+}
+
+
+Interactuable <|... SinPremio
+Interactuable <|.. Comida
+Interactuable <|... Equipamiento
+
+
+@enduml

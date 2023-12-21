@@ -1,0 +1,20 @@
+@startuml GladiadorConArmaduraEncuentraEquipamiento
+
+participant Habilitado as ":Habilitado"
+participant Gladiador as ":Gladiador"
+
+participant Casillero as ":Casillero"
+participant Equipamiento as ":Equipamiento"
+
+participant Armadura as ":Armadura"
+
+Habilitado -> Casillero: entregarElementos(Gladiador)
+Casillero -> Equipamiento: interactuar(Gladiador)
+
+Equipamiento -> Gladiador: equipar()
+Gladiador -> Armadura: mejorar()
+create EscudoYEspada as ":EscudoYEspada"
+Armadura -> EscudoYEspada: <<create>>
+Armadura --> Gladiador: EscudoYEspada
+
+@enduml

@@ -16,11 +16,11 @@ public class CasilleroCamino extends GridPane {
     private int pos;
     private Casillero casillero;
 
-    public CasilleroCamino(Casillero casillero) {
+    public CasilleroCamino(Casillero casillero, int tamanio) {
         this.casillero = casillero;
-        this.setMinSize(65, 65);
-        this.setPrefSize(65, 65);
-        this.setMaxSize(65, 65);
+        this.setMinSize(tamanio, tamanio);
+        this.setPrefSize(tamanio, tamanio);
+        this.setMaxSize(tamanio, tamanio);
 
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setPercentWidth(20);
@@ -77,6 +77,6 @@ public class CasilleroCamino extends GridPane {
     }
 
     public boolean comparar(Casillero casillero) {
-        return this.casillero.comparar(casillero);
+        return this.casillero.esIgualQue(casillero);
     }
 }

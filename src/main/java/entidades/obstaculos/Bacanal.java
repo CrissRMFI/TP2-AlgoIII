@@ -1,10 +1,11 @@
 package entidades.obstaculos;
 
 
+import entidades.Interactuable;
 import entidades.energia.Energia;
 import entidades.jugadores.Jugador;
 
-public class Bacanal extends Obstaculo {
+public class Bacanal implements Interactuable {
 
     private final int proporcion;
 
@@ -17,6 +18,6 @@ public class Bacanal extends Obstaculo {
     public void interactuar(Jugador jugador) {
         int valor = jugador.lanzar();
         Energia energia = new Energia(-proporcion * valor);
-        jugador.recibirDanio(energia);
+        jugador.afectarEnergia(energia);
     }
 }

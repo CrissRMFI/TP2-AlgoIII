@@ -1,44 +1,110 @@
-@startuml
-
-interface SistemaDeTurnos {
-    + finalizarTurno(): void
-    + perderTurnos(): void
-    + habilitar(): boolean
-}
-
-interface SistemaDeDefensa {
-    + recibirDanio(energia: Energia): void
-    + defenderse(): void
-    + equipar(): void
-    + esEquipoMaximo(): boolean
-}
-
-interface JugadorGanador {
-    + yoSoy(): String
-}
-
-Jugador ..|> SistemaDeTurnos
-Jugador ..|> SistemaDeDefensa
-Jugador ..|> JugadorGanador
+@startuml Jugador
 
 abstract class Jugador{
-    #energia: Energia
-    #dispositoDeAzar: dispositivoDeAzar
-    #turno: Turno
     #nombre: String
-    #casillero: Casillero
+    +Jugador(nombre: String)
     +afectarEnergia(energia: Energia)
-    +compararSalud(energia: Energia)
-    +habilitar()
-    +agregarDispositivoAzar(dispositivoDeAzar: DispositivoDeAzar)
-    +lanzar(): ValorAzar
+    +lanzar(): int
     +yoSoy(): String
     +posicionar(casillero: Casillero)
-    +{abstract}moverse()
     +compararPosicion(casillero: Casillero): boolean
-    +{abstract}finalizarTurno (algoRoma: AlgoRoma);
-    +{abstract}miDescripcion(): String
-    +{abstract}obtenerElementos();
+    +setEstado(estado: Estado)
+    +tengoEnergia(): boolean
+    +miPosicion(): Casillero
+    +{abstract} miDescripcion(): String
+    +{abstract} moverse(mapa: Mapa)
 }
+
+
+class Energia{
+    -disponible: int
+    +Energia(disponible: int)
+    #cantidadDeEnergia(): int
+    +afectarEnergia(energia: Energia)
+    +tengoEnergia(): boolean
+    +comparar(energia: Energia): boolean
+    +descripcion(): String
+}
+
+
+interface DispositivoDeAzar{
+    +{abstract}lanzar(): int
+}
+
+
+abstract class Estado{
+    #jugador: Jugador
+    +Estado(estado: Estado)
+    +mover(mapa: Mapa, casillero: Casillero)
+}
+
+
+class Turno{
+    #cantidad: int
+    +Turno(cantidad: int)
+    -cantidadDeTurnos(): int
+    +finalizarTurno()
+    +esMayorQue(turno: Turno): boolean
+    +restarTurno()
+    +esMenorA(turno: Turno): boolean
+    +sumarTurno()
+    +esIgualA(turno: Turno): boolean
+}
+
+
+class Casillero{
+    #elementos: LinkedList<Interactuable>
+    #x: int
+    #y: int
+    +Casillero(x: int, y: int)
+    +recibirElemento(elemento: Interactuable)
+    +entregarElementos(jugador: Jugador)
+    +esIgualQue(casillero: Casillero): boolean
+}
+
+
+interface SistemaDefensa{
+    +{abstract}afectarEnergia(energia: Energia)
+    +{abstract}defenderse()
+    +{abstract}equipar()
+    +{abstract}esEquipoMaximo()
+    +{abstract}compararEquipo(equipo: JerarquiaEquipos)
+}
+
+interface JugadorGanador{
+    +{abstract}yoSoy(): String
+}
+
+class Gladiador {
+    -seniority: Seniority
+    -equipamiento: Equipo
+    +Gladiador(nombre: String)
+    +moverse(mapa: Mapa)
+    +defenderse()
+    +equipar()
+    +esEquipoMaximo(): boolean
+    +compararEquipo(equipo: JerarquiaEquipos): boolean
+    +miDescripcion(): String
+}
+
+
+SistemaDefensa <|.. Jugador
+JugadorGanador <|.. Jugador
+
+
+Estado -[hidden]> Jugador
+
+Jugador <|--- Gladiador
+
+Jugador --> Energia
+Estado <--o Jugador
+Jugador ---> Turno
+Jugador --> Casillero
+Jugador -> DispositivoDeAzar
+
+
+
+
+
 
 @enduml

@@ -1,0 +1,29 @@
+@startuml interactuable
+
+package componentes{
+    interface Interactuable
+
+    package premios{
+        class Comida
+        class SinPremio
+        class Equipamiento
+    }
+
+    package obstaculos{
+        class Bacanal
+        class Fiera
+        class Lesion
+        class SinObstaculo
+    }
+}
+
+Interactuable <|. Comida
+Interactuable <|. SinPremio
+Interactuable <|. Equipamiento
+
+Interactuable <|.. Bacanal
+Interactuable <|.. Fiera
+Interactuable <|.. Lesion
+Interactuable <|.. SinObstaculo
+
+@enduml

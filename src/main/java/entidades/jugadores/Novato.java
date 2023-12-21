@@ -11,7 +11,7 @@ public class Novato implements Seniority {
 
     @Override
     public Seniority ascenderSeniority(Turno turno) {
-        if (turno.puedeAscender(turnosParaEvolucionar)) {
+        if (turno.esMayorQue(turnosParaEvolucionar)) {
             return new SemiSenior();
         }
         return this;

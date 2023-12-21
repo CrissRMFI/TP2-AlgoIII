@@ -1,4 +1,4 @@
-@startuml
+@startuml InformacionMapa
 
 interface InformacionMapa{
     +{abstract}construirCamino(LinkedList<Casillero> casilleros)
@@ -10,10 +10,8 @@ class InformacionMapaEnJSON{
     -celdas: JsonNode
     +InformacionMapaEnJSON(rutaArchivo: String)
     +construirCamino(camino: LinkedList<Casillero>)
-    +conseguirAncho(): int
-    +conseguirAlto(): int
-    +conseguirNumero(dato: String, informacion: JsonNode, limiteMaximo:int): int
-    +revisarSiLosDatosNecesariosEstan(informacion: JsonNode)
+    -conseguirNumero(dato: String, informacion: JsonNode, limiteMaximo:int): int
+    -revisarSiLosDatosNecesariosEstan(informacion: JsonNode)
 }
 
 class InformacionJSON{
@@ -31,18 +29,24 @@ class ConstructorObstaculo{
 }
 
 class InformacionMapaLinealEnMatriz{
-    +informacionMapa: Interactuable[][] informacionMapa
     +InformacionMapaLinealEnMatriz(informacion: Interactuable[][])
     +construirCamino(camino: LinkedList<Casillero>)
 }
 
+interface Interactuable{
+    +{abstract} interactuar(jugador: Jugador)
+}
 
+InformacionMapa <|.. InformacionMapaEnJSON
+InformacionMapa <|.. InformacionMapaLinealEnMatriz
 
-InformacionMapa <|-- InformacionMapaEnJSON
-InformacionMapa <|-- InformacionMapaLinealEnMatriz
-
-InformacionMapaEnJSON ..> InformacionJSON
+InformacionMapaEnJSON ...> InformacionJSON
 InformacionMapaEnJSON ..> ConstructorObstaculo
 InformacionMapaEnJSON ..> ConstructorPremio
+
+ConstructorObstaculo ..> Interactuable
+ConstructorPremio ..> Interactuable
+
+InformacionMapaLinealEnMatriz "1 " --> "*" Interactuable
 
 @enduml

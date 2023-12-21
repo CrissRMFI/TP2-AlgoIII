@@ -1,14 +1,13 @@
 package datos;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import entidades.Interactuable;
 import entidades.constructores.ConstructorObstaculo;
 import entidades.constructores.ConstructorPremio;
 import entidades.errores.ArchivoNoEncontrado;
 import entidades.errores.DatoFueraDeRango;
 import entidades.errores.DatoNoEncontrado;
 import entidades.errores.DatoNoValido;
-import entidades.obstaculos.Obstaculo;
-import entidades.premios.Premio;
 import entidades.tablero.Casillero;
 
 import java.util.LinkedList;
@@ -49,26 +48,16 @@ public class InformacionMapaEnJSON implements InformacionMapa {
 
 
             String tipoPremio = celda.get("premio").asText();
-            Premio premio = constructorPremio.construirPremio(tipoPremio);
+            Interactuable premio = constructorPremio.construir(tipoPremio);
 
             String tipoObstaculo = celda.get("obstaculo").asText();
-            Obstaculo obstaculo = constructorObstaculo.construirObstaculo(tipoObstaculo);
+            Interactuable obstaculo = constructorObstaculo.construir(tipoObstaculo);
 
             casillero.recibirElemento(premio);
             casillero.recibirElemento(obstaculo);
             camino.add(casillero);
         }
     }
-
-
-    public int conseguirAncho() {
-        return this.ancho;
-    }
-
-    public int conseguirLargo() {
-        return this.largo;
-    }
-
 
     private int conseguirNumero(String dato, JsonNode informacion, int limiteMaximo) throws DatoNoValido {
         if (!(informacion.get(dato).isInt())) {

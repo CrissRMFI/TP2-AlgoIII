@@ -1,0 +1,36 @@
+@startuml Obstaculo
+
+interface Interactuable{
+    +{abstract} interactuar(jugador: Jugador)
+}
+
+
+class SinObstaculo{
+    +interactuar(jugador: Jugador)
+}
+
+
+class Lesion{
+    -turnosAPerder: Turno
+    +interactuar(jugador: Jugador)
+}
+
+
+class Fiera{
+    +interactuar(jugador: Jugador)
+}
+
+
+class Bacanal{
+    -proporcion: int
+    +interactuar(jugador: Jugador)
+}
+
+
+Interactuable <|.. SinObstaculo
+Interactuable <|... Lesion
+Interactuable <|.. Bacanal
+Interactuable <|... Fiera
+
+
+@enduml

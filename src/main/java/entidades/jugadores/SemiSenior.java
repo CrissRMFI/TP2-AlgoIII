@@ -10,7 +10,7 @@ public class SemiSenior implements Seniority {
 
     @Override
     public Seniority ascenderSeniority(Turno turno) {
-        if (turno.puedeAscender(turnosParaEvolucionar)) {
+        if (turno.esMayorQue(turnosParaEvolucionar)) {
             return new Senior();
         }
         return this;
@@ -23,6 +23,6 @@ public class SemiSenior implements Seniority {
 
     @Override
     public String descripcion() {
-        return "Semi Senior";
+        return "SemiSenior";
     }
 }

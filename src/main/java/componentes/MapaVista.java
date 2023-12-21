@@ -30,7 +30,7 @@ public class MapaVista extends GridPane {
 
         for (int i = 0; i < infoMapa.getLargo(); i++) {
             for (int j = 0; j < infoMapa.getAncho(); j++) {
-                this.add(new CasilleroNoCamino(), i + 1, j + 1);
+                this.add(new CasilleroNoCamino(53), i + 1, j + 1);
             }
         }
 
@@ -42,7 +42,7 @@ public class MapaVista extends GridPane {
         LinkedList<Casillero> casilleros = modelo.getCasilleros();
 
         for (int i = 0; i < celdas.size(); i++) {
-            CasilleroCamino casilleroCamino = new CasilleroCamino(casilleros.get(i));
+            CasilleroCamino casilleroCamino = new CasilleroCamino(casilleros.get(i), 53);
             casilleroCamino.agregar(celdas.get(i).getObstaculo());
             casilleroCamino.agregar(celdas.get(i).getPremio());
             casilleroCamino.setAlignment(Pos.CENTER);

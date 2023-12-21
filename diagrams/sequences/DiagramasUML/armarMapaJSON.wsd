@@ -1,0 +1,18 @@
+@startuml armarMapaJSON
+
+actor ACTOR
+
+create InformacionMapaEnJSON as ":InformacionMapaEnJSON"
+ACTOR -> InformacionMapaEnJSON: new InformacionMapaEnJSON(ruta)
+
+create InformacionJSON as ":InformacionJSON"
+InformacionMapaEnJSON -> InformacionJSON: new InformacionJSON(ruta)
+InformacionMapaEnJSON -> InformacionJSON: devolverInformacionDelArchivo()
+create informacion as "informacion: JsonNode"
+InformacionJSON -> informacion: lecturaJSON
+InformacionJSON --> InformacionMapaEnJSON: informacion
+InformacionMapaEnJSON -> InformacionMapaEnJSON: revisarSiLosDatosNecesariosEstan(informacion)
+
+
+
+@enduml

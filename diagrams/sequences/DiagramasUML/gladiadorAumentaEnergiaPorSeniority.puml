@@ -1,0 +1,20 @@
+@startuml gladiadorAumentaEnergiaSemiSenior
+
+
+participant Gladiador as ":Gladiador"
+participant SemiSenior as ":SemiSenior"
+participant EnergiaGladiador as "energiaGladiador:Energia"
+participant EnergiaSemiSenior as "energiaSemiSenior:Energia"
+
+
+Gladiador -> SemiSenior: aumentarEnergia(EnergiaGladiador)
+SemiSenior -> EnergiaGladiador: afectarEnergia(EnergiaSemiSenior)
+EnergiaGladiador -> EnergiaSemiSenior: cantidadEnergia()
+EnergiaSemiSenior --> EnergiaGladiador: 5
+
+
+
+
+
+
+@enduml

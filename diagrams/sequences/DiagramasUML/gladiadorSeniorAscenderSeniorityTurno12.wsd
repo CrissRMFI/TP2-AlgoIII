@@ -1,0 +1,10 @@
+@startuml gladiadorSeniorAscenderSeniorityTurno13
+
+participant Gladiador as ":Gladiador"
+participant Senior as ":Senior"
+participant Turno as ":Turno"
+
+Gladiador -> Senior: ascenderSeniority(Turno(13))
+Senior --> Gladiador: Senior
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml algoRoma
+
+state Jugando as "Turno del jugador"
+
+[*] -> Jugando
+Jugando --> [*]: No hay mas turnos
+Jugando --> PasarTurno: Sigue habiendo turnos
+PasarTurno --> Jugando
+Jugando --> [*]: Jugador Gana
+
+
+@enduml
